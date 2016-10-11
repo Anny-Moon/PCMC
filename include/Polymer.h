@@ -60,13 +60,16 @@ public:
     /** Destructor*/
     ~Polymer();
 
-    void setRadiusVector(int i, double x_in, double y_in, double z_in);
+    //void setRadiusVector(int i, double x_in, double y_in, double z_in);
 
     void setVectorsTfromRadiusVectors();
     void setVectorsBfromVectorsT();
     void setRadiusVectorsFromVectorsT();
     void setMonomerLengthsFromRadiusVectors();
     void setMonomerLengthsFromVectorsT();
+    
+    /** Set vecors t(not unitary!) , n(unitary), b(unitary) and monomerLengths */
+    void setVectorsTNBfromKappaTau();
 
     int getNumMonomers () const;
     const double* getMonomerLength () const;

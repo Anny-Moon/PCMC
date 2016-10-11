@@ -333,6 +333,33 @@ void Polymer::setMonomerLengthsFromVectorsT()
 
 }
 
+
+void Polymer::setVectorsTNBfromKappaTau()
+{
+    int i;
+    double tmp;
+    
+    _CATCH_ERROR(kappa, "Error in Polymer::setVectorsTNBfromKappaTau()\n");
+    _CATCH_ERROR(tau, "Error in Polymer::setVectorsTNBfromKappaTau()\n");
+    
+    monomerLength[0] = norm(t[0]);
+    t[0] = Vector::eZ * monomerLength[0];
+    n[0] = Vector::eX;
+    b[0] = Vector::eY;
+
+    for(i=0;i<numMonomers-1;i++){
+	t[i+1] = cos(kappa[i])*t[i] + sin(kappa[i])*cos(tau[i])*n[i] + sin(kappa[i])*sin(tau[i])*b[i];
+	//t[i+1] = t[i+1] / scalar(t[i+1]);
+	    //t[i+1]=t[i]*(1-s*s*kappa[i]*kappa[i]/2)+n[i]*s*kappa[i]*sqrt(1-s*s*kappa[i]*kappa[i]/4);
+	monomerLength[i+1] = norm(t[i+1]);
+	tmp=tau[i];
+	b[i+1] = cos(tmp)*b[i] - sin(tmp)*n[i];
+	b[i+1] = b[i+1] / scalar(b[i+1]);
+	n[i+1] = b[i+1] * t[i+1]/monomerLength[i+1];
+	}
+    
+}
+
 int Polymer::getNumMonomers() const
 {
     return numMonomers;
