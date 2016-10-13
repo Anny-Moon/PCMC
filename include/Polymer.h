@@ -15,7 +15,7 @@
 namespace PCA{
 
 class Polymer
-{private:
+{protected:
 
     /** Number of monomers in polymer chain */
     int numMonomers;
@@ -50,9 +50,14 @@ public:
     the block, but it is not necessarily.*/
     Polymer(char* fileWithCoordinates, int numberOfSites = 0, int polymerNumber = 1);
 
-    /** Constructor: pass number of sites (not monomers! numberOfSites = numberOfMonomers + 1)
-    */
+    /** Constructor */
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
+    
+    /** Constructor */
+    Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
+    
+    /** Constructor */
+    Polymer(int numberOfMonomers, const double* kappa_in, const double* tau_in);
 
     /** Copy constructor*/
     Polymer(const Polymer& polymer);

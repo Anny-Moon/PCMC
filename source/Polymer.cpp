@@ -146,6 +146,21 @@ Polymer::Polymer(int numberOfMonomers, const Vector* r_in,  const Vector* t_in, 
 
 }
 
+Polymer::Polymer(int numberOfMonomers, const double* kappa_in, const double* tau_in)
+{
+    int i;
+    this->numMonomers = numberOfMonomers;
+    
+    monomerLength = NULL;
+    r = NULL;
+    t = NULL;
+    n = NULL;
+    b = NULL;
+
+    copyArray(numMonomers, kappa, kappa_in);
+    copyArray(numMonomers, tau, tau_in);
+}
+
 
 Polymer::Polymer(const Polymer& polymer)
 {

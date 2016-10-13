@@ -16,8 +16,8 @@
 #define _CATCH_ERROR(pointer, error_message) if(pointer==NULL){printf(error_message);exit(1);}
 
 namespace PCA{
-
-PolymerEnergy::Parameters::Parameters(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in, double chemicalPotential_in)
+//~~~~~~~~DWparams
+PolymerEnergy::DWparam::DWparam(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in, double u_in)
 {
     int i;
     numSites = numSites_in;
@@ -28,7 +28,7 @@ PolymerEnergy::Parameters::Parameters(int numSites_in, double q_in, double m_in,
     d = new double [numSites];
     a = new double [numSites];
     b = new double [numSites];
-    chemicalPotential = new double [numSites];
+    u = new double [numSites];
     
     
     for(i=0;i<numSites;i++){
@@ -38,11 +38,11 @@ PolymerEnergy::Parameters::Parameters(int numSites_in, double q_in, double m_in,
 	d[i] = d_in;
 	a[i] = a_in;
 	b[i] = b_in;
-	chemicalPotential[i] = chemicalPotential_in;
+	u[i] = u_in;
     }
 }
 
-PolymerEnergy::Parameters::Parameters(int numSites_in, const double* q_in, const double* m_in, const double* c_in, const double* d_in, const double* a_in, const double* b_in, const double* chemicalPotential_in);
+PolymerEnergy::DWparam::DWparam(int numSites_in, const double* q_in, const double* m_in, const double* c_in, const double* d_in, const double* a_in, const double* b_in, const double* u_in);
 {
     numSites = numSites_in;
     
@@ -52,7 +52,7 @@ PolymerEnergy::Parameters::Parameters(int numSites_in, const double* q_in, const
     d = new double [numSites];
     a = new double [numSites];
     b = new double [numSites];
-    chemicalPotential = new double [numSites];
+    u = new double [numSites];
     
     copyArray(numSites, q, q_in);
     copyArray(numSites, m, m_in);
@@ -60,10 +60,10 @@ PolymerEnergy::Parameters::Parameters(int numSites_in, const double* q_in, const
     copyArray(numSites, d, d_in);
     copyArray(numSites, a, a_in);
     copyArray(numSites, b, b_in);
-    copyArray(numSites, chemicalPotential, chemicalPotential_in);
+    copyArray(numSites, u, u_in);
 }
 
-PolymerEnergy::Parameters::~Parameters()
+PolymerEnergy::DWparam::~DWparam()
 {
     delete [] q;
     delete [] m;
@@ -71,32 +71,38 @@ PolymerEnergy::Parameters::~Parameters()
     delete [] d;
     delete [] a;
     delete [] b;
-    delete [] chemicalPotential;
+    delete [] u;
 
 }
 
-int PolymerEnergy::Parameters::getNumSites();
+//~~~~~~~~LJparams
+PolymerEnergy::LJparam::LJparam(int numSites_in, double minDist_in, double wellWidth_in, double wellHeight_in)
 {
-    return numSites;
+    minDist = minDist_in;
+    wellWidth = wellWidth_in;
+    wellHeight = wellHeight_in;
 }
 
-double PolymerEnergy::siteEnergy(int site, int numSites, const Parameters& parameters)
+PolymerEnergy::LJparam::~LJparam(){};
+
+//~~~~~~~~PolymerEnergy
+double PolymerEnergy::siteDWenergy(int site, int numSites, const DWparam& param)
 {
     double E1,E2;
 	
     if(site == 0)
-	E1 = -2.0 * kappa[site] * kappa[site+1];
+	E1 = -(2.0 + param.u) * kappa[site] * kappa[site+1];
     
     else if(site == numSites)
-	E1 = -2.0 * kappa[site-1] * kappa[site];
+	E1 = -(2.0 + param.u) * kappa[site-1] * kappa[site];
 
     else 
-	E1 = -2.0 * (kappa[site-1] * kappa[site] + kappa[site] * kappa[site+1]);
+	E1 = -(2.0 + param.u) * (kappa[site-1] * kappa[site] + kappa[site] * kappa[site+1]);
 
     E2 = 2.0 * kappa[site]*kappa[site] +\
-	q[site] * (kappa[site]*kappa[site] - m[site]*m[site]) * (kappa[site]*kappa[site]-m[site]*m[site]) +\
-	c[site] * 0.5 * (d[site]*kappa[site]*kappa[site] + 1.0) * tau[site] * tau[site] -\
-	a[site] * (b[site]*kappa[site]*kappa[site] + 1.0) * tau[site];
+	param.q[site] * (kappa[site]*kappa[site] - param.m[site]*param.m[site]) * (kappa[site]*kappa[site]-param.m[site]*param.m[site]) +\
+	param.c[site] * 0.5 * (param.d[site]*kappa[site]*kappa[site] + 1.0) * tau[site] * tau[site] -\
+	param.a[site] * (param.b[site]*kappa[site]*kappa[site] + 1.0) * tau[site];
 	
     return E1 + E2;
 }

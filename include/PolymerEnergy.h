@@ -18,26 +18,40 @@ namespace PCA
 class PolymerEnergy
 {
 public:
-    class Parameters
-    {private:
+    /** Parameters for double-well potential*/
+    class DWparam
+    {public:
 	int numSites;
+	
 	double* q;
 	double* m;
 	double* c;
 	double* d;
 	double* a;
 	double* b;
-	double* chemicalPotential;
-    
-    public:
-	Parameters(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in = 0, double chemicalPotential_in = 0);
-	Parameters(int numSites_in, const double* q_in, const double* m_in, const double* c_in, const double* d_in, const double* a_in, const double* b_in = 0, const double* chemicalPotential_in = 0);
-	~Parameters();
-	int getNumSites() const;
+	double* u; // ~chemical potential
+	
+	DWparam(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in = 0, double u_in = 0);
+	DWparam(int numSites_in, const double* q_in, const double* m_in, const double* c_in, const double* d_in, const double* a_in, const double* b_in = 0, const double* u_in = 0);
+	~DWparam();
     };
 
-    static double siteEnergy(int site, int numSites, const Parameters& parameters);
-    static double allSitesEnergy(int numSites, const Parameters& parameters);
+    
+    /** Parameters for Lennard-Jones potential*/
+    class LJparam
+    {public:
+
+	double minDist; // minimal distance
+	double wellWidth;
+	double wellHeight; //For a well this value should be negative!
+	
+	LJparam(double minDist_in, double wellWidth_in, double wellHeight_in);
+	~LJparam();
+    };
+
+public:
+    static double siteDWenergy(int site, int numSites, const DWparam& param);
+    static double fullDWenergy(int numSites, const DWparam& param);
 };
 }//end of namespace
 #endif
