@@ -14,13 +14,13 @@ OBJECT_DIR:=./object
 BIN_DIR:=.
 
 #directory for .cpp files
-SOURCE_DIR:=./src
+SOURCE_DIR:=./source
 
 #directory for .h files
 INCLUDE_DIR:=./include
 
-polymer: main.o Vector.o Utilities.o Polymer.o PolymerObservable.o PolymerScaling.o
-	$(CC) $(OPT) $(OBJECT_DIR)/main.o $(OBJECT_DIR)/Vector.o $(OBJECT_DIR)/Utilities.o $(OBJECT_DIR)/Polymer.o $(OBJECT_DIR)/PolymerObservable.o $(OBJECT_DIR)/PolymerScaling.o -o $(BIN_DIR)/polymer $(LIB)
+polymerMC: main.o Vector.o Utilities.o Polymer.o PolymerMC.o
+	$(CC) $(OPT) $(OBJECT_DIR)/main.o $(OBJECT_DIR)/Vector.o $(OBJECT_DIR)/Utilities.o $(OBJECT_DIR)/Polymer.o $(OBJECT_DIR)/PolymerMC.o -o $(BIN_DIR)/polymerMC $(LIB)
     
 main.o: $(SOURCE_DIR)/main.cpp
 	$(CC) $(OPT) -c $(SOURCE_DIR)/main.cpp  -o  $(OBJECT_DIR)/main.o  -I $(INCLUDE_DIR)
@@ -34,12 +34,10 @@ Utilities.o: $(SOURCE_DIR)/Utilities.cpp
 Polymer.o: $(SOURCE_DIR)/Polymer.cpp
 	$(CC) $(OPT) -c $(SOURCE_DIR)/Polymer.cpp -o $(OBJECT_DIR)/Polymer.o -I $(INCLUDE_DIR)
 
-PolymerObservable.o: $(SOURCE_DIR)/PolymerObservable.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerObservable.cpp -o $(OBJECT_DIR)/PolymerObservable.o -I $(INCLUDE_DIR)
+PolymerMC.o: $(SOURCE_DIR)/PolymerMC.cpp
+	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerMC.cpp -o $(OBJECT_DIR)/PolymerMC.o -I $(INCLUDE_DIR)
 
-PolymerScaling.o: $(SOURCE_DIR)/PolymerScaling.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerScaling.cpp -o $(OBJECT_DIR)/PolymerScaling.o -I $(INCLUDE_DIR)
 
 #cleaning
 clean:
-	rm -rf $(OBJECT_DIR)/*.o $(BIN_DIR)/polymer
+	rm -rf $(OBJECT_DIR)/*.o $(BIN_DIR)/polymerMC

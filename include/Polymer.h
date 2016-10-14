@@ -54,9 +54,6 @@ public:
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
     
     /** Constructor */
-    Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
-    
-    /** Constructor */
     Polymer(int numberOfMonomers, const double* kappa_in, const double* tau_in);
 
     /** Copy constructor*/
@@ -81,7 +78,9 @@ public:
     const Vector* getRadiusVectors() const;
     const Vector* getVectorsT() const;
     const Vector* getVectorsB() const;
-
+    
+    void setRadiusVector(int i, double x_in, double y_in, double z_in);
+    
     //const Vector& KadanoffTransformation(const Vector* vector, int size);
     void writeRadiusVectorsInFile(FILE* fp) const;
     void writeMonomerLengthsInFile(FILE* fp) const;
@@ -101,5 +100,11 @@ inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_i
     r[i].z = z_in;
 
 }
+
+inline int Polymer::getNumMonomers() const
+{
+    return numMonomers;
+}
+
 }// end of namespace
 #endif

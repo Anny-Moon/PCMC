@@ -18,14 +18,14 @@ class PolymerMC : public Polymer
 {
 private:
     
-    double* kappaNew;
-    double* tauNew;
+    double kappaNew;
+    double tauNew;
     
-    Vector* tNew; /* new tangent vectors */
-    Vector* nNew; /* new normal vectors */
-    Vector* bNew; /* new binormal vectors */
+    Vector tNew; /* new tangent (one!) vector */
+    Vector nNew; /* new normal (one!) vector */
+    Vector bNew; /* new binormal (one!) vector */
 
-    Vector* rNew; /* new radius vectors*/
+    Vector* rOld; /* old radius vectors*/
 public:
     /** Constructor */
     PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);
@@ -33,7 +33,11 @@ public:
     /** Destructor */
     ~PolymerMC();
     
+    /** This function changes only! r[site+1], r[site+2]... :
+    And before doing this it saves old r's as rOld[site+1]=r[site+1] ... */
+    void setNewRadiusVectorsFromRotation(int site);
     
-    void setRadiusVectorsNew(int site);
+    void setNewVectorsTNBfromKappaTau(int site);
 };
 }//end of namecpace
+#endif
