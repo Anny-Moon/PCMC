@@ -403,6 +403,14 @@ const Vector* Polymer::getVectorsB() const
 }
 
 
+void Polymer::writeRadiusVectorInFile(int site, FILE* fp) const
+{
+    _CATCH_ERROR(fp, "Error in writeRadiusVectorInFile:\ngive me the file\n");
+    _CATCH_ERROR(r, "Error in writeRadiusVectorInFile\n");
+
+    fprintf(fp,"%.14le\t%.14le\t%.14le", r[site].x, r[site].y, r[site].z);
+}
+
 void Polymer::writeRadiusVectorsInFile(FILE* fp) const
 {
     int i;
@@ -461,6 +469,11 @@ void Polymer::writeTBMfile(char* fileName) const
     }
     
     fclose(fp);
+}
+
+double Polymer::distance(int siteA, int siteB) const
+{
+    return (r[siteA]-r[siteB]).norm();
 }
 
 }// end of namespace

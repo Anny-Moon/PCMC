@@ -19,8 +19,8 @@ SOURCE_DIR:=./source
 #directory for .h files
 INCLUDE_DIR:=./include
 
-polymerMC: main.o Vector.o Utilities.o Polymer.o PolymerMC.o
-	$(CC) $(OPT) $(OBJECT_DIR)/main.o $(OBJECT_DIR)/Vector.o $(OBJECT_DIR)/Utilities.o $(OBJECT_DIR)/Polymer.o $(OBJECT_DIR)/PolymerMC.o -o $(BIN_DIR)/polymerMC $(LIB)
+polymerMC: main.o Vector.o Utilities.o Polymer.o PolymerMC.o PolymerQuantum.o
+	$(CC) $(OPT) $(OBJECT_DIR)/main.o $(OBJECT_DIR)/Vector.o $(OBJECT_DIR)/Utilities.o $(OBJECT_DIR)/Polymer.o $(OBJECT_DIR)/PolymerMC.o  $(OBJECT_DIR)/PolymerQuantum.o -o $(BIN_DIR)/polymerMC $(LIB)
     
 main.o: $(SOURCE_DIR)/main.cpp
 	$(CC) $(OPT) -c $(SOURCE_DIR)/main.cpp  -o  $(OBJECT_DIR)/main.o  -I $(INCLUDE_DIR)
@@ -37,6 +37,8 @@ Polymer.o: $(SOURCE_DIR)/Polymer.cpp
 PolymerMC.o: $(SOURCE_DIR)/PolymerMC.cpp
 	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerMC.cpp -o $(OBJECT_DIR)/PolymerMC.o -I $(INCLUDE_DIR)
 
+PolymerQuantum.o: $(SOURCE_DIR)/PolymerQuantum.cpp
+	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerQuantum.cpp -o $(OBJECT_DIR)/PolymerQuantum.o -I $(INCLUDE_DIR)
 
 #cleaning
 clean:

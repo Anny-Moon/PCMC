@@ -5,6 +5,7 @@
 #include "../include/Utilities.h"
 #include "../include/Polymer.h"
 #include "../include/PolymerMC.h"
+#include "../include/PolymerQuantum.h"
 
 //using namespace std;
 
@@ -30,6 +31,8 @@ int main(int np, char **p)
     polymer.writeRadiusVectorsInFile(cfp);
     fclose(cfp);
 
+    //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
+    PCA::PolymerQuantum::writeTBMfile(p[1], polymer);
     printf("Everything is OK!\n");
 return 0;
 }

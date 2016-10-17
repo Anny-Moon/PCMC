@@ -84,10 +84,13 @@ public:
     void setRadiusVector(int i, double x_in, double y_in, double z_in);
     
     //const Vector& KadanoffTransformation(const Vector* vector, int size);
+    void writeRadiusVectorInFile(int site, FILE* fp) const;
     void writeRadiusVectorsInFile(FILE* fp) const;
     void writeMonomerLengthsInFile(FILE* fp) const;
     void writeTBMfile(char* fileName) const;
-
+    
+    double distance(int siteA, int siteB) const;
+    
 };
 
 inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_in)
