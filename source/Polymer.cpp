@@ -76,40 +76,45 @@ void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int bloc
     fclose(fp);
 }
 
-Polymer::Polymer(char* fileWithCoordinates, int numberOfSites, int polymerNumber)
+Polymer::Polymer(FileType fileType, char* fileName, int numberOfSites, int polymerNumber)
 {
     int size;
     
-    if(numberOfSites == 0)
-	size = PCA::countLinesInBlockInFile(fileWithCoordinates, polymerNumber);
+    switch (fileType){
+	case FileType::coordinates:
+	    if(numberOfSites == 0)
+		size = countLinesInBlockInFile(fileName, polymerNumber);
 	
-    else
-	size = numberOfSites;
+	    else
+		size = numberOfSites;
 
-    this->numMonomers = size-1;
+	    this->numMonomers = size-1;
     
-    monomerLength = NULL;
-    r = NULL;
-    t = NULL;
-    n = NULL;
-    b = NULL;
-    kappa = NULL;
-    tau = NULL;
+	    monomerLength = NULL;
+	    r = NULL;
+	    t = NULL;
+	    n = NULL;
+	    b = NULL;
+	    kappa = NULL;
+	    tau = NULL;
     
-    r = new Vector[numMonomers+1];
-    readFileWithCoordinates(fileWithCoordinates, size, polymerNumber);
+	    r = new Vector[numMonomers+1];
+	    readFileWithCoordinates(fileName, size, polymerNumber);
     
-    monomerLength = new double [numMonomers];
-    setMonomerLengthsFromRadiusVectors();
+	    monomerLength = new double [numMonomers];
+	    setMonomerLengthsFromRadiusVectors();
     
-    t = new Vector[numMonomers];
-    setVectorsTfromRadiusVectors();
+	    t = new Vector[numMonomers];
+	    setVectorsTfromRadiusVectors();
     
-    b = new Vector[numMonomers];
-    setVectorsBfromVectorsT();
+	    b = new Vector[numMonomers];
+	    setVectorsBfromVectorsT();
+	    break;
+	    
+	case FileType::angles:
+	    break;
     
-    
-
+    }
 }
 
 Polymer::Polymer(int numberOfMonomers, const Vector* r_in,  const Vector* t_in, const Vector* b_in)

@@ -35,6 +35,8 @@ class Polymer
     /** Radius vectors */
     Vector* r;
     
+    
+    
     /** Block is separated from another one with one or more empty lines. The first has number 1 (not 0).
     NB1: in this version empty line is every line which starts with
     unprintable characters: \n, \t or space. That's why any line with data can't 
@@ -44,11 +46,11 @@ class Polymer
     void readFileWithCoordinates(char* fileName, int linesInBlock, int blockNumber = 1);
     void formatAll();
 public:
-
+    enum class FileType {coordinates, angles};
     /** Constructor: read coordinates of sites from file. If you have more than one
     blocks in file then pass the number of the block. You can pass number of sites in
     the block, but it is not necessarily.*/
-    Polymer(char* fileWithCoordinates, int numberOfSites = 0, int polymerNumber = 1);
+    Polymer(FileType fileType, char* fileName, int numberOfSites = 0, int polymerNumber = 1);
 
     /** Constructor */
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);

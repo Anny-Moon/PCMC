@@ -1,5 +1,5 @@
 #compilator name (for example could be mpicc instead)
-CC:=g++
+CC:=g++ -std=c++11
 
 #LIBRARIES (can also include path to these libraries as -L/SOME_PATH)
 LIB:=-lm

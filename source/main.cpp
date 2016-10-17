@@ -19,7 +19,7 @@ int main(int np, char **p)
     
     //printf("%s\n",p[1]);
     sprintf(str,"data/xyz_%s.dat",p[1]);
-    PCA::Polymer polymer(str,0,1);
+    PCA::Polymer polymer(PCA::Polymer::FileType::coordinates,str,0,1);
     polymer.setMonomerLengthsFromRadiusVectors();
 
     lfp=fopen("results/lengths.dat","w");
