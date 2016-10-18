@@ -1,10 +1,10 @@
-/** StepFunctionCalculator.cpp
+/** TrancatedExpCalculator.cpp
 *
 *   Anna Sinelnikova
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Quantum/StepFunctionCalculator.h"
+#include "../../include/Quantum/TrancatedExpCalculator.h"
 #include "../../include/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 #include <math.h>
@@ -12,15 +12,15 @@
 namespace PCA{
 
 
-StepFunctionCalculator::StepFunctionCalculator(double height_in, double widthInMonomerLength, double monomerLength)
+TrancatedExpCalculator::TrancatedExpCalculator(double height_in, double widthInMonomerLength, double monomerLength)
 {
     height = height_in;
     width = widthInMonomerLength * monomerLength;
 }
 
-StepFunctionCalculator::~StepFunctionCalculator(){};
+TrancatedExpCalculator::~TrancatedExpCalculator(){};
 
-std::complex<double> StepFunctionCalculator::calculateHA(double distance)
+std::complex<double> TrancatedExpCalculator::calculateHA(double distance)
 {
     double answ = 0.0;
     

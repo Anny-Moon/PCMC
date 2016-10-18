@@ -14,9 +14,16 @@ namespace PCA{
 
 class StepFunctionCalculator : public HoppingAmplitudeCalculator
 {
-public:
+private:
 
-    complex<double> calculateHA(double distance);
+    double height;
+    double width;
+
+public:
+    StepFunctionCalculator(double heigth_in, double widthInMonomerLength, double monomerLength);
+    ~StepFunctionCalculator();
+
+    std::complex<double> calculateHA(double distance);
 
 };
 

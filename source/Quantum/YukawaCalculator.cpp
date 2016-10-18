@@ -4,7 +4,7 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Quantum/StepFunctionCalculator.h"
+#include "../../include/Quantum/YukawaCalculator.h"
 #include "../../include/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 #include <math.h>
@@ -12,15 +12,15 @@
 namespace PCA{
 
 
-StepFunctionCalculator::StepFunctionCalculator(double height_in, double widthInMonomerLength, double monomerLength)
+YukawaCalculator::YukawaCalculator(double height_in, double widthInMonomerLength, double monomerLength)
 {
     height = height_in;
     width = widthInMonomerLength * monomerLength;
 }
 
-StepFunctionCalculator::~StepFunctionCalculator(){};
+YukawaCalculator::~YukawaCalculator(){};
 
-std::complex<double> StepFunctionCalculator::calculateHA(double distance)
+std::complex<double> YukawaCalculator::calculateHA(double distance)
 {
     double answ = 0.0;
     

@@ -10,14 +10,13 @@
 #include <complex>
 
 namespace PCA{
-
 class HoppingAmplitudeCalculator
 {
 
 
 public:
     
-    virtual complex<double> calculateHA(double distance) = 0;
+    virtual std::complex<double> calculateHA(double distance) = 0;
 
 };
 
