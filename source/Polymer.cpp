@@ -76,28 +76,95 @@ void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int bloc
     fclose(fp);
 }
 
-Polymer::Polymer(FileType fileType, char* fileName, int numberOfSites, int polymerNumber)
+void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumber)
+{
+    int i=0;
+    int blockCounter = 0;
+    bool prevLineEmpty = false;
+    char line[100];
+    FILE *fp;
+    double kappa_in, tau_in;
+    
+    fp = fopen(fileName, "r");
+    if(fp == NULL){
+	printf("Error in readFileWithAngles:\nCannot open the file '%s'\n",fileName);
+	exit(1);
+    }
+    
+    if(blockNumber == 0){
+	printf("Error in readFileWithAngles:\nIn files number of the first block is 1. You pussed me 0!\n");
+	exit(1);
+    }
+    
+    
+    while(fgets(line, sizeof line, fp)!=NULL){
+	
+	if(blockCounter == blockNumber-1)
+	    break;
+	    
+	else if(line[0]=='\n'||line[0]=='\t'||line[0]==' '){
+	    if(!prevLineEmpty)
+		blockCounter++;
+	    prevLineEmpty = true;
+	    }
+	
+	else
+	    prevLineEmpty = false;
+    }
+
+    if(!prevLineEmpty)
+	blockCounter++;
+
+    if(blockNumber > blockCounter+1){
+	printf("Error in readFileWithAngles:\nYou have only %i blocks in your file. But you passed me number %i\nNote: in files number of the first block is 1.\n",blockCounter, blockNumber);
+	exit(1);
+    }
+
+    int firstElement=0;
+    
+    if(line[0]!='\n'&&line[0]!='\t'&&line[0]!=' '){
+	    sscanf(line,"%le %le",&kappa_in, &tau_in);
+	    setKappa(0, kappa_in);
+	    setTau(0, tau_in);
+	    firstElement = 1;
+	}
+
+    for(i=firstElement;i<linesInBlock;i++){
+	fscanf(fp,"%le",&kappa_in);
+	fscanf(fp,"%le",&tau_in);
+	setKappa(i, kappa_in);
+	setTau(i, tau_in);
+    }
+    
+    fclose(fp);
+}
+
+
+Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, int polymerNumber)
 {
     int size;
     
+    monomerLength = NULL;
+    r = NULL;
+    t = NULL;
+    n = NULL;
+    b = NULL;
+    kappa = NULL;
+    tau = NULL;
+    
+    
+    if(numberOfLinesInBlock == 0)
+	size = countLinesInBlockInFile(fileName, polymerNumber);
+	
+    else
+	size = numberOfLinesInBlock;
+
+    
+    
     switch (fileType){
 	case FileType::coordinates:
-	    if(numberOfSites == 0)
-		size = countLinesInBlockInFile(fileName, polymerNumber);
-	
-	    else
-		size = numberOfSites;
-
 	    this->numMonomers = size-1;
-    
-	    monomerLength = NULL;
-	    r = NULL;
-	    t = NULL;
-	    n = NULL;
-	    b = NULL;
-	    kappa = NULL;
-	    tau = NULL;
-    
+	    
 	    r = new Vector[numMonomers+1];
 	    readFileWithCoordinates(fileName, size, polymerNumber);
     
@@ -112,6 +179,12 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfSites, int polym
 	    break;
 	    
 	case FileType::angles:
+	    this->numMonomers = size;
+	    
+	    kappa = new double[numMonomers];
+	    tau = new double[numMonomers];
+	    
+	    readFileWithAngles(fileName, size, polymerNumber);
 	    break;
     
     }
@@ -390,6 +463,12 @@ const Vector* Polymer::getRadiusVectors() const
     return r;
 }
 
+const Vector& Polymer::getRadiusVector(int site) const
+{
+    _CATCH_ERROR(r, "Error in getRadiusVector\n");
+    return r[site];
+}
+
 const Vector* Polymer::getVectorsT() const
 {
     _CATCH_ERROR(t, "Error in Polymer::getVectorsT()\n");
@@ -403,13 +482,7 @@ const Vector* Polymer::getVectorsB() const
 }
 
 
-void Polymer::writeRadiusVectorInFile(int site, FILE* fp) const
-{
-    _CATCH_ERROR(fp, "Error in writeRadiusVectorInFile:\ngive me the file\n");
-    _CATCH_ERROR(r, "Error in writeRadiusVectorInFile\n");
 
-    fprintf(fp,"%.14le\t%.14le\t%.14le", r[site].x, r[site].y, r[site].z);
-}
 
 void Polymer::writeRadiusVectorsInFile(FILE* fp) const
 {

@@ -19,7 +19,10 @@ class PolymerQuantum
 {
 public:
     /** pass from which site and pointer to site_to. Returns aplitude*/
-    static double hoppingAmplitude(const Polymer& polymer, int site_from, int site_to);
+    static double hoppingAmplitudeYukawa(const Polymer& polymer, int site_from, int site_to);
+    static double hoppingAmplitudeStepFunction(const Polymer& polymer, int site_from, int site_to);
+    static double hoppingAmplitudeTrancatedExp(const Polymer& polymer, int site_from, int site_to);
+    
     static void writeTBMfile(char* fileName, const Polymer& polymer);
 };
 }//end of namespace

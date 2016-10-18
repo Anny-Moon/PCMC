@@ -44,13 +44,14 @@ class Polymer
     NB2: You can't have emty line before the first block.
     You don't need to have empty line at the end of file.*/
     void readFileWithCoordinates(char* fileName, int linesInBlock, int blockNumber = 1);
+    void readFileWithAngles(char* fileName, int linesInBlock, int blockNumber = 1);
     void formatAll();
 public:
     enum class FileType {coordinates, angles};
     /** Constructor: read coordinates of sites from file. If you have more than one
     blocks in file then pass the number of the block. You can pass number of sites in
     the block, but it is not necessarily.*/
-    Polymer(FileType fileType, char* fileName, int numberOfSites = 0, int polymerNumber = 1);
+    Polymer(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
 
     /** Constructor */
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
@@ -78,13 +79,14 @@ public:
     int getNumMonomers () const;
     const double* getMonomerLength () const;
     const Vector* getRadiusVectors() const;
+    const Vector& getRadiusVector(int site) const;
     const Vector* getVectorsT() const;
     const Vector* getVectorsB() const;
     
     void setRadiusVector(int i, double x_in, double y_in, double z_in);
+    void setKappa(int i, double kappa_in);
+    void setTau(int i, double tau_in);
     
-    //const Vector& KadanoffTransformation(const Vector* vector, int size);
-    void writeRadiusVectorInFile(int site, FILE* fp) const;
     void writeRadiusVectorsInFile(FILE* fp) const;
     void writeMonomerLengthsInFile(FILE* fp) const;
     void writeTBMfile(char* fileName) const;
@@ -106,6 +108,27 @@ inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_i
 
 }
 
+inline void Polymer::setKappa(int i, double kappa_in)
+{
+    if(kappa == NULL){
+	printf("Error in inline Polymer::setKappa\n");
+	exit(1);
+    }
+    
+    kappa[i] = kappa_in;
+
+}
+
+inline void Polymer::setTau(int i, double tau_in)
+{
+    if(tau == NULL){
+	printf("Error in inline Polymer::setKappa\n");
+	exit(1);
+    }
+    
+    tau[i] = tau_in;
+
+}
 inline int Polymer::getNumMonomers() const
 {
     return numMonomers;

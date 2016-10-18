@@ -1,4 +1,5 @@
 /** PolymerQuantum.cpp
+
 *
 *   Anna Sinelnikova
 *   Uppsala, Sweden 2016
@@ -15,18 +16,63 @@
 namespace PCA{
 
 
-double PolymerQuantum::hoppingAmplitude(const Polymer& polymer, int site_from, int site_to)
+
+
+double PolymerQuantum::hoppingAmplitudeStepFunction(const Polymer& polymer, int site_from, int site_to)
+{
+    double distance;
+    double height, width;
+    double minDist = 3.8;
+    double answ;
+    
+    width = minDist * 1.95;
+    height = 1;
+    distance = polymer.distance(site_to, site_from);
+    answ = 0.0;
+    
+	if(distance<width)
+	    answ=height;
+	    
+    return answ;
+}
+
+double PolymerQuantum::hoppingAmplitudeTrancatedExp(const Polymer& polymer, int site_from, int site_to)
+{
+    double distance;
+    double g2, m, a, width;
+    double minDist = 3.8;
+    double answ;
+    
+    width = minDist * 2.5;
+    
+    a = 1e-1;
+    m = -log(a) / minDist;
+    g2 = 1.0 / a;
+    
+    distance = polymer.distance(site_to, site_from);
+    answ = 0.0;
+    
+    if(distance<width)
+	answ = g2 * exp(-m * distance);
+	    
+    return answ;
+}
+
+double PolymerQuantum::hoppingAmplitudeYukawa(const Polymer& polymer, int site_from, int site_to)
 {
     double distance;
     double g2, m, a; //Yukawa potential t_ij = - g^2 * e^{-m r_ij}/r_ij
     double minDist = 3.8;
-
+    double answ;
+    
     a = 1e-1;
     m = -log(2.0*a) / minDist;
     g2 = - minDist / (2.0 * a);
+    
     distance = polymer.distance(site_to, site_from);
     
-    return (-g2 * exp(-m * distance) / distance);
+    answ =  (-g2 * exp(-m * distance) / distance);
+    return answ;
 }
 
 void PolymerQuantum::writeTBMfile(char* fileName, const Polymer& polymer)
@@ -35,7 +81,8 @@ void PolymerQuantum::writeTBMfile(char* fileName, const Polymer& polymer)
     char str [100];
     int site_to, site_from,  numSites;
     double amplitude;
-
+    Vector rSite;
+    
     FILE *fp;
     
     //_CATCH_ERROR(r, "Error in writeTBMfile:\nno radius vectors\n");
@@ -45,13 +92,12 @@ void PolymerQuantum::writeTBMfile(char* fileName, const Polymer& polymer)
     fp = fopen(str, "w");
 
     fprintf(fp, "Amplitudes:\n");
-    fprintf(fp, "Mode = 0\n");
+    fprintf(fp, "Mode = 1\n");
 
     for(int site_from = 0; site_from < numSites; site_from++){
 	for(int site_to = site_from+1; site_to< numSites; site_to++){
-	    amplitude = PolymerQuantum::hoppingAmplitude(polymer, site_from, site_to);
+	    amplitude = PolymerQuantum::hoppingAmplitudeTrancatedExp(polymer, site_from, site_to);
 	    fprintf(fp, "%.14le\t%d\t[%i]\t[%i]\n", amplitude, 0, site_to, site_from);
-	    fprintf(fp, "%.14le\t%d\t[%i]\t[%i]\n", amplitude, 0, site_from, site_to);
         }
     }
 
@@ -63,7 +109,8 @@ void PolymerQuantum::writeTBMfile(char* fileName, const Polymer& polymer)
     for(i=0;i<numSites;i++){
 	
 	fprintf(fp,"(");
-	polymer.writeRadiusVectorInFile(i, fp);
+	rSite = polymer.getRadiusVector(i);
+	fprintf(fp, "%.14le\t%.14le\t%.14le", rSite.x, rSite.y, rSite.z);
         fprintf(fp, ")\t<>\t[%i]\n", i);
     }
     
