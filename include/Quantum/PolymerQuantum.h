@@ -7,9 +7,9 @@
 #ifndef PCA_POLYMER_QUANTUM
 #define PCA_POLYMER_QUANTUM
 
-#include "Polymer.h"
-#include "Vector.h"
-#include "Utilities.h"
+#include "../Polymer.h"
+#include "../Vector.h"
+#include "../Utilities.h"
 #include <stdlib.h>
 #include <stdio.h>
 

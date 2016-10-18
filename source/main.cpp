@@ -5,7 +5,7 @@
 #include "../include/Utilities.h"
 #include "../include/Polymer.h"
 #include "../include/PolymerMC.h"
-#include "../include/PolymerQuantum.h"
+#include "../include/Quantum/PolymerQuantum.h"
 
 //using namespace std;
 
