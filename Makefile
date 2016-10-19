@@ -1,36 +1,43 @@
 #compilator name (for example could be mpicc instead)
-CC:=g++ -std=c++11
+CC:= g++
 
+CCFLAGS	:= -std=c++11
 #LIBRARIES (can also include path to these libraries as -L/SOME_PATH)
-LIB:=-lm
+LIB:= -lm
 
 #Optimization (-O3 or -O2)
-OPT:=-O3
-
-#directory for .o files
-OBJECT_DIR:=./object
+OPT:= -O3
 
 #directory for executables
 BIN_DIR:=.
 
-#directory for .cpp files
-SOURCE_DIR:=./source
-
+target = a.out
 #directory for .h files
-INCLUDE_DIR:=./include
+INC1 = ./include/quantum
+INC2 = 
 
+INCLUDE_DIRS := -I$(INC1) -I$(INC2)
+#List of include files
 
-SOURCES = $(wildcard source/*.cpp)\
-	  $(wildcard source/Quantum/*.cpp)
-	  
-OBJECTS = $(SOURCES:.cpp=.o)
+#directory for .cpp files
+SRC_DIR = ./source
+SRC_DIR1 = 
+#List of source files
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+SRC +=$(wildcard $(SRC_DIR1)/*.cpp)
+#directory for .o files
+OBJECT_DIR:=./object
 
-#polymerMC : $(OBJECTS)
-#	$(CC) $(OPT) -o  $@ $^ $(LIB)
+#List of object files
+OBJ = $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SRC))) 
+all: $(target)
 
-polymerMC : $(OBJECTS)
-	$(CC) $(OPT) -o polymerMC $(OBJECTS)
+$(target): $(OBJ)
 
+%.o: %.cpp
+    @echo "Compiling: " $(addsuffix .cpp, $(basename $(notdir $@)))
+    @$(CC) $(CCFLAGS) -c $< -o $@
+    
 #cleaning
 clean:
 	rm -rf $(OBJECT_DIR)/*.o $(BIN_DIR)/polymerMC
