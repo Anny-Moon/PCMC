@@ -23,7 +23,7 @@ public:
     StepFunctionCalculator(double heigth_in, double widthInMonomerLength, double monomerLength);
     ~StepFunctionCalculator();
 
-    std::complex<double> calculateHA(double distance);
+    std::complex<double> calculateHA(double distance) const;
 
 };
 

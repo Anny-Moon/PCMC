@@ -20,7 +20,7 @@ StepFunctionCalculator::StepFunctionCalculator(double height_in, double widthInM
 
 StepFunctionCalculator::~StepFunctionCalculator(){};
 
-std::complex<double> StepFunctionCalculator::calculateHA(double distance)
+std::complex<double> StepFunctionCalculator::calculateHA(double distance) const
 {
     double answ = 0.0;
     

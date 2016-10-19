@@ -16,7 +16,7 @@ class HoppingAmplitudeCalculator
 
 public:
     
-    virtual std::complex<double> calculateHA(double distance) = 0;
+    virtual std::complex<double> calculateHA(double distance) const = 0;
 
 };
 

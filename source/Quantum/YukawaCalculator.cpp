@@ -12,20 +12,21 @@
 namespace PCA{
 
 
-YukawaCalculator::YukawaCalculator(double height_in, double widthInMonomerLength, double monomerLength)
+YukawaCalculator::YukawaCalculator(double lambda, double widthInMonomerLength, double monomerLength)
 {
-    height = height_in;
+    g = monomerLength / (2.0 * lambda);
+    m = -log(2.0*lambda) / monomerLength;
+    
     width = widthInMonomerLength * monomerLength;
 }
 
 YukawaCalculator::~YukawaCalculator(){};
 
-std::complex<double> YukawaCalculator::calculateHA(double distance)
+std::complex<double> YukawaCalculator::calculateHA(double distance) const
 {
     double answ = 0.0;
     
-    if(distance < width)
-	answ = height;
+    answ = g * exp(-m * distance) / distance;
 
     return answ;
 }

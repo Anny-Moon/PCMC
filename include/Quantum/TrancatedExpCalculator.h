@@ -12,18 +12,26 @@
 
 namespace PCA{
 
+/** t_ij = g * exp(-m * r_ij) if r_ij < width; 
+    t_ij = 0 otherwise
+    
+    g, m will be found from:
+    t_ij = 1 		if r_ij = monimerLength;
+    t_ij = lambda 	if r_ij = 2*monomerLength
+*/
 class TrancatedExpCalculator : public HoppingAmplitudeCalculator
 {
 private:
 
-    double height;
+    double g;
+    double m;
     double width;
 
 public:
-    TrancatedExpCalculator(double heigth_in, double widthInMonomerLength, double monomerLength);
+    TrancatedExpCalculator(double lambda, double widthInMonomerLength, double monomerLength);
     ~TrancatedExpCalculator();
 
-    std::complex<double> calculateHA(double distance);
+    std::complex<double> calculateHA(double distance) const;
 
 };
 

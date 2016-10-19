@@ -6,8 +6,12 @@
 #include "../include/Polymer.h"
 #include "../include/PolymerMC.h"
 #include "../include/Quantum/PolymerQuantum.h"
+#include "../include/Quantum/StepFunctionCalculator.h"
+#include "../include/Quantum/TrancatedExpCalculator.h"
+#include "../include/Quantum/YukawaCalculator.h"
 
-//using namespace std;
+using namespace std;
+using namespace PCA;
 
 int main(int np, char **p)
 {	
@@ -20,7 +24,7 @@ int main(int np, char **p)
     
     //printf("%s\n",p[1]);
     sprintf(str,"data/xyz_%s.dat",p[1]);
-    PCA::Polymer polymer(PCA::Polymer::FileType::coordinates,str,0,1);
+    Polymer polymer(Polymer::FileType::coordinates,str,0,1);
     polymer.setMonomerLengthsFromRadiusVectors();
 
     lfp=fopen("results/lengths.dat","w");
@@ -32,7 +36,9 @@ int main(int np, char **p)
     fclose(cfp);
 
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
-    PCA::PolymerQuantum::writeTBMfile(p[1], polymer);
+    
+    StepFunctionCalculator potential(1.0, 1.95, 3.8);
+    PolymerQuantum::writeTBMfile(p[1], potential, polymer);
     printf("Everything is OK!\n");
 return 0;
 }

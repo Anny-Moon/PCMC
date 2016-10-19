@@ -12,20 +12,23 @@
 namespace PCA{
 
 
-TrancatedExpCalculator::TrancatedExpCalculator(double height_in, double widthInMonomerLength, double monomerLength)
+TrancatedExpCalculator::TrancatedExpCalculator(double lambda, double widthInMonomerLength, double monomerLength)
 {
-    height = height_in;
     width = widthInMonomerLength * monomerLength;
+    
+    g = 1.0 / lambda;
+    m = -log(lambda) / monomerLength;
+    
 }
 
 TrancatedExpCalculator::~TrancatedExpCalculator(){};
 
-std::complex<double> TrancatedExpCalculator::calculateHA(double distance)
+std::complex<double> TrancatedExpCalculator::calculateHA(double distance) const
 {
     double answ = 0.0;
     
     if(distance < width)
-	answ = height;
+	answ = g * exp(-m * distance);
 
     return answ;
 }
