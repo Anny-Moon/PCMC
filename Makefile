@@ -19,39 +19,17 @@ SOURCE_DIR:=./source
 #directory for .h files
 INCLUDE_DIR:=./include
 
-polymerMC: main.o Vector.o Utilities.o Polymer.o PolymerMC.o PolymerQuantum.o StepFunctionCalculator.o TrancatedExpCalculator.o YukawaCalculator.o
-	$(CC) $(OPT) $(OBJECT_DIR)/main.o $(OBJECT_DIR)/Vector.o $(OBJECT_DIR)/Utilities.o $(OBJECT_DIR)/Polymer.o \
-	$(OBJECT_DIR)/PolymerMC.o  $(OBJECT_DIR)/Quantum/PolymerQuantum.o \
-	$(OBJECT_DIR)/Quantum/StepFunctionCalculator.o $(OBJECT_DIR)/Quantum/TrancatedExpCalculator.o $(OBJECT_DIR)/Quantum/YukawaCalculator.o \
-	-o $(BIN_DIR)/polymerMC $(LIB)
-    
-main.o: $(SOURCE_DIR)/main.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/main.cpp  -o  $(OBJECT_DIR)/main.o  -I $(INCLUDE_DIR)
-    
-Vector.o: $(SOURCE_DIR)/Vector.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Vector.cpp -o $(OBJECT_DIR)/Vector.o -I $(INCLUDE_DIR)
-    
-Utilities.o: $(SOURCE_DIR)/Utilities.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Utilities.cpp   -o $(OBJECT_DIR)/Utilities.o -I $(INCLUDE_DIR)
 
-Polymer.o: $(SOURCE_DIR)/Polymer.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Polymer.cpp -o $(OBJECT_DIR)/Polymer.o -I $(INCLUDE_DIR)
+SOURCES = $(wildcard source/*.cpp)\
+	  $(wildcard source/Quantum/*.cpp)
+	  
+OBJECTS = $(SOURCES:.cpp=.o)
 
-PolymerMC.o: $(SOURCE_DIR)/PolymerMC.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/PolymerMC.cpp -o $(OBJECT_DIR)/PolymerMC.o -I $(INCLUDE_DIR)
+#polymerMC : $(OBJECTS)
+#	$(CC) $(OPT) -o  $@ $^ $(LIB)
 
-PolymerQuantum.o: $(SOURCE_DIR)/Quantum/PolymerQuantum.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Quantum/PolymerQuantum.cpp -o $(OBJECT_DIR)/Quantum/PolymerQuantum.o -I $(INCLUDE_DIR)/Quantum
-
-StepFunctionCalculator.o: $(SOURCE_DIR)/Quantum/StepFunctionCalculator.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Quantum/StepFunctionCalculator.cpp -o $(OBJECT_DIR)/Quantum/StepFunctionCalculator.o -I $(INCLUDE_DIR)/Quantum
-
-TrancatedExpCalculator.o: $(SOURCE_DIR)/Quantum/TrancatedExpCalculator.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Quantum/TrancatedExpCalculator.cpp -o $(OBJECT_DIR)/Quantum/TrancatedExpCalculator.o -I $(INCLUDE_DIR)/Quantum
-
-YukawaCalculator.o: $(SOURCE_DIR)/Quantum/YukawaCalculator.cpp
-	$(CC) $(OPT) -c $(SOURCE_DIR)/Quantum/YukawaCalculator.cpp -o $(OBJECT_DIR)/Quantum/YukawaCalculator.o -I $(INCLUDE_DIR)/Quantum
-
+polymerMC : $(OBJECTS)
+	$(CC) $(OPT) -o polymerMC $(OBJECTS)
 
 #cleaning
 clean:
