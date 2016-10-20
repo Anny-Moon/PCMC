@@ -4,24 +4,24 @@ CC:= g++
 CCFLAGS	:= -std=c++11
 #LIBRARIES (can also include path to these libraries as -L/SOME_PATH)
 LIB:= -lm
-LDFLAGS := $(LIB)
+
 #Optimization (-O3 or -O2)
 OPT:= -O3
 
 #directory for executables
 BIN_DIR:=.
 
-target = polymerMC
+target = a.out
 #directory for .h files
-INC1 = ./include
-INC2 = ./include/Quantum
+INC1 = ./include/quantum
+INC2 = 
 
 INCLUDE_DIRS := -I$(INC1) -I$(INC2)
 #List of include files
 
 #directory for .cpp files
 SRC_DIR = ./source
-SRC_DIR1 = ./source/Quantum
+SRC_DIR1 = 
 #List of source files
 SRC = $(wildcard $(SRC_DIR)/*.cpp)
 SRC +=$(wildcard $(SRC_DIR1)/*.cpp)
@@ -33,12 +33,10 @@ OBJ = $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SRC)))
 all: $(target)
 
 $(target): $(OBJ)
-	@echo "Generating executable file..." $(notdir $(target))
-	@$(CXX) $(CFLAGS) $^ -o $(target) $(LIB)
-	
+
 %.o: %.cpp
-	@echo "Compiling: " $(addsuffix .cpp, $(basename $(notdir $@)))
-	@$(CC) $(CCFLAGS) -c $< -o $@ $(INCLUDE_DIRS)
+    @echo "Compiling: " $(addsuffix .cpp, $(basename $(notdir $@)))
+    @$(CC) $(CCFLAGS) -c $< -o $@
     
 #cleaning
 clean:
