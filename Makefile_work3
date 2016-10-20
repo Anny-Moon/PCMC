@@ -35,18 +35,17 @@ SRC =  $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
 # Object files
 #OBJ1 = $(SRC:.cpp=.o)
 OBJ = $(SRC:.cpp=.o)
-OBJ_WD = $(notdir $(OBJ))
 #SRC_FILES_NAMES =  $(notdir$(SRC))
-OBJ_NAMES = $(addprefix ./object/,$(notdir $(OBJ)))
+#OBJ = $(addprefix ./object/,$(notdir $(OBJ1)))
 #OBJ = $(patsubst $(SCR_DIR), $(OBJ_DIR), $(OBJ1))
 NAMES =   $(basename $(SRC))
 
 all: $(PROGRAM)
 
 # Linking
-$(PROGRAM): $(OBJ_NAMES)
+$(PROGRAM): $(OBJ)
 	@echo "Generating executable file..." $(notdir $(PROGRAM))
-	@$(CC) $(CFLAGS) $(OPT)  $(OBJ_NAMES) -o $(PROGRAM) $(LIB)
+	@$(CC) $(CFLAGS) $(OPT)  $^ -o $(PROGRAM) $(LIB)
 
 # Compiling
 #$(addprefix ./odject/, $(notdir %.o)): $(addprefix ./source/, $(notdir %.cpp))
@@ -68,11 +67,11 @@ define app_compile_template
  $(1)_NAME = $(1)
  $(1)_CPP_NAME = $(1).cpp
  $(1)_OBJ_NAME = $(1).o
- $(1)_OBJ_FULL_NAME = ./object/$$(notdir $$($(1)_OBJ_NAME))
+ $(1)_OBJ_FULL_NAME = ./object/$$(notdir($(1)_OBJ_NAME))
 
 #$$(notdir $$($(1)_OBJ_NAME)): $$(notdir $$($(1)_CPP_NAME))
-$$($(1)_OBJ_FULL_NAME): $$($(1)_CPP_NAME)
-	$$(CC) $$(CFLAGS) $$(OPT) -c $$($(1)_CPP_NAME) -o $$($(1)_OBJ_FULL_NAME) $$(LDLIBS)
+$$($(1)_OBJ_NAME): $$($(1)_CPP_NAME)
+	$$(CC) $$(CFLAGS) $$(OPT) -c $$($(1)_CPP_NAME) -o $$($(1)_OBJ_NAME) $$(LDLIBS)
 endef
 
 $(foreach app, $(NAMES), $(eval $(call app_compile_template,$(app))))
@@ -82,9 +81,9 @@ $(foreach app, $(NAMES), $(eval $(call app_compile_template,$(app))))
 clean:
 	@echo "Cleaning: "
 	rm -rf $(OBJ) $(PROGRAM)
-	rm -rf $(OBJ_NAMES) $(PROGRAM)
+
 print:
-	@echo $(OBJ_WD)
+	@echo $(NAMES)
 #	@echo $(addprefix ./object/, $(notdir ($(patsubst %.o,%.cpp, $(SRC)))))
 #The original extended version:
 #https://github.com/latelee/Makefile_templet/blob/master/Makefile_simple
