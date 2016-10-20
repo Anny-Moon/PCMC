@@ -1,0 +1,60 @@
+#compilator name (for example could be mpicc instead)
+CC:= g++
+
+CCFLAGS	:= -std=c++11
+
+#LIBRARIES (can also include path to these libraries as -L/SOME_PATH)
+
+LIB:= -lm
+#Optimization (-O3 or -O2)
+OPT:= -O3
+
+#directory for executables
+BIN_DIR:= .
+
+Target = polymerMC
+
+#directory for .h files
+INC_DIR1 = ./include
+INC_DIR2 = ./include/Quantum
+
+INC_FLAGS := -I$(INC_DIR1) -I$(INC_DIR2)
+
+#directory for .cpp files
+SRC_DIR1 = ./source
+SRC_DIR2 = ./source/Quantum
+
+#List of source files
+SRC = $(wildcard $(SRC_DIR1)/*.cpp)
+SRC += $(wildcard $(SRC_DIR2)/*.cpp)
+
+#directory for .o files
+OBJ_DIR:= ./object
+
+#List of object files
+
+OBJ = $(patsubst %.cpp,%.o,$(addprefix ./object/,$(notdir $(SRC))))
+#OBJ = $(addprefix ./object/, $(notdir$(patsubst %.cpp,%.o, $(SRC))))
+#OBJ = $(patsubst %.cpp, %.o, $(SRC)) 
+#OBJ = $(SRC:.cpp=.o)
+
+all: $(Target)
+
+$(Target): $(OBJ)
+	@echo $^
+	@echo "Generating executable file..." $(notdir $(target))
+	@$(CC) $(OPT) $(CCFLAGS) $^ -o $(target) $(LIB)
+#	@$(CC) $(OPT) $(CCFLAGS) $(addprefix ./object/,$(notdir $^)) -o $(target) $(LIB)
+	
+#$(addprefix ./object/,$(notdir %.o)): %.cpp
+object/%.o : %.cpp
+	@echo $< "->" $@
+	@echo "Compiling: " $(addsuffix .cpp, $(basename $(notdir $@)))
+	@$(CC) $(OPT) $(CCFLAGS) $(INC_FLAGS) -c $< -o $@
+#	@$(CC) $(OPT) $(CCFLAGS) $(INC_FLAGS) -c $< -o $(addprefix ./object/,$(notdir $@))
+	
+#cleaning
+clean:
+#	rm -rf $(OBJ_DIR)/*.o $(BIN_DIR)/polymerMC
+#	rm -rf $(SRC_DIR1)/*.o $(BIN_DIR)/polymerMC
+	rm -rf $(OBJ) $(BIN_DIR)/polymerMC

@@ -1,45 +1,58 @@
-#compilator name (for example could be mpicc instead)
+# Compilator name (for example could be mpicc instead)
 CC:= g++
 
-CCFLAGS	:= -std=c++11
-#LIBRARIES (can also include path to these libraries as -L/SOME_PATH)
+# Compilator flags
+CFLAGS:= -std=c++11
+
+# Libraries (can also include path to these libraries as -L/SOME_PATH)
 LIB:= -lm
-LDFLAGS := $(LIB)
-#Optimization (-O3 or -O2)
+
+# Optimization (-O3 or -O2)
 OPT:= -O3
 
-#directory for executables
-BIN_DIR:=.
+# Directory for executables
+BIN_DIR:= .
 
-target = polymerMC
-#directory for .h files
-INC1 = ./include
-INC2 = ./include/Quantum
+# Name for exectutable
+PROGRAM = polymerMC
 
-INCLUDE_DIRS := -I$(INC1) -I$(INC2)
-#List of include files
+# Directories for .h files
+INC_DIR1 = ./include
+INC_DIR2 = ./include/Quantum
 
-#directory for .cpp files
-SRC_DIR = ./source
-SRC_DIR1 = ./source/Quantum
-#List of source files
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
-SRC +=$(wildcard $(SRC_DIR1)/*.cpp)
-#directory for .o files
-OBJECT_DIR:=./object
+# Includes
+LDLIBS:= -I$(INC_DIR1) -I$(INC_DIR2)
 
-#List of object files
-OBJ = $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SRC))) 
-all: $(target)
+# Directories for .cpp files
+SRC_DIR1 = ./source
+SRC_DIR2 = ./source/Quantum
 
-$(target): $(OBJ)
-	@echo "Generating executable file..." $(notdir $(target))
-	@$(CXX) $(CFLAGS) $^ -o $(target) $(LIB)
-	
+# Source files
+SRC =  $(wildcard $(SRC_DIR1)/*.cpp)
+SRC += $(wildcard $(SRC_DIR2)/*.cpp)
+
+# Object files
+OBJ = $(SRC:.cpp=.o)
+
+
+all: $(PROGRAM)
+
+# Linking
+$(PROGRAM): $(OBJ)
+	@echo "Generating executable file..." $(notdir $(PROGRAM))
+	@$(CC) $(OPT) $(CFLAGS) $^ -o $(PROGRAM) $(LIB)
+
+# Compiling
 %.o: %.cpp
-	@echo "Compiling: " $(addsuffix .cpp, $(basename $(notdir $@)))
-	@$(CC) $(CCFLAGS) -c $< -o $@ $(INCLUDE_DIRS)
-    
-#cleaning
+	@echo "Compiling: " $(addsuffix .cpp, $(basename $@))
+	@$(CC) $(OPT) $(CFLAGS) -c $< -o $@ $(LDLIBS)
+
+# Cleaning
 clean:
-	rm -rf $(OBJECT_DIR)/*.o $(BIN_DIR)/polymerMC
+	@echo "Cleaning: "
+	rm -rf $(OBJ) $(PROGRAM)
+
+
+#The original extended version:
+#https://github.com/latelee/Makefile_templet/blob/master/Makefile_simple
+#
