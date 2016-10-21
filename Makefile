@@ -1,7 +1,9 @@
-#
+# 
 # Run $make list_of_objects to see
 # the rule for compilation only onle file.
 #
+# Anna Sinelnikova
+# Uppsala, Sweden 2016
 
 # Compilator name (for example could be mpicc instead)
 CC:= g++
@@ -34,7 +36,7 @@ OBJ_DIR:= ./object
 #---------------------No need to change the following!-------------------
 
 # Include files are needed fot Includes
-INC_FILES :=  $(wildcard $(INC_DIR1)/*.h) $(wildcard $(INC_DIR1)/*/*.h)
+INC_FILES :=  $(wildcard $(INC_DIR)/*.h) $(wildcard $(INC_DIR)/*/*.h) $(wildcard $(INC_DIR)/*/*/*.h)
 
 # All include directories are needed for Includes
 INC_DIRS:= $(dir $(INC_FILES))
@@ -43,13 +45,13 @@ INC_DIRS:= $(dir $(INC_FILES))
 LDLIBS:=$(addprefix -I, $(INC_DIRS))
 
 # Source files
-SRC :=  $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
+SRC :=  $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp) $(wildcard $(SRC_DIR)/*/*/*.cpp)
 
 # Object files
 OBJ := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 
 # Files names of objects without directories name
-OBJ_PURE := $(notdir $(OBJ))
+#OBJ_PURE := $(notdir $(OBJ))
 
 all: $(PROGRAM)
 
