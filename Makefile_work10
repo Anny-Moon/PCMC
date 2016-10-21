@@ -1,8 +1,3 @@
-#
-# Run $make list_of_objects to see
-# the rule for compilation only onle file.
-#
-
 # Compilator name (for example could be mpicc instead)
 CC:= g++
 
@@ -80,7 +75,6 @@ clean:
 list_of_objects:
 	@echo $(OBJ)
 
-# For debugging makefile
 print:
 	@echo $(LDLIBS)
 #	@echo $(OBJ)

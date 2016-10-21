@@ -1,8 +1,3 @@
-#
-# Run $make list_of_objects to see
-# the rule for compilation only onle file.
-#
-
 # Compilator name (for example could be mpicc instead)
 CC:= g++
 
@@ -21,30 +16,20 @@ BIN_DIR:= .
 # Name for exectutable
 PROGRAM = polymerMC
 
-# Root directories for .h files
-INC_DIR = ./include
+# Directories for .h files
+INC_DIR1 = ./include
+INC_DIR2 = ./include/Quantum
+
+# Includes
+LDLIBS:= -I$(INC_DIR1) -I$(INC_DIR2)
+
+OBJ_DIR:= ./object
 
 # Root directory for .cpp files
 SRC_DIR:= ./source
 
-# Directory for Objects
-OBJ_DIR:= ./object
-
-
-#---------------------No need to change the following!-------------------
-
-# Include files are needed fot Includes
-INC_FILES :=  $(wildcard $(INC_DIR1)/*.h) $(wildcard $(INC_DIR1)/*/*.h)
-
-# All include directories are needed for Includes
-INC_DIRS:= $(dir $(INC_FILES))
-
-# Includes: -I ...
-LDLIBS:=$(addprefix -I, $(INC_DIRS))
-
 # Source files
 SRC :=  $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
-
 # Object files
 OBJ := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
 
@@ -54,7 +39,7 @@ OBJ_PURE := $(notdir $(OBJ))
 all: $(PROGRAM)
 
 # Linking
-$(PROGRAM): $(OBJ)
+$(PROGRAM): $(OBJ_PURE)
 	@echo "Generating executable file..." $(notdir $(PROGRAM))
 	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
 
@@ -64,7 +49,7 @@ define app_compile_template
  $(1)_OBJ = $$(addprefix $$(OBJ_DIR)/, $$(notdir $$(patsubst %.cpp, %.o, $(1))))
  $(1)_OBJ_PURE = $$(notdir $$($(1)_OBJ))
 
-$$($(1)_OBJ): $(1)
+$$($(1)_OBJ_PURE): $(1)
 	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
 	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS)
 endef
@@ -72,16 +57,12 @@ endef
 # Compiling
 $(foreach app, $(SRC), $(eval $(call app_compile_template,$(app))))
 
+
 # Cleaning
 clean:
 	@echo "Cleaning: "
 	rm -rf $(OBJ) $(PROGRAM)
-	
-list_of_objects:
-	@echo $(OBJ)
-
-# For debugging makefile
 print:
-	@echo $(LDLIBS)
-#	@echo $(OBJ)
-#	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
+	@echo $(SRC)
+	@echo $(OBJ)
+	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
