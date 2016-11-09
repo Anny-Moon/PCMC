@@ -1,7 +1,8 @@
-/** Polymer.cpp
+/** @package PCMC
+*   @file Polymer.cpp
 *
-*   Anna Sinelnikova
-*   Uppsala,Sweden 2016
+*   @autor Anna Sinelnikova
+*   @data 2016
 */
 
 #include "../include/Polymer.h"
@@ -10,8 +11,6 @@
 #include "../include/File.h"
 #include <stdio.h>
 #include <math.h>
-
-#define _CATCH_ERROR(pointer, error_message) if(pointer==NULL){printf(error_message);exit(1);}
 
 namespace PCA{
 
@@ -25,17 +24,12 @@ void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int bloc
     double x_in, y_in, z_in;
     
     fp = fopen(fileName, "r");
-    if(fp == NULL){
-	printf("Error in readFileWithCoordinates:\nCannot open the file '%s'\n",fileName);
-	exit(1);
-    }
+    _PCA_CATCH_FILE_ERROR(fp, "open", fileName, "Polymer::readFileWithCoordinates");
     
     if(blockNumber == 0){
 	printf("Error in readFileWithCoordinates:\nIn files number of the first block is 1. You pussed me 0!\n");
 	exit(1);
     }
-    
-    
     
     while(fgets(line, sizeof line, fp)!=NULL){
 	
@@ -88,11 +82,8 @@ void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumb
     double kappa_in, tau_in;
     
     fp = fopen(fileName, "r");
-    if(fp == NULL){
-	printf("Error in readFileWithAngles:\nCannot open the file '%s'\n",fileName);
-	exit(1);
-    }
-    
+    _PCA_CATCH_FILE_ERROR(fp, "open", fileName, "Polymer::readFileWithAngles");
+
     if(blockNumber == 0){
 	printf("Error in readFileWithAngles:\nIn files number of the first block is 1. You pussed me 0!\n");
 	exit(1);
@@ -337,7 +328,7 @@ void Polymer::setRadiusVectorsFromVectorsT()
 {
     int i;
 
-    _CATCH_ERROR(t, "Error in Polymer::setRadiusVectorsFromVectorsT()\n");
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::setRadiusVectorsFromVectorsT()");
     
     if(r == NULL ){
 	r = new Vector [numMonomers+1];
@@ -354,7 +345,7 @@ void Polymer::setVectorsTfromRadiusVectors()
 {
     int i;
     
-    _CATCH_ERROR(r, "Error in Polymer::setVectorsTfromRadiusVectors()\n");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::setVectorsTfromRadiusVectors()");
     
     if(t == NULL ){
 	t = new Vector [numMonomers];
@@ -369,7 +360,7 @@ void Polymer::setVectorsBfromVectorsT()
 {
     int i;
     
-    _CATCH_ERROR(t, "Error in Polymer::setVectorsBfromVectorsT()\n");
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::setVectorsBfromVectorsT()");
     
     if(b == NULL ){
 	b = new Vector [numMonomers];
@@ -401,7 +392,7 @@ void Polymer::setMonomerLengthsFromRadiusVectors()
 {
     int i;
 
-    _CATCH_ERROR(r, "Error in Polymer::setMonomerLengthsFromRadiusVectors()\n");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::setMonomerLengthsFromRadiusVectors()");
     
     if(monomerLength == NULL){
 	monomerLength = new double [numMonomers];
@@ -417,7 +408,7 @@ void Polymer::setMonomerLengthsFromVectorsT()
 {
     int i;
 
-    _CATCH_ERROR(t, "Error in Polymer::setMonomerLengthsFromVectorsT()\n");
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::setMonomerLengthsFromVectorsT()");
 
     if(monomerLength == NULL){
 	monomerLength = new double [numMonomers];
@@ -433,8 +424,8 @@ void Polymer::setVectorsTNBfromKappaTau()
 {
     int i;
     
-    _CATCH_ERROR(kappa, "Error in Polymer::setVectorsTNBfromKappaTau()\n");
-    _CATCH_ERROR(tau, "Error in Polymer::setVectorsTNBfromKappaTau()\n");
+    _PCA_CATCH_VOID_POINTER(kappa, "Polymer::setVectorsTNBfromKappaTau()\n\tkappa = NULL");
+    _PCA_CATCH_VOID_POINTER(tau, "Polymer::setVectorsTNBfromKappaTau()\n\ttau = NULL");
     
     monomerLength[0] = t[0].norm();
     t[0] = Vector::eZ * monomerLength[0];
@@ -455,13 +446,13 @@ void Polymer::setVectorsTNBfromKappaTau()
 
 const double* Polymer::getMonomerLength() const
 {
-    _CATCH_ERROR(monomerLength, "Error in Polymer::getMonomerLength()\n");
+    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::getMonomerLength()");
     return monomerLength;
 }
 
 const Vector* Polymer::getRadiusVectors() const
 {
-    _CATCH_ERROR(r, "Error in Polymer::getRadiusVectors()\n");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::getRadiusVectors()");
     return r;
 }
 
@@ -473,25 +464,22 @@ const Vector& Polymer::getRadiusVector(int site) const
 
 const Vector* Polymer::getVectorsT() const
 {
-    _CATCH_ERROR(t, "Error in Polymer::getVectorsT()\n");
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::getVectorsT()");
     return t;
 }
 
 const Vector* Polymer::getVectorsB() const
 {
-    _CATCH_ERROR(b, "Error in Polymer::getVectorsB()\n");
+    _PCA_CATCH_VOID_POINTER(b, "Polymer::getVectorsB()");
     return b;
 }
-
-
-
 
 void Polymer::writeRadiusVectorsInFile(FILE* fp) const
 {
     int i;
     
-    _CATCH_ERROR(fp, "Error in writeRadiusVectorsInFile:\ngive me the file\n");
-    _CATCH_ERROR(r, "Error in writeRadiusVectorsInFile\n");
+    _PCA_CATCH_VOID_POINTER(fp, "Polymer::writeRadiusVectorsInFile(.)\n\tGive me valid pointer to the file");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::writeRadiusVectorsInFile");
 
     for(i=0;i<numMonomers+1;i++)
 	r[i].writeInFile(fp);
@@ -503,12 +491,8 @@ void Polymer::writeMonomerLengthsInFile(FILE* fp) const
 {
     int i;
     
-    _CATCH_ERROR(fp, "Error in writeMonomerLengthsInFile:\ngive me the file\n");
-    
-    if(monomerLength == NULL){
-	printf("Error in writeMonomerLengthsInFile\n");
-	exit(1);
-    }
+    _PCA_CATCH_VOID_POINTER(fp, "Polymer::writeMonomerLengthsInFile(.):\nGive me valid pointer to the file");
+    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::writeMonomerLengthsInFile(.)");
 
     for(i=0;i<numMonomers;i++)
 	fprintf(fp, "%g\n", monomerLength[i]);
@@ -522,7 +506,7 @@ void Polymer::writeTBMfile(char* fileName) const
     char str [100];
     FILE *fp;
     
-    _CATCH_ERROR(r, "Error in writeTBMfile:\nno radius vectors\n");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::writeTBMfile(.)");
     
     sprintf(str,"results/%s.tbm",fileName);
     fp = fopen(str, "w");

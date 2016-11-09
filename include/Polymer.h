@@ -1,4 +1,4 @@
-/** @PCMC
+/** @package PCMC
 *   @file Polymer.h
 *
 *   @autor Anna Sinelnikova

@@ -21,7 +21,7 @@ OPT:= -O3
 BIN_DIR:= .
 
 # Name for exectutable
-PROGRAM = polymerMC
+PROGRAM = pcmc
 
 # Root directories for .h files
 INC_DIR = ./include
