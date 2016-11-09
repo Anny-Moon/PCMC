@@ -1,0 +1,96 @@
+\hypertarget{class_p_c_a_1_1_file}{}\section{P\+CA\+:\+:File Class Reference}
+\label{class_p_c_a_1_1_file}\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+
+
+{\ttfamily \#include $<$File.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_p_c_a_1_1_file_a832795e34ab12c9fd127bdf99d89efa3}{count\+Lines\+In\+Block} (char $\ast$file\+Name, int block\+Number=1)
+\begin{DoxyCompactList}\small\item\em Returns number of lines in one particular data block. \end{DoxyCompactList}\item 
+static int \hyperlink{class_p_c_a_1_1_file_a25bcd550fcc9e0a948f4c553b330a7a6}{count\+Blocks} (char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Return number of blocs in file. \end{DoxyCompactList}\item 
+static void \hyperlink{class_p_c_a_1_1_file_a25dd7a0266edd1fc026f27448003b36f}{show\+Number\+Of\+Lines\+In\+Blocks} (char $\ast$file\+Name)
+\begin{DoxyCompactList}\small\item\em Print on screen list of blocks and number of lines in each. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Verbose functions\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_p_c_a_1_1_file_a71cb80c09faa4be71eb09ae074aac4b2}{set\+Verbose} (bool \hyperlink{class_p_c_a_1_1_file_a7d78765563f9be7e1ca260dcd3c65053}{verbose})
+\item 
+static bool \hyperlink{class_p_c_a_1_1_file_aa080868b37deb641c3369c397f84fd1b}{get\+Verbose} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_p_c_a_1_1_file_a7d78765563f9be7e1ca260dcd3c65053}{verbose} = true
+\begin{DoxyCompactList}\small\item\em If false then this class is not allowed to print anything on screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_file_a25bcd550fcc9e0a948f4c553b330a7a6}{}\label{class_p_c_a_1_1_file_a25bcd550fcc9e0a948f4c553b330a7a6} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!count\+Blocks@{count\+Blocks}}
+\index{count\+Blocks@{count\+Blocks}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{count\+Blocks()}{countBlocks()}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+File\+::count\+Blocks (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return number of blocs in file. 
+
+\hypertarget{class_p_c_a_1_1_file_a832795e34ab12c9fd127bdf99d89efa3}{}\label{class_p_c_a_1_1_file_a832795e34ab12c9fd127bdf99d89efa3} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!count\+Lines\+In\+Block@{count\+Lines\+In\+Block}}
+\index{count\+Lines\+In\+Block@{count\+Lines\+In\+Block}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{count\+Lines\+In\+Block()}{countLinesInBlock()}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+File\+::count\+Lines\+In\+Block (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name,  }\item[{int}]{block\+Number = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns number of lines in one particular data block. 
+
+Block are separated from another one with one or more empty lines. The first has number 1 (not 0).
+
+N\+B1\+: in this version empty line is every line which starts with unprintable characters\+: \textbackslash{}n, \textbackslash{}t or space. That\textquotesingle{}s why any line with data can\textquotesingle{}t have unprintable character at the beginning.
+
+N\+B2\+: You can\textquotesingle{}t have emty line before the first block. You don\textquotesingle{}t need to have empty line at the end of file. \hypertarget{class_p_c_a_1_1_file_aa080868b37deb641c3369c397f84fd1b}{}\label{class_p_c_a_1_1_file_aa080868b37deb641c3369c397f84fd1b} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!get\+Verbose@{get\+Verbose}}
+\index{get\+Verbose@{get\+Verbose}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{get\+Verbose()}{getVerbose()}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+File\+::get\+Verbose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_file_a71cb80c09faa4be71eb09ae074aac4b2}{}\label{class_p_c_a_1_1_file_a71cb80c09faa4be71eb09ae074aac4b2} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!set\+Verbose@{set\+Verbose}}
+\index{set\+Verbose@{set\+Verbose}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{set\+Verbose()}{setVerbose()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+File\+::set\+Verbose (\begin{DoxyParamCaption}\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_file_a25dd7a0266edd1fc026f27448003b36f}{}\label{class_p_c_a_1_1_file_a25dd7a0266edd1fc026f27448003b36f} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!show\+Number\+Of\+Lines\+In\+Blocks@{show\+Number\+Of\+Lines\+In\+Blocks}}
+\index{show\+Number\+Of\+Lines\+In\+Blocks@{show\+Number\+Of\+Lines\+In\+Blocks}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{show\+Number\+Of\+Lines\+In\+Blocks()}{showNumberOfLinesInBlocks()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+File\+::show\+Number\+Of\+Lines\+In\+Blocks (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Print on screen list of blocks and number of lines in each. 
+
+Thus function will print on screen even if all verbose are false 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_file_a7d78765563f9be7e1ca260dcd3c65053}{}\label{class_p_c_a_1_1_file_a7d78765563f9be7e1ca260dcd3c65053} 
+\index{P\+C\+A\+::\+File@{P\+C\+A\+::\+File}!verbose@{verbose}}
+\index{verbose@{verbose}!P\+C\+A\+::\+File@{P\+C\+A\+::\+File}}
+\subsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+File\+::verbose = true\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+If false then this class is not allowed to print anything on screen. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\hyperlink{_file_8h}{File.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\hyperlink{_file_8cpp}{File.\+cpp}\end{DoxyCompactItemize}

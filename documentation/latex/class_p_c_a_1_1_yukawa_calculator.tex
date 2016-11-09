@@ -1,0 +1,95 @@
+\hypertarget{class_p_c_a_1_1_yukawa_calculator}{}\section{P\+CA\+:\+:Yukawa\+Calculator Class Reference}
+\label{class_p_c_a_1_1_yukawa_calculator}\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+
+
+t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij)/ r\+\_\+ij;  
+
+
+
+
+{\ttfamily \#include $<$Yukawa\+Calculator.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Yukawa\+Calculator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_yukawa_calculator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_yukawa_calculator_a8e905580206166f9b63fa24171d48346}{Yukawa\+Calculator} (double lambda, double width\+In\+Monomer\+Length, double monomer\+Length)
+\item 
+\hyperlink{class_p_c_a_1_1_yukawa_calculator_ab9dcb06991228cb9a48f773ee3375603}{$\sim$\+Yukawa\+Calculator} ()
+\item 
+std\+::complex$<$ double $>$ \hyperlink{class_p_c_a_1_1_yukawa_calculator_a543f237d55350a7669f8b85789cae68d}{calculate\+HA} (double distance) const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_yukawa_calculator_a9fc1cfaf2c30fdd14561238a5b114a0c}{g}
+\item 
+double \hyperlink{class_p_c_a_1_1_yukawa_calculator_a4b442aa74b079ce8778e19d69c163cf6}{m}
+\item 
+double \hyperlink{class_p_c_a_1_1_yukawa_calculator_a69e1097584c632e6e43320ef6fc384dc}{width}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij)/ r\+\_\+ij; 
+
+g, m will be found from\+: t\+\_\+ij = 1 if r\+\_\+ij = monimer\+Length; t\+\_\+ij = lambda if r\+\_\+ij = 2$\ast$monomer\+Length 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_a8e905580206166f9b63fa24171d48346}{}\label{class_p_c_a_1_1_yukawa_calculator_a8e905580206166f9b63fa24171d48346} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!Yukawa\+Calculator@{Yukawa\+Calculator}}
+\index{Yukawa\+Calculator@{Yukawa\+Calculator}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{Yukawa\+Calculator()}{YukawaCalculator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Yukawa\+Calculator\+::\+Yukawa\+Calculator (\begin{DoxyParamCaption}\item[{double}]{lambda,  }\item[{double}]{width\+In\+Monomer\+Length,  }\item[{double}]{monomer\+Length }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_ab9dcb06991228cb9a48f773ee3375603}{}\label{class_p_c_a_1_1_yukawa_calculator_ab9dcb06991228cb9a48f773ee3375603} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!````~Yukawa\+Calculator@{$\sim$\+Yukawa\+Calculator}}
+\index{````~Yukawa\+Calculator@{$\sim$\+Yukawa\+Calculator}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{$\sim$\+Yukawa\+Calculator()}{~YukawaCalculator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Yukawa\+Calculator\+::$\sim$\+Yukawa\+Calculator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_a543f237d55350a7669f8b85789cae68d}{}\label{class_p_c_a_1_1_yukawa_calculator_a543f237d55350a7669f8b85789cae68d} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!calculate\+HA@{calculate\+HA}}
+\index{calculate\+HA@{calculate\+HA}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{calculate\+H\+A()}{calculateHA()}}
+{\footnotesize\ttfamily std\+::complex$<$ double $>$ P\+C\+A\+::\+Yukawa\+Calculator\+::calculate\+HA (\begin{DoxyParamCaption}\item[{double}]{distance }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_p_c_a_1_1_hopping_amplitude_calculator_ae925735be8ef006f3f8dfdc1a23cae89}{P\+C\+A\+::\+Hopping\+Amplitude\+Calculator}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_a9fc1cfaf2c30fdd14561238a5b114a0c}{}\label{class_p_c_a_1_1_yukawa_calculator_a9fc1cfaf2c30fdd14561238a5b114a0c} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!g@{g}}
+\index{g@{g}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Yukawa\+Calculator\+::g\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_a4b442aa74b079ce8778e19d69c163cf6}{}\label{class_p_c_a_1_1_yukawa_calculator_a4b442aa74b079ce8778e19d69c163cf6} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!m@{m}}
+\index{m@{m}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Yukawa\+Calculator\+::m\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_yukawa_calculator_a69e1097584c632e6e43320ef6fc384dc}{}\label{class_p_c_a_1_1_yukawa_calculator_a69e1097584c632e6e43320ef6fc384dc} 
+\index{P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}!width@{width}}
+\index{width@{width}!P\+C\+A\+::\+Yukawa\+Calculator@{P\+C\+A\+::\+Yukawa\+Calculator}}
+\subsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Yukawa\+Calculator\+::width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Quantum/\hyperlink{_yukawa_calculator_8h}{Yukawa\+Calculator.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Quantum/\hyperlink{_yukawa_calculator_8cpp}{Yukawa\+Calculator.\+cpp}\end{DoxyCompactItemize}

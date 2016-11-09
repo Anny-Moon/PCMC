@@ -1,0 +1,95 @@
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator}{}\section{P\+CA\+:\+:Trancated\+Exp\+Calculator Class Reference}
+\label{class_p_c_a_1_1_trancated_exp_calculator}\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+
+
+t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij) if r\+\_\+ij $<$ width; t\+\_\+ij = 0 otherwise  
+
+
+
+
+{\ttfamily \#include $<$Trancated\+Exp\+Calculator.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Trancated\+Exp\+Calculator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_trancated_exp_calculator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_trancated_exp_calculator_a634a2c2d9bc7f54bacf6531f6f8f2c3c}{Trancated\+Exp\+Calculator} (double lambda, double width\+In\+Monomer\+Length, double monomer\+Length)
+\item 
+\hyperlink{class_p_c_a_1_1_trancated_exp_calculator_a029cab04f65d1a4adebb1dbdf8fd4d3d}{$\sim$\+Trancated\+Exp\+Calculator} ()
+\item 
+std\+::complex$<$ double $>$ \hyperlink{class_p_c_a_1_1_trancated_exp_calculator_afe48461b23fd2b0d350f32bdac0c3d18}{calculate\+HA} (double distance) const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_trancated_exp_calculator_ade1e4dd2be1b5ec6f6e38cc1a251a719}{g}
+\item 
+double \hyperlink{class_p_c_a_1_1_trancated_exp_calculator_a3d26a4f32c4d4e1ff068cb58446f029d}{m}
+\item 
+double \hyperlink{class_p_c_a_1_1_trancated_exp_calculator_a18ac7bab1a2ddc18bc214a089d05e4ee}{width}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij) if r\+\_\+ij $<$ width; t\+\_\+ij = 0 otherwise 
+
+g, m will be found from\+: t\+\_\+ij = 1 if r\+\_\+ij = monimer\+Length; t\+\_\+ij = lambda if r\+\_\+ij = 2$\ast$monomer\+Length 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_a634a2c2d9bc7f54bacf6531f6f8f2c3c}{}\label{class_p_c_a_1_1_trancated_exp_calculator_a634a2c2d9bc7f54bacf6531f6f8f2c3c} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!Trancated\+Exp\+Calculator@{Trancated\+Exp\+Calculator}}
+\index{Trancated\+Exp\+Calculator@{Trancated\+Exp\+Calculator}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{Trancated\+Exp\+Calculator()}{TrancatedExpCalculator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::\+Trancated\+Exp\+Calculator (\begin{DoxyParamCaption}\item[{double}]{lambda,  }\item[{double}]{width\+In\+Monomer\+Length,  }\item[{double}]{monomer\+Length }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_a029cab04f65d1a4adebb1dbdf8fd4d3d}{}\label{class_p_c_a_1_1_trancated_exp_calculator_a029cab04f65d1a4adebb1dbdf8fd4d3d} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!````~Trancated\+Exp\+Calculator@{$\sim$\+Trancated\+Exp\+Calculator}}
+\index{````~Trancated\+Exp\+Calculator@{$\sim$\+Trancated\+Exp\+Calculator}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{$\sim$\+Trancated\+Exp\+Calculator()}{~TrancatedExpCalculator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::$\sim$\+Trancated\+Exp\+Calculator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_afe48461b23fd2b0d350f32bdac0c3d18}{}\label{class_p_c_a_1_1_trancated_exp_calculator_afe48461b23fd2b0d350f32bdac0c3d18} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!calculate\+HA@{calculate\+HA}}
+\index{calculate\+HA@{calculate\+HA}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{calculate\+H\+A()}{calculateHA()}}
+{\footnotesize\ttfamily std\+::complex$<$ double $>$ P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::calculate\+HA (\begin{DoxyParamCaption}\item[{double}]{distance }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_p_c_a_1_1_hopping_amplitude_calculator_ae925735be8ef006f3f8dfdc1a23cae89}{P\+C\+A\+::\+Hopping\+Amplitude\+Calculator}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_ade1e4dd2be1b5ec6f6e38cc1a251a719}{}\label{class_p_c_a_1_1_trancated_exp_calculator_ade1e4dd2be1b5ec6f6e38cc1a251a719} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!g@{g}}
+\index{g@{g}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::g\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_a3d26a4f32c4d4e1ff068cb58446f029d}{}\label{class_p_c_a_1_1_trancated_exp_calculator_a3d26a4f32c4d4e1ff068cb58446f029d} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!m@{m}}
+\index{m@{m}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::m\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_trancated_exp_calculator_a18ac7bab1a2ddc18bc214a089d05e4ee}{}\label{class_p_c_a_1_1_trancated_exp_calculator_a18ac7bab1a2ddc18bc214a089d05e4ee} 
+\index{P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}!width@{width}}
+\index{width@{width}!P\+C\+A\+::\+Trancated\+Exp\+Calculator@{P\+C\+A\+::\+Trancated\+Exp\+Calculator}}
+\subsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Trancated\+Exp\+Calculator\+::width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Quantum/\hyperlink{_trancated_exp_calculator_8h}{Trancated\+Exp\+Calculator.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Quantum/\hyperlink{_trancated_exp_calculator_8cpp}{Trancated\+Exp\+Calculator.\+cpp}\end{DoxyCompactItemize}

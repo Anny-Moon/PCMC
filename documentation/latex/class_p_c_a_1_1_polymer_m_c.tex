@@ -1,0 +1,126 @@
+\hypertarget{class_p_c_a_1_1_polymer_m_c}{}\section{P\+CA\+:\+:Polymer\+MC Class Reference}
+\label{class_p_c_a_1_1_polymer_m_c}\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+
+
+{\ttfamily \#include $<$Polymer\+M\+C.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Polymer\+MC\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_polymer_m_c}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25}{Polymer\+MC} (int number\+Of\+Monomers, const double $\ast$\hyperlink{class_p_c_a_1_1_polymer_a1bef29f1613bb4b67981aae7df3d804b}{kappa}, const double $\ast$\hyperlink{class_p_c_a_1_1_polymer_ab3b07298bdbac01a7b20b2554d7b248f}{tau})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3}{$\sim$\+Polymer\+MC} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd}{set\+New\+Radius\+Vectors\+Via\+Rotation} (int site)
+\begin{DoxyCompactList}\small\item\em This function changes only! r\mbox{[}site+1\mbox{]}, r\mbox{[}site+2\mbox{]}... \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b}{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau} (int site)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05}{kappa\+New}
+\item 
+double \hyperlink{class_p_c_a_1_1_polymer_m_c_a6400a8ec5f791281122167837d6e4d7d}{tau\+New}
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a1220187032c23f9fd2d78886fd1815b3}{t\+New}
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a5e493ca12a3eba2f1658ac1cccba3d56}{n\+New}
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6}{b\+New}
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_m_c_a6144923e16ec4e3086f92516d8a9117b}{r\+Old}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25}{}\label{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!Polymer\+MC@{Polymer\+MC}}
+\index{Polymer\+MC@{Polymer\+MC}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{Polymer\+M\+C()}{PolymerMC()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+M\+C\+::\+Polymer\+MC (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Monomers,  }\item[{const double $\ast$}]{kappa,  }\item[{const double $\ast$}]{tau }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3}{}\label{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!````~Polymer\+MC@{$\sim$\+Polymer\+MC}}
+\index{````~Polymer\+MC@{$\sim$\+Polymer\+MC}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{$\sim$\+Polymer\+M\+C()}{~PolymerMC()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+M\+C\+::$\sim$\+Polymer\+MC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd}{}\label{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!set\+New\+Radius\+Vectors\+Via\+Rotation@{set\+New\+Radius\+Vectors\+Via\+Rotation}}
+\index{set\+New\+Radius\+Vectors\+Via\+Rotation@{set\+New\+Radius\+Vectors\+Via\+Rotation}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{set\+New\+Radius\+Vectors\+Via\+Rotation()}{setNewRadiusVectorsViaRotation()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::set\+New\+Radius\+Vectors\+Via\+Rotation (\begin{DoxyParamCaption}\item[{int}]{site }\end{DoxyParamCaption})}
+
+
+
+This function changes only! r\mbox{[}site+1\mbox{]}, r\mbox{[}site+2\mbox{]}... 
+
+\+: And before doing this it saves old r\textquotesingle{}s as r\+Old\mbox{[}site+1\mbox{]}=r\mbox{[}site+1\mbox{]} ... \hypertarget{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b}{}\label{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}}
+\index{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau()}{setNewVectorsTNBfromKappaTau()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau (\begin{DoxyParamCaption}\item[{int}]{site }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6}{}\label{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!b\+New@{b\+New}}
+\index{b\+New@{b\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{b\+New}{bNew}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Polymer\+M\+C\+::b\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05}{}\label{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!kappa\+New@{kappa\+New}}
+\index{kappa\+New@{kappa\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{kappa\+New}{kappaNew}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Polymer\+M\+C\+::kappa\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a5e493ca12a3eba2f1658ac1cccba3d56}{}\label{class_p_c_a_1_1_polymer_m_c_a5e493ca12a3eba2f1658ac1cccba3d56} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!n\+New@{n\+New}}
+\index{n\+New@{n\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{n\+New}{nNew}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Polymer\+M\+C\+::n\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6144923e16ec4e3086f92516d8a9117b}{}\label{class_p_c_a_1_1_polymer_m_c_a6144923e16ec4e3086f92516d8a9117b} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!r\+Old@{r\+Old}}
+\index{r\+Old@{r\+Old}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{r\+Old}{rOld}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}$\ast$ P\+C\+A\+::\+Polymer\+M\+C\+::r\+Old\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6400a8ec5f791281122167837d6e4d7d}{}\label{class_p_c_a_1_1_polymer_m_c_a6400a8ec5f791281122167837d6e4d7d} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!tau\+New@{tau\+New}}
+\index{tau\+New@{tau\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{tau\+New}{tauNew}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Polymer\+M\+C\+::tau\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a1220187032c23f9fd2d78886fd1815b3}{}\label{class_p_c_a_1_1_polymer_m_c_a1220187032c23f9fd2d78886fd1815b3} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!t\+New@{t\+New}}
+\index{t\+New@{t\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{t\+New}{tNew}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Polymer\+M\+C\+::t\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\hyperlink{_polymer_m_c_8h}{Polymer\+M\+C.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\hyperlink{_polymer_m_c_8cpp}{Polymer\+M\+C.\+cpp}\end{DoxyCompactItemize}

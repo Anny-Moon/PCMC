@@ -1,0 +1,317 @@
+\hypertarget{namespace_p_c_a}{}\section{P\+CA Namespace Reference}
+\label{namespace_p_c_a}\index{P\+CA@{P\+CA}}
+
+
+\hyperlink{_polymer_m_c_8h}{Polymer\+M\+C.\+h}.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_p_c_a_1_1_file}{File}
+\item 
+class \hyperlink{class_p_c_a_1_1_hopping_amplitude_calculator}{Hopping\+Amplitude\+Calculator}
+\item 
+class \hyperlink{class_p_c_a_1_1lennard_jones}{lennard\+Jones}
+\item 
+class \hyperlink{class_p_c_a_1_1_polymer}{Polymer}
+\item 
+class \hyperlink{class_p_c_a_1_1_polymer_energy}{Polymer\+Energy}
+\item 
+class \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC}
+\item 
+class \hyperlink{class_p_c_a_1_1_polymer_observable}{Polymer\+Observable}
+\item 
+class \hyperlink{class_p_c_a_1_1_polymer_quantum}{Polymer\+Quantum}
+\item 
+class \hyperlink{class_p_c_a_1_1_step_function_calculator}{Step\+Function\+Calculator}
+\item 
+class \hyperlink{class_p_c_a_1_1_trancated_exp_calculator}{Trancated\+Exp\+Calculator}
+\begin{DoxyCompactList}\small\item\em t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij) if r\+\_\+ij $<$ width; t\+\_\+ij = 0 otherwise \end{DoxyCompactList}\item 
+class \hyperlink{class_p_c_a_1_1_vector}{Vector}
+\item 
+class \hyperlink{class_p_c_a_1_1_yukawa_calculator}{Yukawa\+Calculator}
+\begin{DoxyCompactList}\small\item\em t\+\_\+ij = g $\ast$ exp(-\/m $\ast$ r\+\_\+ij)/ r\+\_\+ij; \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespace_p_c_a_acd05fa0d440ac1781a76499f3cdb3f38}{rounding} (double number)
+\begin{DoxyCompactList}\small\item\em Conventional rounting for doubles. \end{DoxyCompactList}\item 
+int \hyperlink{namespace_p_c_a_a13d2c7cbde32faf05da77e81c6396b92}{common\+Divisor} (int int1, int int2, int upper\+Limit=0)
+\begin{DoxyCompactList}\small\item\em Returns common divisor of two numbers which is $<$= upper\+Limit, otherwise 1. \end{DoxyCompactList}\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a017b6648f950fd5e297bc92225a425dc}{operator+} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a430437e74079b33bcf7a99ef38c01134}{operator-\/} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a49f60e2a8814942d40f8df470c723214}{operator$\ast$} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a6f1801f8e53ab87a1f3175ec18fa3115}{operator$\ast$} (double k, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a58012056e60671ce13c8318b3cd1ec8f}{operator$\ast$} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A, double k)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{namespace_p_c_a_a5144cc8f2a3d8ab924e8c4c1c32a2aed}{operator/} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A, double k)
+\item 
+\hyperlink{namespace_p_c_a_a9dbd4cd129f013da15375aec85b2f4fe}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_a5182a7edfe31f7477e5335bc60fcf108}{q}, q\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_aa724072bc973fbc29e1e148eace3272e}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_acfc8187195fb96910fe83d4ff79b3239}{m}, m\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_a04df9929dc9ef1e5af273b4ca61f93c3}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_a4e2c91089d5d84755539f212ad87f02a}{c}, c\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_a2b9aa130e94cb88875159aaf23ff8dfb}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_abf43edb3e63963e603bf8c8ce20abf94}{d}, d\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_a3ab4fdf7f49322cf707b5d1977c87913}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_a7ba252167ecbbceaa608cd406810aa1f}{a}, a\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_a5a7531f7aeee8b958633285e7ae8ebab}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_a92ab50a62efb8eaa1bcd8e279828125b}{b}, b\+\_\+in)
+\item 
+\hyperlink{namespace_p_c_a_a2e31962f6d08fdd98626faf1e2e25094}{copy\+Array} (num\+Sites, \hyperlink{namespace_p_c_a_a4a22821642ff929e86e49ad05b7545ad}{u}, u\+\_\+in)
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Statistics\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{namespace_p_c_a_a330e0aee67470237e1e755eb5b151d6c}{mean\+Value} (int size, const double $\ast$values)
+\item 
+double \hyperlink{namespace_p_c_a_ae9120f4f9875a87768cc3090196892a8}{standart\+Deviation} (int size, const double $\ast$values)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Work with arrays of doubles}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespace_p_c_a_ac0ca09771710ce44c06d3f5f4402fd80}{copy\+Array} (int N, double $\ast$array\+\_\+to, const double $\ast$array\+\_\+from)
+\begin{DoxyCompactList}\small\item\em Copy array\+\_\+from of size N to array\+\_\+to of the same size\+: array\+\_\+to = array\+\_\+from. \end{DoxyCompactList}\item 
+void \hyperlink{namespace_p_c_a_af4a7844595578d2c8e09635fba6db3b2}{fill\+Array} (int N, double $\ast$array\+\_\+to, double value)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespace_p_c_a_a01cf2b18a2d7669f5be721c2142bf67d}{global\+Verbose} = true
+\begin{DoxyCompactList}\small\item\em if false nobody can print on screen. Exseptions\+: error massages, show-\/functions \end{DoxyCompactList}\item 
+\hyperlink{namespace_p_c_a_a5182a7edfe31f7477e5335bc60fcf108}{q} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_acfc8187195fb96910fe83d4ff79b3239}{m} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_a4e2c91089d5d84755539f212ad87f02a}{c} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_abf43edb3e63963e603bf8c8ce20abf94}{d} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_a7ba252167ecbbceaa608cd406810aa1f}{a} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_a92ab50a62efb8eaa1bcd8e279828125b}{b} = new double \mbox{[}num\+Sites\mbox{]}
+\item 
+\hyperlink{namespace_p_c_a_a4a22821642ff929e86e49ad05b7545ad}{u} = new double \mbox{[}num\+Sites\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{_polymer_m_c_8h}{Polymer\+M\+C.\+h}. 
+
+\hyperlink{_polymer_energy_8h}{Polymer\+Energy.\+h}.
+
+\hyperlink{_utilities_8cpp}{Utilities.\+cpp}.
+
+\hyperlink{_trancated_exp_calculator_8cpp}{Trancated\+Exp\+Calculator.\+cpp}.
+
+\hyperlink{_step_function_calculator_8cpp}{Step\+Function\+Calculator.\+cpp}.
+
+\hyperlink{_file_8cpp}{File.\+cpp}.
+
+\hyperlink{_yukawa_calculator_8h}{Yukawa\+Calculator.\+h}.
+
+\hyperlink{_trancated_exp_calculator_8h}{Trancated\+Exp\+Calculator.\+h}.
+
+\hyperlink{_step_function_calculator_8h}{Step\+Function\+Calculator.\+h}.
+
+\hyperlink{_polymer_quantum_8h}{Polymer\+Quantum.\+h}.
+
+Hopping\+Aplitude\+Calculator.\+h.
+
+Anna Sinelnikova Uppsala,Sweden 2016
+
+Anna Sinelnikova Uppsala, Sweden 2016 
+
+\subsection{Function Documentation}
+\hypertarget{namespace_p_c_a_a13d2c7cbde32faf05da77e81c6396b92}{}\label{namespace_p_c_a_a13d2c7cbde32faf05da77e81c6396b92} 
+\index{P\+CA@{P\+CA}!common\+Divisor@{common\+Divisor}}
+\index{common\+Divisor@{common\+Divisor}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{common\+Divisor()}{commonDivisor()}}
+{\footnotesize\ttfamily int P\+C\+A\+::common\+Divisor (\begin{DoxyParamCaption}\item[{int}]{int1,  }\item[{int}]{int2,  }\item[{int}]{upper\+Limit = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Returns common divisor of two numbers which is $<$= upper\+Limit, otherwise 1. 
+
+If you do not pass upper\+Limit then the function will return the largest common divisior
+
+N\+B1\+: the order of arguments int1 and int2 are not important.
+
+N\+B2\+: if you want to find all dividiors you should run this func in a loop, where upper\+Limit will be the result of previous step-\/1. \hypertarget{namespace_p_c_a_ac0ca09771710ce44c06d3f5f4402fd80}{}\label{namespace_p_c_a_ac0ca09771710ce44c06d3f5f4402fd80} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily void P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{int}]{N,  }\item[{double $\ast$}]{array\+\_\+to,  }\item[{const double $\ast$}]{array\+\_\+from }\end{DoxyParamCaption})}
+
+
+
+Copy array\+\_\+from of size N to array\+\_\+to of the same size\+: array\+\_\+to = array\+\_\+from. 
+
+\hypertarget{namespace_p_c_a_a9dbd4cd129f013da15375aec85b2f4fe}{}\label{namespace_p_c_a_a9dbd4cd129f013da15375aec85b2f4fe} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_a5182a7edfe31f7477e5335bc60fcf108}{q}}]{,  }\item[{q\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_aa724072bc973fbc29e1e148eace3272e}{}\label{namespace_p_c_a_aa724072bc973fbc29e1e148eace3272e} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_acfc8187195fb96910fe83d4ff79b3239}{m}}]{,  }\item[{m\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a04df9929dc9ef1e5af273b4ca61f93c3}{}\label{namespace_p_c_a_a04df9929dc9ef1e5af273b4ca61f93c3} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_a4e2c91089d5d84755539f212ad87f02a}{c}}]{,  }\item[{c\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a2b9aa130e94cb88875159aaf23ff8dfb}{}\label{namespace_p_c_a_a2b9aa130e94cb88875159aaf23ff8dfb} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_abf43edb3e63963e603bf8c8ce20abf94}{d}}]{,  }\item[{d\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a3ab4fdf7f49322cf707b5d1977c87913}{}\label{namespace_p_c_a_a3ab4fdf7f49322cf707b5d1977c87913} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_a7ba252167ecbbceaa608cd406810aa1f}{a}}]{,  }\item[{a\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a5a7531f7aeee8b958633285e7ae8ebab}{}\label{namespace_p_c_a_a5a7531f7aeee8b958633285e7ae8ebab} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_a92ab50a62efb8eaa1bcd8e279828125b}{b}}]{,  }\item[{b\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a2e31962f6d08fdd98626faf1e2e25094}{}\label{namespace_p_c_a_a2e31962f6d08fdd98626faf1e2e25094} 
+\index{P\+CA@{P\+CA}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily P\+C\+A\+::copy\+Array (\begin{DoxyParamCaption}\item[{num\+Sites}]{,  }\item[{\hyperlink{namespace_p_c_a_a4a22821642ff929e86e49ad05b7545ad}{u}}]{,  }\item[{u\+\_\+in}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_af4a7844595578d2c8e09635fba6db3b2}{}\label{namespace_p_c_a_af4a7844595578d2c8e09635fba6db3b2} 
+\index{P\+CA@{P\+CA}!fill\+Array@{fill\+Array}}
+\index{fill\+Array@{fill\+Array}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{fill\+Array()}{fillArray()}}
+{\footnotesize\ttfamily void P\+C\+A\+::fill\+Array (\begin{DoxyParamCaption}\item[{int}]{N,  }\item[{double $\ast$}]{array\+\_\+to,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a330e0aee67470237e1e755eb5b151d6c}{}\label{namespace_p_c_a_a330e0aee67470237e1e755eb5b151d6c} 
+\index{P\+CA@{P\+CA}!mean\+Value@{mean\+Value}}
+\index{mean\+Value@{mean\+Value}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{mean\+Value()}{meanValue()}}
+{\footnotesize\ttfamily double P\+C\+A\+::mean\+Value (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{const double $\ast$}]{values }\end{DoxyParamCaption})}
+
+\hypertarget{namespace_p_c_a_a49f60e2a8814942d40f8df470c723214}{}\label{namespace_p_c_a_a49f60e2a8814942d40f8df470c723214} 
+\index{P\+CA@{P\+CA}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_a6f1801f8e53ab87a1f3175ec18fa3115}{}\label{namespace_p_c_a_a6f1801f8e53ab87a1f3175ec18fa3115} 
+\index{P\+CA@{P\+CA}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{double}]{k,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_a58012056e60671ce13c8318b3cd1ec8f}{}\label{namespace_p_c_a_a58012056e60671ce13c8318b3cd1ec8f} 
+\index{P\+CA@{P\+CA}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A,  }\item[{double}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_a017b6648f950fd5e297bc92225a425dc}{}\label{namespace_p_c_a_a017b6648f950fd5e297bc92225a425dc} 
+\index{P\+CA@{P\+CA}!operator+@{operator+}}
+\index{operator+@{operator+}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_a430437e74079b33bcf7a99ef38c01134}{}\label{namespace_p_c_a_a430437e74079b33bcf7a99ef38c01134} 
+\index{P\+CA@{P\+CA}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_a5144cc8f2a3d8ab924e8c4c1c32a2aed}{}\label{namespace_p_c_a_a5144cc8f2a3d8ab924e8c4c1c32a2aed} 
+\index{P\+CA@{P\+CA}!operator/@{operator/}}
+\index{operator/@{operator/}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::operator/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A,  }\item[{double}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{namespace_p_c_a_acd05fa0d440ac1781a76499f3cdb3f38}{}\label{namespace_p_c_a_acd05fa0d440ac1781a76499f3cdb3f38} 
+\index{P\+CA@{P\+CA}!rounding@{rounding}}
+\index{rounding@{rounding}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{rounding()}{rounding()}}
+{\footnotesize\ttfamily int P\+C\+A\+::rounding (\begin{DoxyParamCaption}\item[{double}]{number }\end{DoxyParamCaption})}
+
+
+
+Conventional rounting for doubles. 
+
+\hypertarget{namespace_p_c_a_ae9120f4f9875a87768cc3090196892a8}{}\label{namespace_p_c_a_ae9120f4f9875a87768cc3090196892a8} 
+\index{P\+CA@{P\+CA}!standart\+Deviation@{standart\+Deviation}}
+\index{standart\+Deviation@{standart\+Deviation}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{standart\+Deviation()}{standartDeviation()}}
+{\footnotesize\ttfamily double P\+C\+A\+::standart\+Deviation (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{const double $\ast$}]{values }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespace_p_c_a_a7ba252167ecbbceaa608cd406810aa1f}{}\label{namespace_p_c_a_a7ba252167ecbbceaa608cd406810aa1f} 
+\index{P\+CA@{P\+CA}!a@{a}}
+\index{a@{a}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily P\+C\+A\+::a = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_a92ab50a62efb8eaa1bcd8e279828125b}{}\label{namespace_p_c_a_a92ab50a62efb8eaa1bcd8e279828125b} 
+\index{P\+CA@{P\+CA}!b@{b}}
+\index{b@{b}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily P\+C\+A\+::b = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_a4e2c91089d5d84755539f212ad87f02a}{}\label{namespace_p_c_a_a4e2c91089d5d84755539f212ad87f02a} 
+\index{P\+CA@{P\+CA}!c@{c}}
+\index{c@{c}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily P\+C\+A\+::c = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_abf43edb3e63963e603bf8c8ce20abf94}{}\label{namespace_p_c_a_abf43edb3e63963e603bf8c8ce20abf94} 
+\index{P\+CA@{P\+CA}!d@{d}}
+\index{d@{d}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily P\+C\+A\+::d = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_a01cf2b18a2d7669f5be721c2142bf67d}{}\label{namespace_p_c_a_a01cf2b18a2d7669f5be721c2142bf67d} 
+\index{P\+CA@{P\+CA}!global\+Verbose@{global\+Verbose}}
+\index{global\+Verbose@{global\+Verbose}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{global\+Verbose}{globalVerbose}}
+{\footnotesize\ttfamily bool P\+C\+A\+::global\+Verbose = true}
+
+
+
+if false nobody can print on screen. Exseptions\+: error massages, show-\/functions 
+
+\hypertarget{namespace_p_c_a_acfc8187195fb96910fe83d4ff79b3239}{}\label{namespace_p_c_a_acfc8187195fb96910fe83d4ff79b3239} 
+\index{P\+CA@{P\+CA}!m@{m}}
+\index{m@{m}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily P\+C\+A\+::m = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_a5182a7edfe31f7477e5335bc60fcf108}{}\label{namespace_p_c_a_a5182a7edfe31f7477e5335bc60fcf108} 
+\index{P\+CA@{P\+CA}!q@{q}}
+\index{q@{q}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily P\+C\+A\+::q = new double \mbox{[}num\+Sites\mbox{]}}
+
+\hypertarget{namespace_p_c_a_a4a22821642ff929e86e49ad05b7545ad}{}\label{namespace_p_c_a_a4a22821642ff929e86e49ad05b7545ad} 
+\index{P\+CA@{P\+CA}!u@{u}}
+\index{u@{u}!P\+CA@{P\+CA}}
+\subsubsection{\texorpdfstring{u}{u}}
+{\footnotesize\ttfamily P\+C\+A\+::u = new double \mbox{[}num\+Sites\mbox{]}}
+

@@ -120,7 +120,6 @@ inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_i
     r[i].x = x_in;
     r[i].y = y_in;
     r[i].z = z_in;
-
 }
 
 inline void Polymer::setKappa(int i, double kappa_in)
@@ -133,7 +132,6 @@ inline void Polymer::setTau(int i, double tau_in)
 {
     _PCA_CATCH_VOID_POINTER(tau, "inline Polymer::setTau(.)");
     tau[i] = tau_in;
-
 }
 
 inline int Polymer::getNumMonomers() const

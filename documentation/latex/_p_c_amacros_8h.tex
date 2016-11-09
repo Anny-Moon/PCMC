@@ -1,0 +1,74 @@
+\hypertarget{_p_c_amacros_8h}{}\section{/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+P\+C\+Amacros.h File Reference}
+\label{_p_c_amacros_8h}\index{/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+P\+C\+Amacros.\+h@{/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+P\+C\+Amacros.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_p_c_amacros_8h_a25ee12097a6dd0c586be1dc680326241}{P\+C\+A\+\_\+\+PI}~3.\+141592653589793
+\begin{DoxyCompactList}\small\item\em \hyperlink{_p_c_amacros_8h}{P\+C\+Amacros.\+h}. \end{DoxyCompactList}\item 
+\#define \hyperlink{_p_c_amacros_8h_ae1443445dffced41c9dfd07bc3f0ad7f}{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER}(pointer,  function\+Name)
+\item 
+\#define \hyperlink{_p_c_amacros_8h_ad13d92940fe21eee8513993f5eb98971}{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}(fp,  action,  file\+Name,  function\+Name)
+\item 
+\#define \hyperlink{_p_c_amacros_8h_a5540d8f4800a06513afaa6709d6e0578}{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}~3.\+0$\ast$fabs(atan(1.\+0)-\/\hyperlink{_p_c_amacros_8h_a25ee12097a6dd0c586be1dc680326241}{P\+C\+A\+\_\+\+PI}/4.\+0)
+\item 
+\#define \hyperlink{_p_c_amacros_8h_ae6b6551a8dd59b4b83fa2ce4b85bd27d}{\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL}(a,  b)~fabs(a-\/b)$<$\hyperlink{_p_c_amacros_8h_a5540d8f4800a06513afaa6709d6e0578}{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_p_c_amacros_8h_ad13d92940fe21eee8513993f5eb98971}{}\label{_p_c_amacros_8h_ad13d92940fe21eee8513993f5eb98971} 
+\index{P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}!\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR@{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}}
+\index{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR@{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}!P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}{\_PCA\_CATCH\_FILE\_ERROR}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR(\begin{DoxyParamCaption}\item[{}]{fp,  }\item[{}]{action,  }\item[{}]{file\+Name,  }\item[{}]{function\+Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(fp==NULL)\{\(\backslash\)
+    printf(\textcolor{stringliteral}{"Error: cannot \(\backslash\)%s file '%s'\(\backslash\)n\(\backslash\)tin "}, action, fileName);\(\backslash\)
+    printf(functionName);\(\backslash\)
+    printf(\textcolor{stringliteral}{"\(\backslash\)n"});\(\backslash\)
+    exit(1);\(\backslash\)
+    \}
+\end{DoxyCode}
+\hypertarget{_p_c_amacros_8h_ae1443445dffced41c9dfd07bc3f0ad7f}{}\label{_p_c_amacros_8h_ae1443445dffced41c9dfd07bc3f0ad7f} 
+\index{P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}!\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER@{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER}}
+\index{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER@{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER}!P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER}{\_PCA\_CATCH\_VOID\_POINTER}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+C\+A\+\_\+\+C\+A\+T\+C\+H\+\_\+\+V\+O\+I\+D\+\_\+\+P\+O\+I\+N\+T\+ER(\begin{DoxyParamCaption}\item[{}]{pointer,  }\item[{}]{function\+Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}(pointer==NULL)\{\(\backslash\)
+    printf(\textcolor{stringliteral}{"Error: void pointer\(\backslash\)n\(\backslash\)tin "});\(\backslash\)
+    printf(functionName);\(\backslash\)
+    printf(\textcolor{stringliteral}{"\(\backslash\)n"});\(\backslash\)
+    exit(1);\(\backslash\)
+    \}
+\end{DoxyCode}
+\hypertarget{_p_c_amacros_8h_ae6b6551a8dd59b4b83fa2ce4b85bd27d}{}\label{_p_c_amacros_8h_ae6b6551a8dd59b4b83fa2ce4b85bd27d} 
+\index{P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}!\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL@{\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL}}
+\index{\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL@{\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL}!P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL}{\_PCA\_IS\_EQUAL}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+C\+A\+\_\+\+I\+S\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~fabs(a-\/b)$<$\hyperlink{_p_c_amacros_8h_a5540d8f4800a06513afaa6709d6e0578}{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}}
+
+\hypertarget{_p_c_amacros_8h_a5540d8f4800a06513afaa6709d6e0578}{}\label{_p_c_amacros_8h_a5540d8f4800a06513afaa6709d6e0578} 
+\index{P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}!P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR@{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}}
+\index{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR@{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}!P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}}
+\subsubsection{\texorpdfstring{P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}{PCA\_NUMERICAL\_ERROR}}
+{\footnotesize\ttfamily \#define P\+C\+A\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR~3.\+0$\ast$fabs(atan(1.\+0)-\/\hyperlink{_p_c_amacros_8h_a25ee12097a6dd0c586be1dc680326241}{P\+C\+A\+\_\+\+PI}/4.\+0)}
+
+\hypertarget{_p_c_amacros_8h_a25ee12097a6dd0c586be1dc680326241}{}\label{_p_c_amacros_8h_a25ee12097a6dd0c586be1dc680326241} 
+\index{P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}!P\+C\+A\+\_\+\+PI@{P\+C\+A\+\_\+\+PI}}
+\index{P\+C\+A\+\_\+\+PI@{P\+C\+A\+\_\+\+PI}!P\+C\+Amacros.\+h@{P\+C\+Amacros.\+h}}
+\subsubsection{\texorpdfstring{P\+C\+A\+\_\+\+PI}{PCA\_PI}}
+{\footnotesize\ttfamily \#define P\+C\+A\+\_\+\+PI~3.\+141592653589793}
+
+
+
+\hyperlink{_p_c_amacros_8h}{P\+C\+Amacros.\+h}. 
+
+Anna Sinelnikova Uppsala, Sweden 2016 

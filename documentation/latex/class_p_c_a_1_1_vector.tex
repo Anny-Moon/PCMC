@@ -1,0 +1,306 @@
+\hypertarget{class_p_c_a_1_1_vector}{}\section{P\+CA\+:\+:Vector Class Reference}
+\label{class_p_c_a_1_1_vector}\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+
+
+{\ttfamily \#include $<$Vector.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_vector_a978077a8e59322b44add93906e551719}{Vector} ()
+\item 
+\hyperlink{class_p_c_a_1_1_vector_aecc7fa6dbaffa3815fd23e4d8202c9b1}{Vector} (double X, double Y, double Z)
+\item 
+\hyperlink{class_p_c_a_1_1_vector_a3119a6ed9ccd0d7ac61bdfcbc9b7f1d3}{$\sim$\+Vector} ()
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} \& \hyperlink{class_p_c_a_1_1_vector_ac93d124518b0f5e39dd1a0973dddc958}{operator=} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_ac94bf46625448a0ece199c2021993e6c}{operator-\/} ()
+\item 
+bool \hyperlink{class_p_c_a_1_1_vector_ae7a1abe13c8313d717b7bdb66934e92b}{operator==} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+void \hyperlink{class_p_c_a_1_1_vector_a6411d63770d6d711c5c854e21ca1776e}{print} () const
+\begin{DoxyCompactList}\small\item\em Print the vector on screen. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_vector_a661570b8bb883ca11f033ea4dcdebb79}{write\+In\+File} (F\+I\+LE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em Write the vector in file. \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_vector_a709eef286197f64e45f35fce0925ddf0}{norm} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{class_p_c_a_1_1_vector_abc89550f2ef587f808a7fea91259a22a}{dot\+Product} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B)
+\item 
+static void \hyperlink{class_p_c_a_1_1_vector_a865b60bf89b1dbf3165b8cc503dce2ca}{copy\+Array} (int size, \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$vector\+\_\+to, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$vector\+\_\+from)
+\begin{DoxyCompactList}\small\item\em Copy array of size N\+: vector\+\_\+to = vector\+\_\+from. \end{DoxyCompactList}\item 
+static void \hyperlink{class_p_c_a_1_1_vector_a385f07b1056ab2a7648b0b9dd03cd8b0}{Kadanoff\+Transformation} (int size, \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$vector\+\_\+out, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$vector\+\_\+in)
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Verbose functions\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_p_c_a_1_1_vector_a585f8511431df02801aa9cff0e2f1ae4}{set\+Verbose} (bool \hyperlink{class_p_c_a_1_1_vector_a6ef8075198903147f945d0ec81b8defd}{verbose})
+\item 
+static bool \hyperlink{class_p_c_a_1_1_vector_a06b3f5087a02159bee1f49401db7aad3}{get\+Verbose} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_vector_ac14a3d674fa7956b18a7e2b25aa9b4bb}{x}
+\item 
+double \hyperlink{class_p_c_a_1_1_vector_a75d5d6af0e3f847456d54412b86c53c0}{y}
+\item 
+double \hyperlink{class_p_c_a_1_1_vector_a715bde094c7e430c9c39769f6790b835}{z}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a72264553beba4bb7c7a3cea65d4bbd4f}{zero}
+\begin{DoxyCompactList}\small\item\em (0.\+0, 0.\+0, 0.\+0) \end{DoxyCompactList}\item 
+static const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a2583e534812667f9e5cd69f53569c86b}{eX}
+\begin{DoxyCompactList}\small\item\em (1.\+0, 0.\+0, 0.\+0) \end{DoxyCompactList}\item 
+static const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_ac937f2d1b63ca297cfa3c6d1eac26e1e}{eY}
+\begin{DoxyCompactList}\small\item\em (0.\+0, 1.\+0, 0.\+0) \end{DoxyCompactList}\item 
+static const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a33a36b16ca1a698b6a0e730222406287}{eZ}
+\begin{DoxyCompactList}\small\item\em (0.\+0, 0.\+0, 1.\+0) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_p_c_a_1_1_vector_a6ef8075198903147f945d0ec81b8defd}{verbose} = true
+\begin{DoxyCompactList}\small\item\em If false then this class is not allowed to print anything on screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a28f83573668a6265c637ee1c77618c84}{operator+} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a64185acd75c99c1a3a494a41098fd413}{operator-\/} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a89de706cc4a715c026fd01dbee37653c}{operator$\ast$} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&B, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\begin{DoxyCompactList}\small\item\em cross product \end{DoxyCompactList}\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_af3d0ea67d17d9b5c985d776ed9e54bd5}{operator$\ast$} (double k, const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a31ae6ac45e0b6192e493d884f271a0d6}{operator$\ast$} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A, double k)
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_vector_a47572e42d2d4fd6fbe0f891d61809e3b}{operator/} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&A, double k)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_vector_a978077a8e59322b44add93906e551719}{}\label{class_p_c_a_1_1_vector_a978077a8e59322b44add93906e551719} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Vector\+::\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_vector_aecc7fa6dbaffa3815fd23e4d8202c9b1}{}\label{class_p_c_a_1_1_vector_aecc7fa6dbaffa3815fd23e4d8202c9b1} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Vector\+::\+Vector (\begin{DoxyParamCaption}\item[{double}]{X,  }\item[{double}]{Y,  }\item[{double}]{Z }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_vector_a3119a6ed9ccd0d7ac61bdfcbc9b7f1d3}{}\label{class_p_c_a_1_1_vector_a3119a6ed9ccd0d7ac61bdfcbc9b7f1d3} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!````~Vector@{$\sim$\+Vector}}
+\index{````~Vector@{$\sim$\+Vector}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{$\sim$\+Vector()}{~Vector()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Vector\+::$\sim$\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_vector_a865b60bf89b1dbf3165b8cc503dce2ca}{}\label{class_p_c_a_1_1_vector_a865b60bf89b1dbf3165b8cc503dce2ca} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!copy\+Array@{copy\+Array}}
+\index{copy\+Array@{copy\+Array}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{copy\+Array()}{copyArray()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Vector\+::copy\+Array (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{vector\+\_\+to,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{vector\+\_\+from }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Copy array of size N\+: vector\+\_\+to = vector\+\_\+from. 
+
+\hypertarget{class_p_c_a_1_1_vector_abc89550f2ef587f808a7fea91259a22a}{}\label{class_p_c_a_1_1_vector_abc89550f2ef587f808a7fea91259a22a} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!dot\+Product@{dot\+Product}}
+\index{dot\+Product@{dot\+Product}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{dot\+Product()}{dotProduct()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Vector\+::dot\+Product (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a06b3f5087a02159bee1f49401db7aad3}{}\label{class_p_c_a_1_1_vector_a06b3f5087a02159bee1f49401db7aad3} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!get\+Verbose@{get\+Verbose}}
+\index{get\+Verbose@{get\+Verbose}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{get\+Verbose()}{getVerbose()}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+Vector\+::get\+Verbose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a385f07b1056ab2a7648b0b9dd03cd8b0}{}\label{class_p_c_a_1_1_vector_a385f07b1056ab2a7648b0b9dd03cd8b0} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!Kadanoff\+Transformation@{Kadanoff\+Transformation}}
+\index{Kadanoff\+Transformation@{Kadanoff\+Transformation}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{Kadanoff\+Transformation()}{KadanoffTransformation()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Vector\+::\+Kadanoff\+Transformation (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{vector\+\_\+out,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{vector\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a709eef286197f64e45f35fce0925ddf0}{}\label{class_p_c_a_1_1_vector_a709eef286197f64e45f35fce0925ddf0} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!norm@{norm}}
+\index{norm@{norm}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Vector\+::norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_vector_ac94bf46625448a0ece199c2021993e6c}{}\label{class_p_c_a_1_1_vector_ac94bf46625448a0ece199c2021993e6c} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Vector\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_vector_ac93d124518b0f5e39dd1a0973dddc958}{}\label{class_p_c_a_1_1_vector_ac93d124518b0f5e39dd1a0973dddc958} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator=@{operator=}}
+\index{operator=@{operator=}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}\& P\+C\+A\+::\+Vector\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_vector_ae7a1abe13c8313d717b7bdb66934e92b}{}\label{class_p_c_a_1_1_vector_ae7a1abe13c8313d717b7bdb66934e92b} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator==@{operator==}}
+\index{operator==@{operator==}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+Vector\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a6411d63770d6d711c5c854e21ca1776e}{}\label{class_p_c_a_1_1_vector_a6411d63770d6d711c5c854e21ca1776e} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!print@{print}}
+\index{print@{print}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Vector\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Print the vector on screen. 
+
+\hypertarget{class_p_c_a_1_1_vector_a585f8511431df02801aa9cff0e2f1ae4}{}\label{class_p_c_a_1_1_vector_a585f8511431df02801aa9cff0e2f1ae4} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!set\+Verbose@{set\+Verbose}}
+\index{set\+Verbose@{set\+Verbose}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{set\+Verbose()}{setVerbose()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Vector\+::set\+Verbose (\begin{DoxyParamCaption}\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a661570b8bb883ca11f033ea4dcdebb79}{}\label{class_p_c_a_1_1_vector_a661570b8bb883ca11f033ea4dcdebb79} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!write\+In\+File@{write\+In\+File}}
+\index{write\+In\+File@{write\+In\+File}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{write\+In\+File()}{writeInFile()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Vector\+::write\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write the vector in file. 
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_p_c_a_1_1_vector_a89de706cc4a715c026fd01dbee37653c}{}\label{class_p_c_a_1_1_vector_a89de706cc4a715c026fd01dbee37653c} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+cross product 
+
+\hypertarget{class_p_c_a_1_1_vector_af3d0ea67d17d9b5c985d776ed9e54bd5}{}\label{class_p_c_a_1_1_vector_af3d0ea67d17d9b5c985d776ed9e54bd5} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator$\ast$ (\begin{DoxyParamCaption}\item[{double}]{k,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a31ae6ac45e0b6192e493d884f271a0d6}{}\label{class_p_c_a_1_1_vector_a31ae6ac45e0b6192e493d884f271a0d6} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A,  }\item[{double}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a28f83573668a6265c637ee1c77618c84}{}\label{class_p_c_a_1_1_vector_a28f83573668a6265c637ee1c77618c84} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator+@{operator+}}
+\index{operator+@{operator+}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator+}{operator+}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a64185acd75c99c1a3a494a41098fd413}{}\label{class_p_c_a_1_1_vector_a64185acd75c99c1a3a494a41098fd413} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/}{operator-}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{B,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\hypertarget{class_p_c_a_1_1_vector_a47572e42d2d4fd6fbe0f891d61809e3b}{}\label{class_p_c_a_1_1_vector_a47572e42d2d4fd6fbe0f891d61809e3b} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!operator/@{operator/}}
+\index{operator/@{operator/}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator/}{operator/}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} operator/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{A,  }\item[{double}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_vector_a2583e534812667f9e5cd69f53569c86b}{}\label{class_p_c_a_1_1_vector_a2583e534812667f9e5cd69f53569c86b} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!eX@{eX}}
+\index{eX@{eX}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{eX}{eX}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Vector\+::eX\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+(1.\+0, 0.\+0, 0.\+0) 
+
+\hypertarget{class_p_c_a_1_1_vector_ac937f2d1b63ca297cfa3c6d1eac26e1e}{}\label{class_p_c_a_1_1_vector_ac937f2d1b63ca297cfa3c6d1eac26e1e} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!eY@{eY}}
+\index{eY@{eY}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{eY}{eY}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Vector\+::eY\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+(0.\+0, 1.\+0, 0.\+0) 
+
+\hypertarget{class_p_c_a_1_1_vector_a33a36b16ca1a698b6a0e730222406287}{}\label{class_p_c_a_1_1_vector_a33a36b16ca1a698b6a0e730222406287} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!eZ@{eZ}}
+\index{eZ@{eZ}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{eZ}{eZ}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Vector\+::eZ\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+(0.\+0, 0.\+0, 1.\+0) 
+
+\hypertarget{class_p_c_a_1_1_vector_a6ef8075198903147f945d0ec81b8defd}{}\label{class_p_c_a_1_1_vector_a6ef8075198903147f945d0ec81b8defd} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!verbose@{verbose}}
+\index{verbose@{verbose}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+Vector\+::verbose = true\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+If false then this class is not allowed to print anything on screen. 
+
+\hypertarget{class_p_c_a_1_1_vector_ac14a3d674fa7956b18a7e2b25aa9b4bb}{}\label{class_p_c_a_1_1_vector_ac14a3d674fa7956b18a7e2b25aa9b4bb} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!x@{x}}
+\index{x@{x}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Vector\+::x}
+
+\hypertarget{class_p_c_a_1_1_vector_a75d5d6af0e3f847456d54412b86c53c0}{}\label{class_p_c_a_1_1_vector_a75d5d6af0e3f847456d54412b86c53c0} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!y@{y}}
+\index{y@{y}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Vector\+::y}
+
+\hypertarget{class_p_c_a_1_1_vector_a715bde094c7e430c9c39769f6790b835}{}\label{class_p_c_a_1_1_vector_a715bde094c7e430c9c39769f6790b835} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!z@{z}}
+\index{z@{z}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Vector\+::z}
+
+\hypertarget{class_p_c_a_1_1_vector_a72264553beba4bb7c7a3cea65d4bbd4f}{}\label{class_p_c_a_1_1_vector_a72264553beba4bb7c7a3cea65d4bbd4f} 
+\index{P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}!zero@{zero}}
+\index{zero@{zero}!P\+C\+A\+::\+Vector@{P\+C\+A\+::\+Vector}}
+\subsubsection{\texorpdfstring{zero}{zero}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Vector\+::zero\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+(0.\+0, 0.\+0, 0.\+0) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\hyperlink{_vector_8h}{Vector.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\hyperlink{_vector_8cpp}{Vector.\+cpp}\end{DoxyCompactItemize}

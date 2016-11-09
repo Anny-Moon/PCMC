@@ -1,0 +1,434 @@
+\hypertarget{class_p_c_a_1_1_polymer}{}\section{P\+CA\+:\+:Polymer Class Reference}
+\label{class_p_c_a_1_1_polymer}\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+
+
+{\ttfamily \#include $<$Polymer.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Polymer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_polymer}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{File\+Type} \{ \hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda8387d77faaaa65484f5631d9f9d20bfc}{File\+Type\+::coordinates}, 
+\hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda9bd139e0f52be4a748903ff60b5d3985}{File\+Type\+::angles}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_polymer_ac835d908dc32b787ca80f26cd0e6c68b}{Polymer} (\hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{File\+Type} file\+Type, char $\ast$file\+Name, int number\+Lines\+In\+Block=0, int polymer\+Number=1)
+\begin{DoxyCompactList}\small\item\em Constructor\+: read coordinates of sites from file. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_ac2645c33eba98a8ec1670d69b92060c8}{Polymer} (int number\+Of\+Monomers, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$\hyperlink{class_p_c_a_1_1_polymer_a9822e3b9c3420a04a689706b84e586ca}{r}=N\+U\+LL, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$\hyperlink{class_p_c_a_1_1_polymer_a0fd79e19a8c09a9e4c72903924151b5e}{t}=N\+U\+LL, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$\hyperlink{class_p_c_a_1_1_polymer_ad93199b0187ab557476153b204b921c7}{b}=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_a7d08722028cd9bf11b042a1b3b0e1d37}{Polymer} (int number\+Of\+Monomers, const double $\ast$kappa\+\_\+in, const double $\ast$tau\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_a1ce99540db06e9e48392423ba516cd2f}{Polymer} (const \hyperlink{class_p_c_a_1_1_polymer}{Polymer} \&polymer)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_ac0d31fa5c6bee720f8069805d6669606}{$\sim$\+Polymer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a55787461ed50776c48819a5cc3911c38}{set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau} ()
+\begin{DoxyCompactList}\small\item\em Set vecors t(not unitary!) , n(unitary), b(unitary) and monomer\+Lengths. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a0c6e93aa35271b98d92a38afd2b0913d}{set\+Radius\+Vector} (int i, double x\+\_\+in, double y\+\_\+in, double z\+\_\+in)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_ac8631ac2842b00802f24478b525c05db}{set\+Kappa} (int i, double kappa\+\_\+in)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a4ac116507767651444c852a75ab79c2d}{set\+Tau} (int i, double tau\+\_\+in)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a9859e587476da47e49cfee1152e93fa0}{write\+Radius\+Vectors\+In\+File} (F\+I\+LE $\ast$fp) const
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a081b8e4d7cac0da6cc411c7b56ff7362}{write\+Monomer\+Lengths\+In\+File} (F\+I\+LE $\ast$fp) const
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_ac89188a3e56684ff3313a43ff83abea0}{write\+T\+B\+Mfile} (char $\ast$file\+Name) const
+\item 
+double \hyperlink{class_p_c_a_1_1_polymer_a901d8c030d3edb333498edcc4502b27a}{distance} (int siteA, int siteB) const
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Set ones vectors from another vectors\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_aa655eb1299b272fef8c91f003abbf50d}{set\+Vectors\+Tfrom\+Radius\+Vectors} ()
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a8dad939cbc8d8df73784526ad4a07aef}{set\+Vectors\+Bfrom\+VectorsT} ()
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a258f607c38c1a247dd37659b236aa3fa}{set\+Radius\+Vectors\+From\+VectorsT} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Set lengths of all monomers from vectors\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a2dae638afa952c286c16122c7ab52b6e}{set\+Monomer\+Lengths\+From\+Radius\+Vectors} ()
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a217cddfa5b9e5bfe68f8e5d0802e2f31}{set\+Monomer\+Lengths\+From\+VectorsT} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Functions which returns members\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_p_c_a_1_1_polymer_a5c87b083f77c06ffd14278f87dad47ea}{get\+Num\+Monomers} () const
+\item 
+const double $\ast$ \hyperlink{class_p_c_a_1_1_polymer_af05e598bcd1e9987aca46d0661ac6dca}{get\+Monomer\+Length} () const
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a6e913f9b50a164c828f9a3cb89e452e1}{get\+Radius\+Vectors} () const
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} \& \hyperlink{class_p_c_a_1_1_polymer_ab2ea86763e0f0be646ef6aa6a105f927}{get\+Radius\+Vector} (int site) const
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a83c92fb07eafc88d121ef4b4124319c3}{get\+VectorsT} () const
+\item 
+const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a4a90f901ceb688b0d96b126cc2ba3678}{get\+VectorsB} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a777691bb321ef1da30a064757eb480c7}{read\+File\+With\+Coordinates} (char $\ast$file\+Name, int lines\+In\+Block, int block\+Number=1)
+\begin{DoxyCompactList}\small\item\em Read file with x y z coordinates and fill r\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a3e498b6e57d98c9cc4d07a7aedb4b6a5}{read\+File\+With\+Angles} (char $\ast$file\+Name, int lines\+In\+Block, int block\+Number=1)
+\begin{DoxyCompactList}\small\item\em Read file with kappa tau angles and fill corresponding arrays. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_a3fcca4084a54ac8bc1941b36462bc560}{format\+All} ()
+\begin{DoxyCompactList}\small\item\em The same as destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_p_c_a_1_1_polymer_a8dadd2d6d6d65b79909f274acd63fd1e}{num\+Monomers}
+\begin{DoxyCompactList}\small\item\em Number of monomers in polymer chain. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_polymer_adec33c5274834c85479abefe537efa5a}{monomer\+Length}
+\begin{DoxyCompactList}\small\item\em monomer length \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a9822e3b9c3420a04a689706b84e586ca}{r}
+\begin{DoxyCompactList}\small\item\em radius vectors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Frenet angles\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a1bef29f1613bb4b67981aae7df3d804b}{kappa}
+\begin{DoxyCompactList}\small\item\em bound angle \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_polymer_ab3b07298bdbac01a7b20b2554d7b248f}{tau}
+\begin{DoxyCompactList}\small\item\em torsion angle \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Frenet frame vectors\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a0fd79e19a8c09a9e4c72903924151b5e}{t}
+\begin{DoxyCompactList}\small\item\em tangent not-\/unit vectors \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_a7c71d8f5516ae0b0ead3929296135d1b}{n}
+\begin{DoxyCompactList}\small\item\em normal unit vectors \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_ad93199b0187ab557476153b204b921c7}{b}
+\begin{DoxyCompactList}\small\item\em binormal unot vectors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{}\label{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!File\+Type@{File\+Type}}
+\index{File\+Type@{File\+Type}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{File\+Type}{FileType}}
+{\footnotesize\ttfamily enum \hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{P\+C\+A\+::\+Polymer\+::\+File\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{coordinates@{coordinates}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!coordinates@{coordinates}}}\hypertarget{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda8387d77faaaa65484f5631d9f9d20bfc}{}\label{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda8387d77faaaa65484f5631d9f9d20bfc} 
+coordinates&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{angles@{angles}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!angles@{angles}}}\hypertarget{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda9bd139e0f52be4a748903ff60b5d3985}{}\label{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bda9bd139e0f52be4a748903ff60b5d3985} 
+angles&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_ac835d908dc32b787ca80f26cd0e6c68b}{}\label{class_p_c_a_1_1_polymer_ac835d908dc32b787ca80f26cd0e6c68b} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!Polymer@{Polymer}}
+\index{Polymer@{Polymer}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{Polymer()}{Polymer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+::\+Polymer (\begin{DoxyParamCaption}\item[{\hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{File\+Type}}]{file\+Type,  }\item[{char $\ast$}]{file\+Name,  }\item[{int}]{number\+Lines\+In\+Block = {\ttfamily 0},  }\item[{int}]{polymer\+Number = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Constructor\+: read coordinates of sites from file. 
+
+If you have more than one blocks in file then pass the number of the block. You can pass number of sites in the block, but it is not necessarily. \hypertarget{class_p_c_a_1_1_polymer_ac2645c33eba98a8ec1670d69b92060c8}{}\label{class_p_c_a_1_1_polymer_ac2645c33eba98a8ec1670d69b92060c8} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!Polymer@{Polymer}}
+\index{Polymer@{Polymer}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{Polymer()}{Polymer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+::\+Polymer (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Monomers,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{r = {\ttfamily NULL},  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{t = {\ttfamily NULL},  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{b = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_a7d08722028cd9bf11b042a1b3b0e1d37}{}\label{class_p_c_a_1_1_polymer_a7d08722028cd9bf11b042a1b3b0e1d37} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!Polymer@{Polymer}}
+\index{Polymer@{Polymer}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{Polymer()}{Polymer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+::\+Polymer (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Monomers,  }\item[{const double $\ast$}]{kappa\+\_\+in,  }\item[{const double $\ast$}]{tau\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_a1ce99540db06e9e48392423ba516cd2f}{}\label{class_p_c_a_1_1_polymer_a1ce99540db06e9e48392423ba516cd2f} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!Polymer@{Polymer}}
+\index{Polymer@{Polymer}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{Polymer()}{Polymer()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+::\+Polymer (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_polymer}{Polymer} \&}]{polymer }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_ac0d31fa5c6bee720f8069805d6669606}{}\label{class_p_c_a_1_1_polymer_ac0d31fa5c6bee720f8069805d6669606} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!````~Polymer@{$\sim$\+Polymer}}
+\index{````~Polymer@{$\sim$\+Polymer}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{$\sim$\+Polymer()}{~Polymer()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+::$\sim$\+Polymer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_a901d8c030d3edb333498edcc4502b27a}{}\label{class_p_c_a_1_1_polymer_a901d8c030d3edb333498edcc4502b27a} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!distance@{distance}}
+\index{distance@{distance}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Polymer\+::distance (\begin{DoxyParamCaption}\item[{int}]{siteA,  }\item[{int}]{siteB }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a3fcca4084a54ac8bc1941b36462bc560}{}\label{class_p_c_a_1_1_polymer_a3fcca4084a54ac8bc1941b36462bc560} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!format\+All@{format\+All}}
+\index{format\+All@{format\+All}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{format\+All()}{formatAll()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::format\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The same as destructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_af05e598bcd1e9987aca46d0661ac6dca}{}\label{class_p_c_a_1_1_polymer_af05e598bcd1e9987aca46d0661ac6dca} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+Monomer\+Length@{get\+Monomer\+Length}}
+\index{get\+Monomer\+Length@{get\+Monomer\+Length}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Monomer\+Length()}{getMonomerLength()}}
+{\footnotesize\ttfamily const double $\ast$ P\+C\+A\+::\+Polymer\+::get\+Monomer\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a5c87b083f77c06ffd14278f87dad47ea}{}\label{class_p_c_a_1_1_polymer_a5c87b083f77c06ffd14278f87dad47ea} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+Num\+Monomers@{get\+Num\+Monomers}}
+\index{get\+Num\+Monomers@{get\+Num\+Monomers}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Num\+Monomers()}{getNumMonomers()}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Polymer\+::get\+Num\+Monomers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_ab2ea86763e0f0be646ef6aa6a105f927}{}\label{class_p_c_a_1_1_polymer_ab2ea86763e0f0be646ef6aa6a105f927} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+Radius\+Vector@{get\+Radius\+Vector}}
+\index{get\+Radius\+Vector@{get\+Radius\+Vector}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Radius\+Vector()}{getRadiusVector()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} \& P\+C\+A\+::\+Polymer\+::get\+Radius\+Vector (\begin{DoxyParamCaption}\item[{int}]{site }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a6e913f9b50a164c828f9a3cb89e452e1}{}\label{class_p_c_a_1_1_polymer_a6e913f9b50a164c828f9a3cb89e452e1} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+Radius\+Vectors@{get\+Radius\+Vectors}}
+\index{get\+Radius\+Vectors@{get\+Radius\+Vectors}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Radius\+Vectors()}{getRadiusVectors()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ P\+C\+A\+::\+Polymer\+::get\+Radius\+Vectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a4a90f901ceb688b0d96b126cc2ba3678}{}\label{class_p_c_a_1_1_polymer_a4a90f901ceb688b0d96b126cc2ba3678} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+VectorsB@{get\+VectorsB}}
+\index{get\+VectorsB@{get\+VectorsB}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Vectors\+B()}{getVectorsB()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ P\+C\+A\+::\+Polymer\+::get\+VectorsB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a83c92fb07eafc88d121ef4b4124319c3}{}\label{class_p_c_a_1_1_polymer_a83c92fb07eafc88d121ef4b4124319c3} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!get\+VectorsT@{get\+VectorsT}}
+\index{get\+VectorsT@{get\+VectorsT}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{get\+Vectors\+T()}{getVectorsT()}}
+{\footnotesize\ttfamily const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ P\+C\+A\+::\+Polymer\+::get\+VectorsT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a3e498b6e57d98c9cc4d07a7aedb4b6a5}{}\label{class_p_c_a_1_1_polymer_a3e498b6e57d98c9cc4d07a7aedb4b6a5} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!read\+File\+With\+Angles@{read\+File\+With\+Angles}}
+\index{read\+File\+With\+Angles@{read\+File\+With\+Angles}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{read\+File\+With\+Angles()}{readFileWithAngles()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::read\+File\+With\+Angles (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name,  }\item[{int}]{lines\+In\+Block,  }\item[{int}]{block\+Number = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read file with kappa tau angles and fill corresponding arrays. 
+
+One line -\/ one atom. One block -\/ one chain. \hypertarget{class_p_c_a_1_1_polymer_a777691bb321ef1da30a064757eb480c7}{}\label{class_p_c_a_1_1_polymer_a777691bb321ef1da30a064757eb480c7} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!read\+File\+With\+Coordinates@{read\+File\+With\+Coordinates}}
+\index{read\+File\+With\+Coordinates@{read\+File\+With\+Coordinates}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{read\+File\+With\+Coordinates()}{readFileWithCoordinates()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::read\+File\+With\+Coordinates (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name,  }\item[{int}]{lines\+In\+Block,  }\item[{int}]{block\+Number = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read file with x y z coordinates and fill r\mbox{[}\mbox{]}. 
+
+One line -\/ one atom. One block -\/ one chain. Block is separated from another one with one or more empty lines. The first has number 1 (not 0).
+
+N\+B1\+: in this version empty line is every line which starts with unprintable characters\+: \textbackslash{}n, \textbackslash{}t or space. That\textquotesingle{}s why any line with data can\textquotesingle{}t have unprintable character at the beginning.
+
+N\+B2\+: You can\textquotesingle{}t have emty line before the first block. You don\textquotesingle{}t need to have empty line at the end of file. \hypertarget{class_p_c_a_1_1_polymer_ac8631ac2842b00802f24478b525c05db}{}\label{class_p_c_a_1_1_polymer_ac8631ac2842b00802f24478b525c05db} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Kappa@{set\+Kappa}}
+\index{set\+Kappa@{set\+Kappa}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Kappa()}{setKappa()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Kappa (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{kappa\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_a2dae638afa952c286c16122c7ab52b6e}{}\label{class_p_c_a_1_1_polymer_a2dae638afa952c286c16122c7ab52b6e} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Monomer\+Lengths\+From\+Radius\+Vectors@{set\+Monomer\+Lengths\+From\+Radius\+Vectors}}
+\index{set\+Monomer\+Lengths\+From\+Radius\+Vectors@{set\+Monomer\+Lengths\+From\+Radius\+Vectors}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Monomer\+Lengths\+From\+Radius\+Vectors()}{setMonomerLengthsFromRadiusVectors()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Monomer\+Lengths\+From\+Radius\+Vectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_a217cddfa5b9e5bfe68f8e5d0802e2f31}{}\label{class_p_c_a_1_1_polymer_a217cddfa5b9e5bfe68f8e5d0802e2f31} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Monomer\+Lengths\+From\+VectorsT@{set\+Monomer\+Lengths\+From\+VectorsT}}
+\index{set\+Monomer\+Lengths\+From\+VectorsT@{set\+Monomer\+Lengths\+From\+VectorsT}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Monomer\+Lengths\+From\+Vectors\+T()}{setMonomerLengthsFromVectorsT()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Monomer\+Lengths\+From\+VectorsT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_a0c6e93aa35271b98d92a38afd2b0913d}{}\label{class_p_c_a_1_1_polymer_a0c6e93aa35271b98d92a38afd2b0913d} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Radius\+Vector@{set\+Radius\+Vector}}
+\index{set\+Radius\+Vector@{set\+Radius\+Vector}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Radius\+Vector()}{setRadiusVector()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Radius\+Vector (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{x\+\_\+in,  }\item[{double}]{y\+\_\+in,  }\item[{double}]{z\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_a258f607c38c1a247dd37659b236aa3fa}{}\label{class_p_c_a_1_1_polymer_a258f607c38c1a247dd37659b236aa3fa} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Radius\+Vectors\+From\+VectorsT@{set\+Radius\+Vectors\+From\+VectorsT}}
+\index{set\+Radius\+Vectors\+From\+VectorsT@{set\+Radius\+Vectors\+From\+VectorsT}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Radius\+Vectors\+From\+Vectors\+T()}{setRadiusVectorsFromVectorsT()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Radius\+Vectors\+From\+VectorsT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_a4ac116507767651444c852a75ab79c2d}{}\label{class_p_c_a_1_1_polymer_a4ac116507767651444c852a75ab79c2d} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Tau@{set\+Tau}}
+\index{set\+Tau@{set\+Tau}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Tau()}{setTau()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Tau (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{tau\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_a8dad939cbc8d8df73784526ad4a07aef}{}\label{class_p_c_a_1_1_polymer_a8dad939cbc8d8df73784526ad4a07aef} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Vectors\+Bfrom\+VectorsT@{set\+Vectors\+Bfrom\+VectorsT}}
+\index{set\+Vectors\+Bfrom\+VectorsT@{set\+Vectors\+Bfrom\+VectorsT}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Vectors\+Bfrom\+Vectors\+T()}{setVectorsBfromVectorsT()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Vectors\+Bfrom\+VectorsT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_aa655eb1299b272fef8c91f003abbf50d}{}\label{class_p_c_a_1_1_polymer_aa655eb1299b272fef8c91f003abbf50d} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Vectors\+Tfrom\+Radius\+Vectors@{set\+Vectors\+Tfrom\+Radius\+Vectors}}
+\index{set\+Vectors\+Tfrom\+Radius\+Vectors@{set\+Vectors\+Tfrom\+Radius\+Vectors}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Vectors\+Tfrom\+Radius\+Vectors()}{setVectorsTfromRadiusVectors()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Vectors\+Tfrom\+Radius\+Vectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_a55787461ed50776c48819a5cc3911c38}{}\label{class_p_c_a_1_1_polymer_a55787461ed50776c48819a5cc3911c38} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}}
+\index{set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau()}{setVectorsTNBfromKappaTau()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::set\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set vecors t(not unitary!) , n(unitary), b(unitary) and monomer\+Lengths. 
+
+\hypertarget{class_p_c_a_1_1_polymer_a081b8e4d7cac0da6cc411c7b56ff7362}{}\label{class_p_c_a_1_1_polymer_a081b8e4d7cac0da6cc411c7b56ff7362} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!write\+Monomer\+Lengths\+In\+File@{write\+Monomer\+Lengths\+In\+File}}
+\index{write\+Monomer\+Lengths\+In\+File@{write\+Monomer\+Lengths\+In\+File}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{write\+Monomer\+Lengths\+In\+File()}{writeMonomerLengthsInFile()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::write\+Monomer\+Lengths\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_a9859e587476da47e49cfee1152e93fa0}{}\label{class_p_c_a_1_1_polymer_a9859e587476da47e49cfee1152e93fa0} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!write\+Radius\+Vectors\+In\+File@{write\+Radius\+Vectors\+In\+File}}
+\index{write\+Radius\+Vectors\+In\+File@{write\+Radius\+Vectors\+In\+File}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{write\+Radius\+Vectors\+In\+File()}{writeRadiusVectorsInFile()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::write\+Radius\+Vectors\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_polymer_ac89188a3e56684ff3313a43ff83abea0}{}\label{class_p_c_a_1_1_polymer_ac89188a3e56684ff3313a43ff83abea0} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!write\+T\+B\+Mfile@{write\+T\+B\+Mfile}}
+\index{write\+T\+B\+Mfile@{write\+T\+B\+Mfile}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{write\+T\+B\+Mfile()}{writeTBMfile()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+::write\+T\+B\+Mfile (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption}) const}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_ad93199b0187ab557476153b204b921c7}{}\label{class_p_c_a_1_1_polymer_ad93199b0187ab557476153b204b921c7} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!b@{b}}
+\index{b@{b}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}$\ast$ P\+C\+A\+::\+Polymer\+::b\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+binormal unot vectors 
+
+\hypertarget{class_p_c_a_1_1_polymer_a1bef29f1613bb4b67981aae7df3d804b}{}\label{class_p_c_a_1_1_polymer_a1bef29f1613bb4b67981aae7df3d804b} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!kappa@{kappa}}
+\index{kappa@{kappa}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{kappa}{kappa}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Polymer\+::kappa\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+bound angle 
+
+\hypertarget{class_p_c_a_1_1_polymer_adec33c5274834c85479abefe537efa5a}{}\label{class_p_c_a_1_1_polymer_adec33c5274834c85479abefe537efa5a} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!monomer\+Length@{monomer\+Length}}
+\index{monomer\+Length@{monomer\+Length}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{monomer\+Length}{monomerLength}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Polymer\+::monomer\+Length\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+monomer length 
+
+\hypertarget{class_p_c_a_1_1_polymer_a7c71d8f5516ae0b0ead3929296135d1b}{}\label{class_p_c_a_1_1_polymer_a7c71d8f5516ae0b0ead3929296135d1b} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!n@{n}}
+\index{n@{n}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}$\ast$ P\+C\+A\+::\+Polymer\+::n\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+normal unit vectors 
+
+\hypertarget{class_p_c_a_1_1_polymer_a8dadd2d6d6d65b79909f274acd63fd1e}{}\label{class_p_c_a_1_1_polymer_a8dadd2d6d6d65b79909f274acd63fd1e} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!num\+Monomers@{num\+Monomers}}
+\index{num\+Monomers@{num\+Monomers}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{num\+Monomers}{numMonomers}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Polymer\+::num\+Monomers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Number of monomers in polymer chain. 
+
+\hypertarget{class_p_c_a_1_1_polymer_a9822e3b9c3420a04a689706b84e586ca}{}\label{class_p_c_a_1_1_polymer_a9822e3b9c3420a04a689706b84e586ca} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!r@{r}}
+\index{r@{r}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}$\ast$ P\+C\+A\+::\+Polymer\+::r\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+radius vectors 
+
+\hypertarget{class_p_c_a_1_1_polymer_a0fd79e19a8c09a9e4c72903924151b5e}{}\label{class_p_c_a_1_1_polymer_a0fd79e19a8c09a9e4c72903924151b5e} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!t@{t}}
+\index{t@{t}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector}$\ast$ P\+C\+A\+::\+Polymer\+::t\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+tangent not-\/unit vectors 
+
+\hypertarget{class_p_c_a_1_1_polymer_ab3b07298bdbac01a7b20b2554d7b248f}{}\label{class_p_c_a_1_1_polymer_ab3b07298bdbac01a7b20b2554d7b248f} 
+\index{P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}!tau@{tau}}
+\index{tau@{tau}!P\+C\+A\+::\+Polymer@{P\+C\+A\+::\+Polymer}}
+\subsubsection{\texorpdfstring{tau}{tau}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Polymer\+::tau\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+torsion angle 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\hyperlink{_polymer_8h}{Polymer.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\hyperlink{_polymer_8cpp}{Polymer.\+cpp}\end{DoxyCompactItemize}
