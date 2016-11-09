@@ -32,7 +32,7 @@ PolymerMC::~PolymerMC()
     //Polymer distructor
 }
 
-void PolymerMC::setNewRadiusVectorsFromRotation(int site)
+void PolymerMC::setNewRadiusVectorsViaRotation(int site)
 {
     int j;
     Vector tmpVector;

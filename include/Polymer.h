@@ -1,7 +1,8 @@
-/** Polymer.h
+/** @PCMC
+*   @file Polymer.h
 *
-*   Anna Sinelnikova
-*   Uppsala,Sweden 2016
+*   @autor Anna Sinelnikova
+*   @data 2016
 */
 
 #ifndef PCA_POLYMER
@@ -9,6 +10,7 @@
 
 #include "Vector.h"
 #include "Utilities.h"
+#include "PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -17,37 +19,44 @@ namespace PCA{
 class Polymer
 {protected:
 
-    /** Number of monomers in polymer chain */
-    int numMonomers;
+    int numMonomers;/**< Number of monomers in polymer chain */
+    double* monomerLength;/**< monomer length */
     
-    /** Monomer length */
-    double* monomerLength;
+    /** @name Frenet angles:*/
+    ///@{
+    double* kappa; /**< bound angle */
+    double* tau; /**< torsion angle */
+    ///@}
     
-    /** Frenet angles: */
-    double* kappa; /* bound angle */
-    double* tau; /* torsion angle */
+    /** @name Frenet frame vectors:*/
+    ///@{
+    Vector* t; /**< tangent not-unit vectors*/
+    Vector* n; /**< normal unit vectors*/
+    Vector* b; /**< binormal unot vectors*/
+    ///@}
     
-    /** Frenet frame vectors: */
-    Vector* t; /* tangent vectors */
-    Vector* n; /* normal vectors */
-    Vector* b; /* binormal vectors */
-
-    /** Radius vectors */
-    Vector* r;
+    Vector* r;/**< radius vectors */
     
-    
-    
-    /** Block is separated from another one with one or more empty lines. The first has number 1 (not 0).
-    NB1: in this version empty line is every line which starts with
-    unprintable characters: \n, \t or space. That's why any line with data can't 
-    have unprintable character at the beginning.
-    NB2: You can't have emty line before the first block.
-    You don't need to have empty line at the end of file.*/
+    /** Read file with x y z coordinates and fill r[]. One line - one atom. One block - one chain.
+    * Block is separated from another one with one or more empty lines. The first has number 1 (not 0).
+    *
+    * NB1: in this version empty line is every line which starts with
+    * unprintable characters: \\n, \\t or space. That's why any line with data can't 
+    * have unprintable character at the beginning.
+    *
+    * NB2: You can't have emty line before the first block.
+    * You don't need to have empty line at the end of file.*/
     void readFileWithCoordinates(char* fileName, int linesInBlock, int blockNumber = 1);
+    
+    /** Read file with kappa tau angles and fill corresponding arrays. One line - one atom. One block - one chain. */
     void readFileWithAngles(char* fileName, int linesInBlock, int blockNumber = 1);
+    
+    /** The same as destructor */
     void formatAll();
+
 public:
     enum class FileType {coordinates, angles};
+    
     /** Constructor: read coordinates of sites from file. If you have more than one
     blocks in file then pass the number of the block. You can pass number of sites in
     the block, but it is not necessarily.*/
@@ -67,21 +76,30 @@ public:
 
     //void setRadiusVector(int i, double x_in, double y_in, double z_in);
 
+    /** @name Set ones vectors from another vectors:*/
+    ///@{
     void setVectorsTfromRadiusVectors();
     void setVectorsBfromVectorsT();
     void setRadiusVectorsFromVectorsT();
+    ///@}
+    
+    /** @name Set lengths of all monomers from vectors:*/
+    ///@{
     void setMonomerLengthsFromRadiusVectors();
     void setMonomerLengthsFromVectorsT();
-    
+    ///@}    
     /** Set vecors t(not unitary!) , n(unitary), b(unitary) and monomerLengths */
     void setVectorsTNBfromKappaTau();
 
+    /** @name Functions which returns members:*/
+    ///@{
     int getNumMonomers () const;
     const double* getMonomerLength () const;
     const Vector* getRadiusVectors() const;
     const Vector& getRadiusVector(int site) const;
     const Vector* getVectorsT() const;
     const Vector* getVectorsB() const;
+    ///@}
     
     void setRadiusVector(int i, double x_in, double y_in, double z_in);
     void setKappa(int i, double kappa_in);
@@ -97,10 +115,7 @@ public:
 
 inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_in)
 {
-    if(r == NULL){
-	printf("Error in inline Polymer::setRadiusVector\n");
-	exit(1);
-    }
+    _PCA_CATCH_VOID_POINTER(r, "inline Polymer::setRadiusVector");
 
     r[i].x = x_in;
     r[i].y = y_in;
@@ -110,25 +125,17 @@ inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_i
 
 inline void Polymer::setKappa(int i, double kappa_in)
 {
-    if(kappa == NULL){
-	printf("Error in inline Polymer::setKappa\n");
-	exit(1);
-    }
-    
+    _PCA_CATCH_VOID_POINTER(kappa, "inline Polymer::setKappa(.)");
     kappa[i] = kappa_in;
-
 }
 
 inline void Polymer::setTau(int i, double tau_in)
 {
-    if(tau == NULL){
-	printf("Error in inline Polymer::setKappa\n");
-	exit(1);
-    }
-    
+    _PCA_CATCH_VOID_POINTER(tau, "inline Polymer::setTau(.)");
     tau[i] = tau_in;
 
 }
+
 inline int Polymer::getNumMonomers() const
 {
     return numMonomers;

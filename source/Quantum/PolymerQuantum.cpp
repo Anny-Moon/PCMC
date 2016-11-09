@@ -51,7 +51,7 @@ void PolymerQuantum::writeTBMfile(char* fileName, const HoppingAmplitudeCalculat
     //_CATCH_ERROR(r, "Error in writeTBMfile:\nno radius vectors\n");
     
     numSites = polymer.getNumMonomers()+1;
-    sprintf(str,"results/%s_mu.tbm",fileName);
+    sprintf(str,"results/%s_mu_0_0.tbm",fileName);
     fp = fopen(str, "w");
 
     fprintf(fp, "Amplitudes:\n");

@@ -35,7 +35,7 @@ public:
     
     /** This function changes only! r[site+1], r[site+2]... :
     And before doing this it saves old r's as rOld[site+1]=r[site+1] ... */
-    void setNewRadiusVectorsFromRotation(int site);
+    void setNewRadiusVectorsViaRotation(int site);
     
     void setNewVectorsTNBfromKappaTau(int site);
 };

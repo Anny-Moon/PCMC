@@ -5,7 +5,9 @@
 */
 
 #include "../include/Polymer.h"
+#include "../include/PCAmacros.h"
 #include "../include/Utilities.h"
+#include "../include/File.h"
 #include <stdio.h>
 #include <math.h>
 
@@ -154,7 +156,7 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
     
     
     if(numberOfLinesInBlock == 0)
-	size = countLinesInBlockInFile(fileName, polymerNumber);
+	size = File::countLinesInBlock(fileName, polymerNumber);
 	
     else
 	size = numberOfLinesInBlock;
@@ -382,7 +384,7 @@ void Polymer::setVectorsBfromVectorsT()
     b[0].z = 0.0;
     
     //if t[0] has only z component
-    if(_IS_EQUAL(t[0].x, 0.0) && _IS_EQUAL(t[0].y, 0.0)){
+    if(_PCA_IS_EQUAL(t[0].x, 0.0) && _PCA_IS_EQUAL(t[0].y, 0.0)){
 	b[0].x = 1.0;
 	b[0].y = 0.0;
 	b[0].z = 0.0;
@@ -465,7 +467,7 @@ const Vector* Polymer::getRadiusVectors() const
 
 const Vector& Polymer::getRadiusVector(int site) const
 {
-    _CATCH_ERROR(r, "Error in getRadiusVector\n");
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::getRadiusVector(.)");
     return r[site];
 }
 
