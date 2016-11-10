@@ -27,7 +27,6 @@ bool File::getVerbose()
 
 int File::countLinesInBlock(char* fileName, int blockNumber)
 {
-    int i;
     int linesInBlock = 0;
     int blockCounter = 0;
     bool prevLineEmpty = false;
@@ -75,14 +74,13 @@ int File::countLinesInBlock(char* fileName, int blockNumber)
     }
     
     if(File::getVerbose() && globalVerbose)
-	printf("Number of lines in block #%i in file '%s': %i.\n", blockNumber, fileName, blockCounter);
+	printf("Number of lines in block #%i in file '%s': %i.\n", blockNumber, fileName, linesInBlock);
     
     return linesInBlock;
 }
 
 int File::countBlocks(char* fileName)
 {
-    int i;
     int linesInBlock = 0;
     int blockCounter = 0;
     bool prevLineEmpty = false;
@@ -121,7 +119,6 @@ int File::countBlocks(char* fileName)
 
 void File::showNumberOfLinesInBlocks(char* fileName)
 {
-    int i;
     int linesInBlock = 0;
     int blockCounter = 0;
     bool prevLineEmpty = false;
