@@ -117,6 +117,30 @@ int File::countBlocks(char* fileName)
     return blockCounter;
 }
 
+bool File::checkAllBlocksHaveTheSameSize(char* fileName)
+{
+    int i;
+    bool answ = true;
+    int numBlocks, numLinesInFirstBlock, tmp;
+    bool currentVerbose;
+    
+    currentVerbose = verbose;
+    verbose = false;
+    
+    numBlocks = File::countBlocks(fileName);
+    numLinesInFirstBlock = File::countLinesInBlock(fileName, 1);
+    
+    for(i=1; i<numBlocks; i++){
+	tmp = File::countLinesInBlock(fileName, i+1);
+	    if(tmp != numLinesInFirstBlock){
+		answ = false;
+		break;
+	    }
+    }
+    
+    verbose = currentVerbose;
+    return answ;
+}
 void File::showNumberOfLinesInBlocks(char* fileName)
 {
     int linesInBlock = 0;
