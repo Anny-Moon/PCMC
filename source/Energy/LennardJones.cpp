@@ -26,7 +26,7 @@ LennardJones::LennardJones(double gamma_in, double rMin_in)
 
 LennardJones::~LennardJones(){};
 
-double LennardJones::energy(const Vector& r)
+double LennardJones::energy(const Vector& r) const
 {
     double answ = 0;
     double tmp;

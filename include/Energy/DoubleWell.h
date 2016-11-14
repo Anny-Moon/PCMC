@@ -29,56 +29,47 @@ namespace PCA{
 class DoubleWell
 {
 private:
-    Param param;
+    int numSites;
     
+    double alpha;
+    double mu;
+    
+    double* q;
+    double* m;
+    double* c;
+    double* d;
+    double* a;
+    double* b;
+	
 public:
-
-    /** Store and handle parameters for DoubleWell. */
-    class Param
-    {
-    private:
-	int numSites;
-    
-	double alpha;
-	double* mu;
-    
-	double* q;
-	double* m;
-	double* c;
-	double* d;
-	double* a;
-	double* b;
+    DoubleWell(int numSites_in);
 	
-    public:
-	Param(int numSites_in);
+    /** Constructor for homopolymer */
+    DoubleWell(
+	int numSites_in,
+	double q_in,
+	double m_in,
+	double c_in,
+	double d_in,
+	double a_in,
+	double b_in = 0,
+	double alpha_in = 1.0,
+	double mu_in = 0
+    );
 	
-	/** Constructor for homopolymer */
-	Param(
-	    int numSites_in,
-	    double q_in,
-	    double m_in,
-	    double c_in,
-	    double d_in,
-	    double a_in,
-	    double b_in = 0,
-	    double alpha_in = 1.0,
-	    double mu_in = 0
-	);
-	
-	/**@name Push functions (fills arrays including fromSite and toSite!):*/
-	//@{
-	void pushAlpha(double alpha_in);
-	void pushMu(double mu_in, int fromSite, int toSite);
-	void pushQ(double q_in, int fromSite, int toSite);
-	void pushM(double m_in, int fromSite, int toSite);
-	void pushC(double c_in, int fromSite, int toSite);
-	void pushD(double d_in, int fromSite, int toSite);
-	void pushA(double a_in, int fromSite, int toSite);
-	void pushB(double b_in, int fromSite, int toSite);
-	//@}
-	bool checkAllParamAreSeted();
-    ~Param();
-    };
+    /**@name Push functions (fills arrays including fromSite and toSite!):*/
+    //@{
+    void pushAlpha(double alpha_in);
+    void pushMu(double mu_in);
+    void pushQ(double q_in, int fromSite, int toSite);
+    void pushM(double m_in, int fromSite, int toSite);
+    void pushC(double c_in, int fromSite, int toSite);
+    void pushD(double d_in, int fromSite, int toSite);
+    void pushA(double a_in, int fromSite, int toSite);
+    void pushB(double b_in, int fromSite, int toSite);
+    //@}
+    bool checkAllParamAreSeted();
+    ~DoubleWell();
 
     double energyOneSite(int site, const PolymerMC& polymer) const;
     double energyAllSites();

@@ -17,13 +17,11 @@
 namespace PCA{
 
 //-------------------------Param---------------------------------
-DoubleWell::Param::Param(int numSites_in)
+DoubleWell::DoubleWell(int numSites_in)
 {
     numSites = numSites_in;
     alpha = 1.0;
-    
-    mu = new double [numSites];
-    fillArray(numSites, mu, 0.0); // fill mu with 0
+    mu = 0.0;
     
     q = new double [numSites];
     m = new double [numSites];
@@ -34,7 +32,7 @@ DoubleWell::Param::Param(int numSites_in)
     
 }
 
-DoubleWell::Param::Param(
+DoubleWell::DoubleWell(
     int numSites_in,
     double q_in,
     double m_in,
@@ -47,6 +45,8 @@ DoubleWell::Param::Param(
 )
 {
     numSites = numSites_in;
+    alpha = alpha_in;
+    mu = mu_in;
     
     q = new double [numSites];
     m = new double [numSites];
@@ -54,7 +54,6 @@ DoubleWell::Param::Param(
     d = new double [numSites];
     a = new double [numSites];
     b = new double [numSites];
-    mu = new double [numSites];
     
     fillArray(numSites, q, q_in);
     fillArray(numSites, m, m_in);
@@ -62,16 +61,11 @@ DoubleWell::Param::Param(
     fillArray(numSites, d, d_in);
     fillArray(numSites, a, a_in);
     fillArray(numSites, b, b_in);
-    fillArray(numSites, mu, mu_in);
-    alpha = alpha_in;
+    
 }
 
-DoubleWell::Param::~Param()
+DoubleWell::~DoubleWell()
 {
-    if(mu!=NULL){
-	delete [] mu;
-	mu = NULL;
-    }
 
     if(q!=NULL){
 	delete [] q;
@@ -105,21 +99,17 @@ DoubleWell::Param::~Param()
     
 }
 
-void DoubleWell::Param::pushAlpha(double alpha_in)
+void DoubleWell::pushAlpha(double alpha_in)
 {
     alpha = alpha_in;
 }
 
-void DoubleWell::Param::pushMu(double mu_in, int fromSite, int toSite)
+void DoubleWell::pushMu(double mu_in)
 {
-    int i;
-    _PCA_CATCH_VOID_POINTER(mu, "DoubleWell::Param::pushMu(.)");
-    
-    for(i=fromSite; i<toSite+1; i++)
-	mu[i] = mu_in;
+    mu = mu_in;
 }
 
-void DoubleWell::Param::pushQ(double q_in, int fromSite, int toSite)
+void DoubleWell::pushQ(double q_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(q, "DoubleWell::Param::pushQ(.)");
@@ -128,7 +118,7 @@ void DoubleWell::Param::pushQ(double q_in, int fromSite, int toSite)
 	q[i] = q_in;
 }
 
-void DoubleWell::Param::pushM(double m_in, int fromSite, int toSite)
+void DoubleWell::pushM(double m_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(m, "DoubleWell::Param::pushM(.)");
@@ -137,7 +127,7 @@ void DoubleWell::Param::pushM(double m_in, int fromSite, int toSite)
 	m[i] = m_in;
 }
 
-void DoubleWell::Param::pushC(double c_in, int fromSite, int toSite)
+void DoubleWell::pushC(double c_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(c, "DoubleWell::Param::pushC(.)");
@@ -146,7 +136,7 @@ void DoubleWell::Param::pushC(double c_in, int fromSite, int toSite)
 	c[i] = c_in;
 }
 
-void DoubleWell::Param::pushD(double d_in, int fromSite, int toSite)
+void DoubleWell::pushD(double d_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(d, "DoubleWell::Param::pushD(.)");
@@ -155,7 +145,7 @@ void DoubleWell::Param::pushD(double d_in, int fromSite, int toSite)
 	d[i] = d_in;
 }
 
-void DoubleWell::Param::pushA(double a_in, int fromSite, int toSite)
+void DoubleWell::pushA(double a_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(a, "DoubleWell::Param::pushA(.)");
@@ -164,7 +154,7 @@ void DoubleWell::Param::pushA(double a_in, int fromSite, int toSite)
 	a[i] = a_in;
 }
 
-void DoubleWell::Param::pushB(double b_in, int fromSite, int toSite)
+void DoubleWell::pushB(double b_in, int fromSite, int toSite)
 {
     int i;
     _PCA_CATCH_VOID_POINTER(b, "DoubleWell::Param::pushB(.)");
@@ -180,18 +170,18 @@ double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
     double E1,E2;
 	
     if(site == 0)
-	E1 = -(2.0 + param.mu) * polymer.getKappa(site) * polymer.getKappa(site+1);
+	E1 = -(2.0 + mu) * polymer.getKappa(site) * polymer.getKappa(site+1);
     
     else if(site == numSites)
-	E1 = -(2.0 + param.mu) * polymer.getKappa(site-1) * polymer.getKappa(site);
+	E1 = -(2.0 + mu) * polymer.getKappa(site-1) * polymer.getKappa(site);
 
     else 
-	E1 = -(2.0 + param.mu) * (polymer.getKappa(site-1) * polymer.getKappa(site) + polymer.getKappa(site) * polymer.getKappa(site+1));
+	E1 = -(2.0 + mu) * (polymer.getKappa(site-1) * polymer.getKappa(site) + polymer.getKappa(site) * polymer.getKappa(site+1));
 
     E2 = 2.0 * polymer.getKappa(site)*polymer.getKappa(site) +\
-	param.q[site] * (polymer.getKappa(site)*polymer.getKappa(site) - param.m[site]*param.m[site]) * (polymer.getKappa(site)*polymer.getKappa(site)-param.m[site]*param.m[site]) +\
-	param.c[site] * 0.5 * (param.d[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site) * polymer.getTau(site) -\
-	param.a[site] * (param.b[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site);
+	q[site] * (polymer.getKappa(site)*polymer.getKappa(site) - m[site]*m[site]) * (polymer.getKappa(site)*polymer.getKappa(site)-m[site]*m[site]) +\
+	c[site] * 0.5 * (d[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site) * polymer.getTau(site) -\
+	a[site] * (b[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site);
 	
     return E1 + E2;
 }
