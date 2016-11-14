@@ -99,6 +99,8 @@ public:
     const Vector& getRadiusVector(int site) const;
     const Vector* getVectorsT() const;
     const Vector* getVectorsB() const;
+    double getKappa(int i) const;
+    double getTau(int i) const;
     ///@}
     
     void setRadiusVector(int i, double x_in, double y_in, double z_in);
@@ -137,6 +139,16 @@ inline void Polymer::setTau(int i, double tau_in)
 inline int Polymer::getNumMonomers() const
 {
     return numMonomers;
+}
+
+inline double Polymer::getKappa(int i) const
+{
+    return kappa[i];
+}
+
+inline double Polymer::getTau(int i) const
+{
+    return tau[i];
 }
 
 }// end of namespace

@@ -16,7 +16,6 @@ namespace PCA{
 
 class PolymerMC : public Polymer
 {
-friend class DoubleWell;
 private:
     
     double kappaNew;

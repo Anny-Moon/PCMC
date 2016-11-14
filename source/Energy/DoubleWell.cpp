@@ -180,19 +180,18 @@ double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
     double E1,E2;
 	
     if(site == 0)
-	E1 = -(2.0 + param.mu) * polymer.kappa[site] * polymer.kappa[site+1];
+	E1 = -(2.0 + param.mu) * polymer.getKappa(site) * polymer.getKappa(site+1);
     
     else if(site == numSites)
-	E1 = -(2.0 + param.mu) * polymer.kappa[site-1] * polymer.kappa[site];
+	E1 = -(2.0 + param.mu) * polymer.getKappa(site-1) * polymer.getKappa(site);
 
     else 
-	E1 = -(2.0 + param.mu) * (polymer.kappa[site-1] * polymer.kappa[site] + polymer.kappa[site] * polymer.kappa[site+1]);
+	E1 = -(2.0 + param.mu) * (polymer.getKappa(site-1) * polymer.getKappa(site) + polymer.getKappa(site) * polymer.getKappa(site+1));
 
-    E2 = 2.0 * polymer.kappa[site]*polymer.kappa[site] +\
-	param.q[site] * (polymer.kappa[site]*polymer.kappa[site] - param.m[site]*param.m[site]) * (polymer.kappa[site]*polymer.kappa[site]-param.m[site]*param.m[site]) +\
-	param.c[site] * 0.5 * (param.d[site]*polymer.kappa[site]*polymer.kappa[site] + 1.0) * polymer.tau[site] * polymer.tau[site] -\
-	param.a[site] * (param.b[site]*polymer.kappa[site]*polymer.kappa[site] + 1.0) * polymer.tau
-	[site];
+    E2 = 2.0 * polymer.getKappa(site)*polymer.getKappa(site) +\
+	param.q[site] * (polymer.getKappa(site)*polymer.getKappa(site) - param.m[site]*param.m[site]) * (polymer.getKappa(site)*polymer.getKappa(site)-param.m[site]*param.m[site]) +\
+	param.c[site] * 0.5 * (param.d[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site) * polymer.getTau(site) -\
+	param.a[site] * (param.b[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site);
 	
     return E1 + E2;
 }
