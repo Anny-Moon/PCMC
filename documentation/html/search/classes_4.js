@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['param',['Param',['../class_p_c_a_1_1_double_well_1_1_param.html',1,'PCA::DoubleWell']]],
   ['polymer',['Polymer',['../class_p_c_a_1_1_polymer.html',1,'PCA']]],
   ['polymerenergy',['PolymerEnergy',['../class_p_c_a_1_1_polymer_energy.html',1,'PCA']]],
   ['polymermc',['PolymerMC',['../class_p_c_a_1_1_polymer_m_c.html',1,'PCA']]],

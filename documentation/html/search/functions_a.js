@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['polymer',['Polymer',['../class_p_c_a_1_1_polymer.html#ac835d908dc32b787ca80f26cd0e6c68b',1,'PCA::Polymer::Polymer(FileType fileType, char *fileName, int numberLinesInBlock=0, int polymerNumber=1)'],['../class_p_c_a_1_1_polymer.html#ac2645c33eba98a8ec1670d69b92060c8',1,'PCA::Polymer::Polymer(int numberOfMonomers, const Vector *r=NULL, const Vector *t=NULL, const Vector *b=NULL)'],['../class_p_c_a_1_1_polymer.html#a7d08722028cd9bf11b042a1b3b0e1d37',1,'PCA::Polymer::Polymer(int numberOfMonomers, const double *kappa_in, const double *tau_in)'],['../class_p_c_a_1_1_polymer.html#a1ce99540db06e9e48392423ba516cd2f',1,'PCA::Polymer::Polymer(const Polymer &amp;polymer)']]],
-  ['polymermc',['PolymerMC',['../class_p_c_a_1_1_polymer_m_c.html#a3a792caa4db0fe8a7c749c4b0f6fce25',1,'PCA::PolymerMC']]],
-  ['print',['print',['../class_p_c_a_1_1_vector.html#a6411d63770d6d711c5c854e21ca1776e',1,'PCA::Vector']]]
+  ['operator_2a',['operator*',['../namespace_p_c_a.html#a49f60e2a8814942d40f8df470c723214',1,'PCA::operator*(const Vector &amp;B, const Vector &amp;A)'],['../namespace_p_c_a.html#a6f1801f8e53ab87a1f3175ec18fa3115',1,'PCA::operator*(double k, const Vector &amp;A)'],['../namespace_p_c_a.html#a58012056e60671ce13c8318b3cd1ec8f',1,'PCA::operator*(const Vector &amp;A, double k)']]],
+  ['operator_2b',['operator+',['../namespace_p_c_a.html#a017b6648f950fd5e297bc92225a425dc',1,'PCA']]],
+  ['operator_2d',['operator-',['../class_p_c_a_1_1_vector.html#ac94bf46625448a0ece199c2021993e6c',1,'PCA::Vector::operator-()'],['../namespace_p_c_a.html#a430437e74079b33bcf7a99ef38c01134',1,'PCA::operator-()']]],
+  ['operator_2f',['operator/',['../namespace_p_c_a.html#a5144cc8f2a3d8ab924e8c4c1c32a2aed',1,'PCA']]],
+  ['operator_3d',['operator=',['../class_p_c_a_1_1_vector.html#ac93d124518b0f5e39dd1a0973dddc958',1,'PCA::Vector']]],
+  ['operator_3d_3d',['operator==',['../class_p_c_a_1_1_vector.html#ae7a1abe13c8313d717b7bdb66934e92b',1,'PCA::Vector']]]
 ];

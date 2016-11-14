@@ -1,7 +1,7 @@
 var searchData=
 [
   ['g',['g',['../class_p_c_a_1_1_trancated_exp_calculator.html#ade1e4dd2be1b5ec6f6e38cc1a251a719',1,'PCA::TrancatedExpCalculator::g()'],['../class_p_c_a_1_1_yukawa_calculator.html#a9fc1cfaf2c30fdd14561238a5b114a0c',1,'PCA::YukawaCalculator::g()']]],
-  ['gamma',['gamma',['../class_p_c_a_1_1lennard_jones.html#ad696584256b66e970fdd4b963ffbf0fe',1,'PCA::lennardJones']]],
+  ['gamma',['gamma',['../class_p_c_a_1_1_lennard_jones.html#ad28ea138038c2c43e9fd000752ea6130',1,'PCA::LennardJones']]],
   ['getmonomerlength',['getMonomerLength',['../class_p_c_a_1_1_polymer.html#af05e598bcd1e9987aca46d0661ac6dca',1,'PCA::Polymer']]],
   ['getnummonomers',['getNumMonomers',['../class_p_c_a_1_1_polymer.html#a5c87b083f77c06ffd14278f87dad47ea',1,'PCA::Polymer']]],
   ['getradiusvector',['getRadiusVector',['../class_p_c_a_1_1_polymer.html#ab2ea86763e0f0be646ef6aa6a105f927',1,'PCA::Polymer']]],

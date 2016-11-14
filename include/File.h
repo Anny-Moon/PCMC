@@ -34,6 +34,9 @@ public:
     /** Return number of blocs in file */
     static int countBlocks(char* fileName);
     
+    /** Check that all data blocks have the same number of lines */
+    static bool checkAllBlocksHaveTheSameSize(char* fileName);
+    
     /** Print on screen list of blocks and number of lines in each.
     * Thus function will print on screen even if all
     * verbose are false */

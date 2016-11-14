@@ -1,5 +1,5 @@
 /** @package PCMC
-*   @file lennardJones.h
+*   @file LennardJones.h
 *
 *   Lennard-Jones potential.
 *
@@ -11,7 +11,6 @@
 #define PCMC_LENNARD_JONES
 
 #include "Vector.h"
-#include "Utilities.h"
 #include "PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -22,14 +21,18 @@ namespace PCA{
 * \f[ U(r)= \gamma \left( \left(\frac{r_{min}}{r}\right)^{12} - 2 \left(\frac{r_{min}}{r}\right)^6\right)\f]
 */
 
-class lennardJones
+class LennardJones
 {
 private:
     double gamma;
     double rMin;
 
 public:
+    LennardJones(double gamma_in, double rMin_in);
+    ~LennardJones();
     
+    double energy(const Vector& r);
 
 };
 }//end of namespace PCA
+#endif

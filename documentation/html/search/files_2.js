@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lennardjones_2eh',['lennardJones.h',['../lennard_jones_8h.html',1,'']]]
+  ['hoppingamplitudecalculator_2eh',['HoppingAmplitudeCalculator.h',['../_hopping_amplitude_calculator_8h.html',1,'']]]
 ];

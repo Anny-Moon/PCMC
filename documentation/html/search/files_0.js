@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['file_2ecpp',['File.cpp',['../_file_8cpp.html',1,'']]],
-  ['file_2eh',['File.h',['../_file_8h.html',1,'']]]
+  ['doublewell_2ecpp',['DoubleWell.cpp',['../_double_well_8cpp.html',1,'']]],
+  ['doublewell_2eh',['DoubleWell.h',['../_double_well_8h.html',1,'']]]
 ];
