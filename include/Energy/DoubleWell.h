@@ -72,7 +72,7 @@ public:
     ~DoubleWell();
 
     double energyOneSite(int site, const PolymerMC& polymer) const;
-    double energyAllSites();
+    double energyAllSites(const PolymerMC& polymer) const;
 
 };
 }//end of namespace PCA

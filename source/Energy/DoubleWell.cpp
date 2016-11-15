@@ -16,7 +16,6 @@
 
 namespace PCA{
 
-//-------------------------Param---------------------------------
 DoubleWell::DoubleWell(int numSites_in)
 {
     numSites = numSites_in;
@@ -163,7 +162,6 @@ void DoubleWell::pushB(double b_in, int fromSite, int toSite)
 	b[i] = b_in;
 }
 
-//-------------------------DoubleWell----------------------------
 
 double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
 {
@@ -182,7 +180,37 @@ double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
 	q[site] * (polymer.getKappa(site)*polymer.getKappa(site) - m[site]*m[site]) * (polymer.getKappa(site)*polymer.getKappa(site)-m[site]*m[site]) +\
 	c[site] * 0.5 * (d[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site) * polymer.getTau(site) -\
 	a[site] * (b[site]*polymer.getKappa(site)*polymer.getKappa(site) + 1.0) * polymer.getTau(site);
+
+    E2 = E2 * alpha;
+    
+    return E1 + E2;
+}
+
+double DoubleWell::energyAllSites(const PolymerMC& polymer) const
+{
+    int i;
+    double E1 = 0.0;
+    double E2 = 0.0;
+    
+    i=0;
+    E1 += -(2.0 + mu) * polymer.getKappa(i) * polymer.getKappa(i+1);
+    
+    for(i=1; i<numSites-1; i++){
+	E1 += -(2.0 + mu) * (polymer.getKappa(i-1) * polymer.getKappa(i) + polymer.getKappa(i) * polymer.getKappa(i+1));
+    }
+    
+    i=numSites;
+    E1 += -(2.0 + mu) * polymer.getKappa(i-1) * polymer.getKappa(i);
+    
+    for(i=0; i<numSites; i++){
+	E2 = 2.0 * polymer.getKappa(i)*polymer.getKappa(i) +\
+	    q[i] * (polymer.getKappa(i)*polymer.getKappa(i) - m[i]*m[i]) * (polymer.getKappa(i)*polymer.getKappa(i)-m[i]*m[i]) +\
+	    c[i] * 0.5 * (d[i]*polymer.getKappa(i)*polymer.getKappa(i) + 1.0) * polymer.getTau(i) * polymer.getTau(i) -\
+	    a[i] * (b[i]*polymer.getKappa(i)*polymer.getKappa(i) + 1.0) * polymer.getTau(i);
 	
+    }
+    E2 = E2 * alpha;
+    
     return E1 + E2;
 }
 
