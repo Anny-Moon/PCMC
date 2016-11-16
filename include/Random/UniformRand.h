@@ -1,26 +1,26 @@
 /** @package PCMC
-*   @file GaussRand.h
+*   @file UniformRand.h
 *
 *   @autor Anna Sinelnikova
 *   @data 2016
 */
 
-#ifndef PCMC_RANDOM_GAUSS
-#define PCMC_RANDOM_GAUSS
+#ifndef PCMC_RANDOM_UNIFORM
+#define PCMC_RANDOM_UNIFORM
 
 #include "RandomGenerator.h"
 #include <random>
 
 namespace PCA{
 
-class GaussRand
-{	
+class UniformRand
+{
 private:
-    std::normal_distribution<double> distribution;
+    std::uniform_real_distribution<double> distribution;
 
 public:
-    GaussRand(double mean = 0.0, double stdDeviation = 1.0);
-    ~GaussRand();
+    UniformRand(double min = 0.0, double max = 1.0);
+    ~UniformRand();
     
     double operator () (RandomGenerator& rg) ///< overloading operator ()
     {
