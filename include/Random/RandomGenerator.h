@@ -12,16 +12,19 @@
 #include <stdio.h>
 #include <random>
 namespace PCA{
-
+/** Parent class of other random classes*/
 class RandomGenerator
 {
 private:
     uint32_t seed;
 
-public:
-    std::mt19937 generator;
-    RandomGenerator(uint32_t seed_in);
+protected:
+    static std::mt19937 generator;
+    RandomGenerator();
     ~RandomGenerator();
+
+public:
+    virtual double operator () ();
     
 };
 

@@ -35,12 +35,12 @@ int main(int np, char **p)
     fclose(cfp);
 
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
-    RandomGenerator rg(9999);
+    //RandomGenerator rg(9999);
     UniformRand uniRand;
     
     for(i=0;i<100;i++)
     {
-	printf("%g\n", uniRand(rg));
+	printf("%g\n", uniRand());
     }
 
     printf("Everything is OK!\n");

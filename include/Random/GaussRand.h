@@ -13,7 +13,7 @@
 
 namespace PCA{
 
-class GaussRand
+class GaussRand : public RandomGenerator
 {	
 private:
     std::normal_distribution<double> distribution;
@@ -22,9 +22,9 @@ public:
     GaussRand(double mean = 0.0, double stdDeviation = 1.0);
     ~GaussRand();
     
-    double operator () (RandomGenerator& rg) ///< overloading operator ()
+    double operator () () ///< overloading operator ()
     {
-        return distribution(rg.generator);
+        return distribution(generator);
     }
 };
 }//end of namespase PCA

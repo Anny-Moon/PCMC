@@ -13,7 +13,7 @@
 
 namespace PCA{
 
-class UniformRand
+class UniformRand : public RandomGenerator
 {
 private:
     std::uniform_real_distribution<double> distribution;
@@ -22,9 +22,9 @@ public:
     UniformRand(double min = 0.0, double max = 1.0);
     ~UniformRand();
     
-    double operator () (RandomGenerator& rg) ///< overloading operator ()
+    double operator () () ///< overloading operator ()
     {
-        return distribution(rg.generator);
+        return distribution(generator);
     }
 };
 }//end of namespase PCA

@@ -15,13 +15,9 @@
 
 namespace PCA{
 
-RandomGenerator::RandomGenerator(uint32_t seed_in)
-{
-    seed_in = seed;
-    generator.seed(seed_in);
-}
 
-RandomGenerator::~RandomGenerator(){};
+RandomGenerator::RandomGenerator(){}
+RandomGenerator::~RandomGenerator(){}
 
 
 }//end of namespace PCA
