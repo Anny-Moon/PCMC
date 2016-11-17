@@ -14,10 +14,16 @@
 #include <random>
 
 namespace PCA{
+uint32_t RandomGenerator::seed;
 std::mt19937 RandomGenerator::generator;
 
 RandomGenerator::RandomGenerator(){}
 RandomGenerator::~RandomGenerator(){}
 
+void RandomGenerator::initialization (uint32_t seed_in)
+{
+    seed = seed_in;
+    generator.seed(seed_in);
+}
 
 }//end of namespace PCA

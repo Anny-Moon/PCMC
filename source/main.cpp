@@ -35,7 +35,8 @@ int main(int np, char **p)
     fclose(cfp);
 
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
-    //RandomGenerator rg(9999);
+    RandomGenerator::initialization(111);
+    
     UniformRand uniRand;
     
     for(i=0;i<100;i++)

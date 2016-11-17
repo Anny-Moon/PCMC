@@ -15,17 +15,15 @@ namespace PCA{
 /** Parent class of other random classes*/
 class RandomGenerator
 {
-private:
-    uint32_t seed;
-
 protected:
-    static std::mt19937 generator;
     RandomGenerator();
     ~RandomGenerator();
 
 public:
+    static uint32_t seed;
+    static std::mt19937 generator;
     virtual double operator () () = 0;
-    
+    static void initialization (uint32_t seed_in);
 };
 
 }//end of namespase PCA
