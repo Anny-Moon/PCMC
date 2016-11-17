@@ -10,9 +10,6 @@
 
 #include "UniformRand.h"
 
-#include "gsl/gsl_poly.h"
-#include "gsl/gsl_complex.h"
-
 namespace PCA{
 /** Generate random numbers according distribution:
 * \f[ P = \exp(-ax^4+bx^2+cx) \f] for \f[ a>0 \f]
@@ -56,10 +53,16 @@ private:
     int N_int_steps = 50;///< number of steps during integration
     
     int error_code; ///< 0 if everything is ok;
+    
+    double polynom(double x) const;
+    double firstDerivative(double x) const;
+    double secondDerivative(double x) const;
+    void sort_asc();
 public:
     DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in = 10.0);
     ~DoubleWellRand();
     virtual double operator () (); ///< overloading operator ()
+
 };
 }//end of namespase PCA
 #endif
