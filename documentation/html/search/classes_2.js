@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hoppingamplitudecalculator',['HoppingAmplitudeCalculator',['../class_p_c_a_1_1_hopping_amplitude_calculator.html',1,'PCA']]]
+  ['gaussrand',['GaussRand',['../class_p_c_a_1_1_gauss_rand.html',1,'PCA']]]
 ];

@@ -12,7 +12,7 @@ CC:= g++
 CFLAGS:= -std=c++11
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm
+LIB:= -lm -I/usr/local/include -L/usr/local/lib -lgsl -lgslcblas
 
 # Optimization (-O3 or -O2)
 OPT:= -O3

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['kadanofftransformation',['KadanoffTransformation',['../class_p_c_a_1_1_vector.html#a385f07b1056ab2a7648b0b9dd03cd8b0',1,'PCA::Vector']]],
-  ['kappa',['kappa',['../class_p_c_a_1_1_polymer.html#a1bef29f1613bb4b67981aae7df3d804b',1,'PCA::Polymer']]],
-  ['kappanew',['kappaNew',['../class_p_c_a_1_1_polymer_m_c.html#a6771be27571e5c106546eb5225edec05',1,'PCA::PolymerMC']]]
+  ['im_5fepsilon',['im_epsilon',['../class_p_c_a_1_1_double_well_rand.html#a5fa2e0c609851d3e8a8cb9eb4bbd90c6',1,'PCA::DoubleWellRand']]],
+  ['initialization',['initialization',['../class_p_c_a_1_1_random_generator.html#aa2ea4616dd82da5cf66b8232697ecba8',1,'PCA::RandomGenerator']]]
 ];

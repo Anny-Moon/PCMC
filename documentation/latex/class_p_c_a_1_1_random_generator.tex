@@ -1,0 +1,99 @@
+\hypertarget{class_p_c_a_1_1_random_generator}{}\section{P\+CA\+:\+:Random\+Generator Class Reference}
+\label{class_p_c_a_1_1_random_generator}\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+
+
+Parent class of other random classes.  
+
+
+
+
+{\ttfamily \#include $<$Random\+Generator.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Random\+Generator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_random_generator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \hyperlink{class_p_c_a_1_1_random_generator_a4361e39397900ae1e7b2cfa91a592509}{operator()} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_p_c_a_1_1_random_generator_aa2ea4616dd82da5cf66b8232697ecba8}{initialization} (uint32\+\_\+t seed\+\_\+in)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \hyperlink{class_p_c_a_1_1_random_generator_af96d99ba4eaf71b7d33afd2fbdb7c30d}{seed}
+\item 
+static std\+::mt19937 \hyperlink{class_p_c_a_1_1_random_generator_abfbe847dad295b691364d0197283afb7}{generator}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_random_generator_a98ccf1f040a1f5dd0151f91537549cc0}{Random\+Generator} ()
+\item 
+\hyperlink{class_p_c_a_1_1_random_generator_a52e3af6bc9b825d1d4e8d463441ba6f7}{$\sim$\+Random\+Generator} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Parent class of other random classes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_random_generator_a98ccf1f040a1f5dd0151f91537549cc0}{}\label{class_p_c_a_1_1_random_generator_a98ccf1f040a1f5dd0151f91537549cc0} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!Random\+Generator@{Random\+Generator}}
+\index{Random\+Generator@{Random\+Generator}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{Random\+Generator()}{RandomGenerator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Random\+Generator\+::\+Random\+Generator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_p_c_a_1_1_random_generator_a52e3af6bc9b825d1d4e8d463441ba6f7}{}\label{class_p_c_a_1_1_random_generator_a52e3af6bc9b825d1d4e8d463441ba6f7} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!````~Random\+Generator@{$\sim$\+Random\+Generator}}
+\index{````~Random\+Generator@{$\sim$\+Random\+Generator}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{$\sim$\+Random\+Generator()}{~RandomGenerator()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Random\+Generator\+::$\sim$\+Random\+Generator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_random_generator_aa2ea4616dd82da5cf66b8232697ecba8}{}\label{class_p_c_a_1_1_random_generator_aa2ea4616dd82da5cf66b8232697ecba8} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!initialization@{initialization}}
+\index{initialization@{initialization}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{initialization()}{initialization()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Random\+Generator\+::initialization (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{seed\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_random_generator_a4361e39397900ae1e7b2cfa91a592509}{}\label{class_p_c_a_1_1_random_generator_a4361e39397900ae1e7b2cfa91a592509} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!operator()@{operator()}}
+\index{operator()@{operator()}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily virtual double P\+C\+A\+::\+Random\+Generator\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{class_p_c_a_1_1_gauss_rand_a594130952a4999972f08b429ea6af959}{P\+C\+A\+::\+Gauss\+Rand}, and \hyperlink{class_p_c_a_1_1_uniform_rand_a25b9b060f2201800a5badfa2b70d0eed}{P\+C\+A\+::\+Uniform\+Rand}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_random_generator_abfbe847dad295b691364d0197283afb7}{}\label{class_p_c_a_1_1_random_generator_abfbe847dad295b691364d0197283afb7} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!generator@{generator}}
+\index{generator@{generator}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{generator}{generator}}
+{\footnotesize\ttfamily std\+::mt19937 P\+C\+A\+::\+Random\+Generator\+::generator\hspace{0.3cm}{\ttfamily [static]}}
+
+\hypertarget{class_p_c_a_1_1_random_generator_af96d99ba4eaf71b7d33afd2fbdb7c30d}{}\label{class_p_c_a_1_1_random_generator_af96d99ba4eaf71b7d33afd2fbdb7c30d} 
+\index{P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}!seed@{seed}}
+\index{seed@{seed}!P\+C\+A\+::\+Random\+Generator@{P\+C\+A\+::\+Random\+Generator}}
+\subsubsection{\texorpdfstring{seed}{seed}}
+{\footnotesize\ttfamily uint32\+\_\+t P\+C\+A\+::\+Random\+Generator\+::seed\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Random/\hyperlink{_random_generator_8h}{Random\+Generator.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Random/\hyperlink{_random_generator_8cpp}{Random\+Generator.\+cpp}\end{DoxyCompactItemize}

@@ -1,12 +1,4 @@
 var searchData=
 [
-  ['r',['r',['../class_p_c_a_1_1_polymer.html#a9822e3b9c3420a04a689706b84e586ca',1,'PCA::Polymer']]],
-  ['radiusgyration',['RadiusGyration',['../class_p_c_a_1_1_polymer_observable.html#a6dcabbc3bc249018c2c94825bff2c94fadeaff576492062c0c633ff9868907b43',1,'PCA::PolymerObservable::RadiusGyration()'],['../class_p_c_a_1_1_polymer_observable.html#afd34b4d18155d642009a3d3c73f40882',1,'PCA::PolymerObservable::radiusGyration(const Polymer &amp;polymer)']]],
-  ['readfilewithangles',['readFileWithAngles',['../class_p_c_a_1_1_polymer.html#a3e498b6e57d98c9cc4d07a7aedb4b6a5',1,'PCA::Polymer']]],
-  ['readfilewithcoordinates',['readFileWithCoordinates',['../class_p_c_a_1_1_polymer.html#a777691bb321ef1da30a064757eb480c7',1,'PCA::Polymer']]],
-  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['relativeendtoenddistance',['relativeEndToEndDistance',['../class_p_c_a_1_1_polymer_observable.html#a72ff49d3aed6660b0bd7a8175f3b436e',1,'PCA::PolymerObservable']]],
-  ['rmin',['rMin',['../class_p_c_a_1_1_lennard_jones.html#aa59f5f2bb7cf5c83a33a7f95d23ef4c8',1,'PCA::LennardJones']]],
-  ['rold',['rOld',['../class_p_c_a_1_1_polymer_m_c.html#a6144923e16ec4e3086f92516d8a9117b',1,'PCA::PolymerMC']]],
-  ['rounding',['rounding',['../namespace_p_c_a.html#acd05fa0d440ac1781a76499f3cdb3f38',1,'PCA']]]
+  ['q',['q',['../class_p_c_a_1_1_double_well.html#a48e5423a6cef47d097a6374ca6745429',1,'PCA::DoubleWell::q()'],['../class_p_c_a_1_1_polymer_energy_1_1_d_wparam.html#aa81ddf89c6aeaeb56aa453206937fea0',1,'PCA::PolymerEnergy::DWparam::q()'],['../namespace_p_c_a.html#a5182a7edfe31f7477e5335bc60fcf108',1,'PCA::q()']]]
 ];

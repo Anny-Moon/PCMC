@@ -1,0 +1,236 @@
+\hypertarget{class_p_c_a_1_1_double_well_rand}{}\section{P\+CA\+:\+:Double\+Well\+Rand Class Reference}
+\label{class_p_c_a_1_1_double_well_rand}\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+
+
+Generate random numbers according distribution\+: \[ P = \exp(-ax^4+bx^2+cx) \] for \[ a>0 \].  
+
+
+
+
+{\ttfamily \#include $<$Double\+Well\+Rand.\+h$>$}
+
+Inheritance diagram for P\+CA\+:\+:Double\+Well\+Rand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_p_c_a_1_1_double_well_rand}
+\end{center}
+\end{figure}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+gsl\+\_\+rng $\ast$ \hyperlink{class_p_c_a_1_1_double_well_rand_a59745c0fe851353175d8435906b7e612}{mtrand}
+\begin{DoxyCompactList}\small\item\em gsl random number generator; \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_abad044e066c9b93b3eacb6d36440f650}{offset}
+\begin{DoxyCompactList}\small\item\em offset from maximal value of polynom; \end{DoxyCompactList}\item 
+int \hyperlink{class_p_c_a_1_1_double_well_rand_a89c48e652127b71600906d93f628dad5}{n\+\_\+intervals}
+\begin{DoxyCompactList}\small\item\em number of intervals (1 or 2) \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a4792680466fc8f865be362937b3e4e3b}{kappa} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em borders of working intervals (kappa\mbox{[}0\mbox{]} and kappa\mbox{[}1\mbox{]} -\/ 1st interval, kappa\mbox{[}2\mbox{]} and kappa\mbox{[}3\mbox{]} -\/ 2d interval(if existd)) \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a5fa2e0c609851d3e8a8cb9eb4bbd90c6}{im\+\_\+epsilon}
+\begin{DoxyCompactList}\small\item\em tolerance to imaginary part of the polynom roots \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_aa31900946aeacdd5f462704393b93413}{norm} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em normalizing coefficients in each interval (if one interval -\/ only norm\mbox{[}0\mbox{]} is used) \end{DoxyCompactList}\item 
+int \hyperlink{class_p_c_a_1_1_double_well_rand_a935058a518ed28d62b9e2285c30382dc}{N\+\_\+int\+\_\+steps}
+\begin{DoxyCompactList}\small\item\em number of steps during integration \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Parameters of the distribution\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a2291611a2ea4d9c3ee50a904c2fea9b7}{a}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a289b59fbd571f8f377888f48a8c6b8ae}{b}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a855b2106b6b692f9e837ef282b658c85}{c}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Roots of the first derivative\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_ab624775bcfb6b575ae1aa099bcd78cd7}{x1}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a116879814f1ddd7bfc1efc3c11bf8c5b}{x2}
+\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a2ac7d1cea509a918639ccb8bef3f1d0a}{x3}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Maxima\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_p_c_a_1_1_double_well_rand_ae53977982288d0b187a7fab536bbc55b}{n\+\_\+maxima}
+\begin{DoxyCompactList}\small\item\em number of maxima (2 or 4) \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a69b543f7eb8dda81f522a2002af65456}{x\+\_\+max1}
+\begin{DoxyCompactList}\small\item\em argument of global maximum \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a2fd3ef155f258ef1393fdb5ae503e2b0}{x\+\_\+max2}
+\begin{DoxyCompactList}\small\item\em N\+U\+LL if there is only one maximum. \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a627173c860baf5c9744916fc9e203404}{f\+\_\+max1}
+\begin{DoxyCompactList}\small\item\em global maximum \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_double_well_rand_a05278693e04d00a31bd41dedb38926b7}{f\+\_\+max2}
+\begin{DoxyCompactList}\small\item\em N\+U\+LL if there is only one maximum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generate random numbers according distribution\+: \[ P = \exp(-ax^4+bx^2+cx) \] for \[ a>0 \]. 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_double_well_rand_a2291611a2ea4d9c3ee50a904c2fea9b7}{}\label{class_p_c_a_1_1_double_well_rand_a2291611a2ea4d9c3ee50a904c2fea9b7} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!a@{a}}
+\index{a@{a}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a289b59fbd571f8f377888f48a8c6b8ae}{}\label{class_p_c_a_1_1_double_well_rand_a289b59fbd571f8f377888f48a8c6b8ae} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!b@{b}}
+\index{b@{b}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::b\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a855b2106b6b692f9e837ef282b658c85}{}\label{class_p_c_a_1_1_double_well_rand_a855b2106b6b692f9e837ef282b658c85} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!c@{c}}
+\index{c@{c}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::c\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a627173c860baf5c9744916fc9e203404}{}\label{class_p_c_a_1_1_double_well_rand_a627173c860baf5c9744916fc9e203404} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!f\+\_\+max1@{f\+\_\+max1}}
+\index{f\+\_\+max1@{f\+\_\+max1}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{f\+\_\+max1}{f\_max1}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::f\+\_\+max1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+global maximum 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a05278693e04d00a31bd41dedb38926b7}{}\label{class_p_c_a_1_1_double_well_rand_a05278693e04d00a31bd41dedb38926b7} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!f\+\_\+max2@{f\+\_\+max2}}
+\index{f\+\_\+max2@{f\+\_\+max2}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{f\+\_\+max2}{f\_max2}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::f\+\_\+max2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+N\+U\+LL if there is only one maximum. 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a5fa2e0c609851d3e8a8cb9eb4bbd90c6}{}\label{class_p_c_a_1_1_double_well_rand_a5fa2e0c609851d3e8a8cb9eb4bbd90c6} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!im\+\_\+epsilon@{im\+\_\+epsilon}}
+\index{im\+\_\+epsilon@{im\+\_\+epsilon}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{im\+\_\+epsilon}{im\_epsilon}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::im\+\_\+epsilon\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+tolerance to imaginary part of the polynom roots 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a4792680466fc8f865be362937b3e4e3b}{}\label{class_p_c_a_1_1_double_well_rand_a4792680466fc8f865be362937b3e4e3b} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!kappa@{kappa}}
+\index{kappa@{kappa}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{kappa}{kappa}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::kappa\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+borders of working intervals (kappa\mbox{[}0\mbox{]} and kappa\mbox{[}1\mbox{]} -\/ 1st interval, kappa\mbox{[}2\mbox{]} and kappa\mbox{[}3\mbox{]} -\/ 2d interval(if existd)) 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a59745c0fe851353175d8435906b7e612}{}\label{class_p_c_a_1_1_double_well_rand_a59745c0fe851353175d8435906b7e612} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!mtrand@{mtrand}}
+\index{mtrand@{mtrand}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{mtrand}{mtrand}}
+{\footnotesize\ttfamily gsl\+\_\+rng$\ast$ P\+C\+A\+::\+Double\+Well\+Rand\+::mtrand\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+gsl random number generator; 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a935058a518ed28d62b9e2285c30382dc}{}\label{class_p_c_a_1_1_double_well_rand_a935058a518ed28d62b9e2285c30382dc} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!N\+\_\+int\+\_\+steps@{N\+\_\+int\+\_\+steps}}
+\index{N\+\_\+int\+\_\+steps@{N\+\_\+int\+\_\+steps}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{N\+\_\+int\+\_\+steps}{N\_int\_steps}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Double\+Well\+Rand\+::\+N\+\_\+int\+\_\+steps\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of steps during integration 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a89c48e652127b71600906d93f628dad5}{}\label{class_p_c_a_1_1_double_well_rand_a89c48e652127b71600906d93f628dad5} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!n\+\_\+intervals@{n\+\_\+intervals}}
+\index{n\+\_\+intervals@{n\+\_\+intervals}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{n\+\_\+intervals}{n\_intervals}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Double\+Well\+Rand\+::n\+\_\+intervals\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of intervals (1 or 2) 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_ae53977982288d0b187a7fab536bbc55b}{}\label{class_p_c_a_1_1_double_well_rand_ae53977982288d0b187a7fab536bbc55b} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!n\+\_\+maxima@{n\+\_\+maxima}}
+\index{n\+\_\+maxima@{n\+\_\+maxima}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{n\+\_\+maxima}{n\_maxima}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Double\+Well\+Rand\+::n\+\_\+maxima\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of maxima (2 or 4) 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_aa31900946aeacdd5f462704393b93413}{}\label{class_p_c_a_1_1_double_well_rand_aa31900946aeacdd5f462704393b93413} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!norm@{norm}}
+\index{norm@{norm}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{norm}{norm}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::norm\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+normalizing coefficients in each interval (if one interval -\/ only norm\mbox{[}0\mbox{]} is used) 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_abad044e066c9b93b3eacb6d36440f650}{}\label{class_p_c_a_1_1_double_well_rand_abad044e066c9b93b3eacb6d36440f650} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!offset@{offset}}
+\index{offset@{offset}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+offset from maximal value of polynom; 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_ab624775bcfb6b575ae1aa099bcd78cd7}{}\label{class_p_c_a_1_1_double_well_rand_ab624775bcfb6b575ae1aa099bcd78cd7} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!x1@{x1}}
+\index{x1@{x1}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{x1}{x1}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::x1\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a116879814f1ddd7bfc1efc3c11bf8c5b}{}\label{class_p_c_a_1_1_double_well_rand_a116879814f1ddd7bfc1efc3c11bf8c5b} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!x2@{x2}}
+\index{x2@{x2}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{x2}{x2}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::x2\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a2ac7d1cea509a918639ccb8bef3f1d0a}{}\label{class_p_c_a_1_1_double_well_rand_a2ac7d1cea509a918639ccb8bef3f1d0a} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!x3@{x3}}
+\index{x3@{x3}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{x3}{x3}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::x3\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a69b543f7eb8dda81f522a2002af65456}{}\label{class_p_c_a_1_1_double_well_rand_a69b543f7eb8dda81f522a2002af65456} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!x\+\_\+max1@{x\+\_\+max1}}
+\index{x\+\_\+max1@{x\+\_\+max1}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{x\+\_\+max1}{x\_max1}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::x\+\_\+max1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+argument of global maximum 
+
+\hypertarget{class_p_c_a_1_1_double_well_rand_a2fd3ef155f258ef1393fdb5ae503e2b0}{}\label{class_p_c_a_1_1_double_well_rand_a2fd3ef155f258ef1393fdb5ae503e2b0} 
+\index{P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}!x\+\_\+max2@{x\+\_\+max2}}
+\index{x\+\_\+max2@{x\+\_\+max2}!P\+C\+A\+::\+Double\+Well\+Rand@{P\+C\+A\+::\+Double\+Well\+Rand}}
+\subsubsection{\texorpdfstring{x\+\_\+max2}{x\_max2}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Double\+Well\+Rand\+::x\+\_\+max2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+N\+U\+LL if there is only one maximum. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Random/\hyperlink{_double_well_rand_8h}{Double\+Well\+Rand.\+h}\end{DoxyCompactItemize}

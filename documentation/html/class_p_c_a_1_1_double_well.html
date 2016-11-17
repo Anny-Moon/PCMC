@@ -69,7 +69,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_p_c_a_1_1_double_well-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PCA::DoubleWell Class Reference</div>  </div>
 </div><!--header-->
@@ -80,19 +82,679 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="_double_well_8h_source.html">DoubleWell.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well_1_1_param.html">Param</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store and handle parameters for <a class="el" href="class_p_c_a_1_1_double_well.html" title="Double well potential. ">DoubleWell</a>.  <a href="class_p_c_a_1_1_double_well_1_1_param.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2da334045b5aba1c8c9df629f9d125e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a2da334045b5aba1c8c9df629f9d125e6">DoubleWell</a> (int numSites_in)</td></tr>
+<tr class="separator:a2da334045b5aba1c8c9df629f9d125e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ccee874cdab2d303f76b99311ee291"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ac5ccee874cdab2d303f76b99311ee291">DoubleWell</a> (int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in=0, double alpha_in=1.0, double mu_in=0)</td></tr>
+<tr class="memdesc:ac5ccee874cdab2d303f76b99311ee291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for homopolymer.  <a href="#ac5ccee874cdab2d303f76b99311ee291">More...</a><br /></td></tr>
+<tr class="separator:ac5ccee874cdab2d303f76b99311ee291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac77ffe1350084b4037d9a36abfb6cf9b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ac77ffe1350084b4037d9a36abfb6cf9b">checkAllParamAreSeted</a> ()</td></tr>
+<tr class="separator:ac77ffe1350084b4037d9a36abfb6cf9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cac56024b17d2aa95468c9c3145eca9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a0cac56024b17d2aa95468c9c3145eca9">~DoubleWell</a> ()</td></tr>
+<tr class="separator:a0cac56024b17d2aa95468c9c3145eca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919d4cfd87c1eebeae8a4d305380681f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a919d4cfd87c1eebeae8a4d305380681f">energyOneSite</a> (int site, const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;polymer) const</td></tr>
+<tr class="separator:a919d4cfd87c1eebeae8a4d305380681f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35be7be79cb922e39b0239d92f6abac1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a35be7be79cb922e39b0239d92f6abac1">energyAllSites</a> (const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;polymer) const</td></tr>
+<tr class="separator:a35be7be79cb922e39b0239d92f6abac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Push functions (fills arrays including fromSite and toSite!):</div></td></tr>
+<tr class="memitem:a8aa1ca5ae0d8ab540aff9693a1c44a0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a8aa1ca5ae0d8ab540aff9693a1c44a0b">pushAlpha</a> (double alpha_in)</td></tr>
+<tr class="separator:a8aa1ca5ae0d8ab540aff9693a1c44a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade2e8a266bb471f9283ff0b027b21f2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ade2e8a266bb471f9283ff0b027b21f2a">pushMu</a> (double mu_in)</td></tr>
+<tr class="separator:ade2e8a266bb471f9283ff0b027b21f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89131b318ca823892cd9d25d1e4199b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a89131b318ca823892cd9d25d1e4199b5">pushQ</a> (double q_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:a89131b318ca823892cd9d25d1e4199b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8eae104dc47c3a1a6e36d252b6f48bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ab8eae104dc47c3a1a6e36d252b6f48bf">pushM</a> (double m_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:ab8eae104dc47c3a1a6e36d252b6f48bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab411ce77646f2241bb358df3c9fd62a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ab411ce77646f2241bb358df3c9fd62a8">pushC</a> (double c_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:ab411ce77646f2241bb358df3c9fd62a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac140e12ed2138343cb0619781e42f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a0ac140e12ed2138343cb0619781e42f2">pushD</a> (double d_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:a0ac140e12ed2138343cb0619781e42f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a932ba9e3da3e1542ede92e8853831518"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a932ba9e3da3e1542ede92e8853831518">pushA</a> (double a_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:a932ba9e3da3e1542ede92e8853831518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c939dcf9f2e440d6c213444e638c37c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a3c939dcf9f2e440d6c213444e638c37c">pushB</a> (double b_in, int fromSite, int toSite)</td></tr>
+<tr class="separator:a3c939dcf9f2e440d6c213444e638c37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a915d7b8dfa8946f1eb7d1ffcd1a85a99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a915d7b8dfa8946f1eb7d1ffcd1a85a99">numSites</a></td></tr>
+<tr class="separator:a915d7b8dfa8946f1eb7d1ffcd1a85a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658062287cb6dbe6b0827f2dde8e7995"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a658062287cb6dbe6b0827f2dde8e7995">alpha</a></td></tr>
+<tr class="separator:a658062287cb6dbe6b0827f2dde8e7995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e3a7fa2890eefcc253c6d5a1a554000"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a5e3a7fa2890eefcc253c6d5a1a554000">mu</a></td></tr>
+<tr class="separator:a5e3a7fa2890eefcc253c6d5a1a554000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e5423a6cef47d097a6374ca6745429"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a48e5423a6cef47d097a6374ca6745429">q</a></td></tr>
+<tr class="separator:a48e5423a6cef47d097a6374ca6745429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b001b300ac21e104436d8eecb17d3f"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#ac5b001b300ac21e104436d8eecb17d3f">m</a></td></tr>
+<tr class="separator:ac5b001b300ac21e104436d8eecb17d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef202905498e58de05d917566c380312"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#aef202905498e58de05d917566c380312">c</a></td></tr>
+<tr class="separator:aef202905498e58de05d917566c380312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3017cd6c9b0d9e1ce2520468cac5a31f"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a3017cd6c9b0d9e1ce2520468cac5a31f">d</a></td></tr>
+<tr class="separator:a3017cd6c9b0d9e1ce2520468cac5a31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3304348b0bcb5faa5f9848f88546be36"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#a3304348b0bcb5faa5f9848f88546be36">a</a></td></tr>
+<tr class="separator:a3304348b0bcb5faa5f9848f88546be36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa6f0d1fbab6c1935dc45d21e5b26a87"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_double_well.html#afa6f0d1fbab6c1935dc45d21e5b26a87">b</a></td></tr>
+<tr class="separator:afa6f0d1fbab6c1935dc45d21e5b26a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Double well potential. </p>
 <p class="formulaDsp">
 \[ H=-\sum_{i=1}^{N-1} (2+\mu)\kappa_{i+1} \kappa_i + \alpha\sum_{i=1}^{N} \left\{ 2\kappa_i ^2 + q ( \kappa_i^2-m^2)^2+ \frac{c}{2}(d \kappa_i^2+1) \tau^2-a(b\kappa_i^2+1)\tau_i\right\} \]
 </p>
- </div><hr/>The documentation for this class was generated from the following file:<ul>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2da334045b5aba1c8c9df629f9d125e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da334045b5aba1c8c9df629f9d125e6">&sect;&nbsp;</a></span>DoubleWell() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PCA::DoubleWell::DoubleWell </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSites_in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5ccee874cdab2d303f76b99311ee291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ccee874cdab2d303f76b99311ee291">&sect;&nbsp;</a></span>DoubleWell() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PCA::DoubleWell::DoubleWell </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSites_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>q_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>c_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>b_in</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha_in</em> = <code>1.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mu_in</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for homopolymer. </p>
+
+</div>
+</div>
+<a id="a0cac56024b17d2aa95468c9c3145eca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cac56024b17d2aa95468c9c3145eca9">&sect;&nbsp;</a></span>~DoubleWell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PCA::DoubleWell::~DoubleWell </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac77ffe1350084b4037d9a36abfb6cf9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac77ffe1350084b4037d9a36abfb6cf9b">&sect;&nbsp;</a></span>checkAllParamAreSeted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PCA::DoubleWell::checkAllParamAreSeted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35be7be79cb922e39b0239d92f6abac1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35be7be79cb922e39b0239d92f6abac1">&sect;&nbsp;</a></span>energyAllSites()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PCA::DoubleWell::energyAllSites </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;&#160;</td>
+          <td class="paramname"><em>polymer</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a919d4cfd87c1eebeae8a4d305380681f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919d4cfd87c1eebeae8a4d305380681f">&sect;&nbsp;</a></span>energyOneSite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PCA::DoubleWell::energyOneSite </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>site</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;&#160;</td>
+          <td class="paramname"><em>polymer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a932ba9e3da3e1542ede92e8853831518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a932ba9e3da3e1542ede92e8853831518">&sect;&nbsp;</a></span>pushA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushA </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8aa1ca5ae0d8ab540aff9693a1c44a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aa1ca5ae0d8ab540aff9693a1c44a0b">&sect;&nbsp;</a></span>pushAlpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushAlpha </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha_in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c939dcf9f2e440d6c213444e638c37c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c939dcf9f2e440d6c213444e638c37c">&sect;&nbsp;</a></span>pushB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushB </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>b_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab411ce77646f2241bb358df3c9fd62a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab411ce77646f2241bb358df3c9fd62a8">&sect;&nbsp;</a></span>pushC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushC </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>c_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ac140e12ed2138343cb0619781e42f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac140e12ed2138343cb0619781e42f2">&sect;&nbsp;</a></span>pushD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushD </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8eae104dc47c3a1a6e36d252b6f48bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8eae104dc47c3a1a6e36d252b6f48bf">&sect;&nbsp;</a></span>pushM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushM </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>m_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade2e8a266bb471f9283ff0b027b21f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade2e8a266bb471f9283ff0b027b21f2a">&sect;&nbsp;</a></span>pushMu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushMu </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mu_in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89131b318ca823892cd9d25d1e4199b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89131b318ca823892cd9d25d1e4199b5">&sect;&nbsp;</a></span>pushQ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::DoubleWell::pushQ </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>q_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromSite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toSite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3304348b0bcb5faa5f9848f88546be36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3304348b0bcb5faa5f9848f88546be36">&sect;&nbsp;</a></span>a</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::a</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a658062287cb6dbe6b0827f2dde8e7995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658062287cb6dbe6b0827f2dde8e7995">&sect;&nbsp;</a></span>alpha</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PCA::DoubleWell::alpha</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa6f0d1fbab6c1935dc45d21e5b26a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa6f0d1fbab6c1935dc45d21e5b26a87">&sect;&nbsp;</a></span>b</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::b</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef202905498e58de05d917566c380312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef202905498e58de05d917566c380312">&sect;&nbsp;</a></span>c</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::c</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3017cd6c9b0d9e1ce2520468cac5a31f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3017cd6c9b0d9e1ce2520468cac5a31f">&sect;&nbsp;</a></span>d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5b001b300ac21e104436d8eecb17d3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b001b300ac21e104436d8eecb17d3f">&sect;&nbsp;</a></span>m</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::m</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e3a7fa2890eefcc253c6d5a1a554000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3a7fa2890eefcc253c6d5a1a554000">&sect;&nbsp;</a></span>mu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PCA::DoubleWell::mu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a915d7b8dfa8946f1eb7d1ffcd1a85a99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a915d7b8dfa8946f1eb7d1ffcd1a85a99">&sect;&nbsp;</a></span>numSites</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PCA::DoubleWell::numSites</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a48e5423a6cef47d097a6374ca6745429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e5423a6cef47d097a6374ca6745429">&sect;&nbsp;</a></span>q</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* PCA::DoubleWell::q</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/Users/annsi118/Documents/Git_projects/PCMC/include/Energy/<a class="el" href="_double_well_8h_source.html">DoubleWell.h</a></li>
+<li>/Users/annsi118/Documents/Git_projects/PCMC/source/Energy/<a class="el" href="_double_well_8cpp.html">DoubleWell.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

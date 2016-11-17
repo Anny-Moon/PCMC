@@ -1,15 +1,10 @@
 var searchData=
 [
-  ['param',['Param',['../class_p_c_a_1_1_double_well_1_1_param.html#a412abf38a6dd3dc886415d16dde03fb4',1,'PCA::DoubleWell::Param::Param(int numSites_in)'],['../class_p_c_a_1_1_double_well_1_1_param.html#a8557df1fe94ffb4fb87958d107705910',1,'PCA::DoubleWell::Param::Param(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in=0, double alpha_in=1.0, double mu_in=0)']]],
-  ['polymer',['Polymer',['../class_p_c_a_1_1_polymer.html#ac835d908dc32b787ca80f26cd0e6c68b',1,'PCA::Polymer::Polymer(FileType fileType, char *fileName, int numberLinesInBlock=0, int polymerNumber=1)'],['../class_p_c_a_1_1_polymer.html#ac2645c33eba98a8ec1670d69b92060c8',1,'PCA::Polymer::Polymer(int numberOfMonomers, const Vector *r=NULL, const Vector *t=NULL, const Vector *b=NULL)'],['../class_p_c_a_1_1_polymer.html#a7d08722028cd9bf11b042a1b3b0e1d37',1,'PCA::Polymer::Polymer(int numberOfMonomers, const double *kappa_in, const double *tau_in)'],['../class_p_c_a_1_1_polymer.html#a1ce99540db06e9e48392423ba516cd2f',1,'PCA::Polymer::Polymer(const Polymer &amp;polymer)']]],
-  ['polymermc',['PolymerMC',['../class_p_c_a_1_1_polymer_m_c.html#a3a792caa4db0fe8a7c749c4b0f6fce25',1,'PCA::PolymerMC']]],
-  ['print',['print',['../class_p_c_a_1_1_vector.html#a6411d63770d6d711c5c854e21ca1776e',1,'PCA::Vector']]],
-  ['pusha',['pushA',['../class_p_c_a_1_1_double_well_1_1_param.html#acf6d26642f3b90c4e9db9e3ef7db81f7',1,'PCA::DoubleWell::Param']]],
-  ['pushalpha',['pushAlpha',['../class_p_c_a_1_1_double_well_1_1_param.html#a33d960f14ffb71535e3bb9fada7aa4fa',1,'PCA::DoubleWell::Param']]],
-  ['pushb',['pushB',['../class_p_c_a_1_1_double_well_1_1_param.html#a23baa2d632f7ea0e3327ea8e106f551f',1,'PCA::DoubleWell::Param']]],
-  ['pushc',['pushC',['../class_p_c_a_1_1_double_well_1_1_param.html#aedf09fe351143731e707c39beea02cff',1,'PCA::DoubleWell::Param']]],
-  ['pushd',['pushD',['../class_p_c_a_1_1_double_well_1_1_param.html#aae4addc9ff6ffe5f7e5e175a57b345ef',1,'PCA::DoubleWell::Param']]],
-  ['pushm',['pushM',['../class_p_c_a_1_1_double_well_1_1_param.html#a27949d3412e3f75abb82293faa2c11d4',1,'PCA::DoubleWell::Param']]],
-  ['pushmu',['pushMu',['../class_p_c_a_1_1_double_well_1_1_param.html#a98b94a42625e4994c92da05c5c33999c',1,'PCA::DoubleWell::Param']]],
-  ['pushq',['pushQ',['../class_p_c_a_1_1_double_well_1_1_param.html#a7ba9731477b3baadab67a4f8a48d2ed3',1,'PCA::DoubleWell::Param']]]
+  ['operator_28_29',['operator()',['../class_p_c_a_1_1_gauss_rand.html#a594130952a4999972f08b429ea6af959',1,'PCA::GaussRand::operator()()'],['../class_p_c_a_1_1_random_generator.html#a4361e39397900ae1e7b2cfa91a592509',1,'PCA::RandomGenerator::operator()()'],['../class_p_c_a_1_1_uniform_rand.html#a25b9b060f2201800a5badfa2b70d0eed',1,'PCA::UniformRand::operator()()']]],
+  ['operator_2a',['operator*',['../namespace_p_c_a.html#a49f60e2a8814942d40f8df470c723214',1,'PCA::operator*(const Vector &amp;B, const Vector &amp;A)'],['../namespace_p_c_a.html#a6f1801f8e53ab87a1f3175ec18fa3115',1,'PCA::operator*(double k, const Vector &amp;A)'],['../namespace_p_c_a.html#a58012056e60671ce13c8318b3cd1ec8f',1,'PCA::operator*(const Vector &amp;A, double k)']]],
+  ['operator_2b',['operator+',['../namespace_p_c_a.html#a017b6648f950fd5e297bc92225a425dc',1,'PCA']]],
+  ['operator_2d',['operator-',['../class_p_c_a_1_1_vector.html#ac94bf46625448a0ece199c2021993e6c',1,'PCA::Vector::operator-()'],['../namespace_p_c_a.html#a430437e74079b33bcf7a99ef38c01134',1,'PCA::operator-()']]],
+  ['operator_2f',['operator/',['../namespace_p_c_a.html#a5144cc8f2a3d8ab924e8c4c1c32a2aed',1,'PCA']]],
+  ['operator_3d',['operator=',['../class_p_c_a_1_1_vector.html#ac93d124518b0f5e39dd1a0973dddc958',1,'PCA::Vector']]],
+  ['operator_3d_3d',['operator==',['../class_p_c_a_1_1_vector.html#ae7a1abe13c8313d717b7bdb66934e92b',1,'PCA::Vector']]]
 ];
