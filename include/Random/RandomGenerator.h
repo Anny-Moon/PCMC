@@ -24,7 +24,7 @@ protected:
     ~RandomGenerator();
 
 public:
-    virtual double operator () ();
+    virtual double operator () () = 0;
     
 };
 

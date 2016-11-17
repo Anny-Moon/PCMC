@@ -14,7 +14,7 @@
 #include <random>
 
 namespace PCA{
-
+std::mt19937 RandomGenerator::generator;
 
 RandomGenerator::RandomGenerator(){}
 RandomGenerator::~RandomGenerator(){}

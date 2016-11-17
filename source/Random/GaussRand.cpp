@@ -12,4 +12,9 @@ namespace PCA{
 GaussRand::GaussRand(double mean_in, double stdDeviation) : distribution(mean_in, stdDeviation){}
 GaussRand::~GaussRand(){};
 
+double GaussRand::operator () () ///< overloading operator ()
+{
+    return distribution(generator);
+}
+
 }//end of namespace PCA

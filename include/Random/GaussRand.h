@@ -22,10 +22,7 @@ public:
     GaussRand(double mean = 0.0, double stdDeviation = 1.0);
     ~GaussRand();
     
-    double operator () () ///< overloading operator ()
-    {
-        return distribution(generator);
-    }
+    virtual double operator () (); ///< overloading operator ()
 };
 }//end of namespase PCA
 #endif

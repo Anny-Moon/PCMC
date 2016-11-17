@@ -22,10 +22,7 @@ public:
     UniformRand(double min = 0.0, double max = 1.0);
     ~UniformRand();
     
-    double operator () () ///< overloading operator ()
-    {
-        return distribution(generator);
-    }
+    virtual double operator () (); ///< overloading operator ()
 };
 }//end of namespase PCA
 #endif

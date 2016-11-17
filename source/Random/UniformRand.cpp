@@ -12,4 +12,9 @@ namespace PCA{
 UniformRand::UniformRand(double min, double max) : distribution(min, max){}
 UniformRand::~UniformRand(){};
 
+double UniformRand::operator () () ///< overloading operator ()
+{
+    return distribution(generator);
+}
+
 }//end of namespace PCA
