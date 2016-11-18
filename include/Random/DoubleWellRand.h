@@ -62,6 +62,7 @@ public:
     DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in = 10.0);
     ~DoubleWellRand();
     virtual double operator () (); ///< overloading operator ()
+    void writeLogFile(FILE* log_file) const;///<parameters output
 
 };
 }//end of namespase PCA

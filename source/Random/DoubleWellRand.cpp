@@ -8,6 +8,7 @@
 #include "../../include/Random/DoubleWellRand.h"
 #include "gsl/gsl_poly.h"
 #include "gsl/gsl_complex.h"
+#include "gsl/gsl_sort.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,49 +30,47 @@ double DoubleWellRand::secondDerivative(double x) const
     return -12.0 * a *x*x + 2.0 * b;
 }
 
-    void DoubleWellRand::sort_asc()
-    {
-	int i;
-	double max;
-	double buffer;
-	int n_max;
+void DoubleWellRand::sort_asc()
+{
+    int i;
+    double max;
+    double buffer;
+    int n_max;
 	
-	max=kappa[0];
-	n_max=0;
-	for (i=1;i<4;i++)
-	{
-	    if(kappa[i]>max)
-	    {
-		max=kappa[i];
-		n_max=i;
-	    }
+    max=kappa[0];
+    n_max=0;
+    for (i=1;i<4;i++){
+	if(kappa[i]>max){
+	    max=kappa[i];
+	    n_max=i;
 	}
-	buffer=kappa[3];
-	kappa[3]=kappa[n_max];
-	kappa[n_max]=buffer;
-	
-	max=kappa[0];
-	n_max=0;
-	for (i=1;i<3;i++)
-	{
-	    if(kappa[i]>max)
-	    {
-		max=kappa[i];
-		n_max=i;
-	    }
-	}
-	buffer=kappa[2];
-	kappa[2]=kappa[n_max];
-	kappa[n_max]=buffer;
-
-	if(kappa[0]>kappa[1])
-	{
-	    buffer=kappa[1];
-	    kappa[1]=kappa[0];
-	    kappa[0]=buffer;
-	}
-	
     }
+    
+    buffer=kappa[3];
+    kappa[3]=kappa[n_max];
+    kappa[n_max]=buffer;
+    
+    max=kappa[0];
+    n_max=0;
+    for (i=1;i<3;i++)
+    {
+	if(kappa[i]>max){
+	    max=kappa[i];
+	    n_max=i;
+	}
+    }
+    
+    buffer=kappa[2];
+    kappa[2]=kappa[n_max];
+    kappa[n_max]=buffer;
+
+    if(kappa[0]>kappa[1]){
+	buffer=kappa[1];
+	kappa[1]=kappa[0];
+	kappa[0]=buffer;
+    }
+	
+}
 
 DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in )
 {
@@ -161,7 +160,7 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
     coefficients[3] = 0.0;
     coefficients[4] = -a;
 	
-    if(gsl_poly_complex_solve(coefficients, 5, eq_wrkspace, roots)!=GSL_SUCCESS){
+    if(gsl_poly_complex_solve(coefficients, 5, eq_wrkspace, roots)!= 0){// not sure!!! that in 0
 	printf("Error in DoubleWellRand::DoubleWellRand\n");
 	printf("\tCannot solve the equation :(\n");
 	exit(1);
@@ -198,7 +197,8 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	}
 	    
 	//sorting kappa array in ascending order
-	sort_asc();
+	//sort_asc();
+	gsl_sort(kappa, 1, 4);
     }
 	
     else{
@@ -245,6 +245,40 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 }
 
 DoubleWellRand::~DoubleWellRand(){};
+
+void DoubleWellRand::writeLogFile(FILE* log_file) const//parameters output
+{
+    if(log_file == NULL){
+	printf("Warning:\n\tI cannot write log file for DoubleWellRand.\n");
+    }
+    
+    else{
+	fprintf(log_file,"----------double-well distribution parameters----------\n");
+	fprintf(log_file,"\tFormula: P(x) ~ exp(-a * x^4 + b * x^2 + c * x)\n");
+	
+	fprintf(log_file,"a=%.15le\nb=%.15le\nc=%.15le\n",a,b,c);
+
+	fprintf(log_file,"\tMaxima:\nnumber of maxima = %d\n",n_maxima);
+	fprintf(log_file,"x_max1 = %.15le\tf_max1 = %.15le\n", x_max1, f_max1);
+	fprintf(log_file,"(test = %.15le\ttest_der1 = %.15le\ttest_der2 = %.15le)\n",polynom(x_max1), firstDerivative(x_max1), secondDerivative(x_max1));
+	
+	if(n_maxima==2){
+	    fprintf(log_file,"x_max2=%.15le\tf_max2=%.15le\n", x_max2, f_max2);
+	    fprintf(log_file,"test = %.15le\ttest_der1 = %.15le\ttest_der2 = %.15le)\n",polynom(x_max2), firstDerivative(x_max2), secondDerivative(x_max2));
+	}
+
+	fprintf(log_file,"\tIntervals:\nnumer of intervals = %d\n", n_intervals);
+	fprintf(log_file,"x1 = %.15le\t (test = %.15le)\nx2 = %.15le\t (test = %.15le)\n",kappa[0], polynom(kappa[0]), kappa[1], polynom(kappa[1]));
+	fprintf(log_file,"norm1 = %.15le\n",norm[0]);
+	
+	if(n_intervals==2){
+	    fprintf(log_file,"x3 = %.15le\t (test = %.15le)\n x4 = %.15le\t (test = %.15le)\n",kappa[2], polynom(kappa[2]), kappa[3], polynom(kappa[3]));
+	    fprintf(log_file,"norm2 = %.15le\n",norm[1]);
+	}
+	fprintf(log_file,"---------------------------end-------------------------\n");
+	fflush(log_file);
+    }
+}
 
 double DoubleWellRand::operator () () ///< overloading operator ()
 {

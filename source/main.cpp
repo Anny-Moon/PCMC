@@ -8,7 +8,7 @@
 
 #include "../include/Random/RandomGenerator.h"
 #include "../include/Random/UniformRand.h"
-
+#include "../include/Random/DoubleWellRand.h"
 using namespace std;
 using namespace PCA;
 
@@ -16,11 +16,12 @@ int main(int np, char **p)
 {	
     int i, N;
     double tmp;
-    FILE* cfp, *lfp;
+    FILE* cfp, *lfp, *log_file;
     char str [100];
     char str1 [100];
     char str2 [100]; 
     
+    log_file = fopen("results/log_file","w");
     //printf("%s\n",p[1]);
     sprintf(str,"data/xyz_%s.dat",p[1]);
     Polymer polymer(Polymer::FileType::coordinates,str,0,1);
@@ -44,6 +45,13 @@ int main(int np, char **p)
 	printf("%g\n", uniRand());
     }
 
+//DoubleWellRand check
+    
+    DoubleWellRand dwr(1,1,1,10);
+    dwr.writeLogFile(log_file);
+    
+    
+    fclose(log_file);
     printf("Everything is OK!\n");
 return 0;
 }
