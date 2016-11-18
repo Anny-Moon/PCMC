@@ -187,7 +187,7 @@ void DoubleWellRand::findIntervals()
 	exit(1);
     }
 	
-	
+//do we really need this part? They are already sorted
     //correspondance of maximums with intervals
     if(n_intervals == 2){
 	if(x_max1 > kappa[2] && x_max1 < kappa[3]){
@@ -248,20 +248,15 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
     b = b_in;
     c = c_in;
     offset = offset_in;
-	
 
-    
-    
-    
-    
-	
     if (a<0.0){
 	printf("Error in DoubleWellRand::DoubleWellRand\n");
 	printf("\tcoefficient 'a' cannot be negative.\n");
 	exit(1);
     }
     
-    findMaxima();//calculation of maximuma
+    //calculation of maximuma
+    findMaxima();
     
     //definition of working intervals
     findIntervals();
@@ -308,7 +303,41 @@ void DoubleWellRand::writeLogFile(FILE* log_file) const//parameters output
 
 double DoubleWellRand::operator () () ///< overloading operator ()
 {
-    return 1;
+    double gamma1, gamma2;//random numbers
+    double ksi; //return value: random number accordoing the distribution;
+    int current_interval;
+    double maximum;
+	
+    if(n_intervals==2){
+	gamma1 = uniRand();
+	
+	if(gamma1<norm[0]/(norm[0]+norm[1]))
+	    current_interval = 0;
+	else
+	    current_interval = 1;
+	    
+    }
+    
+    else{
+	current_interval=0;
+    }
+    
+    if(current_interval==0)
+	maximum = exp(f_max1-f_max1);
+    
+    else
+	maximum = exp(f_max2-f_max1);
+    
+    while(1){
+	gamma1 = uniRand();
+	gamma2 = uniRand();
+	ksi = kappa[2*current_interval] + gamma1 * (kappa[2*current_interval + 1] - kappa[2*current_interval]);
+	    
+	if(gamma2<exp(polynom(ksi)-f_max1)/maximum)
+		break;
+    }
+
+    return ksi;
 }
 
 }//end of namespace PCA

@@ -17,7 +17,8 @@ namespace PCA{
 class DoubleWellRand : public RandomGenerator
 {	
 private:
-    UniformRand rand;///<random number generator;
+    
+    UniformRand uniRand;///<random number generator;    
     
     /**@name Parameters of the distribution:*/
     ///@{
