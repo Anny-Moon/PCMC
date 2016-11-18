@@ -57,6 +57,9 @@ private:
     double polynom(double x) const;
     double firstDerivative(double x) const;
     double secondDerivative(double x) const;
+    void findMaxima();
+    void findIntervals();
+    void findNormCoefficients();
     void sort_asc();
 public:
     DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in = 10.0);

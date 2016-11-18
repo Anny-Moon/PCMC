@@ -72,42 +72,11 @@ void DoubleWellRand::sort_asc()
 	
 }
 
-DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in )
+void DoubleWellRand::findMaxima()
 {
-    if(seed == 0){
-	printf("----------------\n");
-	printf("Error:\n------\n");
-	printf("You should initialize abstract RandomGenerator before ");
-	printf("you create any paticular generator. It should be done only ");
-	printf("once in the whole program, even if you want to create several ");
-	printf("different generators for different distributions. So write in ");
-	printf("you main function this:\nRandomGenerator::initialization(seed);\n");
-	printf("where 'seed' is integer number (time for example)\n");
-	printf("----------------\n");
-	exit(1);
-    }
-    
-    a = a_in;
-    b = b_in;
-    c = c_in;
-    offset = offset_in;
-	
-    int i;
-    int n_re_roots;
     int n_roots;
-    double step;
-    gsl_poly_complex_workspace* eq_wrkspace;
-    double coefficients[5];
-    double roots[8];
     double buffer;
     
-	
-    if (a<0.0){
-	printf("Error in DoubleWellRand::DoubleWellRand\n");
-	printf("\tcoefficient 'a' cannot be negative.\n");
-	exit(1);
-    }
-    //calculation of maximuma
     n_roots = gsl_poly_solve_cubic(0.0, -b/(2.0*a), -c/(4.0*a), &x1, &x2, &x3);//x1 < x2 < x3
     
     if(n_roots == 1){
@@ -118,7 +87,7 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	}
 	    
 	else{
-	    printf("Error in DoubleWellRand::DoubleWellRand\n");
+	    printf("Error in DoubleWellRand::findMaxima\n");
 	    printf("\tI found only one extremum and it is minimum not maximum :(\n");
 	    exit(1);    
 	}
@@ -126,12 +95,12 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
     
     else
     {
-	n_maxima=2;
-	f_max1=polynom(x1);
-	f_max2=polynom(x3);
+	n_maxima = 2;
+	f_max1 = polynom(x1);
+	f_max2 = polynom(x3);
 	
-	if(secondDerivative(x1)>0 || secondDerivative(x3)>0){
-	    printf("Error in DoubleWellRand::DoubleWellRand\n");
+	if(secondDerivative(x1)>0.0 || secondDerivative(x3)>0.0){
+	    printf("Error in DoubleWellRand::findMaxima\n");
 	    printf("\tI found two extremums but one (ore both) is  minimum not maximum :(\n");
 	    exit(1);
 	}
@@ -150,8 +119,18 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	    f_max1 = buffer;
 	}
     }
-	
-    //definition of working intervals
+
+}
+
+void DoubleWellRand::findIntervals()
+{
+    gsl_poly_complex_workspace* eq_wrkspace;
+    int i;
+    int n_re_roots;
+    double coefficients[5];
+    double roots[8];
+    double buffer;
+    
     eq_wrkspace=gsl_poly_complex_workspace_alloc(5);
 	
     coefficients[0] = offset-f_max1;
@@ -159,7 +138,9 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
     coefficients[2] = b;
     coefficients[3] = 0.0;
     coefficients[4] = -a;
-	
+    
+    //find all roots:
+    //root[0] = Re(x1), root[1] = Im(x1) ... root[6] = Re(x4), root[7] = Im(x4)
     if(gsl_poly_complex_solve(coefficients, 5, eq_wrkspace, roots)!= 0){// not sure!!! that in 0
 	printf("Error in DoubleWellRand::DoubleWellRand\n");
 	printf("\tCannot solve the equation :(\n");
@@ -197,7 +178,6 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	}
 	    
 	//sorting kappa array in ascending order
-	//sort_asc();
 	gsl_sort(kappa, 1, 4);
     }
 	
@@ -220,9 +200,13 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	    kappa[1] = buffer;
 	}
     }
-	
-    //calculation of normalizing coefficients in each interval.
-    //norm1
+}
+
+void DoubleWellRand::findNormCoefficients()
+{
+    int i;
+    double step;
+    
     norm[0]= 0.0;
     step = (kappa[1] - kappa[0]) / (double)N_int_steps;
     
@@ -242,6 +226,48 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	    norm[1] += step * 0.5 * (exp(polynom(x1) - f_max1) + exp(polynom(x2) - f_max1));
 	}
     }
+
+}
+
+DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in )
+{
+    if(seed == 0){
+	printf("----------------\n");
+	printf("Error:\n------\n");
+	printf("You should initialize abstract RandomGenerator before ");
+	printf("you create any paticular generator. It should be done only ");
+	printf("once in the whole program, even if you want to create several ");
+	printf("different generators for different distributions. So write in ");
+	printf("you main function this:\nRandomGenerator::initialization(seed);\n");
+	printf("where 'seed' is integer number (time for example)\n");
+	printf("----------------\n");
+	exit(1);
+    }
+    
+    a = a_in;
+    b = b_in;
+    c = c_in;
+    offset = offset_in;
+	
+
+    
+    
+    
+    
+	
+    if (a<0.0){
+	printf("Error in DoubleWellRand::DoubleWellRand\n");
+	printf("\tcoefficient 'a' cannot be negative.\n");
+	exit(1);
+    }
+    
+    findMaxima();//calculation of maximuma
+    
+    //definition of working intervals
+    findIntervals();
+	
+    //calculation of normalizing coefficients in each interval.
+    findNormCoefficients();
 }
 
 DoubleWellRand::~DoubleWellRand(){};

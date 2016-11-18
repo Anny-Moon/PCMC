@@ -40,10 +40,10 @@ int main(int np, char **p)
     
     UniformRand uniRand;
     
-    for(i=0;i<100;i++)
-    {
-	printf("%g\n", uniRand());
-    }
+//    for(i=0;i<100;i++)
+//    {
+//	printf("%g\n", uniRand());
+//    }
 
 //DoubleWellRand check
     
