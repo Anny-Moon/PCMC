@@ -52,6 +52,8 @@ int main(int np, char **p)
     
     
     fclose(log_file);
+    
+
     printf("Everything is OK!\n");
 return 0;
 }

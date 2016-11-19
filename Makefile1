@@ -12,7 +12,8 @@ CC:= g++
 CFLAGS:= -std=c++11
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -L/usr/local/lib -lgsl -lgslcblas
+LIB:= -lm   -L/usr/local/lib -lgsl -lgslcblas
+
 # Optimization (-O3 or -O2)
 OPT:= -O3
 
@@ -23,7 +24,7 @@ BIN_DIR:= .
 PROGRAM = pcmc
 
 # Root directories for .h files
-INC_DIR:= ./include 
+INC_DIR = -I./include -I/usr/local/include/
 
 # Root directory for .cpp files
 SRC_DIR:= ./source
@@ -35,12 +36,10 @@ OBJ_DIR:= ./object
 #---------------------No need to change the following!-------------------
 
 # Include files are needed fot Includes
-INC_FILES:=  $(wildcard $(INC_DIR)/*.h)
-#INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
-#INC_FILES += $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*/*h))
+INC_FILES :=  $(wildcard $(INC_DIR)/*.h) $(wildcard $(INC_DIR)/*/*.h) $(wildcard $(INC_DIR)/*/*/*.h)
+
 # All include directories are needed for Includes
-INC_DIRS:= $(dir $(INC_FILES)) 
-INC_DIRS +=/usr/local/include
+INC_DIRS:= $(dir $(INC_FILES))
 
 # Includes: -I ...
 LDLIBS:=$(addprefix -I, $(INC_DIRS))
@@ -58,8 +57,8 @@ all: $(PROGRAM)
 
 # Linking
 $(PROGRAM): $(OBJ)
-	@echo "Generating executable file..." $(notdir $(PROGRAM))
-	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
+#	@echo "Generating executable file..." $(notdir $(PROGRAM))
+	$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
 
 # Compiling rule
 define app_compile_template
@@ -69,7 +68,7 @@ define app_compile_template
 
 $$($(1)_OBJ): $(1)
 #	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
-	$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS)
+	$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(INC_DIR) $$(LDLIBS)
 endef
 
 # Compiling
@@ -86,5 +85,5 @@ list_of_objects:
 # For debugging makefile
 print:
 	@echo $(LDLIBS)
-#	@echo $(wildcard $(INC_DIR)/*.h)
+#	@echo $(OBJ)
 #	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
