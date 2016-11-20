@@ -35,9 +35,9 @@ OBJ_DIR:= ./object
 #---------------------No need to change the following!-------------------
 
 # Include files are needed fot Includes
-INC_FILES:=  $(wildcard $(INC_DIR)/*.h)
-#INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
-#INC_FILES += $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*/*h))
+#INC_FILES:=  $(wildcard $(INC_DIR)/*.h)
+INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
+INC_FILES += $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*/*h))
 # All include directories are needed for Includes
 INC_DIRS:= $(dir $(INC_FILES)) 
 INC_DIRS +=/usr/local/include
@@ -68,8 +68,8 @@ define app_compile_template
  $(1)_OBJ_PURE = $$(notdir $$($(1)_OBJ))
 
 $$($(1)_OBJ): $(1)
-#	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
-	$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS)
+	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
+	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS)
 endef
 
 # Compiling

@@ -16,10 +16,22 @@ int main(int np, char **p)
 {	
     int i, N;
     double tmp;
-    FILE* cfp, *lfp, *log_file;
+    FILE* cfp, *lfp, *log_file, *fp1;;
     char str [100];
     char str1 [100];
     char str2 [100]; 
+    
+    //logo
+    printf("=====================================\n");
+    printf("-------------------------------------\n");
+    printf("+   ______        __       ___      +\n");
+    printf("+  |   __  \\    /  __\\   / __  \\    +\n");
+    printf("+  |  |   | |  / /      | |  \\  \\   +\n");
+    printf("+  |  | _/ /  | |       | |___|  |  +\n");
+    printf("+  |   __ /   |  \\ __   |  ___   |  +\n");
+    printf("+  |__|        \\ ___ /  |_|   |__|  +\n");
+    printf("-------------------------------------\n");
+    printf("=====================================\n");
     
     log_file = fopen("results/log_file","w");
     //printf("%s\n",p[1]);
@@ -46,11 +58,17 @@ int main(int np, char **p)
 //    }
 
 //DoubleWellRand check
-    
-    DoubleWellRand dwr(1,1,1,10);
+    fp1=fopen("results/hist.dat","w");
+    DoubleWellRand dwr(10.5, 0.0, 0.3
+    , 10);
     dwr.writeLogFile(log_file);
     
+    for(i=0;i<1000;i++)
+    {
+	fprintf(fp1,"%.15le\n",dwr());
+    }
     
+    fclose(fp1);
     fclose(log_file);
     
 
