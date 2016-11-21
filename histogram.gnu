@@ -1,8 +1,8 @@
 reset
 set terminal postscript eps enhanced colour "Times-Roman,38";
 
-n=100 #number of intervals
-max=-2.5 #max value
+n=500 #number of intervals
+max=4.0 #max value
 min=-4.0 #min value
 width=(max-min)/n #interval width
 #function used to map a value to the intervals
@@ -22,6 +22,6 @@ set tics out nomirror
 
 set xlabel "{/Symbol k}" font ",50"
 set ylabel "Probability distribution" 
-set ytics 8;
+#set ytics 8;
 #count and plot
 plot "results/hist.dat" u (hist($1,width)):(1.0) smooth freq w boxes lc rgb "red" notitle

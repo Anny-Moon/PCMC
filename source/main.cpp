@@ -59,11 +59,10 @@ int main(int np, char **p)
 
 //DoubleWellRand check
     fp1=fopen("results/hist.dat","w");
-    DoubleWellRand dwr(10.5, 0.0, 0.3
-    , 10);
+    DoubleWellRand dwr(1., 4.5, -0.0, 10);
     dwr.writeLogFile(log_file);
     
-    for(i=0;i<1000;i++)
+    for(i=0;i<100000;i++)
     {
 	fprintf(fp1,"%.15le\n",dwr());
     }

@@ -189,7 +189,7 @@ void DoubleWellRand::findIntervals()
 	
 //do we really need this part? They are already sorted
     //correspondance of maximums with intervals
-    if(n_intervals == 2){
+/*    if(n_intervals == 2){
 	if(x_max1 > kappa[2] && x_max1 < kappa[3]){
 	    buffer = kappa[2];
 	    kappa[2] = kappa[0];
@@ -199,7 +199,7 @@ void DoubleWellRand::findIntervals()
 	    kappa[3] = kappa[1];
 	    kappa[1] = buffer;
 	}
-    }
+    }*/
 }
 
 void DoubleWellRand::findNormCoefficients()
