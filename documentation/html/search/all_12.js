@@ -1,7 +1,10 @@
 var searchData=
 [
+  ['s',['s',['../classpolymer.html#a10f77b05b8c1372afc359cccc3a231f9',1,'polymer']]],
   ['scalingparameter',['ScalingParameter',['../class_p_c_a_1_1_polymer_observable.html#a6dcabbc3bc249018c2c94825bff2c94fa0fbc808b6c1b04cd6cd30808354f2ac4',1,'PCA::PolymerObservable']]],
+  ['secondderivative',['secondDerivative',['../class_p_c_a_1_1_double_well_rand.html#a20c4fa6e77dad5161a214706adeda281',1,'PCA::DoubleWellRand']]],
   ['seed',['seed',['../class_p_c_a_1_1_random_generator.html#af96d99ba4eaf71b7d33afd2fbdb7c30d',1,'PCA::RandomGenerator']]],
+  ['separation',['separation',['../classpolymer.html#ab001df23489a33c37e4dbe2f62cd4497',1,'polymer']]],
   ['setkappa',['setKappa',['../class_p_c_a_1_1_polymer.html#ac8631ac2842b00802f24478b525c05db',1,'PCA::Polymer']]],
   ['setmonomerlengthsfromradiusvectors',['setMonomerLengthsFromRadiusVectors',['../class_p_c_a_1_1_polymer.html#a2dae638afa952c286c16122c7ab52b6e',1,'PCA::Polymer']]],
   ['setmonomerlengthsfromvectorst',['setMonomerLengthsFromVectorsT',['../class_p_c_a_1_1_polymer.html#a217cddfa5b9e5bfe68f8e5d0802e2f31',1,'PCA::Polymer']]],
@@ -16,6 +19,7 @@ var searchData=
   ['setverbose',['setVerbose',['../class_p_c_a_1_1_file.html#a71cb80c09faa4be71eb09ae074aac4b2',1,'PCA::File::setVerbose()'],['../class_p_c_a_1_1_vector.html#a585f8511431df02801aa9cff0e2f1ae4',1,'PCA::Vector::setVerbose()']]],
   ['shownumberoflinesinblocks',['showNumberOfLinesInBlocks',['../class_p_c_a_1_1_file.html#a25dd7a0266edd1fc026f27448003b36f',1,'PCA::File']]],
   ['sitedwenergy',['siteDWenergy',['../class_p_c_a_1_1_polymer_energy.html#a835b345f0e6151a18962e4fb06a922bf',1,'PCA::PolymerEnergy']]],
+  ['sort_5fasc',['sort_asc',['../class_p_c_a_1_1_double_well_rand.html#a60ad7eeeb8f90a0e7312689820591674',1,'PCA::DoubleWellRand::sort_asc()'],['../classkappa__distribution.html#ab18b8d4b45ba749340829da1ca18130c',1,'kappa_distribution::sort_asc()']]],
   ['standartdeviation',['standartDeviation',['../namespace_p_c_a.html#ae9120f4f9875a87768cc3090196892a8',1,'PCA']]],
   ['stepfunctioncalculator',['StepFunctionCalculator',['../class_p_c_a_1_1_step_function_calculator.html',1,'PCA']]],
   ['stepfunctioncalculator',['StepFunctionCalculator',['../class_p_c_a_1_1_step_function_calculator.html#a9bf57193b40bb2b8a33fd5a5878b0b2a',1,'PCA::StepFunctionCalculator']]],

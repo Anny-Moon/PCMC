@@ -7,16 +7,18 @@
 *   @data 2016
 */
 
-#include "DoubleWell.h"
-#include "Vector.h"
-#include "Utilities.h"
-#include "PCAmacros.h"
+#include "../../include/Energy/Hamiltonian.h"
+#include "../../include/PolymerMC.h"
+#include "../../include/Random/GaussRand.h"
+#include "../../include/Vector.h"
+#include "../../include/Utilities.h"
+#include "../../include/PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 namespace PCA{
 
-DoubleWell::DoubleWell(int numSites_in)
+Hamiltonian::Hamiltonian(int numSites_in)
 {
     numSites = numSites_in;
     alpha = 1.0;
@@ -31,7 +33,7 @@ DoubleWell::DoubleWell(int numSites_in)
     
 }
 
-DoubleWell::DoubleWell(
+Hamiltonian::Hamiltonian(
     int numSites_in,
     double q_in,
     double m_in,
@@ -63,7 +65,7 @@ DoubleWell::DoubleWell(
     
 }
 
-DoubleWell::~DoubleWell()
+Hamiltonian::~Hamiltonian()
 {
 
     if(q!=NULL){
@@ -98,72 +100,72 @@ DoubleWell::~DoubleWell()
     
 }
 
-void DoubleWell::pushAlpha(double alpha_in)
+void Hamiltonian::pushAlpha(double alpha_in)
 {
     alpha = alpha_in;
 }
 
-void DoubleWell::pushMu(double mu_in)
+void Hamiltonian::pushMu(double mu_in)
 {
     mu = mu_in;
 }
 
-void DoubleWell::pushQ(double q_in, int fromSite, int toSite)
+void Hamiltonian::pushQ(double q_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(q, "DoubleWell::Param::pushQ(.)");
+    _PCA_CATCH_VOID_POINTER(q, "Hamiltonian::Param::pushQ(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	q[i] = q_in;
 }
 
-void DoubleWell::pushM(double m_in, int fromSite, int toSite)
+void Hamiltonian::pushM(double m_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(m, "DoubleWell::Param::pushM(.)");
+    _PCA_CATCH_VOID_POINTER(m, "Hamiltonian::Param::pushM(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	m[i] = m_in;
 }
 
-void DoubleWell::pushC(double c_in, int fromSite, int toSite)
+void Hamiltonian::pushC(double c_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(c, "DoubleWell::Param::pushC(.)");
+    _PCA_CATCH_VOID_POINTER(c, "Hamiltonian::Param::pushC(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	c[i] = c_in;
 }
 
-void DoubleWell::pushD(double d_in, int fromSite, int toSite)
+void Hamiltonian::pushD(double d_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(d, "DoubleWell::Param::pushD(.)");
+    _PCA_CATCH_VOID_POINTER(d, "Hamiltonian::Param::pushD(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	d[i] = d_in;
 }
 
-void DoubleWell::pushA(double a_in, int fromSite, int toSite)
+void Hamiltonian::pushA(double a_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(a, "DoubleWell::Param::pushA(.)");
+    _PCA_CATCH_VOID_POINTER(a, "Hamiltonian::Param::pushA(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	a[i] = a_in;
 }
 
-void DoubleWell::pushB(double b_in, int fromSite, int toSite)
+void Hamiltonian::pushB(double b_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(b, "DoubleWell::Param::pushB(.)");
+    _PCA_CATCH_VOID_POINTER(b, "Hamiltonian::Param::pushB(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	b[i] = b_in;
 }
 
 
-double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
+double Hamiltonian::energyOneSite(int site, const PolymerMC& polymer) const
 {
     double E1,E2;
 	
@@ -186,7 +188,7 @@ double DoubleWell::energyOneSite(int site, const PolymerMC& polymer) const
     return E1 + E2;
 }
 
-double DoubleWell::energyAllSites(const PolymerMC& polymer) const
+double Hamiltonian::energyAllSites(const PolymerMC& polymer) const
 {
     int i;
     double E1 = 0.0;
@@ -212,6 +214,21 @@ double DoubleWell::energyAllSites(const PolymerMC& polymer) const
     E2 = E2 * alpha;
     
     return E1 + E2;
+}
+
+double Hamiltonian::generateTau (int site, double kappa_site, double T) const
+{
+    double A2, B, mu, sigma;
+    
+    
+    A2 = c * (d * kappa_i*kappa_i + 1.0);
+    B = a * (b * kappa_i*kappa_i + 1.0);
+    
+    mu = B / A2;
+    sigma = sqrt(T / (alpha * A2));
+    GaussRand gaussRand(mu, sigma);
+    return gaussRand();
+
 }
 
 }//end of namespace PCA

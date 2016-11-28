@@ -9,6 +9,8 @@
 
 #include "Polymer.h"
 #include "Vector.h"
+#include "Energy/Hamiltonian.h"
+#include "Energy/LennardJones.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -38,6 +40,11 @@ public:
     void setNewRadiusVectorsViaRotation(int site);
     
     void setNewVectorsTNBfromKappaTau(int site);
+    
+    /**@name Monte Carlo updates*/
+    ///@{
+    void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
+    ///@}
 };
 }//end of namecpace
 #endif

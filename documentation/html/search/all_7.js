@@ -2,10 +2,13 @@ var searchData=
 [
   ['g',['g',['../class_p_c_a_1_1_trancated_exp_calculator.html#ade1e4dd2be1b5ec6f6e38cc1a251a719',1,'PCA::TrancatedExpCalculator::g()'],['../class_p_c_a_1_1_yukawa_calculator.html#a9fc1cfaf2c30fdd14561238a5b114a0c',1,'PCA::YukawaCalculator::g()']]],
   ['gamma',['gamma',['../class_p_c_a_1_1_lennard_jones.html#ad28ea138038c2c43e9fd000752ea6130',1,'PCA::LennardJones']]],
+  ['gauss',['Gauss',['../classpolymer.html#ab3fd4640505e410cc7bc24fe8c981fc5',1,'polymer']]],
   ['gaussrand',['GaussRand',['../class_p_c_a_1_1_gauss_rand.html',1,'PCA']]],
   ['gaussrand',['GaussRand',['../class_p_c_a_1_1_gauss_rand.html#a981fa1a94f0a38702117cc17c3cee549',1,'PCA::GaussRand']]],
   ['gaussrand_2ecpp',['GaussRand.cpp',['../_gauss_rand_8cpp.html',1,'']]],
   ['gaussrand_2eh',['GaussRand.h',['../_gauss_rand_8h.html',1,'']]],
+  ['generate',['generate',['../classkappa__distribution.html#af8f5aef5827c9423c2d9c65a53a43202',1,'kappa_distribution']]],
+  ['generatetau',['generateTau',['../class_p_c_a_1_1_hamiltonian.html#ad940f8b79c95c45ba11fe21f9491240b',1,'PCA::Hamiltonian']]],
   ['generator',['generator',['../class_p_c_a_1_1_random_generator.html#abfbe847dad295b691364d0197283afb7',1,'PCA::RandomGenerator']]],
   ['getkappa',['getKappa',['../class_p_c_a_1_1_polymer.html#ac0cafb89b662aaa3be2bbc7bf034d410',1,'PCA::Polymer']]],
   ['getmonomerlength',['getMonomerLength',['../class_p_c_a_1_1_polymer.html#af05e598bcd1e9987aca46d0661ac6dca',1,'PCA::Polymer']]],

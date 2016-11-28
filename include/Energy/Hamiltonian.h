@@ -1,24 +1,26 @@
 /** @package PCMC
-*   @file DoubleWell.h
+*   @file Hamiltonian.h
 *
-*   Double well potential as a fucnctions of kappa, tau angles.
+*   Double well potential for kapps angles + gauss for tau angles.
 *
 *   @autor Anna Sinelnikova
 *   @data 2016
 */
 
-#ifndef PCMC_DOUBLE_WELL
-#define PCMC_DOUBLE_WELL
+#ifndef PCMC_HAMILTONIAN
+#define PCMC_HAMILTONIAN
 
-#include "PolymerMC.h"
-#include "Vector.h"
-#include "PCAmacros.h"
+//#include "../PolymerMC.h"
+#include "../Vector.h"
+#include "../PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 namespace PCA{
 
-/** Double well potential.
+class PolymerMC;
+
+/** Hamiltonian.
 * \f[ 
 * H=-\sum_{i=1}^{N-1} (2+\mu)\kappa_{i+1} \kappa_i + \alpha\sum_{i=1}^{N}
 * \left\{ 2\kappa_i ^2 + q  ( \kappa_i^2-m^2)^2+
@@ -26,7 +28,7 @@ namespace PCA{
 * \f]
 */
 
-class DoubleWell
+class Hamiltonian
 {
 private:
     int numSites;
@@ -42,10 +44,10 @@ private:
     double* b;
 	
 public:
-    DoubleWell(int numSites_in);
+    Hamiltonian(int numSites_in);
 	
     /** Constructor for homopolymer */
-    DoubleWell(
+    Hamiltonian(
 	int numSites_in,
 	double q_in,
 	double m_in,
@@ -69,10 +71,18 @@ public:
     void pushB(double b_in, int fromSite, int toSite);
     //@}
     bool checkAllParamAreSeted();
-    ~DoubleWell();
+    ~Hamiltonian();
 
     double energyOneSite(int site, const PolymerMC& polymer) const;
     double energyAllSites(const PolymerMC& polymer) const;
+    
+    /** Generate tau according Gaussian distribution.
+    * \f[P\sim \exp\left(-\frac{(\tau_i-\mu)^2}{2\sigma^2}\right)\f]
+    * Coefficients:
+    * \f[\mu=\frac{a(b\kappa_i^2+1)}{c(d\kappa_i^2+1)}\f]
+    * \f[\sigma^2=\frac{T}{\alpha c(d\kappa_i^2+1)}\f]
+    */
+    double generateTau (int site, double kappa_i, double T) const;
 
 };
 }//end of namespace PCA

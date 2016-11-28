@@ -1,0 +1,410 @@
+\hypertarget{classpolymer}{}\section{polymer Class Reference}
+\label{classpolymer}\index{polymer@{polymer}}
+
+
+{\ttfamily \#include $<$polymer\+\_\+attract\+\_\+binary\+\_\+updates.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classpolymer_abf30f7effe8980e0a4afa2aa2a45c1aa}{polymer} (int N\+\_\+in=100, double s\+\_\+in=1, double min\+\_\+dist\+\_\+in=0.\+5, double U\+\_\+0\+\_\+in=0.\+0, double well\+\_\+width\+\_\+in=0.\+0)
+\item 
+void \hyperlink{classpolymer_a6ac7f37ee8e4dcdbbd08f8ecb9efee8b}{format} (int N\+\_\+in, double s\+\_\+in, double min\+\_\+dist\+\_\+in)
+\item 
+void \hyperlink{classpolymer_a0167c13d59c6840673a394c01b87f229}{vectors} ()
+\item 
+void \hyperlink{classpolymer_a914b3abcbc6c53907626193ee21169ac}{radius\+\_\+vectors} ()
+\item 
+double \hyperlink{classpolymer_aa27a989548b5622fa6eaab87440a31d5}{distance} (int site\+\_\+a, int site\+\_\+b)
+\item 
+int \hyperlink{classpolymer_ab001df23489a33c37e4dbe2f62cd4497}{separation} (int site\+\_\+a)
+\item 
+int \hyperlink{classpolymer_af79e005223b39b6d5c7446295056baa1}{local\+\_\+separation} (int site\+\_\+a)
+\item 
+double \hyperlink{classpolymer_ad9a1df0e2fea34450c47b9eb9d693e3d}{attraction} (int site\+\_\+a)
+\item 
+double \hyperlink{classpolymer_a0e0d69f865ca798256019fbe725d4955}{local\+\_\+attraction} (int site\+\_\+a)
+\item 
+double \hyperlink{classpolymer_ab1dd0274207c36a79b7fb5674e7d0ed6}{parameter\+\_\+a} (int i, int j)
+\item 
+double \hyperlink{classpolymer_aff2938b46080f7cf0f3795d23f3d5f17}{energy} (double a, double omega, double be, double c, double mu, double d)
+\item 
+double \hyperlink{classpolymer_a3b56762501aa220610ca1eadb69ffe06}{energy\+\_\+i\+\_\+site} (int i, double a, double omega, double be, double c, double mu, double d)
+\item 
+double \hyperlink{classpolymer_a47c7d5b3032498f761d5ff4c6f6bd84a}{energy\+\_\+i\+\_\+site\+\_\+new} (int i, double a, double omega, double be, double c, double mu, double d)
+\item 
+void \hyperlink{classpolymer_a9c3aef8cf024d559254771d849edf0ee}{vectors\+\_\+new} (int i)
+\item 
+void \hyperlink{classpolymer_a7cdc581f953eb562e1ca66743b943066}{vectors\+\_\+new\+\_\+fast} (int i, vector new\+\_\+t, vector new\+\_\+b, vector new\+\_\+n)
+\item 
+double \hyperlink{classpolymer_a1409622014bc93fe524b0f44570a36fa}{intersite\+\_\+potential} (double R)
+\item 
+void \hyperlink{classpolymer_a63d6473a8c68d6da59673005f9b7db53}{new\+\_\+kappa\+\_\+tau} (int i, double delta\+\_\+kappa, double delta\+\_\+tau)
+\item 
+void \hyperlink{classpolymer_a7839c7cba47dbbfadedb6890d13970d1}{local\+\_\+update} (int i, double T, double delta\+\_\+kappa, double delta\+\_\+tau, double a, double omega, double be, double c, double mu, double d)
+\item 
+void \hyperlink{classpolymer_a32064d363a3e98475d1ae4733b214160}{update\+\_\+configuration} (double T, double delta\+\_\+kappa, double delta\+\_\+tau, double a, double omega, double be, double c, double mu, double d)
+\item 
+double \hyperlink{classpolymer_ab3fd4640505e410cc7bc24fe8c981fc5}{Gauss} (double mu, double sigma)
+\item 
+void \hyperlink{classpolymer_a09ba10cc653467a268ab0ba8e04f930b}{kappa\+\_\+update} (int i, double T, double delta\+\_\+kappa, double a, double omega, double be, double c, double mu, double d)
+\item 
+void \hyperlink{classpolymer_af95590e5cd7bfc6b5739b60d6e95bc5e}{tau\+\_\+update} (int i, double T, double delta\+\_\+tau, double a, double omega, double be, double c, double mu, double d)
+\item 
+void \hyperlink{classpolymer_a67677c98489a609df49e94a457672beb}{binary\+\_\+update} (int i, double T, double a, double omega, double be, double c, double mu, double d)
+\item 
+void \hyperlink{classpolymer_a919bef5d8c1c121e48a0cb3fb389dfad}{test\+\_\+update\+\_\+configuration} (double T, double delta\+\_\+kappa, double delta\+\_\+tau, double a, double omega, double be, double c, double mu, double d)
+\item 
+double \hyperlink{classpolymer_aea38306aefc9608092464ae7f402a2d7}{R\+\_\+gyration} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classpolymer_a371d5df1d09118e050f192615b07a370}{N}
+\item 
+double \hyperlink{classpolymer_a10f77b05b8c1372afc359cccc3a231f9}{s}
+\item 
+double \hyperlink{classpolymer_aef88a1774e584d1c7e8f79c728e24658}{min\+\_\+dist}
+\item 
+double \hyperlink{classpolymer_af704fc330a4a90c5fe436ed053cb26ef}{U\+\_\+0}
+\item 
+double \hyperlink{classpolymer_a6dd44a7eff4fc1ae2e2729a115278a5d}{well\+\_\+width}
+\item 
+\hyperlink{classkappa__distribution}{kappa\+\_\+distribution} \hyperlink{classpolymer_ab766c05cab662491c9378022b58cdda3}{D}
+\item 
+int \hyperlink{classpolymer_ac4f3c065dd8bb61def0439b66a15f963}{accept\+\_\+number}
+\item 
+int \hyperlink{classpolymer_a90b569376d792925a187b975d082a76b}{accept\+\_\+number\+\_\+kappa}
+\item 
+int \hyperlink{classpolymer_a3c58ebbee07ff914796243d22dd1ee5a}{accept\+\_\+number\+\_\+tau}
+\item 
+int \hyperlink{classpolymer_ab1be653d24606604e177a2ff13948091}{accept\+\_\+number\+\_\+test}
+\item 
+double \hyperlink{classpolymer_a77bd4d23130573809e2d63f424130665}{delta\+\_\+phi}
+\item 
+int \hyperlink{classpolymer_a0c341b176ce68b26ba1e44388f5ebcc3}{test\+\_\+phi\+\_\+mode}
+\item 
+double \hyperlink{classpolymer_a318e135320566c15c8a026aee0b530a4}{alpha\+\_\+E}
+\item 
+double $\ast$ \hyperlink{classpolymer_a314dfc1f874c4ece78eae8e5910805c4}{tau}
+\item 
+double $\ast$ \hyperlink{classpolymer_a1ff7101848ade779f206852df2ce9545}{kappa}
+\item 
+double $\ast$ \hyperlink{classpolymer_a861b0d4b1da6426c1da5a1f1cc3b7825}{tau\+\_\+new}
+\item 
+double $\ast$ \hyperlink{classpolymer_abf63b597d52f4549f0f6382e14d71941}{kappa\+\_\+new}
+\item 
+vector $\ast$ \hyperlink{classpolymer_a4af8426c4b897cffc1233bd08b72baa0}{n}
+\item 
+vector $\ast$ \hyperlink{classpolymer_a5d80f18b440f7d36e1b9c539ab9d64e4}{b}
+\item 
+vector $\ast$ \hyperlink{classpolymer_a601a9ddb7ed75e1057bccc90b4fef04f}{t}
+\item 
+vector $\ast$ \hyperlink{classpolymer_a4e15378873dab00e57724ffc76027804}{r}
+\item 
+vector $\ast$ \hyperlink{classpolymer_aeb510ad73db983d8b209ed31d9d5a88c}{r\+\_\+old}
+\item 
+double \hyperlink{classpolymer_a96ee2b502254698c8b7362a9cb002514}{right\+\_\+kappa\+\_\+tau} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpolymer_abf30f7effe8980e0a4afa2aa2a45c1aa}{}\label{classpolymer_abf30f7effe8980e0a4afa2aa2a45c1aa} 
+\index{polymer@{polymer}!polymer@{polymer}}
+\index{polymer@{polymer}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{polymer()}{polymer()}}
+{\footnotesize\ttfamily polymer\+::polymer (\begin{DoxyParamCaption}\item[{int}]{N\+\_\+in = {\ttfamily 100},  }\item[{double}]{s\+\_\+in = {\ttfamily 1},  }\item[{double}]{min\+\_\+dist\+\_\+in = {\ttfamily 0.5},  }\item[{double}]{U\+\_\+0\+\_\+in = {\ttfamily 0.0},  }\item[{double}]{well\+\_\+width\+\_\+in = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classpolymer_ad9a1df0e2fea34450c47b9eb9d693e3d}{}\label{classpolymer_ad9a1df0e2fea34450c47b9eb9d693e3d} 
+\index{polymer@{polymer}!attraction@{attraction}}
+\index{attraction@{attraction}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{attraction()}{attraction()}}
+{\footnotesize\ttfamily double polymer\+::attraction (\begin{DoxyParamCaption}\item[{int}]{site\+\_\+a }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a67677c98489a609df49e94a457672beb}{}\label{classpolymer_a67677c98489a609df49e94a457672beb} 
+\index{polymer@{polymer}!binary\+\_\+update@{binary\+\_\+update}}
+\index{binary\+\_\+update@{binary\+\_\+update}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{binary\+\_\+update()}{binary\_update()}}
+{\footnotesize\ttfamily void polymer\+::binary\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{T,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_aa27a989548b5622fa6eaab87440a31d5}{}\label{classpolymer_aa27a989548b5622fa6eaab87440a31d5} 
+\index{polymer@{polymer}!distance@{distance}}
+\index{distance@{distance}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double polymer\+::distance (\begin{DoxyParamCaption}\item[{int}]{site\+\_\+a,  }\item[{int}]{site\+\_\+b }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_aff2938b46080f7cf0f3795d23f3d5f17}{}\label{classpolymer_aff2938b46080f7cf0f3795d23f3d5f17} 
+\index{polymer@{polymer}!energy@{energy}}
+\index{energy@{energy}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{energy()}{energy()}}
+{\footnotesize\ttfamily double polymer\+::energy (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a3b56762501aa220610ca1eadb69ffe06}{}\label{classpolymer_a3b56762501aa220610ca1eadb69ffe06} 
+\index{polymer@{polymer}!energy\+\_\+i\+\_\+site@{energy\+\_\+i\+\_\+site}}
+\index{energy\+\_\+i\+\_\+site@{energy\+\_\+i\+\_\+site}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{energy\+\_\+i\+\_\+site()}{energy\_i\_site()}}
+{\footnotesize\ttfamily double polymer\+::energy\+\_\+i\+\_\+site (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a47c7d5b3032498f761d5ff4c6f6bd84a}{}\label{classpolymer_a47c7d5b3032498f761d5ff4c6f6bd84a} 
+\index{polymer@{polymer}!energy\+\_\+i\+\_\+site\+\_\+new@{energy\+\_\+i\+\_\+site\+\_\+new}}
+\index{energy\+\_\+i\+\_\+site\+\_\+new@{energy\+\_\+i\+\_\+site\+\_\+new}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{energy\+\_\+i\+\_\+site\+\_\+new()}{energy\_i\_site\_new()}}
+{\footnotesize\ttfamily double polymer\+::energy\+\_\+i\+\_\+site\+\_\+new (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a6ac7f37ee8e4dcdbbd08f8ecb9efee8b}{}\label{classpolymer_a6ac7f37ee8e4dcdbbd08f8ecb9efee8b} 
+\index{polymer@{polymer}!format@{format}}
+\index{format@{format}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily void polymer\+::format (\begin{DoxyParamCaption}\item[{int}]{N\+\_\+in,  }\item[{double}]{s\+\_\+in,  }\item[{double}]{min\+\_\+dist\+\_\+in }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_ab3fd4640505e410cc7bc24fe8c981fc5}{}\label{classpolymer_ab3fd4640505e410cc7bc24fe8c981fc5} 
+\index{polymer@{polymer}!Gauss@{Gauss}}
+\index{Gauss@{Gauss}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{Gauss()}{Gauss()}}
+{\footnotesize\ttfamily double polymer\+::\+Gauss (\begin{DoxyParamCaption}\item[{double}]{mu,  }\item[{double}]{sigma }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a1409622014bc93fe524b0f44570a36fa}{}\label{classpolymer_a1409622014bc93fe524b0f44570a36fa} 
+\index{polymer@{polymer}!intersite\+\_\+potential@{intersite\+\_\+potential}}
+\index{intersite\+\_\+potential@{intersite\+\_\+potential}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{intersite\+\_\+potential()}{intersite\_potential()}}
+{\footnotesize\ttfamily double polymer\+::intersite\+\_\+potential (\begin{DoxyParamCaption}\item[{double}]{R }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a09ba10cc653467a268ab0ba8e04f930b}{}\label{classpolymer_a09ba10cc653467a268ab0ba8e04f930b} 
+\index{polymer@{polymer}!kappa\+\_\+update@{kappa\+\_\+update}}
+\index{kappa\+\_\+update@{kappa\+\_\+update}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{kappa\+\_\+update()}{kappa\_update()}}
+{\footnotesize\ttfamily void polymer\+::kappa\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{T,  }\item[{double}]{delta\+\_\+kappa,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a0e0d69f865ca798256019fbe725d4955}{}\label{classpolymer_a0e0d69f865ca798256019fbe725d4955} 
+\index{polymer@{polymer}!local\+\_\+attraction@{local\+\_\+attraction}}
+\index{local\+\_\+attraction@{local\+\_\+attraction}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{local\+\_\+attraction()}{local\_attraction()}}
+{\footnotesize\ttfamily double polymer\+::local\+\_\+attraction (\begin{DoxyParamCaption}\item[{int}]{site\+\_\+a }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_af79e005223b39b6d5c7446295056baa1}{}\label{classpolymer_af79e005223b39b6d5c7446295056baa1} 
+\index{polymer@{polymer}!local\+\_\+separation@{local\+\_\+separation}}
+\index{local\+\_\+separation@{local\+\_\+separation}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{local\+\_\+separation()}{local\_separation()}}
+{\footnotesize\ttfamily int polymer\+::local\+\_\+separation (\begin{DoxyParamCaption}\item[{int}]{site\+\_\+a }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a7839c7cba47dbbfadedb6890d13970d1}{}\label{classpolymer_a7839c7cba47dbbfadedb6890d13970d1} 
+\index{polymer@{polymer}!local\+\_\+update@{local\+\_\+update}}
+\index{local\+\_\+update@{local\+\_\+update}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{local\+\_\+update()}{local\_update()}}
+{\footnotesize\ttfamily void polymer\+::local\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{T,  }\item[{double}]{delta\+\_\+kappa,  }\item[{double}]{delta\+\_\+tau,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a63d6473a8c68d6da59673005f9b7db53}{}\label{classpolymer_a63d6473a8c68d6da59673005f9b7db53} 
+\index{polymer@{polymer}!new\+\_\+kappa\+\_\+tau@{new\+\_\+kappa\+\_\+tau}}
+\index{new\+\_\+kappa\+\_\+tau@{new\+\_\+kappa\+\_\+tau}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{new\+\_\+kappa\+\_\+tau()}{new\_kappa\_tau()}}
+{\footnotesize\ttfamily void polymer\+::new\+\_\+kappa\+\_\+tau (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{delta\+\_\+kappa,  }\item[{double}]{delta\+\_\+tau }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_ab1dd0274207c36a79b7fb5674e7d0ed6}{}\label{classpolymer_ab1dd0274207c36a79b7fb5674e7d0ed6} 
+\index{polymer@{polymer}!parameter\+\_\+a@{parameter\+\_\+a}}
+\index{parameter\+\_\+a@{parameter\+\_\+a}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{parameter\+\_\+a()}{parameter\_a()}}
+{\footnotesize\ttfamily double polymer\+::parameter\+\_\+a (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_aea38306aefc9608092464ae7f402a2d7}{}\label{classpolymer_aea38306aefc9608092464ae7f402a2d7} 
+\index{polymer@{polymer}!R\+\_\+gyration@{R\+\_\+gyration}}
+\index{R\+\_\+gyration@{R\+\_\+gyration}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{R\+\_\+gyration()}{R\_gyration()}}
+{\footnotesize\ttfamily double polymer\+::\+R\+\_\+gyration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a914b3abcbc6c53907626193ee21169ac}{}\label{classpolymer_a914b3abcbc6c53907626193ee21169ac} 
+\index{polymer@{polymer}!radius\+\_\+vectors@{radius\+\_\+vectors}}
+\index{radius\+\_\+vectors@{radius\+\_\+vectors}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{radius\+\_\+vectors()}{radius\_vectors()}}
+{\footnotesize\ttfamily void polymer\+::radius\+\_\+vectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_ab001df23489a33c37e4dbe2f62cd4497}{}\label{classpolymer_ab001df23489a33c37e4dbe2f62cd4497} 
+\index{polymer@{polymer}!separation@{separation}}
+\index{separation@{separation}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{separation()}{separation()}}
+{\footnotesize\ttfamily int polymer\+::separation (\begin{DoxyParamCaption}\item[{int}]{site\+\_\+a }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_af95590e5cd7bfc6b5739b60d6e95bc5e}{}\label{classpolymer_af95590e5cd7bfc6b5739b60d6e95bc5e} 
+\index{polymer@{polymer}!tau\+\_\+update@{tau\+\_\+update}}
+\index{tau\+\_\+update@{tau\+\_\+update}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{tau\+\_\+update()}{tau\_update()}}
+{\footnotesize\ttfamily void polymer\+::tau\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{T,  }\item[{double}]{delta\+\_\+tau,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a919bef5d8c1c121e48a0cb3fb389dfad}{}\label{classpolymer_a919bef5d8c1c121e48a0cb3fb389dfad} 
+\index{polymer@{polymer}!test\+\_\+update\+\_\+configuration@{test\+\_\+update\+\_\+configuration}}
+\index{test\+\_\+update\+\_\+configuration@{test\+\_\+update\+\_\+configuration}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{test\+\_\+update\+\_\+configuration()}{test\_update\_configuration()}}
+{\footnotesize\ttfamily void polymer\+::test\+\_\+update\+\_\+configuration (\begin{DoxyParamCaption}\item[{double}]{T,  }\item[{double}]{delta\+\_\+kappa,  }\item[{double}]{delta\+\_\+tau,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a32064d363a3e98475d1ae4733b214160}{}\label{classpolymer_a32064d363a3e98475d1ae4733b214160} 
+\index{polymer@{polymer}!update\+\_\+configuration@{update\+\_\+configuration}}
+\index{update\+\_\+configuration@{update\+\_\+configuration}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{update\+\_\+configuration()}{update\_configuration()}}
+{\footnotesize\ttfamily void polymer\+::update\+\_\+configuration (\begin{DoxyParamCaption}\item[{double}]{T,  }\item[{double}]{delta\+\_\+kappa,  }\item[{double}]{delta\+\_\+tau,  }\item[{double}]{a,  }\item[{double}]{omega,  }\item[{double}]{be,  }\item[{double}]{c,  }\item[{double}]{mu,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a0167c13d59c6840673a394c01b87f229}{}\label{classpolymer_a0167c13d59c6840673a394c01b87f229} 
+\index{polymer@{polymer}!vectors@{vectors}}
+\index{vectors@{vectors}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{vectors()}{vectors()}}
+{\footnotesize\ttfamily void polymer\+::vectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a9c3aef8cf024d559254771d849edf0ee}{}\label{classpolymer_a9c3aef8cf024d559254771d849edf0ee} 
+\index{polymer@{polymer}!vectors\+\_\+new@{vectors\+\_\+new}}
+\index{vectors\+\_\+new@{vectors\+\_\+new}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{vectors\+\_\+new()}{vectors\_new()}}
+{\footnotesize\ttfamily void polymer\+::vectors\+\_\+new (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+\hypertarget{classpolymer_a7cdc581f953eb562e1ca66743b943066}{}\label{classpolymer_a7cdc581f953eb562e1ca66743b943066} 
+\index{polymer@{polymer}!vectors\+\_\+new\+\_\+fast@{vectors\+\_\+new\+\_\+fast}}
+\index{vectors\+\_\+new\+\_\+fast@{vectors\+\_\+new\+\_\+fast}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{vectors\+\_\+new\+\_\+fast()}{vectors\_new\_fast()}}
+{\footnotesize\ttfamily void polymer\+::vectors\+\_\+new\+\_\+fast (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{vector}]{new\+\_\+t,  }\item[{vector}]{new\+\_\+b,  }\item[{vector}]{new\+\_\+n }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classpolymer_ac4f3c065dd8bb61def0439b66a15f963}{}\label{classpolymer_ac4f3c065dd8bb61def0439b66a15f963} 
+\index{polymer@{polymer}!accept\+\_\+number@{accept\+\_\+number}}
+\index{accept\+\_\+number@{accept\+\_\+number}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{accept\+\_\+number}{accept\_number}}
+{\footnotesize\ttfamily int polymer\+::accept\+\_\+number}
+
+\hypertarget{classpolymer_a90b569376d792925a187b975d082a76b}{}\label{classpolymer_a90b569376d792925a187b975d082a76b} 
+\index{polymer@{polymer}!accept\+\_\+number\+\_\+kappa@{accept\+\_\+number\+\_\+kappa}}
+\index{accept\+\_\+number\+\_\+kappa@{accept\+\_\+number\+\_\+kappa}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{accept\+\_\+number\+\_\+kappa}{accept\_number\_kappa}}
+{\footnotesize\ttfamily int polymer\+::accept\+\_\+number\+\_\+kappa}
+
+\hypertarget{classpolymer_a3c58ebbee07ff914796243d22dd1ee5a}{}\label{classpolymer_a3c58ebbee07ff914796243d22dd1ee5a} 
+\index{polymer@{polymer}!accept\+\_\+number\+\_\+tau@{accept\+\_\+number\+\_\+tau}}
+\index{accept\+\_\+number\+\_\+tau@{accept\+\_\+number\+\_\+tau}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{accept\+\_\+number\+\_\+tau}{accept\_number\_tau}}
+{\footnotesize\ttfamily int polymer\+::accept\+\_\+number\+\_\+tau}
+
+\hypertarget{classpolymer_ab1be653d24606604e177a2ff13948091}{}\label{classpolymer_ab1be653d24606604e177a2ff13948091} 
+\index{polymer@{polymer}!accept\+\_\+number\+\_\+test@{accept\+\_\+number\+\_\+test}}
+\index{accept\+\_\+number\+\_\+test@{accept\+\_\+number\+\_\+test}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{accept\+\_\+number\+\_\+test}{accept\_number\_test}}
+{\footnotesize\ttfamily int polymer\+::accept\+\_\+number\+\_\+test}
+
+\hypertarget{classpolymer_a318e135320566c15c8a026aee0b530a4}{}\label{classpolymer_a318e135320566c15c8a026aee0b530a4} 
+\index{polymer@{polymer}!alpha\+\_\+E@{alpha\+\_\+E}}
+\index{alpha\+\_\+E@{alpha\+\_\+E}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{alpha\+\_\+E}{alpha\_E}}
+{\footnotesize\ttfamily double polymer\+::alpha\+\_\+E}
+
+\hypertarget{classpolymer_a5d80f18b440f7d36e1b9c539ab9d64e4}{}\label{classpolymer_a5d80f18b440f7d36e1b9c539ab9d64e4} 
+\index{polymer@{polymer}!b@{b}}
+\index{b@{b}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily vector$\ast$ polymer\+::b}
+
+\hypertarget{classpolymer_ab766c05cab662491c9378022b58cdda3}{}\label{classpolymer_ab766c05cab662491c9378022b58cdda3} 
+\index{polymer@{polymer}!D@{D}}
+\index{D@{D}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{D}{D}}
+{\footnotesize\ttfamily \hyperlink{classkappa__distribution}{kappa\+\_\+distribution} polymer\+::D}
+
+\hypertarget{classpolymer_a77bd4d23130573809e2d63f424130665}{}\label{classpolymer_a77bd4d23130573809e2d63f424130665} 
+\index{polymer@{polymer}!delta\+\_\+phi@{delta\+\_\+phi}}
+\index{delta\+\_\+phi@{delta\+\_\+phi}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{delta\+\_\+phi}{delta\_phi}}
+{\footnotesize\ttfamily double polymer\+::delta\+\_\+phi}
+
+\hypertarget{classpolymer_a1ff7101848ade779f206852df2ce9545}{}\label{classpolymer_a1ff7101848ade779f206852df2ce9545} 
+\index{polymer@{polymer}!kappa@{kappa}}
+\index{kappa@{kappa}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{kappa}{kappa}}
+{\footnotesize\ttfamily double$\ast$ polymer\+::kappa}
+
+\hypertarget{classpolymer_abf63b597d52f4549f0f6382e14d71941}{}\label{classpolymer_abf63b597d52f4549f0f6382e14d71941} 
+\index{polymer@{polymer}!kappa\+\_\+new@{kappa\+\_\+new}}
+\index{kappa\+\_\+new@{kappa\+\_\+new}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{kappa\+\_\+new}{kappa\_new}}
+{\footnotesize\ttfamily double$\ast$ polymer\+::kappa\+\_\+new}
+
+\hypertarget{classpolymer_aef88a1774e584d1c7e8f79c728e24658}{}\label{classpolymer_aef88a1774e584d1c7e8f79c728e24658} 
+\index{polymer@{polymer}!min\+\_\+dist@{min\+\_\+dist}}
+\index{min\+\_\+dist@{min\+\_\+dist}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{min\+\_\+dist}{min\_dist}}
+{\footnotesize\ttfamily double polymer\+::min\+\_\+dist}
+
+\hypertarget{classpolymer_a371d5df1d09118e050f192615b07a370}{}\label{classpolymer_a371d5df1d09118e050f192615b07a370} 
+\index{polymer@{polymer}!N@{N}}
+\index{N@{N}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily int polymer\+::N}
+
+\hypertarget{classpolymer_a4af8426c4b897cffc1233bd08b72baa0}{}\label{classpolymer_a4af8426c4b897cffc1233bd08b72baa0} 
+\index{polymer@{polymer}!n@{n}}
+\index{n@{n}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily vector$\ast$ polymer\+::n}
+
+\hypertarget{classpolymer_a4e15378873dab00e57724ffc76027804}{}\label{classpolymer_a4e15378873dab00e57724ffc76027804} 
+\index{polymer@{polymer}!r@{r}}
+\index{r@{r}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily vector$\ast$ polymer\+::r}
+
+\hypertarget{classpolymer_aeb510ad73db983d8b209ed31d9d5a88c}{}\label{classpolymer_aeb510ad73db983d8b209ed31d9d5a88c} 
+\index{polymer@{polymer}!r\+\_\+old@{r\+\_\+old}}
+\index{r\+\_\+old@{r\+\_\+old}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{r\+\_\+old}{r\_old}}
+{\footnotesize\ttfamily vector$\ast$ polymer\+::r\+\_\+old}
+
+\hypertarget{classpolymer_a96ee2b502254698c8b7362a9cb002514}{}\label{classpolymer_a96ee2b502254698c8b7362a9cb002514} 
+\index{polymer@{polymer}!right\+\_\+kappa\+\_\+tau@{right\+\_\+kappa\+\_\+tau}}
+\index{right\+\_\+kappa\+\_\+tau@{right\+\_\+kappa\+\_\+tau}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{right\+\_\+kappa\+\_\+tau}{right\_kappa\_tau}}
+{\footnotesize\ttfamily double polymer\+::right\+\_\+kappa\+\_\+tau\mbox{[}5\mbox{]}}
+
+\hypertarget{classpolymer_a10f77b05b8c1372afc359cccc3a231f9}{}\label{classpolymer_a10f77b05b8c1372afc359cccc3a231f9} 
+\index{polymer@{polymer}!s@{s}}
+\index{s@{s}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily double polymer\+::s}
+
+\hypertarget{classpolymer_a601a9ddb7ed75e1057bccc90b4fef04f}{}\label{classpolymer_a601a9ddb7ed75e1057bccc90b4fef04f} 
+\index{polymer@{polymer}!t@{t}}
+\index{t@{t}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily vector$\ast$ polymer\+::t}
+
+\hypertarget{classpolymer_a314dfc1f874c4ece78eae8e5910805c4}{}\label{classpolymer_a314dfc1f874c4ece78eae8e5910805c4} 
+\index{polymer@{polymer}!tau@{tau}}
+\index{tau@{tau}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{tau}{tau}}
+{\footnotesize\ttfamily double$\ast$ polymer\+::tau}
+
+\hypertarget{classpolymer_a861b0d4b1da6426c1da5a1f1cc3b7825}{}\label{classpolymer_a861b0d4b1da6426c1da5a1f1cc3b7825} 
+\index{polymer@{polymer}!tau\+\_\+new@{tau\+\_\+new}}
+\index{tau\+\_\+new@{tau\+\_\+new}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{tau\+\_\+new}{tau\_new}}
+{\footnotesize\ttfamily double$\ast$ polymer\+::tau\+\_\+new}
+
+\hypertarget{classpolymer_a0c341b176ce68b26ba1e44388f5ebcc3}{}\label{classpolymer_a0c341b176ce68b26ba1e44388f5ebcc3} 
+\index{polymer@{polymer}!test\+\_\+phi\+\_\+mode@{test\+\_\+phi\+\_\+mode}}
+\index{test\+\_\+phi\+\_\+mode@{test\+\_\+phi\+\_\+mode}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{test\+\_\+phi\+\_\+mode}{test\_phi\_mode}}
+{\footnotesize\ttfamily int polymer\+::test\+\_\+phi\+\_\+mode}
+
+\hypertarget{classpolymer_af704fc330a4a90c5fe436ed053cb26ef}{}\label{classpolymer_af704fc330a4a90c5fe436ed053cb26ef} 
+\index{polymer@{polymer}!U\+\_\+0@{U\+\_\+0}}
+\index{U\+\_\+0@{U\+\_\+0}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{U\+\_\+0}{U\_0}}
+{\footnotesize\ttfamily double polymer\+::\+U\+\_\+0}
+
+\hypertarget{classpolymer_a6dd44a7eff4fc1ae2e2729a115278a5d}{}\label{classpolymer_a6dd44a7eff4fc1ae2e2729a115278a5d} 
+\index{polymer@{polymer}!well\+\_\+width@{well\+\_\+width}}
+\index{well\+\_\+width@{well\+\_\+width}!polymer@{polymer}}
+\subsubsection{\texorpdfstring{well\+\_\+width}{well\_width}}
+{\footnotesize\ttfamily double polymer\+::well\+\_\+width}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\hyperlink{polymer__attract__binary__updates_8h}{polymer\+\_\+attract\+\_\+binary\+\_\+updates.\+h}\end{DoxyCompactItemize}

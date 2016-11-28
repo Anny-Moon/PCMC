@@ -1,0 +1,231 @@
+\hypertarget{classkappa__distribution}{}\section{kappa\+\_\+distribution Class Reference}
+\label{classkappa__distribution}\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+
+
+{\ttfamily \#include $<$prob\+\_\+distrib.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classkappa__distribution_abf97127e675e370e41c20a4bcf3920ce}{print\+\_\+stat} (F\+I\+LE $\ast$log\+\_\+file)
+\item 
+void \hyperlink{classkappa__distribution_a5e943b080c0c8a88e37a85100666cadb}{rand\+\_\+init} (int number)
+\item 
+int \hyperlink{classkappa__distribution_aaf5ceb9a7a92cd7cdb4ca07cf0f74388}{init} (double a\+\_\+in, double b\+\_\+in, double c\+\_\+in, double offset\+\_\+in)
+\item 
+double \hyperlink{classkappa__distribution_af8f5aef5827c9423c2d9c65a53a43202}{generate} ()
+\item 
+void \hyperlink{classkappa__distribution_ab18b8d4b45ba749340829da1ca18130c}{sort\+\_\+asc} ()
+\item 
+double \hyperlink{classkappa__distribution_a7e0171752a4a1c1b8b99950394281922}{polynom} (double x)
+\item 
+double \hyperlink{classkappa__distribution_ae7fee7da2f235cf8d319e00a7f8a4dc3}{der1} (double x)
+\item 
+double \hyperlink{classkappa__distribution_aafde4b907d4e201a59e3706ef5cb7c53}{der2} (double x)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+gsl\+\_\+rng $\ast$ \hyperlink{classkappa__distribution_a534c1be1b65e324fa62a733b3538196a}{mtrand}
+\item 
+double \hyperlink{classkappa__distribution_ac85c34598a6c6541660c024f509977c2}{a}
+\item 
+double \hyperlink{classkappa__distribution_ac9487f58886c93bede8d10f0660df323}{b}
+\item 
+double \hyperlink{classkappa__distribution_a90698395f61fde53725916a1405c2613}{c}
+\item 
+double \hyperlink{classkappa__distribution_aaf581ec013e458d9632689422352b575}{x1}
+\item 
+double \hyperlink{classkappa__distribution_a13e498d40d784837a04374e35d4ff4b7}{x2}
+\item 
+double \hyperlink{classkappa__distribution_add191b8968caa8c0f56806ab95ab9541}{x3}
+\item 
+int \hyperlink{classkappa__distribution_a437034eceb23e234b297882e74e65635}{n\+\_\+maximums}
+\item 
+double \hyperlink{classkappa__distribution_a1b1f2f453758df12ae36c45a2ef1442e}{x\+\_\+max1}
+\item 
+double \hyperlink{classkappa__distribution_a8ddb60e0b690eba68d3651975e0de470}{x\+\_\+max2}
+\item 
+double \hyperlink{classkappa__distribution_a4c5660bf0eb745115a97b763c400a2e7}{f\+\_\+max1}
+\item 
+double \hyperlink{classkappa__distribution_a197a28c1e2fb49e3ab2ba12fbf0b9de3}{f\+\_\+max2}
+\item 
+double \hyperlink{classkappa__distribution_ac1df2a43af198de04f20db0067754f31}{offset}
+\item 
+int \hyperlink{classkappa__distribution_a24fa777b043581c42d7b1219509bcef1}{n\+\_\+intervals}
+\item 
+double \hyperlink{classkappa__distribution_adabd36d6214f535740375a0bdf13f115}{kappa} \mbox{[}4\mbox{]}
+\item 
+double \hyperlink{classkappa__distribution_a6506e5322c9a9c919af36d9d34dbb180}{im\+\_\+epsilon}
+\item 
+double \hyperlink{classkappa__distribution_af7d9662cfb3cd567676f36785a3d15a1}{norm} \mbox{[}2\mbox{]}
+\item 
+int \hyperlink{classkappa__distribution_ab816226e269c7af719438350cebaf4eb}{N\+\_\+int\+\_\+steps}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkappa__distribution_ae7fee7da2f235cf8d319e00a7f8a4dc3}{}\label{classkappa__distribution_ae7fee7da2f235cf8d319e00a7f8a4dc3} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!der1@{der1}}
+\index{der1@{der1}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{der1()}{der1()}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::der1 (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_aafde4b907d4e201a59e3706ef5cb7c53}{}\label{classkappa__distribution_aafde4b907d4e201a59e3706ef5cb7c53} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!der2@{der2}}
+\index{der2@{der2}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{der2()}{der2()}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::der2 (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_af8f5aef5827c9423c2d9c65a53a43202}{}\label{classkappa__distribution_af8f5aef5827c9423c2d9c65a53a43202} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!generate@{generate}}
+\index{generate@{generate}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::generate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_aaf5ceb9a7a92cd7cdb4ca07cf0f74388}{}\label{classkappa__distribution_aaf5ceb9a7a92cd7cdb4ca07cf0f74388} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!init@{init}}
+\index{init@{init}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily int kappa\+\_\+distribution\+::init (\begin{DoxyParamCaption}\item[{double}]{a\+\_\+in,  }\item[{double}]{b\+\_\+in,  }\item[{double}]{c\+\_\+in,  }\item[{double}]{offset\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_a7e0171752a4a1c1b8b99950394281922}{}\label{classkappa__distribution_a7e0171752a4a1c1b8b99950394281922} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!polynom@{polynom}}
+\index{polynom@{polynom}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{polynom()}{polynom()}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::polynom (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_abf97127e675e370e41c20a4bcf3920ce}{}\label{classkappa__distribution_abf97127e675e370e41c20a4bcf3920ce} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!print\+\_\+stat@{print\+\_\+stat}}
+\index{print\+\_\+stat@{print\+\_\+stat}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{print\+\_\+stat()}{print\_stat()}}
+{\footnotesize\ttfamily void kappa\+\_\+distribution\+::print\+\_\+stat (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{log\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_a5e943b080c0c8a88e37a85100666cadb}{}\label{classkappa__distribution_a5e943b080c0c8a88e37a85100666cadb} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!rand\+\_\+init@{rand\+\_\+init}}
+\index{rand\+\_\+init@{rand\+\_\+init}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{rand\+\_\+init()}{rand\_init()}}
+{\footnotesize\ttfamily void kappa\+\_\+distribution\+::rand\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{classkappa__distribution_ab18b8d4b45ba749340829da1ca18130c}{}\label{classkappa__distribution_ab18b8d4b45ba749340829da1ca18130c} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!sort\+\_\+asc@{sort\+\_\+asc}}
+\index{sort\+\_\+asc@{sort\+\_\+asc}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{sort\+\_\+asc()}{sort\_asc()}}
+{\footnotesize\ttfamily void kappa\+\_\+distribution\+::sort\+\_\+asc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classkappa__distribution_ac85c34598a6c6541660c024f509977c2}{}\label{classkappa__distribution_ac85c34598a6c6541660c024f509977c2} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!a@{a}}
+\index{a@{a}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::a}
+
+\hypertarget{classkappa__distribution_ac9487f58886c93bede8d10f0660df323}{}\label{classkappa__distribution_ac9487f58886c93bede8d10f0660df323} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!b@{b}}
+\index{b@{b}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::b}
+
+\hypertarget{classkappa__distribution_a90698395f61fde53725916a1405c2613}{}\label{classkappa__distribution_a90698395f61fde53725916a1405c2613} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!c@{c}}
+\index{c@{c}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::c}
+
+\hypertarget{classkappa__distribution_a4c5660bf0eb745115a97b763c400a2e7}{}\label{classkappa__distribution_a4c5660bf0eb745115a97b763c400a2e7} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!f\+\_\+max1@{f\+\_\+max1}}
+\index{f\+\_\+max1@{f\+\_\+max1}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{f\+\_\+max1}{f\_max1}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::f\+\_\+max1}
+
+\hypertarget{classkappa__distribution_a197a28c1e2fb49e3ab2ba12fbf0b9de3}{}\label{classkappa__distribution_a197a28c1e2fb49e3ab2ba12fbf0b9de3} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!f\+\_\+max2@{f\+\_\+max2}}
+\index{f\+\_\+max2@{f\+\_\+max2}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{f\+\_\+max2}{f\_max2}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::f\+\_\+max2}
+
+\hypertarget{classkappa__distribution_a6506e5322c9a9c919af36d9d34dbb180}{}\label{classkappa__distribution_a6506e5322c9a9c919af36d9d34dbb180} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!im\+\_\+epsilon@{im\+\_\+epsilon}}
+\index{im\+\_\+epsilon@{im\+\_\+epsilon}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{im\+\_\+epsilon}{im\_epsilon}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::im\+\_\+epsilon}
+
+\hypertarget{classkappa__distribution_adabd36d6214f535740375a0bdf13f115}{}\label{classkappa__distribution_adabd36d6214f535740375a0bdf13f115} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!kappa@{kappa}}
+\index{kappa@{kappa}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{kappa}{kappa}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::kappa\mbox{[}4\mbox{]}}
+
+\hypertarget{classkappa__distribution_a534c1be1b65e324fa62a733b3538196a}{}\label{classkappa__distribution_a534c1be1b65e324fa62a733b3538196a} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!mtrand@{mtrand}}
+\index{mtrand@{mtrand}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{mtrand}{mtrand}}
+{\footnotesize\ttfamily gsl\+\_\+rng$\ast$ kappa\+\_\+distribution\+::mtrand}
+
+\hypertarget{classkappa__distribution_ab816226e269c7af719438350cebaf4eb}{}\label{classkappa__distribution_ab816226e269c7af719438350cebaf4eb} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!N\+\_\+int\+\_\+steps@{N\+\_\+int\+\_\+steps}}
+\index{N\+\_\+int\+\_\+steps@{N\+\_\+int\+\_\+steps}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{N\+\_\+int\+\_\+steps}{N\_int\_steps}}
+{\footnotesize\ttfamily int kappa\+\_\+distribution\+::\+N\+\_\+int\+\_\+steps}
+
+\hypertarget{classkappa__distribution_a24fa777b043581c42d7b1219509bcef1}{}\label{classkappa__distribution_a24fa777b043581c42d7b1219509bcef1} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!n\+\_\+intervals@{n\+\_\+intervals}}
+\index{n\+\_\+intervals@{n\+\_\+intervals}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{n\+\_\+intervals}{n\_intervals}}
+{\footnotesize\ttfamily int kappa\+\_\+distribution\+::n\+\_\+intervals}
+
+\hypertarget{classkappa__distribution_a437034eceb23e234b297882e74e65635}{}\label{classkappa__distribution_a437034eceb23e234b297882e74e65635} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!n\+\_\+maximums@{n\+\_\+maximums}}
+\index{n\+\_\+maximums@{n\+\_\+maximums}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{n\+\_\+maximums}{n\_maximums}}
+{\footnotesize\ttfamily int kappa\+\_\+distribution\+::n\+\_\+maximums}
+
+\hypertarget{classkappa__distribution_af7d9662cfb3cd567676f36785a3d15a1}{}\label{classkappa__distribution_af7d9662cfb3cd567676f36785a3d15a1} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!norm@{norm}}
+\index{norm@{norm}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{norm}{norm}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::norm\mbox{[}2\mbox{]}}
+
+\hypertarget{classkappa__distribution_ac1df2a43af198de04f20db0067754f31}{}\label{classkappa__distribution_ac1df2a43af198de04f20db0067754f31} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!offset@{offset}}
+\index{offset@{offset}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::offset}
+
+\hypertarget{classkappa__distribution_aaf581ec013e458d9632689422352b575}{}\label{classkappa__distribution_aaf581ec013e458d9632689422352b575} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!x1@{x1}}
+\index{x1@{x1}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{x1}{x1}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::x1}
+
+\hypertarget{classkappa__distribution_a13e498d40d784837a04374e35d4ff4b7}{}\label{classkappa__distribution_a13e498d40d784837a04374e35d4ff4b7} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!x2@{x2}}
+\index{x2@{x2}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{x2}{x2}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::x2}
+
+\hypertarget{classkappa__distribution_add191b8968caa8c0f56806ab95ab9541}{}\label{classkappa__distribution_add191b8968caa8c0f56806ab95ab9541} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!x3@{x3}}
+\index{x3@{x3}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{x3}{x3}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::x3}
+
+\hypertarget{classkappa__distribution_a1b1f2f453758df12ae36c45a2ef1442e}{}\label{classkappa__distribution_a1b1f2f453758df12ae36c45a2ef1442e} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!x\+\_\+max1@{x\+\_\+max1}}
+\index{x\+\_\+max1@{x\+\_\+max1}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{x\+\_\+max1}{x\_max1}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::x\+\_\+max1}
+
+\hypertarget{classkappa__distribution_a8ddb60e0b690eba68d3651975e0de470}{}\label{classkappa__distribution_a8ddb60e0b690eba68d3651975e0de470} 
+\index{kappa\+\_\+distribution@{kappa\+\_\+distribution}!x\+\_\+max2@{x\+\_\+max2}}
+\index{x\+\_\+max2@{x\+\_\+max2}!kappa\+\_\+distribution@{kappa\+\_\+distribution}}
+\subsubsection{\texorpdfstring{x\+\_\+max2}{x\_max2}}
+{\footnotesize\ttfamily double kappa\+\_\+distribution\+::x\+\_\+max2}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\hyperlink{prob__distrib_8h}{prob\+\_\+distrib.\+h}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector',['Vector',['../class_p_c_a_1_1_vector.html',1,'PCA']]]
+  ['uniformrand',['UniformRand',['../class_p_c_a_1_1_uniform_rand.html',1,'PCA']]]
 ];

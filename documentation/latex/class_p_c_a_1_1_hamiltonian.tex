@@ -1,0 +1,241 @@
+\hypertarget{class_p_c_a_1_1_hamiltonian}{}\section{P\+CA\+:\+:Hamiltonian Class Reference}
+\label{class_p_c_a_1_1_hamiltonian}\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+
+
+\hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian}.  
+
+
+
+
+{\ttfamily \#include $<$Hamiltonian.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_c_a_1_1_hamiltonian_a3010d0e945bf871c22e57d530783c02a}{Hamiltonian} (int num\+Sites\+\_\+in)
+\item 
+\hyperlink{class_p_c_a_1_1_hamiltonian_ad2663a98cb52b4675ed01d6b911dd45a}{Hamiltonian} (int num\+Sites\+\_\+in, double q\+\_\+in, double m\+\_\+in, double c\+\_\+in, double d\+\_\+in, double a\+\_\+in, double b\+\_\+in=0, double alpha\+\_\+in=1.\+0, double mu\+\_\+in=0)
+\begin{DoxyCompactList}\small\item\em Constructor for homopolymer. \end{DoxyCompactList}\item 
+bool \hyperlink{class_p_c_a_1_1_hamiltonian_a3c9bddc6635c2a5a2ba0b2956126eb79}{check\+All\+Param\+Are\+Seted} ()
+\item 
+\hyperlink{class_p_c_a_1_1_hamiltonian_a87dcca06e1580312d8ffd4ef7fcad219}{$\sim$\+Hamiltonian} ()
+\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_aaf2a99fc482ccd2ebb0dc671f1a8df5a}{energy\+One\+Site} (int site, const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&\hyperlink{classpolymer}{polymer}) const
+\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_a0751ca31444a5de38e6e5d7d07843538}{energy\+All\+Sites} (const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&\hyperlink{classpolymer}{polymer}) const
+\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b}{generate\+Tau} (double kappa\+\_\+i, double T) const
+\begin{DoxyCompactList}\small\item\em Generate tau according Gaussian distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Push functions (fills arrays including from\+Site and to\+Site!)\+:}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_aa1acb10e2078e74b747892db50a0342c}{push\+Alpha} (double alpha\+\_\+in)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_a98a0769af6bbaae97843e821b9b516a1}{push\+Mu} (double mu\+\_\+in)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_acc90d71bea33d377b93db657f4444d93}{pushQ} (double q\+\_\+in, int from\+Site, int to\+Site)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_a65c8f6848095abff386aa04a916b0c81}{pushM} (double m\+\_\+in, int from\+Site, int to\+Site)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_a9ca9ef677e2fedc8d82faca80e216e17}{pushC} (double c\+\_\+in, int from\+Site, int to\+Site)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_a8f0f25f18c67f7943714d086737e427f}{pushD} (double d\+\_\+in, int from\+Site, int to\+Site)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_aacf57a40855dbf2e27f598b0af2fcba3}{pushA} (double a\+\_\+in, int from\+Site, int to\+Site)
+\item 
+void \hyperlink{class_p_c_a_1_1_hamiltonian_a5390261dba56862d9ce18d0102f81ce1}{pushB} (double b\+\_\+in, int from\+Site, int to\+Site)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_p_c_a_1_1_hamiltonian_ad974eb16fba08e8e07cd60756fd223fb}{num\+Sites}
+\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_a71a66a52512faafc9bc8594d96f02e5f}{alpha}
+\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_afe68ce905e666835d5f1042c15be14bc}{mu}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_a2ff873d072df1447deb904d615fe9f02}{q}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_a6f5a67ef0c252c98edf24637179dbbc7}{m}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_ada70e13b8ae935e2109179d50fcfaa2f}{c}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_a61b0c483fb1966a22eaed55cca41950d}{d}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_aec8578a7d250be77a3e2eb84718815c7}{a}
+\item 
+double $\ast$ \hyperlink{class_p_c_a_1_1_hamiltonian_ac3a46f259db252d1b3a4ddbf40422026}{b}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian}. 
+
+\[ H=-\sum_{i=1}^{N-1} (2+\mu)\kappa_{i+1} \kappa_i + \alpha\sum_{i=1}^{N} \left\{ 2\kappa_i ^2 + q ( \kappa_i^2-m^2)^2+ \frac{c}{2}(d \kappa_i^2+1) \tau^2-a(b\kappa_i^2+1)\tau_i\right\} \] 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_c_a_1_1_hamiltonian_a3010d0e945bf871c22e57d530783c02a}{}\label{class_p_c_a_1_1_hamiltonian_a3010d0e945bf871c22e57d530783c02a} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!Hamiltonian@{Hamiltonian}}
+\index{Hamiltonian@{Hamiltonian}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{Hamiltonian()}{Hamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Hamiltonian\+::\+Hamiltonian (\begin{DoxyParamCaption}\item[{int}]{num\+Sites\+\_\+in }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_ad2663a98cb52b4675ed01d6b911dd45a}{}\label{class_p_c_a_1_1_hamiltonian_ad2663a98cb52b4675ed01d6b911dd45a} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!Hamiltonian@{Hamiltonian}}
+\index{Hamiltonian@{Hamiltonian}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{Hamiltonian()}{Hamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Hamiltonian\+::\+Hamiltonian (\begin{DoxyParamCaption}\item[{int}]{num\+Sites\+\_\+in,  }\item[{double}]{q\+\_\+in,  }\item[{double}]{m\+\_\+in,  }\item[{double}]{c\+\_\+in,  }\item[{double}]{d\+\_\+in,  }\item[{double}]{a\+\_\+in,  }\item[{double}]{b\+\_\+in = {\ttfamily 0},  }\item[{double}]{alpha\+\_\+in = {\ttfamily 1.0},  }\item[{double}]{mu\+\_\+in = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor for homopolymer. 
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a87dcca06e1580312d8ffd4ef7fcad219}{}\label{class_p_c_a_1_1_hamiltonian_a87dcca06e1580312d8ffd4ef7fcad219} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!````~Hamiltonian@{$\sim$\+Hamiltonian}}
+\index{````~Hamiltonian@{$\sim$\+Hamiltonian}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{$\sim$\+Hamiltonian()}{~Hamiltonian()}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Hamiltonian\+::$\sim$\+Hamiltonian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_hamiltonian_a3c9bddc6635c2a5a2ba0b2956126eb79}{}\label{class_p_c_a_1_1_hamiltonian_a3c9bddc6635c2a5a2ba0b2956126eb79} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!check\+All\+Param\+Are\+Seted@{check\+All\+Param\+Are\+Seted}}
+\index{check\+All\+Param\+Are\+Seted@{check\+All\+Param\+Are\+Seted}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{check\+All\+Param\+Are\+Seted()}{checkAllParamAreSeted()}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+Hamiltonian\+::check\+All\+Param\+Are\+Seted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a0751ca31444a5de38e6e5d7d07843538}{}\label{class_p_c_a_1_1_hamiltonian_a0751ca31444a5de38e6e5d7d07843538} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!energy\+All\+Sites@{energy\+All\+Sites}}
+\index{energy\+All\+Sites@{energy\+All\+Sites}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{energy\+All\+Sites()}{energyAllSites()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::energy\+All\+Sites (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&}]{polymer }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_aaf2a99fc482ccd2ebb0dc671f1a8df5a}{}\label{class_p_c_a_1_1_hamiltonian_aaf2a99fc482ccd2ebb0dc671f1a8df5a} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!energy\+One\+Site@{energy\+One\+Site}}
+\index{energy\+One\+Site@{energy\+One\+Site}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{energy\+One\+Site()}{energyOneSite()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::energy\+One\+Site (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&}]{polymer }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b}{}\label{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!generate\+Tau@{generate\+Tau}}
+\index{generate\+Tau@{generate\+Tau}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{generate\+Tau()}{generateTau()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::generate\+Tau (\begin{DoxyParamCaption}\item[{double}]{kappa\+\_\+i,  }\item[{double}]{T }\end{DoxyParamCaption}) const}
+
+
+
+Generate tau according Gaussian distribution. 
+
+\[P\sim \exp\left(-\frac{(\tau_i-\mu)^2}{2\sigma^2}\right)\] Coefficients\+: \[\mu=\frac{a(b\kappa_i^2+1)}{c(d\kappa_i^2+1)}\] \[\sigma^2=\frac{T}{\alpha c(d\kappa_i^2+1)}\] \hypertarget{class_p_c_a_1_1_hamiltonian_aacf57a40855dbf2e27f598b0af2fcba3}{}\label{class_p_c_a_1_1_hamiltonian_aacf57a40855dbf2e27f598b0af2fcba3} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushA@{pushA}}
+\index{pushA@{pushA}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+A()}{pushA()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushA (\begin{DoxyParamCaption}\item[{double}]{a\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_aa1acb10e2078e74b747892db50a0342c}{}\label{class_p_c_a_1_1_hamiltonian_aa1acb10e2078e74b747892db50a0342c} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!push\+Alpha@{push\+Alpha}}
+\index{push\+Alpha@{push\+Alpha}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+Alpha()}{pushAlpha()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::push\+Alpha (\begin{DoxyParamCaption}\item[{double}]{alpha\+\_\+in }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a5390261dba56862d9ce18d0102f81ce1}{}\label{class_p_c_a_1_1_hamiltonian_a5390261dba56862d9ce18d0102f81ce1} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushB@{pushB}}
+\index{pushB@{pushB}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+B()}{pushB()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushB (\begin{DoxyParamCaption}\item[{double}]{b\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a9ca9ef677e2fedc8d82faca80e216e17}{}\label{class_p_c_a_1_1_hamiltonian_a9ca9ef677e2fedc8d82faca80e216e17} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushC@{pushC}}
+\index{pushC@{pushC}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+C()}{pushC()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushC (\begin{DoxyParamCaption}\item[{double}]{c\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a8f0f25f18c67f7943714d086737e427f}{}\label{class_p_c_a_1_1_hamiltonian_a8f0f25f18c67f7943714d086737e427f} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushD@{pushD}}
+\index{pushD@{pushD}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+D()}{pushD()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushD (\begin{DoxyParamCaption}\item[{double}]{d\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a65c8f6848095abff386aa04a916b0c81}{}\label{class_p_c_a_1_1_hamiltonian_a65c8f6848095abff386aa04a916b0c81} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushM@{pushM}}
+\index{pushM@{pushM}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+M()}{pushM()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushM (\begin{DoxyParamCaption}\item[{double}]{m\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a98a0769af6bbaae97843e821b9b516a1}{}\label{class_p_c_a_1_1_hamiltonian_a98a0769af6bbaae97843e821b9b516a1} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!push\+Mu@{push\+Mu}}
+\index{push\+Mu@{push\+Mu}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+Mu()}{pushMu()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::push\+Mu (\begin{DoxyParamCaption}\item[{double}]{mu\+\_\+in }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_acc90d71bea33d377b93db657f4444d93}{}\label{class_p_c_a_1_1_hamiltonian_acc90d71bea33d377b93db657f4444d93} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!pushQ@{pushQ}}
+\index{pushQ@{pushQ}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{push\+Q()}{pushQ()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Hamiltonian\+::pushQ (\begin{DoxyParamCaption}\item[{double}]{q\+\_\+in,  }\item[{int}]{from\+Site,  }\item[{int}]{to\+Site }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_hamiltonian_aec8578a7d250be77a3e2eb84718815c7}{}\label{class_p_c_a_1_1_hamiltonian_aec8578a7d250be77a3e2eb84718815c7} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!a@{a}}
+\index{a@{a}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a71a66a52512faafc9bc8594d96f02e5f}{}\label{class_p_c_a_1_1_hamiltonian_a71a66a52512faafc9bc8594d96f02e5f} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!alpha@{alpha}}
+\index{alpha@{alpha}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_ac3a46f259db252d1b3a4ddbf40422026}{}\label{class_p_c_a_1_1_hamiltonian_ac3a46f259db252d1b3a4ddbf40422026} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!b@{b}}
+\index{b@{b}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::b\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_ada70e13b8ae935e2109179d50fcfaa2f}{}\label{class_p_c_a_1_1_hamiltonian_ada70e13b8ae935e2109179d50fcfaa2f} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!c@{c}}
+\index{c@{c}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::c\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a61b0c483fb1966a22eaed55cca41950d}{}\label{class_p_c_a_1_1_hamiltonian_a61b0c483fb1966a22eaed55cca41950d} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!d@{d}}
+\index{d@{d}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::d\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a6f5a67ef0c252c98edf24637179dbbc7}{}\label{class_p_c_a_1_1_hamiltonian_a6f5a67ef0c252c98edf24637179dbbc7} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!m@{m}}
+\index{m@{m}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::m\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_afe68ce905e666835d5f1042c15be14bc}{}\label{class_p_c_a_1_1_hamiltonian_afe68ce905e666835d5f1042c15be14bc} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!mu@{mu}}
+\index{mu@{mu}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{mu}{mu}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::mu\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_ad974eb16fba08e8e07cd60756fd223fb}{}\label{class_p_c_a_1_1_hamiltonian_ad974eb16fba08e8e07cd60756fd223fb} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!num\+Sites@{num\+Sites}}
+\index{num\+Sites@{num\+Sites}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{num\+Sites}{numSites}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Hamiltonian\+::num\+Sites\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_hamiltonian_a2ff873d072df1447deb904d615fe9f02}{}\label{class_p_c_a_1_1_hamiltonian_a2ff873d072df1447deb904d615fe9f02} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!q@{q}}
+\index{q@{q}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily double$\ast$ P\+C\+A\+::\+Hamiltonian\+::q\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Energy/\hyperlink{_hamiltonian_8h}{Hamiltonian.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Energy/\hyperlink{_hamiltonian_8cpp}{Hamiltonian.\+cpp}\end{DoxyCompactItemize}

@@ -9,6 +9,8 @@
 #include "../include/Polymer.h"
 #include "../include/Vector.h"
 #include "../include/Utilities.h"
+//#include "../include/Energy/LennardJones.h"
+//#include "../include/Energy/Hamiltonian.h"
 #include <stdio.h>
 #include <math.h>
 
@@ -69,6 +71,16 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	}
 }
 
+void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+{
+    int i;
+    double tmp;
+    double interactionOld, interactionNew;
+    double mu, sigma;
+    
+    interactionOld = interaction.energy(r[i]);
+    tauNew = hamiltonian.generateTau(kappa[i], temperature);
 
+}
 
 }//end of namespace

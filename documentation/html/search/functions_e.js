@@ -1,19 +1,17 @@
 var searchData=
 [
-  ['setkappa',['setKappa',['../class_p_c_a_1_1_polymer.html#ac8631ac2842b00802f24478b525c05db',1,'PCA::Polymer']]],
-  ['setmonomerlengthsfromradiusvectors',['setMonomerLengthsFromRadiusVectors',['../class_p_c_a_1_1_polymer.html#a2dae638afa952c286c16122c7ab52b6e',1,'PCA::Polymer']]],
-  ['setmonomerlengthsfromvectorst',['setMonomerLengthsFromVectorsT',['../class_p_c_a_1_1_polymer.html#a217cddfa5b9e5bfe68f8e5d0802e2f31',1,'PCA::Polymer']]],
-  ['setnewradiusvectorsviarotation',['setNewRadiusVectorsViaRotation',['../class_p_c_a_1_1_polymer_m_c.html#a80c92a94292d085a0d0ce0563ae0a1fd',1,'PCA::PolymerMC']]],
-  ['setnewvectorstnbfromkappatau',['setNewVectorsTNBfromKappaTau',['../class_p_c_a_1_1_polymer_m_c.html#ab7ec6ffe521bf27c218f4a6eac6c394b',1,'PCA::PolymerMC']]],
-  ['setradiusvector',['setRadiusVector',['../class_p_c_a_1_1_polymer.html#a0c6e93aa35271b98d92a38afd2b0913d',1,'PCA::Polymer']]],
-  ['setradiusvectorsfromvectorst',['setRadiusVectorsFromVectorsT',['../class_p_c_a_1_1_polymer.html#a258f607c38c1a247dd37659b236aa3fa',1,'PCA::Polymer']]],
-  ['settau',['setTau',['../class_p_c_a_1_1_polymer.html#a4ac116507767651444c852a75ab79c2d',1,'PCA::Polymer']]],
-  ['setvectorsbfromvectorst',['setVectorsBfromVectorsT',['../class_p_c_a_1_1_polymer.html#a8dad939cbc8d8df73784526ad4a07aef',1,'PCA::Polymer']]],
-  ['setvectorstfromradiusvectors',['setVectorsTfromRadiusVectors',['../class_p_c_a_1_1_polymer.html#aa655eb1299b272fef8c91f003abbf50d',1,'PCA::Polymer']]],
-  ['setvectorstnbfromkappatau',['setVectorsTNBfromKappaTau',['../class_p_c_a_1_1_polymer.html#a55787461ed50776c48819a5cc3911c38',1,'PCA::Polymer']]],
-  ['setverbose',['setVerbose',['../class_p_c_a_1_1_file.html#a71cb80c09faa4be71eb09ae074aac4b2',1,'PCA::File::setVerbose()'],['../class_p_c_a_1_1_vector.html#a585f8511431df02801aa9cff0e2f1ae4',1,'PCA::Vector::setVerbose()']]],
-  ['shownumberoflinesinblocks',['showNumberOfLinesInBlocks',['../class_p_c_a_1_1_file.html#a25dd7a0266edd1fc026f27448003b36f',1,'PCA::File']]],
-  ['sitedwenergy',['siteDWenergy',['../class_p_c_a_1_1_polymer_energy.html#a835b345f0e6151a18962e4fb06a922bf',1,'PCA::PolymerEnergy']]],
-  ['standartdeviation',['standartDeviation',['../namespace_p_c_a.html#ae9120f4f9875a87768cc3090196892a8',1,'PCA']]],
-  ['stepfunctioncalculator',['StepFunctionCalculator',['../class_p_c_a_1_1_step_function_calculator.html#a9bf57193b40bb2b8a33fd5a5878b0b2a',1,'PCA::StepFunctionCalculator']]]
+  ['parameter_5fa',['parameter_a',['../classpolymer.html#ab1dd0274207c36a79b7fb5674e7d0ed6',1,'polymer']]],
+  ['polymer',['Polymer',['../class_p_c_a_1_1_polymer.html#ac835d908dc32b787ca80f26cd0e6c68b',1,'PCA::Polymer::Polymer(FileType fileType, char *fileName, int numberLinesInBlock=0, int polymerNumber=1)'],['../class_p_c_a_1_1_polymer.html#ac2645c33eba98a8ec1670d69b92060c8',1,'PCA::Polymer::Polymer(int numberOfMonomers, const Vector *r=NULL, const Vector *t=NULL, const Vector *b=NULL)'],['../class_p_c_a_1_1_polymer.html#a7d08722028cd9bf11b042a1b3b0e1d37',1,'PCA::Polymer::Polymer(int numberOfMonomers, const double *kappa_in, const double *tau_in)'],['../class_p_c_a_1_1_polymer.html#a1ce99540db06e9e48392423ba516cd2f',1,'PCA::Polymer::Polymer(const Polymer &amp;polymer)'],['../classpolymer.html#abf30f7effe8980e0a4afa2aa2a45c1aa',1,'polymer::polymer()']]],
+  ['polymermc',['PolymerMC',['../class_p_c_a_1_1_polymer_m_c.html#a3a792caa4db0fe8a7c749c4b0f6fce25',1,'PCA::PolymerMC']]],
+  ['polynom',['polynom',['../class_p_c_a_1_1_double_well_rand.html#a345fbcb1a01172464184b418ee761442',1,'PCA::DoubleWellRand::polynom()'],['../classkappa__distribution.html#a7e0171752a4a1c1b8b99950394281922',1,'kappa_distribution::polynom()']]],
+  ['print',['print',['../class_p_c_a_1_1_vector.html#a6411d63770d6d711c5c854e21ca1776e',1,'PCA::Vector']]],
+  ['print_5fstat',['print_stat',['../classkappa__distribution.html#abf97127e675e370e41c20a4bcf3920ce',1,'kappa_distribution']]],
+  ['pusha',['pushA',['../class_p_c_a_1_1_hamiltonian.html#aacf57a40855dbf2e27f598b0af2fcba3',1,'PCA::Hamiltonian']]],
+  ['pushalpha',['pushAlpha',['../class_p_c_a_1_1_hamiltonian.html#aa1acb10e2078e74b747892db50a0342c',1,'PCA::Hamiltonian']]],
+  ['pushb',['pushB',['../class_p_c_a_1_1_hamiltonian.html#a5390261dba56862d9ce18d0102f81ce1',1,'PCA::Hamiltonian']]],
+  ['pushc',['pushC',['../class_p_c_a_1_1_hamiltonian.html#a9ca9ef677e2fedc8d82faca80e216e17',1,'PCA::Hamiltonian']]],
+  ['pushd',['pushD',['../class_p_c_a_1_1_hamiltonian.html#a8f0f25f18c67f7943714d086737e427f',1,'PCA::Hamiltonian']]],
+  ['pushm',['pushM',['../class_p_c_a_1_1_hamiltonian.html#a65c8f6848095abff386aa04a916b0c81',1,'PCA::Hamiltonian']]],
+  ['pushmu',['pushMu',['../class_p_c_a_1_1_hamiltonian.html#a98a0769af6bbaae97843e821b9b516a1',1,'PCA::Hamiltonian']]],
+  ['pushq',['pushQ',['../class_p_c_a_1_1_hamiltonian.html#acc90d71bea33d377b93db657f4444d93',1,'PCA::Hamiltonian']]]
 ];
