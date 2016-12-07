@@ -82,7 +82,7 @@ public:
     * \f[\mu=\frac{a(b\kappa_i^2+1)}{c(d\kappa_i^2+1)}\f]
     * \f[\sigma^2=\frac{T}{\alpha c(d\kappa_i^2+1)}\f]
     */
-    double generateTau (int site, double kappa_i, double T) const;
+    double generateTau (int site, double kappa_site, double temperature) const;
 
 };
 }//end of namespace PCA

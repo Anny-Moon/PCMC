@@ -216,16 +216,16 @@ double Hamiltonian::energyAllSites(const PolymerMC& polymer) const
     return E1 + E2;
 }
 
-double Hamiltonian::generateTau (int site, double kappa_site, double T) const
+double Hamiltonian::generateTau (int site, double kappa_site, double temperature) const
 {
     double A2, B, mu, sigma;
     
     
-    A2 = c * (d * kappa_i*kappa_i + 1.0);
-    B = a * (b * kappa_i*kappa_i + 1.0);
+    A2 = c[site] * (d[site] * kappa_site*kappa_site + 1.0);
+    B = a[site] * (b[site] * kappa_site*kappa_site + 1.0);
     
     mu = B / A2;
-    sigma = sqrt(T / (alpha * A2));
+    sigma = sqrt(temperature / (alpha * A2));
     GaussRand gaussRand(mu, sigma);
     return gaussRand();
 
