@@ -11,6 +11,7 @@
 #include "Vector.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/LennardJones.h"
+#include "Random/UniformRand.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -32,7 +33,8 @@ private:
 //shoud be initialized as 0 at the constructor?
     int acceptNumberKappa;
     int acceptNumberTau;
-
+    
+    UniformRand uniformRand;
 public:
     /** Constructor */
     PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);

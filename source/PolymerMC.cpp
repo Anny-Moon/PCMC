@@ -93,9 +93,9 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
 {
     int i;
-    double tmp;
+    double probability, tmp;
     double interactionOld, interactionNew;
-    double mu, sigma;
+    double mu, sigma, randomNumber;
     
     interactionOld = interaction.energy(r[site]);
     
@@ -107,6 +107,11 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
+    interactionNew = interaction.energy(r[site]);
+    probability = exp((-interactionNew + interactionOld)/temperarure);
+    
+    rundomNumber = uniformRand();
+    
 }
 
 }//end of namespace
