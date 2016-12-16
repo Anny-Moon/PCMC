@@ -10,6 +10,7 @@
 #include "../../include/Energy/Hamiltonian.h"
 #include "../../include/PolymerMC.h"
 #include "../../include/Random/GaussRand.h"
+#include "../../include/Random/DoubleWellRand.h"
 #include "../../include/Vector.h"
 #include "../../include/Utilities.h"
 #include "../../include/PCAmacros.h"
@@ -230,5 +231,19 @@ double Hamiltonian::generateTau (int site, double kappa_site, double temperature
     return gaussRand();
 
 }
+
+double Hamiltonian::generateKappa(int site, double tau_site, double kappa_siteMore, double kappa_siteLess, double temperature) const
+{
+    double A,B,C;
+    
+    A = alpha/temperature * q[site];
+    B = alpha/temperature * (a[site]*b[site]*tau_site + 2.0*q[site]*m[site]*m[site]-c[site]*0.5*d[site]*tau_site*tau_site - 2.0);
+    C = (2.0 + mu)/temperature * (kappa_siteLess+kappa_siteMore);
+    
+    DoubleWellRand dwRand(A,B,C);
+    return dwRand();
+    
+}
+
 
 }//end of namespace PCA

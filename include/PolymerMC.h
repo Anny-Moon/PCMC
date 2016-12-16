@@ -34,7 +34,7 @@ private:
     int acceptNumberKappa;
     int acceptNumberTau;
     
-    UniformRand uniformRand;
+    UniformRand uniRand; //< for Metropolis
 public:
     /** Constructor */
     PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);
@@ -53,6 +53,7 @@ public:
     
     /**@name Monte Carlo updates*/
     ///@{
+    void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     ///@}
 };

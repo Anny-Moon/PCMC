@@ -24,7 +24,10 @@ PolymerMC::PolymerMC(int numberOfMonomers, const double* kappa, const double* ta
     
     rOld = new Vector [numMonomers+1];
     Vector::copyArray(numMonomers+1, rOld, r);
-
+    setVectorsTNBfromKappaTau();
+    
+    acceptNumberKappa = 0;
+    acceptNumberTau = 0;
 }
 
 PolymerMC::~PolymerMC()
@@ -90,6 +93,39 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	}
 }
 
+void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+{
+    int i;
+    double probability, tmp;
+    double interactionOld, interactionNew;
+    double mu, sigma, randomNumber;
+    
+    interactionOld = interaction.energy(r[site]);
+    
+    kappaNew = hamiltonian.generateKappa(site, tau[site],kappa[site+1], kappa[site-1], temperature);
+    tauNew = tau[site];
+    
+    saveOldRadiusVectors(site);
+    setNewRadiusVectorsViaRotation(site);
+
+    interactionNew = interaction.energy(r[site]);
+    probability = exp((-interactionNew + interactionOld)/temperature);
+    
+    randomNumber = uniRand();
+    
+    if(randomNumber<probability){ //accept
+	kappa[site] = kappaNew;
+	setNewVectorsTNBfromKappaTau(site);
+	acceptNumberKappa++;
+    }
+    
+    else{ //reject
+	for(i=site+1;i<numMonomers+1;i++)
+	    r[i] = rOld[i];
+    }
+}
+
+
 void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
 {
     int i;
@@ -102,16 +138,24 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
     kappaNew = kappa[site];
     
-    setNewVectorsTNBfromKappaTau(site);
-    
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
     interactionNew = interaction.energy(r[site]);
-    probability = exp((-interactionNew + interactionOld)/temperarure);
+    probability = exp((-interactionNew + interactionOld)/temperature);
     
-    rundomNumber = uniformRand();
+    randomNumber = uniRand();
     
+    if(randomNumber<probability){ //accept
+	tau[site] = tauNew;
+	setNewVectorsTNBfromKappaTau(site);
+	acceptNumberTau++;
+    }
+    
+    else{ //reject
+	for(i=site+1;i<numMonomers+1;i++)
+	    r[i] = rOld[i];
+    }
 }
 
 }//end of namespace

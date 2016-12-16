@@ -76,6 +76,21 @@ public:
     double energyOneSite(int site, const PolymerMC& polymer) const;
     double energyAllSites(const PolymerMC& polymer) const;
     
+    /** Generate kappa according DoubleWell distribution.
+    * \f[P\sim \exp\left( -a\kappa^4+b\kappa^2+c\kappa\rigth)\f]
+    * Coefficients:
+    * \f[a = \f]
+    * \f[b = \f]
+    * \f[c = \f]
+    */
+    double generateKappa (
+	    int site,
+	    double tau_site,
+	    double kappa_siteMore,
+	    double kappa_siteLess,
+	    double temperature
+    ) const;
+    
     /** Generate tau according Gaussian distribution.
     * \f[P\sim \exp\left(-\frac{(\tau_i-\mu)^2}{2\sigma^2}\right)\f]
     * Coefficients:
