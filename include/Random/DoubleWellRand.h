@@ -63,8 +63,10 @@ private:
     void findNormCoefficients();
     void sort_asc();
 public:
-    DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in = 10.0);
+    DoubleWellRand();
     ~DoubleWellRand();
+    
+    void setParameters(double a_in, double  b_in, double  c_in, double offset_in = 10.0);
     virtual double operator () (); ///< overloading operator ()
     void writeLogFile(FILE* log_file) const;///<parameters output
 

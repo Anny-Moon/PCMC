@@ -229,7 +229,7 @@ void DoubleWellRand::findNormCoefficients()
 
 }
 
-DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double offset_in )
+DoubleWellRand::DoubleWellRand()
 {
     if(seed == 0){
 	printf("----------------\n");
@@ -243,26 +243,7 @@ DoubleWellRand::DoubleWellRand(double a_in, double  b_in, double  c_in, double o
 	printf("----------------\n");
 	exit(1);
     }
-    
-    a = a_in;
-    b = b_in;
-    c = c_in;
-    offset = offset_in;
 
-    if (a<0.0){
-	printf("Error in DoubleWellRand::DoubleWellRand\n");
-	printf("\tcoefficient 'a' cannot be negative.\n");
-	exit(1);
-    }
-    
-    //calculation of maximuma
-    findMaxima();
-    
-    //definition of working intervals
-    findIntervals();
-	
-    //calculation of normalizing coefficients in each interval.
-    findNormCoefficients();
 }
 
 DoubleWellRand::~DoubleWellRand(){};
@@ -301,12 +282,36 @@ void DoubleWellRand::writeLogFile(FILE* log_file) const//parameters output
     }
 }
 
+void DoubleWellRand::setParameters(double a_in, double  b_in, double  c_in, double offset_in)
+{
+    a = a_in;
+    b = b_in;
+    c = c_in;
+    offset = offset_in;
+
+    if (a<0.0){
+	printf("Error in DoubleWellRand::setParameters\n");
+	printf("\tcoefficient 'a' cannot be negative.\n");
+	exit(1);
+    }
+}
+
 double DoubleWellRand::operator () () ///< overloading operator ()
 {
     double gamma1, gamma2;//random numbers
     double ksi; //return value: random number accordoing the distribution;
     int current_interval;
     double maximum;
+	
+    
+    //calculation of maximuma
+    findMaxima();
+    
+    //definition of working intervals
+    findIntervals();
+	
+    //calculation of normalizing coefficients in each interval.
+    findNormCoefficients();
 	
     if(n_intervals==2){
 	gamma1 = uniRand();
