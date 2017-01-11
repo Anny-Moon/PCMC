@@ -14,6 +14,11 @@
 
 #define PCA_PI 3.141592653589793
 
+#define _PCA_ERROR(functionName)\
+    {	printf("Error in %s\n", functionName;\
+	exit(1);\
+    }
+    
 #define _PCA_CATCH_VOID_POINTER(pointer, functionName)\
     if(pointer==NULL){\
 	printf("Error: void pointer\n\tin ");\

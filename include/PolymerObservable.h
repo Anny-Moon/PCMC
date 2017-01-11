@@ -25,7 +25,6 @@ public:
 //    double dotProductTBafterKadanoffTransformation(const Polymer& polymer);
     /** Maps */
     static void writeMapEndToEnd(const Polymer& polymer, char* fileName);
-    static void writeMapDotProduct(Polymer& polymer, char* fileName);
 
 };
 }//end of namespace

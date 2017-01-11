@@ -30,7 +30,7 @@ class Polymer
     
     /** @name Frenet frame vectors:*/
     ///@{
-    Vector* t; /**< tangent not-unit vectors*/
+    Vector* t; /**< tangent unit vectors*/
     Vector* n; /**< normal unit vectors*/
     Vector* b; /**< binormal unot vectors*/
     ///@}
@@ -79,17 +79,22 @@ public:
     /** @name Set ones vectors from another vectors:*/
     ///@{
     void setVectorsTfromRadiusVectors();
-    void setVectorsBfromVectorsT();
+//    void setVectorsBfromVectorsT();
     void setRadiusVectorsFromVectorsT();
     ///@}
     
     /** @name Set lengths of all monomers from vectors:*/
     ///@{
     void setMonomerLengthsFromRadiusVectors();
-    void setMonomerLengthsFromVectorsT();
     ///@}    
-    /** Set vecors t(not unitary!) , n(unitary), b(unitary) and monomerLengths */
+    /** Set vecors t, n, b from kappas, taus and monomerlength(!)*/
     void setVectorsTNBfromKappaTau();
+    
+    /** Set all lengthes of monomers equal to length */
+    void setMonomerLengths(double length);
+    
+    /** Set lengths of monomers equal to array of lengthes of size numMonomers */
+    void setMonomerLengths(const double* length);
 
     /** @name Functions which returns members:*/
     ///@{

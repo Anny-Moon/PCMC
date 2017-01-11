@@ -167,8 +167,8 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 	    t = new Vector[numMonomers];
 	    setVectorsTfromRadiusVectors();
     
-	    b = new Vector[numMonomers];
-	    setVectorsBfromVectorsT();
+//	    b = new Vector[numMonomers];
+//	    setVectorsBfromVectorsT();
 	    break;
 	    
 	case FileType::angles:
@@ -329,6 +329,7 @@ void Polymer::setRadiusVectorsFromVectorsT()
     int i;
 
     _PCA_CATCH_VOID_POINTER(t, "Polymer::setRadiusVectorsFromVectorsT()");
+    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setRadiusVectorsFromVectorsT()");
     
     if(r == NULL ){
 	r = new Vector [numMonomers+1];
@@ -337,7 +338,7 @@ void Polymer::setRadiusVectorsFromVectorsT()
     r[0]=Vector::zero;
 
     for(i=1;i<numMonomers+1;i++)
-        r[i] = r[i-1] + t[i-1];
+        r[i] = r[i-1] + t[i-1]*monomerLength[i-1];
 
 }
 
@@ -346,16 +347,19 @@ void Polymer::setVectorsTfromRadiusVectors()
     int i;
     
     _PCA_CATCH_VOID_POINTER(r, "Polymer::setVectorsTfromRadiusVectors()");
+    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTfromRadiusVectors()");
     
     if(t == NULL ){
 	t = new Vector [numMonomers];
     }
     
-    for(i=0;i<numMonomers;i++)
+    for(i=0;i<numMonomers;i++){
 	t[i] = r[i+1] - r[i];
-
+	t[i] = t[i]/monomerLength[i];
+    }
 }
 
+/*
 void Polymer::setVectorsBfromVectorsT()
 {
     int i;
@@ -369,7 +373,7 @@ void Polymer::setVectorsBfromVectorsT()
     The are only 2 condition: (b[0],t[0]) = 0 and |b[0]| = 1;
     We chose the 3rd condition as: b[0].z = 0 (if t[0] has x or y component));
     NB: b vectors are unitary unlike t vectors!
-    */ 
+     
     b[0].x =  t[0].y / sqrt(t[0].x*t[0].x + t[0].y*t[0].y);
     b[0].y = -t[0].x / sqrt(t[0].x*t[0].x + t[0].y*t[0].y);
     b[0].z = 0.0;
@@ -387,6 +391,7 @@ void Polymer::setVectorsBfromVectorsT()
     }
     
 }
+*/
 
 void Polymer::setMonomerLengthsFromRadiusVectors()
 {
@@ -404,21 +409,6 @@ void Polymer::setMonomerLengthsFromRadiusVectors()
 
 }
 
-void Polymer::setMonomerLengthsFromVectorsT()
-{
-    int i;
-
-    _PCA_CATCH_VOID_POINTER(t, "Polymer::setMonomerLengthsFromVectorsT()");
-
-    if(monomerLength == NULL){
-	monomerLength = new double [numMonomers];
-    }
-    
-    for(i=0;i<numMonomers;i++)
-	monomerLength[i] = t[i].norm();
-
-}
-
 void Polymer::setVectorsTNBfromKappaTau()
 {
     int i;
@@ -427,21 +417,40 @@ void Polymer::setVectorsTNBfromKappaTau()
     _PCA_CATCH_VOID_POINTER(tau, "Polymer::setVectorsTNBfromKappaTau()\n\ttau = NULL");
     _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTNBfromKappaTau()\n\tmonomerLength = NULL");
     
-    monomerLength[0] = t[0].norm();
-    t[0] = Vector::eZ * monomerLength[0];
+    t[0] = Vector::eZ;
     n[0] = Vector::eX;
     b[0] = Vector::eY;
 
     for(i=0;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i+1])*t[i]/monomerLength[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
-	t[i+1] = t[i+1] / t[i+1].norm() * monomerLength[i+1];
+	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+	t[i+1] = t[i+1] / t[i+1].norm();
 	    //t[i+1]=t[i]*(1-s*s*kappa[i]*kappa[i]/2)+n[i]*s*kappa[i]*sqrt(1-s*s*kappa[i]*kappa[i]/4);
-//	monomerLength[i+1] = t[i+1].norm();
 	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
-	n[i+1] = b[i+1] * t[i+1]/monomerLenght[i+1];
-	}
+	n[i+1] = b[i+1] * t[i+1];
+    }
     
+}
+
+void Polymer::setMonomerLengths(double length)
+{
+    int i;
+    
+    if(monomerLength == NULL)
+	monomerLength = new double [numMonomers];
+    
+    for(i=0;i<numMonomers;i++)
+	monomerLength[i] = length;
+}
+
+void Polymer::setMonomerLengths(const double* length)
+{
+    int i;
+    
+    if(monomerLength == NULL)
+	monomerLength = new double [numMonomers];
+    
+    copyArray(numMonomers,monomerLength, length);
 }
 
 const double* Polymer::getMonomerLength() const

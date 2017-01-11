@@ -35,12 +35,18 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
 {
     //Polymer constructor
     
-    r = new Vector[numMonomers+1];
+    kappa = new double [numMonomers];
+    tau = new double [numMonomers];
+    
+    t = new Vector [numMonomers];
+    n = new Vector [numMonomers];
+    b = new Vector [numMonomers];
+    
+    r = new Vector [numMonomers+1];
     rOld = new Vector [numMonomers+1];
     
-    t = new Vector[numberOfMonomers];
-    n = new Vector[numberOfMonomers];
-    b = new Vector[numberOfMonomers];
+    acceptNumberKappa = 0;
+    acceptNumberTau = 0;
 
 }
 
@@ -57,18 +63,14 @@ void PolymerMC::initWithRandomTaus()
     int i;
     UniformRand uRand(0, 2.0*PCA_PI);
     
-    _PCA_CATCH_VOID_POINTER(kappa, "PolymerMC::initWithRandomTaus()");
-    _PCA_CATCH_VOID_POINTER(tau, "PolymerMC::initWithRandomTaus()");
-    
     for(i=0;i<numMonomers;i++){
 	kappa[i] = 0.0;
 	tau[i] = uRand();
     }
     
-    _PCA_CATCH_VOID_POINTER(t, "PolymerMC::initWithRandomTaus()");
-    _PCA_CATCH_VOID_POINTER(n, "PolymerMC::initWithRandomTaus()");
-    _PCA_CATCH_VOID_POINTER(b, "PolymerMC::initWithRandomTaus()");
-    
+    setVectorsTNBfromKappaTau();
+    setRadiusVectorsFromVectorsT();
+    Vector::copyArray(numMonomers+1, rOld, r);
     
 }
 
