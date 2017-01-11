@@ -9,12 +9,13 @@
 #include "../include/Polymer.h"
 #include "../include/Vector.h"
 #include "../include/Utilities.h"
+#include "../include/PCAmacros.h"
 //#include "../include/Energy/LennardJones.h"
 //#include "../include/Energy/Hamiltonian.h"
 #include <stdio.h>
 #include <math.h>
 
-#define _CATCH_ERROR(pointer, error_message) if(pointer==NULL){printf(error_message);exit(1);}
+//#define _CATCH_ERROR(pointer, error_message) if(pointer==NULL){printf(error_message);exit(1);}
 
 namespace PCA{
 
@@ -30,6 +31,19 @@ PolymerMC::PolymerMC(int numberOfMonomers, const double* kappa, const double* ta
     acceptNumberTau = 0;
 }
 
+PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
+{
+    //Polymer constructor
+    
+    r = new Vector[numMonomers+1];
+    rOld = new Vector [numMonomers+1];
+    
+    t = new Vector[numberOfMonomers];
+    n = new Vector[numberOfMonomers];
+    b = new Vector[numberOfMonomers];
+
+}
+
 PolymerMC::~PolymerMC()
 {
 
@@ -38,10 +52,30 @@ PolymerMC::~PolymerMC()
     //Polymer distructor
 }
 
+void PolymerMC::initWithRandomTaus()
+{
+    int i;
+    UniformRand uRand(0, 2.0*PCA_PI);
+    
+    _PCA_CATCH_VOID_POINTER(kappa, "PolymerMC::initWithRandomTaus()");
+    _PCA_CATCH_VOID_POINTER(tau, "PolymerMC::initWithRandomTaus()");
+    
+    for(i=0;i<numMonomers;i++){
+	kappa[i] = 0.0;
+	tau[i] = uRand();
+    }
+    
+    _PCA_CATCH_VOID_POINTER(t, "PolymerMC::initWithRandomTaus()");
+    _PCA_CATCH_VOID_POINTER(n, "PolymerMC::initWithRandomTaus()");
+    _PCA_CATCH_VOID_POINTER(b, "PolymerMC::initWithRandomTaus()");
+    
+    
+}
+
 void PolymerMC::saveOldRadiusVectors(int site)
 {
     int j;
-    
+
     for(j=site+1;j<numMonomers+1;j++)
 	rOld[j]=r[j];
 }

@@ -38,9 +38,13 @@ private:
 public:
     /** Constructor */
     PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);
+    PolymerMC(int numberOfMonomers);
     
     /** Destructor */
     ~PolymerMC();
+    
+    /** Initialization of PolymerMC with random taus and kappas = 0 */
+    void initWithRandomTaus();
     
     /** Saves old radius vectors starting from (site+1): rOld[site+1]=r[site+1] ...*/
     void saveOldRadiusVectors(int site);
