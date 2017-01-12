@@ -33,27 +33,22 @@ int main(int np, char **p)
     printf("-------------------------------------\n");
     printf("============================Anna=====\n");
     
-    RandomGenerator::initialization(111);
     log_file = fopen("results/log_file","w");
     //printf("%s\n",p[1]);
-    //sprintf(str,"data/xyz_%s.dat",p[1]);
+    sprintf(str,"data/xyz_%s.dat",p[1]);
+    Polymer polymer(Polymer::FileType::coordinates,str,0,1);
+    polymer.setMonomerLengthsFromRadiusVectors();
 
-    PolymerMC polymer(100);
-    polymer.setMonomerLengths(3.8);
-    polymer.initWithRandomTaus();
-    polymer.setVectorsTNBfromKappaTau();
-    
     lfp=fopen("results/lengths.dat","w");
     polymer.writeMonomerLengthsInFile(lfp);
     fclose(lfp);
     
     cfp=fopen("results/confOriginal.dat","w");
     polymer.writeRadiusVectorsInFile(cfp);
-    polymer.writeKappaTauInFile(cfp);
     fclose(cfp);
 
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
-    
+    RandomGenerator::initialization(111);
     
     UniformRand uniRand;
     

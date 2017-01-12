@@ -496,6 +496,22 @@ void Polymer::writeRadiusVectorsInFile(FILE* fp) const
     fprintf(fp,"\n\n");
 }
 
+
+void Polymer::writeKappaTauInFile(FILE* fp) const
+{
+    int i;
+    
+    _PCA_CATCH_VOID_POINTER(fp, "Polymer::writeRadiusVectorsInFile(.)\n\tGive me valid pointer to the file");
+    _PCA_CATCH_VOID_POINTER(kappa, "Polymer::writeRadiusVectorsInFile");
+    _PCA_CATCH_VOID_POINTER(tau, "Polymer::writeRadiusVectorsInFile");
+
+    for(i=0;i<numMonomers;i++)
+	fprintf(fp,"%.15le\t%.15le\n", kappa[i], tau[i]);
+	
+    fprintf(fp,"\n\n");
+}
+
+
 void Polymer::writeMonomerLengthsInFile(FILE* fp) const
 {
     int i;

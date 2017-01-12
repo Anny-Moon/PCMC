@@ -113,6 +113,7 @@ public:
     void setTau(int i, double tau_in);
     
     void writeRadiusVectorsInFile(FILE* fp) const;
+    void writeKappaTauInFile(FILE* fp) const;
     void writeMonomerLengthsInFile(FILE* fp) const;
     void writeTBMfile(char* fileName) const;
     
