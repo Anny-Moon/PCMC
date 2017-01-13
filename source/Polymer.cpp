@@ -123,15 +123,18 @@ void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumb
 	}
 
     for(i=firstElement;i<linesInBlock;i++){
-	fscanf(fp,"%le",&kappa_in);
-	fscanf(fp,"%le",&tau_in);
+	fgets(line, sizeof line, fp);
+	sscanf(line,"%le %le",&kappa_in, &tau_in);
 	setKappa(i, kappa_in);
 	setTau(i, tau_in);
+//	fscanf(fp,"%le",&kappa_in);
+//	fscanf(fp,"%le",&tau_in);
+//	setKappa(i, kappa_in);
+//	setTau(i, tau_in);
     }
     
     fclose(fp);
 }
-
 
 Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, int polymerNumber)
 {
@@ -415,7 +418,7 @@ void Polymer::setVectorsTNBfromKappaTau()
     
     _PCA_CATCH_VOID_POINTER(kappa, "Polymer::setVectorsTNBfromKappaTau()\n\tkappa = NULL");
     _PCA_CATCH_VOID_POINTER(tau, "Polymer::setVectorsTNBfromKappaTau()\n\ttau = NULL");
-    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTNBfromKappaTau()\n\tmonomerLength = NULL");
+//    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTNBfromKappaTau()\n\tmonomerLength = NULL");
     
     t[0] = Vector::eZ;
     n[0] = Vector::eX;

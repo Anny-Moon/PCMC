@@ -39,6 +39,7 @@ public:
     /** Constructor */
     PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);
     PolymerMC(int numberOfMonomers);
+    PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
     
     /** Destructor */
     ~PolymerMC();

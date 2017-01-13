@@ -38,17 +38,18 @@ int main(int np, char **p)
     //printf("%s\n",p[1]);
     //sprintf(str,"data/xyz_%s.dat",p[1]);
 
-    PolymerMC polymer(100);
-    polymer.setMonomerLengths(3.8);
-    polymer.initWithRandomTaus();
-    polymer.setVectorsTNBfromKappaTau();
+    //PolymerMC polymer(100);
+    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
+//    polymer.setMonomerLengths(3.8);
+    //polymer.initWithRandomTaus();
+//    polymer.setVectorsTNBfromKappaTau();
     
     lfp=fopen("results/lengths.dat","w");
-    polymer.writeMonomerLengthsInFile(lfp);
+//    polymer.writeMonomerLengthsInFile(lfp);
     fclose(lfp);
     
     cfp=fopen("results/confOriginal.dat","w");
-    polymer.writeRadiusVectorsInFile(cfp);
+//    polymer.writeRadiusVectorsInFile(cfp);
     polymer.writeKappaTauInFile(cfp);
     fclose(cfp);
 

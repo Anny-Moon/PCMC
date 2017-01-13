@@ -50,6 +50,25 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
 
 }
 
+PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, int polymerNumber) : Polymer(fileType, fileName, numberLinesInBlock, polymerNumber)
+{
+    //Polymer constructor
+    rOld = new Vector [numMonomers+1];
+    
+//    if(r == NULL){
+//	setVectorsTNBfromKappaTau();
+//	setRadiusVectorsFromVectorsT();
+//    }
+    
+//    else{
+//	setMonomerLengthsFromRadiusVectors();
+//    }
+    
+//    Vector::copyArray(numMonomers+1, rOld, r);
+    
+    acceptNumberKappa = 0;
+    acceptNumberTau = 0;
+}
 PolymerMC::~PolymerMC()
 {
 
