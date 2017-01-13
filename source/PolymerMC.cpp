@@ -19,24 +19,12 @@
 
 namespace PCA{
 
-PolymerMC::PolymerMC(int numberOfMonomers, const double* kappa, const double* tau) : Polymer(numberOfMonomers, kappa, tau)
-{
-    //Polymer constructor
-    
-    rOld = new Vector [numMonomers+1];
-    Vector::copyArray(numMonomers+1, rOld, r);
-    setVectorsTNBfromKappaTau();
-    
-    acceptNumberKappa = 0;
-    acceptNumberTau = 0;
-}
-
 PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
 {
     //Polymer constructor
     
-    kappa = new double [numMonomers];
-    tau = new double [numMonomers];
+    kappa = new double [numMonomers-1];
+    tau = new double [numMonomers-1];
     
     t = new Vector [numMonomers];
     n = new Vector [numMonomers];
@@ -55,10 +43,15 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
     //Polymer constructor
     rOld = new Vector [numMonomers+1];
     
-//    if(r == NULL){
-//	setVectorsTNBfromKappaTau();
-//	setRadiusVectorsFromVectorsT();
-//    }
+    if(r == NULL){
+	t = new Vector [numMonomers];
+	n = new Vector [numMonomers];
+	b = new Vector [numMonomers];
+	setVectorsTNBfromKappaTau();
+	setMonomerLengths(3.8);
+	r = new Vector [numMonomers+1];
+	setRadiusVectorsFromVectorsT();
+    }
     
 //    else{
 //	setMonomerLengthsFromRadiusVectors();
@@ -82,7 +75,7 @@ void PolymerMC::initWithRandomTaus()
     int i;
     UniformRand uRand(0, 2.0*PCA_PI);
     
-    for(i=0;i<numMonomers;i++){
+    for(i=0;i<numMonomers-1;i++){
 	kappa[i] = 0.0;
 	tau[i] = uRand();
     }
@@ -97,7 +90,7 @@ void PolymerMC::saveOldRadiusVectors(int site)
 {
     int j;
 
-    for(j=site+1;j<numMonomers+1;j++)
+    for(j=site+2;j<numMonomers+1;j++)
 	rOld[j]=r[j];
 }
 
@@ -127,22 +120,20 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
     }
     
     tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
-    monomerLength[site] = t[site].norm();
     tNew = tNew / monomerLength[site];
     bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
     bNew = bNew / bNew.norm();
     nNew = bNew * tNew;
     
-    t[site] = tNew;
-    n[site] = nNew;
-    b[site] = bNew;
+    t[site+1] = tNew;
+    n[site+1] = nNew;
+    b[site+1] = bNew;
     
-    for(i=site;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+    for(i=site+1;i<numMonomers-1;i++){
+	t[i+1] = cos(kappa[i])*t[i] + sin(kappa[i])*cos(tau[i])*n[i] + sin(kappa[i])*sin(tau[i])*b[i];
 	
-	monomerLength[i+1] = t[i+1].norm();
 	t[i+1] = t[i+1] / monomerLength[i+1];
-	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
+	b[i+1] = cos(tau[i])*b[i] - sin(tau[i])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
 	n[i+1] = b[i+1] * t[i+1]/monomerLength[i+1];
 	}
@@ -163,7 +154,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
-    interactionNew = interaction.energy(r[site]);
+    interactionNew = interaction.energy(r[site+2]);
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
@@ -175,7 +166,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     }
     
     else{ //reject
-	for(i=site+1;i<numMonomers+1;i++)
+	for(i=site+2;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
     }
 }
@@ -208,7 +199,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     }
     
     else{ //reject
-	for(i=site+1;i<numMonomers+1;i++)
+	for(i=site+2;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
     }
 }

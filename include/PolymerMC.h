@@ -24,10 +24,13 @@ private:
     double kappaNew;
     double tauNew;
     
+    /**@name If kappaNew corresponds to i site then tNew correspondes to (i+1)*/
+    ///@{
     Vector tNew; /* new tangent (one!) vector */
     Vector nNew; /* new normal (one!) vector */
     Vector bNew; /* new binormal (one!) vector */
-
+    ///@}
+    
     Vector* rOld; /* old radius vectors*/
     
 //shoud be initialized as 0 at the constructor?
@@ -37,7 +40,6 @@ private:
     UniformRand uniRand; //< for Metropolis
 public:
     /** Constructor */
-    PolymerMC(int numberOfMonomers, const double* kappa, const double* tau);
     PolymerMC(int numberOfMonomers);
     PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
     

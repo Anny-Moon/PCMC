@@ -9,6 +9,9 @@
 #include "../include/Random/RandomGenerator.h"
 #include "../include/Random/UniformRand.h"
 #include "../include/Random/DoubleWellRand.h"
+
+#include "../include/Energy/Hamiltonian.h"
+#include "../include/Energy/lennardJones.h"
 using namespace std;
 using namespace PCA;
 
@@ -38,26 +41,32 @@ int main(int np, char **p)
     //printf("%s\n",p[1]);
     //sprintf(str,"data/xyz_%s.dat",p[1]);
 
-    //PolymerMC polymer(100);
-    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
-//    polymer.setMonomerLengths(3.8);
-    //polymer.initWithRandomTaus();
-//    polymer.setVectorsTNBfromKappaTau();
-    
+    PolymerMC polymer(100);
+//    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
+    polymer.setMonomerLengths(3.8);
+    polymer.initWithRandomTaus();
+    polymer.setVectorsTNBfromKappaTau();
+    polymer.setMonomerLengthsFromRadiusVectors();
     lfp=fopen("results/lengths.dat","w");
-//    polymer.writeMonomerLengthsInFile(lfp);
+    polymer.writeMonomerLengthsInFile(lfp);
     fclose(lfp);
-    
+
     cfp=fopen("results/confOriginal.dat","w");
-//    polymer.writeRadiusVectorsInFile(cfp);
-    polymer.writeKappaTauInFile(cfp);
-    fclose(cfp);
+    polymer.writeRadiusVectorsInFile(cfp);
+    //polymer.writeKappaTauInFile(cfp);
+    
 
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
     
+    Hamiltonian hamiltonian(100,3.5,1.5, 0.0001,0.0001, 0.00001);
+    LennardJones lj(0.001, 10);
     
+    polymer.tauUpdate(1, 0.001, hamiltonian, lj);
+    
+    polymer.setRadiusVectorsFromVectorsT();
+    polymer.writeRadiusVectorsInFile(cfp);
     UniformRand uniRand;
-    
+    fclose(cfp);
 //    for(i=0;i<100;i++)
 //    {
 //	printf("%g\n", uniRand());

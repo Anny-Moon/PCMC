@@ -65,9 +65,6 @@ public:
     /** Constructor */
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
     
-    /** Constructor */
-    Polymer(int numberOfMonomers, const double* kappa_in, const double* tau_in);
-
     /** Copy constructor*/
     Polymer(const Polymer& polymer);
 
