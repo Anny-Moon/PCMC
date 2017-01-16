@@ -58,7 +58,7 @@ public:
     /** Set t- n- b[i+1] and t- n- bNew from kappa- tau[i] */
     void setNewVectorsTNBfromKappaTau(int site);
     
-    /**@name Monte Carlo updates*/
+    /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
     void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);

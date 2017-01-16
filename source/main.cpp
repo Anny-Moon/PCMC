@@ -46,10 +46,7 @@ int main(int np, char **p)
     polymer.setMonomerLengths(3.8);
     polymer.initWithRandomTaus();
     polymer.setVectorsTNBfromKappaTau();
-    polymer.setMonomerLengthsFromRadiusVectors();
-    lfp=fopen("results/lengths.dat","w");
-    polymer.writeMonomerLengthsInFile(lfp);
-    fclose(lfp);
+    
 
     cfp=fopen("results/confOriginal.dat","w");
     polymer.writeRadiusVectorsInFile(cfp);
@@ -61,12 +58,17 @@ int main(int np, char **p)
     Hamiltonian hamiltonian(100,3.5,1.5, 0.0001,0.0001, 0.00001);
     LennardJones lj(0.001, 10);
     
-    polymer.tauUpdate(1, 0.001, hamiltonian, lj);
+    polymer.tauUpdate(3, 0.001, hamiltonian, lj);
     
-    polymer.setRadiusVectorsFromVectorsT();
+    //polymer.setRadiusVectorsFromVectorsT();
     polymer.writeRadiusVectorsInFile(cfp);
-    UniformRand uniRand;
+    
     fclose(cfp);
+    polymer.setMonomerLengthsFromRadiusVectors();
+    lfp=fopen("results/lengths.dat","w");
+    polymer.writeMonomerLengthsInFile(lfp);
+    fclose(lfp);
+//    UniformRand uniRand;
 //    for(i=0;i<100;i++)
 //    {
 //	printf("%g\n", uniRand());

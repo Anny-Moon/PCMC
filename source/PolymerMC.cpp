@@ -90,26 +90,33 @@ void PolymerMC::saveOldRadiusVectors(int site)
 {
     int j;
 
-    for(j=site+2;j<numMonomers+1;j++)
+    for(j=site+1;j<numMonomers+1;j++)
 	rOld[j]=r[j];
 }
 
+/* This function is caled before accept-reject condition*/
 void PolymerMC::setNewRadiusVectorsViaRotation(int site)
 {
     int j;
     Vector tmpVector;
     
-    //we changed kappa/tau at site-th site => r[site+1], r[site+2],... will change
+    //we changed kappa/tau at site-th site-1  => r[site+1], r[site+2],... will change
+    tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
+    tNew = tNew / tNew.norm();
+    bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
+    bNew = bNew / bNew.norm();
+    nNew = bNew * tNew;
     
     for(j=site+1;j<numMonomers+1;j++){
 	tmpVector = r[j] - r[site];
+	
 	r[j] = Vector::dotProduct(tmpVector,t[site])*tNew +\
 	    Vector::dotProduct(tmpVector,n[site])*nNew +\
 	    Vector::dotProduct(tmpVector,b[site])*bNew + r[site];
     }
 }
 
-
+/* This function is called when ACCEPT */
 void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 {
     int i;
@@ -119,20 +126,13 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	exit(1);
     }
     
-    tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
-    tNew = tNew / monomerLength[site];
-    bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
-    bNew = bNew / bNew.norm();
-    nNew = bNew * tNew;
+    t[site] = tNew;
+    n[site] = nNew;
+    b[site] = bNew;
     
-    t[site+1] = tNew;
-    n[site+1] = nNew;
-    b[site+1] = bNew;
-    
-    for(i=site+1;i<numMonomers-1;i++){
+    for(i=site;i<numMonomers-1;i++){
 	t[i+1] = cos(kappa[i])*t[i] + sin(kappa[i])*cos(tau[i])*n[i] + sin(kappa[i])*sin(tau[i])*b[i];
-	
-	t[i+1] = t[i+1] / monomerLength[i+1];
+	t[i+1] = t[i+1] / t[i+1].norm();
 	b[i+1] = cos(tau[i])*b[i] - sin(tau[i])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
 	n[i+1] = b[i+1] * t[i+1]/monomerLength[i+1];
@@ -148,25 +148,25 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     
     interactionOld = interaction.energy(r[site]);
     
-    kappaNew = hamiltonian.generateKappa(site, tau[site],kappa[site+1], kappa[site-1], temperature);
-    tauNew = tau[site];
+    kappaNew = hamiltonian.generateKappa(site-1, tau[site-1],kappa[site], kappa[site-2], temperature);
+    tauNew = tau[site-1];
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
-    interactionNew = interaction.energy(r[site+2]);
+    interactionNew = interaction.energy(r[site]);
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
     
     if(randomNumber<probability){ //accept
-	kappa[site] = kappaNew;
+	kappa[site-1] = kappaNew;
 	setNewVectorsTNBfromKappaTau(site);
 	acceptNumberKappa++;
     }
     
     else{ //reject
-	for(i=site+2;i<numMonomers+1;i++)
+	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
     }
 }
@@ -181,26 +181,29 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     
     interactionOld = interaction.energy(r[site]);
     
-    tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
-    kappaNew = kappa[site];
-    
+    tauNew = hamiltonian.generateTau(site-1, kappa[site-1], temperature);
+    kappaNew = kappa[site-1];
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
-
+    for(i=0;i<numMonomers+1;i++)
+	r[i].print();
+    
     interactionNew = interaction.energy(r[site]);
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
     
     if(randomNumber<probability){ //accept
-	tau[site] = tauNew;
+	tau[site-1] = tauNew;
 	setNewVectorsTNBfromKappaTau(site);
 	acceptNumberTau++;
+	printf("accept\n");
     }
     
     else{ //reject
-	for(i=site+2;i<numMonomers+1;i++)
+	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
+	printf("reject\n");
     }
 }
 
