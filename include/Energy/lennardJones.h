@@ -32,6 +32,7 @@ public:
     ~LennardJones();
 
     double energy(const Vector& r) const;
+    double energyIfSiteChanged(int site, const Vector* r) const;
 
 };
 }//end of namespace PCA

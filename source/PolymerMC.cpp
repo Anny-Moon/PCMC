@@ -33,6 +33,7 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
     r = new Vector [numMonomers+1];
     rOld = new Vector [numMonomers+1];
     
+    InteractionSite interactionSite {-100, 0.0};
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 
@@ -58,7 +59,7 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
 //    }
     
 //    Vector::copyArray(numMonomers+1, rOld, r);
-    
+    InteractionSite interactionSite {-100, 0.0};
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 }
@@ -159,13 +160,13 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     
     randomNumber = uniRand();
     
-    if(randomNumber<probability){ //accept
+    if(randomNumber<probability){ //ACCEPT
 	kappa[site-1] = kappaNew;
 	setNewVectorsTNBfromKappaTau(site);
 	acceptNumberKappa++;
     }
     
-    else{ //reject
+    else{ //REJECT
 	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
     }
@@ -179,30 +180,39 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     double interactionOld, interactionNew;
     double mu, sigma, randomNumber;
     
-    interactionOld = interaction.energy(r[site]);
+    if(interactionSite.site == site)
+	interactionOld = interactionSite.interaction;
     
+    else
+	interactionOld = interaction.energyIfSiteChanged(site, r);
+
     tauNew = hamiltonian.generateTau(site-1, kappa[site-1], temperature);
     kappaNew = kappa[site-1];
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
-    for(i=0;i<numMonomers+1;i++)
-	r[i].print();
     
-    interactionNew = interaction.energy(r[site]);
+    interactionNew = interaction.energyIfSiteChanged(site, r);
+    printf("old = %g    new = %g\n", interactionOld, interactionNew);
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
+    printf("prob = %g  rand = %g\n", probability, randomNumber);
     
-    if(randomNumber<probability){ //accept
+    if(randomNumber<probability){ //ACCEPT
 	tau[site-1] = tauNew;
 	setNewVectorsTNBfromKappaTau(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
 	acceptNumberTau++;
 	printf("accept\n");
     }
     
-    else{ //reject
+    else{ //REJECT
 	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
+	    
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
 	printf("reject\n");
     }
 }

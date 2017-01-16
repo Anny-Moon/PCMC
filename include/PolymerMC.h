@@ -32,7 +32,8 @@ private:
     ///@}
     
     Vector* rOld; /* old radius vectors*/
-    
+    /** */
+    struct InteractionSite {int site; double interaction;} interactionSite;
 //shoud be initialized as 0 at the constructor?
     int acceptNumberKappa;
     int acceptNumberTau;

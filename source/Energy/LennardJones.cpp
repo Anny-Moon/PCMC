@@ -37,4 +37,10 @@ double LennardJones::energy(const Vector& r) const
     return answ;
 }
 
+double LennardJones::energyIfSiteChanged(int site, const Vector* r) const
+{
+    int i;
+    return 0;
+}
+
 }//end of namespace PCA
