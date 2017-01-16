@@ -26,21 +26,28 @@ LennardJones::LennardJones(double gamma_in, double rMin_in)
 
 LennardJones::~LennardJones(){};
 
-double LennardJones::energy(const Vector& r) const
+double LennardJones::energy(double distance) const
 {
     double answ = 0;
     double tmp;
     
-    tmp = rMin/r.norm();
+    tmp = rMin/distance;
     tmp = pow(tmp, 6.0);
     answ = gamma*(tmp - 2.0 * tmp*tmp);
     return answ;
 }
 
-double LennardJones::energyIfSiteChanged(int site, const Vector* r) const
+double LennardJones::energyIfSiteChanged(int site, int size, const Vector* r) const
 {
-    int i;
-    return 0;
+    int i,j;
+    double answ = 0.0;
+    
+    for(i=0;i<site;i++){
+	for(j=site+1;j<size; j++){
+	    answ += energy((r[i]-r[j]).norm());
+	}
+    }
+    return answ;
 }
 
 }//end of namespace PCA

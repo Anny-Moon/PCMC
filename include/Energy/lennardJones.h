@@ -31,8 +31,8 @@ public:
     LennardJones(double gamma_in, double rMin_in);
     ~LennardJones();
 
-    double energy(const Vector& r) const;
-    double energyIfSiteChanged(int site, const Vector* r) const;
+    double energy(double distance) const;
+    double energyIfSiteChanged(int site, int size, const Vector* r) const;
 
 };
 }//end of namespace PCA

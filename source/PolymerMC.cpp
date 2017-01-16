@@ -147,7 +147,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     double interactionOld, interactionNew;
     double mu, sigma, randomNumber;
     
-    interactionOld = interaction.energy(r[site]);
+//    interactionOld = interaction.energy(r[site]);
     
     kappaNew = hamiltonian.generateKappa(site-1, tau[site-1],kappa[site], kappa[site-2], temperature);
     tauNew = tau[site-1];
@@ -155,7 +155,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
-    interactionNew = interaction.energy(r[site]);
+//    interactionNew = interaction.energy(r[site]);
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
@@ -179,20 +179,28 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     double probability, tmp;
     double interactionOld, interactionNew;
     double mu, sigma, randomNumber;
-    
+
+    /* calculate or take old interaction for site */
     if(interactionSite.site == site)
 	interactionOld = interactionSite.interaction;
     
     else
-	interactionOld = interaction.energyIfSiteChanged(site, r);
+	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
 
+    /* generate new random Tau according distribution */
     tauNew = hamiltonian.generateTau(site-1, kappa[site-1], temperature);
     kappaNew = kappa[site-1];
+    printf("old = %g    new = %g\n", tau[site-1], tauNew);
+    r[site].print();
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    interactionNew = interaction.energyIfSiteChanged(site, r);
-    printf("old = %g    new = %g\n", interactionOld, interactionNew);
+    r[site].print();
+    /* calculate new interaction for site */
+    interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
+    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+    
+    /* Metropolis probabilyty */
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();

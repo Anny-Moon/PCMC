@@ -46,7 +46,7 @@ int main(int np, char **p)
     polymer.setMonomerLengths(3.8);
     polymer.initWithRandomTaus();
     polymer.setVectorsTNBfromKappaTau();
-    
+    polymer.setRadiusVectorsFromVectorsT();
 
     cfp=fopen("results/confOriginal.dat","w");
     polymer.writeRadiusVectorsInFile(cfp);
@@ -59,8 +59,6 @@ int main(int np, char **p)
     LennardJones lj(0.001, 10);
     
     polymer.tauUpdate(3, 0.001, hamiltonian, lj);
-    
-    //polymer.setRadiusVectorsFromVectorsT();
     polymer.writeRadiusVectorsInFile(cfp);
     
     fclose(cfp);
