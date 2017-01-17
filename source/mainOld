@@ -37,40 +37,56 @@ int main(int np, char **p)
     printf("-------------------------------------\n");
     printf("============================Anna=====\n");
     
-//    RandomGenerator::initialization(time(NULL));
-    RandomGenerator::initialization(1);
+    RandomGenerator::initialization(time(NULL));
+//    RandomGenerator::initialization(1);
     log_file = fopen("results/log_file","w");
-    cfp=fopen("results/confOriginal.dat","w");
-    lfp=fopen("results/lengths.dat","w");
-    
-    PolymerMC polymer(31); // => 30 kappsa and taus
+    //printf("%s\n",p[1]);
+    //sprintf(str,"data/xyz_%s.dat",p[1]);
+
+    PolymerMC polymer(100);
 //    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
     polymer.setMonomerLengths(3.8);
     polymer.initTest();
-    
+//    polymer.setVectorsTNBfromKappaTau();
+//    polymer.setRadiusVectorsFromVectorsT();
+
+    cfp=fopen("results/confOriginal.dat","w");
     polymer.writeRadiusVectorsInFile(cfp);
-    polymer.setMonomerLengthsFromRadiusVectors();
+    //polymer.writeKappaTauInFile(cfp);
     
-    polymer.writeMonomerLengthsInFile(lfp);
+
+    //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
+    
     Hamiltonian hamiltonian(100,3.5,1.5, 0.0001,0.0001, 0.00001);
-//    LennardJones lj(0.001, 3.8);
-    LennardJones lj(0.0, 1.0); // = 0
+    LennardJones lj(0.001, 3.8);
     
-    for(int c=1;c<10;c++){
-	printf("%i\n",c);
-	polymer.tauUpdate(c,0.001, hamiltonian, lj);
-//	polymer.updateAllSites(0.001, hamiltonian, lj);
-	polymer.writeRadiusVectorsInFile(cfp);
-	fprintf(log_file,"%g\n", hamiltonian.energyAllSites(polymer));
-    }
+    polymer.tauUpdate(3, 0.001, hamiltonian, lj);
+    polymer.writeRadiusVectorsInFile(cfp);
     
-    polymer.writeAcceptenceRateInFile(log_file);
+    fclose(cfp);
     polymer.setMonomerLengthsFromRadiusVectors();
-    
+    lfp=fopen("results/lengths.dat","w");
     polymer.writeMonomerLengthsInFile(lfp);
     fclose(lfp);
-    fclose(cfp);
+//    UniformRand uniRand;
+//    for(i=0;i<100;i++)
+//    {
+//	printf("%g\n", uniRand());
+//    }
+
+//DoubleWellRand check
+    fp1=fopen("results/hist.dat","w");
+    DoubleWellRand dwr(1., 4.5, -0.0, 10);
+    dwr.writeLogFile(log_file);
+    
+    for(i=0;i<100000;i++)
+    {
+	fprintf(fp1,"%.15le\n",dwr());
+    }
+    
+    fclose(fp1);
     fclose(log_file);
+    
 
     printf("Everything is OK!\n");
 return 0;

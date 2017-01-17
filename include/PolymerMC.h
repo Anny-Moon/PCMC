@@ -66,7 +66,17 @@ public:
     ///@{
     void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
+    void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     ///@}
+    
+    inline void writeAcceptenceRateInFile(FILE *fp);
 };
+
+inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
+{
+    fprintf(fp, "%i\t%i\n", acceptNumberKappa, acceptNumberTau);
+    fflush(fp);
+}
+
 }//end of namecpace
 #endif

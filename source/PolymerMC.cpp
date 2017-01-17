@@ -96,7 +96,7 @@ void PolymerMC::initTest()
 	tau[i] = 0.0;
     }
     
-    kappa[1] = PCA_PI * 0.5;
+//    kappa[1] = PCA_PI * 0.5;
     kappa[2] = PCA_PI * 0.5;
     setVectorsTNBfromKappaTau();
     setRadiusVectorsFromVectorsT();
@@ -140,7 +140,7 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
     int i;
     
     if(site == 0){
-	printf("Error in PolymerMC::setNewVectorsTNBfromKappaTau()'n");
+	printf("Error in PolymerMC::setNewVectorsTNBfromKappaTau()\n");
 	exit(1);
     }
     
@@ -153,7 +153,7 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	t[i+1] = t[i+1] / t[i+1].norm();
 	b[i+1] = cos(tau[i])*b[i] - sin(tau[i])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
-	n[i+1] = b[i+1] * t[i+1]/monomerLength[i+1];
+	n[i+1] = b[i+1] * t[i+1];
 	}
 }
 
@@ -164,28 +164,44 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     double interactionOld, interactionNew;
     double mu, sigma, randomNumber;
     
-//    interactionOld = interaction.energy(r[site]);
+    /* calculate or take old interaction for site */
+    if(interactionSite.site == site)
+	interactionOld = interactionSite.interaction;
     
-    kappaNew = hamiltonian.generateKappa(site-1, tau[site-1],kappa[site], kappa[site-2], temperature);
+    else
+	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
+	
+    /* generate new random Kappa according distribution */
+    kappaNew = hamiltonian.generateKappa(site-1, tau[site-1], kappa[site], kappa[site-2], temperature);
     tauNew = tau[site-1];
+    printf("oldKappa = %g    newKappa = %g\n", kappa[site-1], kappaNew);
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
-//    interactionNew = interaction.energy(r[site]);
-    probability = exp((-interactionNew + interactionOld)/temperature);
+    /* calculate new interaction for site */
+    interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
+    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
     
+    probability = exp((-interactionNew + interactionOld)/temperature);
     randomNumber = uniRand();
+    printf("prob = %g  rand = %g\n", probability, randomNumber);
     
     if(randomNumber<probability){ //ACCEPT
 	kappa[site-1] = kappaNew;
 	setNewVectorsTNBfromKappaTau(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
 	acceptNumberKappa++;
+	printf("ACCEPT\n");
     }
     
     else{ //REJECT
 	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
+	printf("REJECT\n");
     }
 }
 
@@ -241,4 +257,12 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     }
 }
 
+void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+{
+    int i;
+    for(i=1;i<numMonomers;i++){
+//	kappaUpdate(i, temperature, hamiltonian, interaction);
+	tauUpdate(i, temperature, hamiltonian, interaction);
+    }
+}
 }//end of namespace
