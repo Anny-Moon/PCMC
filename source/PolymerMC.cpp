@@ -87,6 +87,23 @@ void PolymerMC::initWithRandomTaus()
     
 }
 
+void PolymerMC::initTest()
+{
+    int i;
+    
+    for(i=0;i<numMonomers-1;i++){
+	kappa[i] = 0.0;
+	tau[i] = 0.0;
+    }
+    
+    kappa[1] = PCA_PI * 0.5;
+    kappa[2] = PCA_PI * 0.5;
+    setVectorsTNBfromKappaTau();
+    setRadiusVectorsFromVectorsT();
+    Vector::copyArray(numMonomers+1, rOld, r);
+    
+}
+
 void PolymerMC::saveOldRadiusVectors(int site)
 {
     int j;
@@ -190,12 +207,11 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     /* generate new random Tau according distribution */
     tauNew = hamiltonian.generateTau(site-1, kappa[site-1], temperature);
     kappaNew = kappa[site-1];
-    printf("old = %g    new = %g\n", tau[site-1], tauNew);
-    r[site].print();
+    printf("oldTau = %g    newTau = %g\n", tau[site-1], tauNew);
+    
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    r[site].print();
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
     printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
@@ -212,7 +228,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
 	acceptNumberTau++;
-	printf("accept\n");
+	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -221,7 +237,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 	    
 	interactionSite.site = site;
 	interactionSite.interaction = interactionOld;
-	printf("reject\n");
+	printf("REJECT\n");
     }
 }
 

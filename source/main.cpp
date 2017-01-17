@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include "../include/Vector.h"
 #include "../include/Utilities.h"
 #include "../include/Polymer.h"
@@ -36,7 +37,8 @@ int main(int np, char **p)
     printf("-------------------------------------\n");
     printf("============================Anna=====\n");
     
-    RandomGenerator::initialization(111);
+    //RandomGenerator::initialization(time(NULL));
+    RandomGenerator::initialization(1);
     log_file = fopen("results/log_file","w");
     //printf("%s\n",p[1]);
     //sprintf(str,"data/xyz_%s.dat",p[1]);
@@ -44,9 +46,9 @@ int main(int np, char **p)
     PolymerMC polymer(100);
 //    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
     polymer.setMonomerLengths(3.8);
-    polymer.initWithRandomTaus();
-    polymer.setVectorsTNBfromKappaTau();
-    polymer.setRadiusVectorsFromVectorsT();
+    polymer.initTest();
+//    polymer.setVectorsTNBfromKappaTau();
+//    polymer.setRadiusVectorsFromVectorsT();
 
     cfp=fopen("results/confOriginal.dat","w");
     polymer.writeRadiusVectorsInFile(cfp);
@@ -56,7 +58,7 @@ int main(int np, char **p)
     //printf("%g\n",PCA::PolymerQuantum::hoppingAmplitude(polymer, 1, 0));
     
     Hamiltonian hamiltonian(100,3.5,1.5, 0.0001,0.0001, 0.00001);
-    LennardJones lj(0.001, 10);
+    LennardJones lj(0.001, 3.8);
     
     polymer.tauUpdate(3, 0.001, hamiltonian, lj);
     polymer.writeRadiusVectorsInFile(cfp);

@@ -50,6 +50,9 @@ public:
     /** Initialization of PolymerMC with random taus and kappas = 0 */
     void initWithRandomTaus();
     
+    /** Initialization of PolymerMC for testing*/
+    void initTest();
+    
     /** Saves old radius vectors starting from (site+1): rOld[site+1]=r[site+1] ...*/
     void saveOldRadiusVectors(int site);
     
