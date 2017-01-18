@@ -52,16 +52,17 @@ int main(int np, char **p)
     polymer.setMonomerLengthsFromRadiusVectors();
     
     polymer.writeMonomerLengthsInFile(lfp);
-    Hamiltonian hamiltonian(100,3.5,1.5, 0.0001,0.0001, 0.00001);
+    Hamiltonian hamiltonian(30, 3.5, 1.5, 0.0001,0.0001, 0.0000001);
 //    LennardJones lj(0.001, 3.8);
     LennardJones lj(0.0, 1.0); // = 0
     
     for(int c=1;c<10;c++){
 	printf("%i\n",c);
-	polymer.tauUpdate(c,0.001, hamiltonian, lj);
-//	polymer.updateAllSites(0.001, hamiltonian, lj);
-	polymer.writeRadiusVectorsInFile(cfp);
 	fprintf(log_file,"%g\n", hamiltonian.energyAllSites(polymer));
+//	polymer.tauUpdate(c,0.001, hamiltonian, lj);
+	polymer.updateAllSites(0.001, hamiltonian, lj);
+	polymer.writeRadiusVectorsInFile(cfp);
+
     }
     
     polymer.writeAcceptenceRateInFile(log_file);

@@ -31,7 +31,7 @@ class PolymerMC;
 class Hamiltonian
 {
 private:
-    int numSites;
+    int numSites; //< number of kappas and taus, so actually numSite-1
     
     double alpha;
     double mu;

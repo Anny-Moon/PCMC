@@ -21,7 +21,7 @@ namespace PCA{
 
 Hamiltonian::Hamiltonian(int numSites_in)
 {
-    numSites = numSites_in;
+    numSites = numSites_in-1;
     alpha = 1.0;
     mu = 0.0;
     
@@ -46,7 +46,7 @@ Hamiltonian::Hamiltonian(
     double mu_in
 )
 {
-    numSites = numSites_in;
+    numSites = numSites_in-1;
     alpha = alpha_in;
     mu = mu_in;
     
@@ -206,7 +206,7 @@ double Hamiltonian::energyAllSites(const PolymerMC& polymer) const
     E1 += -(2.0 + mu) * polymer.getKappa(i-1) * polymer.getKappa(i);
     
     for(i=0; i<numSites; i++){
-	E2 = 2.0 * polymer.getKappa(i)*polymer.getKappa(i) +\
+	E2 += 2.0 * polymer.getKappa(i)*polymer.getKappa(i) +\
 	    q[i] * (polymer.getKappa(i)*polymer.getKappa(i) - m[i]*m[i]) * (polymer.getKappa(i)*polymer.getKappa(i)-m[i]*m[i]) +\
 	    c[i] * 0.5 * (d[i]*polymer.getKappa(i)*polymer.getKappa(i) + 1.0) * polymer.getTau(i) * polymer.getTau(i) -\
 	    a[i] * (b[i]*polymer.getKappa(i)*polymer.getKappa(i) + 1.0) * polymer.getTau(i);
