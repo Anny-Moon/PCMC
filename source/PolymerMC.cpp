@@ -23,8 +23,8 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
 {
     //Polymer constructor
     
-    kappa = new double [numMonomers-1];
-    tau = new double [numMonomers-1];
+    kappa = new double [numMonomers];
+    tau = new double [numMonomers];
     
     t = new Vector [numMonomers];
     n = new Vector [numMonomers];
@@ -76,7 +76,7 @@ void PolymerMC::initWithRandomTaus()
     int i;
     UniformRand uRand(0, 2.0*PCA_PI);
     
-    for(i=0;i<numMonomers-1;i++){
+    for(i=0;i<numMonomers;i++){
 	kappa[i] = 0.0;
 	tau[i] = uRand();
     }
@@ -91,7 +91,7 @@ void PolymerMC::initTest()
 {
     int i;
     
-    for(i=0;i<numMonomers-1;i++){
+    for(i=0;i<numMonomers;i++){
 	kappa[i] = 0.0;
 	tau[i] = 0.0;
     }
@@ -149,9 +149,9 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
     b[site] = bNew;
     
     for(i=site;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i])*t[i] + sin(kappa[i])*cos(tau[i])*n[i] + sin(kappa[i])*sin(tau[i])*b[i];
+	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
 	t[i+1] = t[i+1] / t[i+1].norm();
-	b[i+1] = cos(tau[i])*b[i] - sin(tau[i])*n[i];
+	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
 	n[i+1] = b[i+1] * t[i+1];
 	}
@@ -172,9 +172,9 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
 	
     /* generate new random Kappa according distribution */
-    kappaNew = hamiltonian.generateKappa(site, tau[site-1], kappa[site], kappa[site-2], temperature);
-    tauNew = tau[site-1];
-    printf("oldKappa = %g    newKappa = %g\n", kappa[site-1], kappaNew);
+    kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+    tauNew = tau[site];
+    printf("oldKappa = %g    newKappa = %g\n", kappa[site], kappaNew);
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
@@ -188,7 +188,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     printf("prob = %g  rand = %g\n", probability, randomNumber);
     
     if(randomNumber<probability){ //ACCEPT
-	kappa[site-1] = kappaNew;
+	kappa[site] = kappaNew;
 	setNewVectorsTNBfromKappaTau(site);
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
@@ -221,9 +221,9 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
 
     /* generate new random Tau according distribution */
-    tauNew = hamiltonian.generateTau(site, kappa[site-1], temperature);
-    kappaNew = kappa[site-1];
-    printf("oldTau = %g    newTau = %g\n", tau[site-1], tauNew);
+    tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
+    kappaNew = kappa[site];
+    printf("oldTau = %g    newTau = %g\n", tau[site], tauNew);
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
@@ -239,7 +239,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     printf("prob = %g  rand = %g\n", probability, randomNumber);
     
     if(randomNumber<probability){ //ACCEPT
-	tau[site-1] = tauNew;
+	tau[site] = tauNew;
 	setNewVectorsTNBfromKappaTau(site);
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;

@@ -175,8 +175,8 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 	case FileType::angles:
 	    this->numMonomers = size+1;
 	    
-	    kappa = new double[numMonomers-1];
-	    tau = new double[numMonomers-1];
+	    kappa = new double[numMonomers];
+	    tau = new double[numMonomers];
 	    
 	    readFileWithAngles(fileName, size, polymerNumber);
 	    break;
@@ -256,12 +256,12 @@ Polymer::Polymer(const Polymer& polymer)
     }
     
     if(polymer.kappa != NULL){
-	kappa = new double[numMonomers-1];
+	kappa = new double[numMonomers];
 	PCA::copyArray(numMonomers, kappa, polymer.kappa);
     }
     
     if(polymer.tau != NULL){
-	tau = new double[numMonomers-1];
+	tau = new double[numMonomers];
 	PCA::copyArray(numMonomers, tau, polymer.tau);
     }
 }
@@ -407,10 +407,10 @@ void Polymer::setVectorsTNBfromKappaTau()
     b[0] = Vector::eY;
 
     for(i=0;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i])*t[i] + sin(kappa[i])*cos(tau[i])*n[i] + sin(kappa[i])*sin(tau[i])*b[i];
-	t[i+1] = t[i+1] / t[i].norm();
+	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+	t[i+1] = t[i+1] / t[i+1].norm();
 	    //t[i+1]=t[i]*(1-s*s*kappa[i]*kappa[i]/2)+n[i]*s*kappa[i]*sqrt(1-s*s*kappa[i]*kappa[i]/4);
-	b[i+1] = cos(tau[i])*b[i] - sin(tau[i])*n[i];
+	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
 	b[i+1] = b[i+1] / b[i+1].norm();
 	n[i+1] = b[i+1] * t[i+1];
     }
@@ -490,7 +490,7 @@ void Polymer::writeKappaTauInFile(FILE* fp) const
     _PCA_CATCH_VOID_POINTER(kappa, "Polymer::writeRadiusVectorsInFile");
     _PCA_CATCH_VOID_POINTER(tau, "Polymer::writeRadiusVectorsInFile");
 
-    for(i=0;i<numMonomers-1;i++)
+    for(i=0;i<numMonomers;i++)
 	fprintf(fp,"%.15le\t%.15le\n", kappa[i], tau[i]);
 	
     fprintf(fp,"\n\n");

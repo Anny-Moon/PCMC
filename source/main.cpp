@@ -56,11 +56,11 @@ int main(int np, char **p)
 //    LennardJones lj(0.001, 3.8);
     LennardJones lj(0.0, 1.0); // = 0
     
-    for(int c=1;c<10;c++){
+    for(int c=1;c<2;c++){
 	printf("%i\n",c);
 	fprintf(log_file,"%g\n", hamiltonian.energyAllSites(polymer));
-//	polymer.tauUpdate(c,0.001, hamiltonian, lj);
-	polymer.updateAllSites(0.001, hamiltonian, lj);
+	polymer.kappaUpdate(3,0.001, hamiltonian, lj);
+//	polymer.updateAllSites(0.001, hamiltonian, lj);
 	polymer.writeRadiusVectorsInFile(cfp);
 
     }

@@ -21,7 +21,7 @@ namespace PCA{
 
 Hamiltonian::Hamiltonian(int numSites_in)
 {
-    numSites = numSites_in-1;
+    numSites = numSites_in;
     alpha = 1.0;
     mu = 0.0;
     
@@ -46,7 +46,7 @@ Hamiltonian::Hamiltonian(
     double mu_in
 )
 {
-    numSites = numSites_in-1;
+    numSites = numSites_in;
     alpha = alpha_in;
     mu = mu_in;
     
