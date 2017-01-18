@@ -58,17 +58,18 @@ int main(int np, char **p)
     LennardJones lj(0.001, 3.8);
 //    LennardJones lj(0.0, 1.0); // = 0
     
-    for(int c=0;c<10000;c++){
-	if(c%1000==0){
-	    printf("%i\n",c);
+    for(int c=2;c>-6;c--){
+	temperature = pow(10,c);
+	printf("%i\n",c);
+	
+	for(i=0;i<500;i++){
 	    polymer.writeKappaTauInFile(ktfp);
+	    tmp = PolymerObservable::radiusGyration(polymer);
+	    fprintf(log_file,"%g\t%g\n", tmp, hamiltonian.energyAllSites(polymer));
+//		polymer.kappaUpdate(3,0.001, hamiltonian, lj);
+	    polymer.updateAllSites(temperature, hamiltonian, lj);
+//		polymer.writeRadiusVectorsInFile(cfp);
 	}
-    tmp = PolymerObservable::radiusGyration(polymer);
-	fprintf(log_file,"%g\t%g\n", tmp, hamiltonian.energyAllSites(polymer));
-//	polymer.kappaUpdate(3,0.001, hamiltonian, lj);
-	polymer.updateAllSites(0.001, hamiltonian, lj);
-//	polymer.writeRadiusVectorsInFile(cfp);
-
     }
     
     polymer.writeAcceptenceRateInFile(log_file);
