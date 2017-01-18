@@ -118,7 +118,7 @@ void PolymerMC::setNewRadiusVectorsViaRotation(int site)
     int j;
     Vector tmpVector;
     
-    //we changed kappa/tau at site-th site-1  => r[site+1], r[site+2],... will change
+    //we changed kappa/tau at site-th site  => r[site+1], r[site+2],... will change
     tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
     tNew = tNew / tNew.norm();
     bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
@@ -174,18 +174,18 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
     /* generate new random Kappa according distribution */
     kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
     tauNew = tau[site];
-    printf("oldKappa = %g    newKappa = %g\n", kappa[site], kappaNew);
+//    printf("oldKappa[%i] = %g    newKappa = %g\n",site,  kappa[site], kappaNew);
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
 
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
-    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+//    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
     
     probability = exp((-interactionNew + interactionOld)/temperature);
     randomNumber = uniRand();
-    printf("prob = %g  rand = %g\n", probability, randomNumber);
+//    printf("prob = %g  rand = %g\n", probability, randomNumber);
     
     if(randomNumber<probability){ //ACCEPT
 	kappa[site] = kappaNew;
@@ -193,7 +193,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
 	acceptNumberKappa++;
-	printf("ACCEPT\n");
+//	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -201,7 +201,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 	    r[i] = rOld[i];
 	interactionSite.site = site;
 	interactionSite.interaction = interactionOld;
-	printf("REJECT\n");
+//	printf("REJECT\n");
     }
 }
 
@@ -223,20 +223,20 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     /* generate new random Tau according distribution */
     tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
     kappaNew = kappa[site];
-    printf("oldTau = %g    newTau = %g\n", tau[site], tauNew);
+//    printf("oldTau[%i] = %g    newTau = %g\n", site, tau[site], tauNew);
     
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
-    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+//    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
     
     /* Metropolis probabilyty */
     probability = exp((-interactionNew + interactionOld)/temperature);
     
     randomNumber = uniRand();
-    printf("prob = %g  rand = %g\n", probability, randomNumber);
+//    printf("prob = %g  rand = %g\n", probability, randomNumber);
     
     if(randomNumber<probability){ //ACCEPT
 	tau[site] = tauNew;
@@ -244,7 +244,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
 	acceptNumberTau++;
-	printf("ACCEPT\n");
+//	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -253,7 +253,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 	    
 	interactionSite.site = site;
 	interactionSite.interaction = interactionOld;
-	printf("REJECT\n");
+//	printf("REJECT\n");
     }
 }
 
@@ -261,7 +261,7 @@ void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonia
 {
     int i;
     for(i=1;i<numMonomers;i++){
-//	kappaUpdate(i, temperature, hamiltonian, interaction);
+	kappaUpdate(i, temperature, hamiltonian, interaction);
 	tauUpdate(i, temperature, hamiltonian, interaction);
     }
 }
