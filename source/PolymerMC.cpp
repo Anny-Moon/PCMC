@@ -265,4 +265,29 @@ void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonia
 	tauUpdate(i, temperature, hamiltonian, interaction);
     }
 }
+
+/* only for chains with equal link lenghts*/
+bool PolymerMC::selfAvoidingCondition(double minDistance, int site)
+{
+    int i,j;
+    int M=1;
+    double R;
+
+    for(i=0; i<=site; i++){
+	for(j=numMonomers; j>site; j-=M){
+	    R = (r[i]-r[j]).norm();
+	    if(R<=minDistance && (j-i)!=1)
+		return false;
+	    
+	    else{
+		M=(int)((R-minDistance)/monomerLength[0]);
+		if(M<=0)
+		    M=1;
+		
+	    }
+	}
+    }
+
+    return true;
+}
 }//end of namespace

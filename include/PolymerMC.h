@@ -69,6 +69,8 @@ public:
     void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction);
     ///@}
     
+    /* only for chains with equal link lenghts*/
+    bool selfAvoidingCondition(double minDistance, int site);
     inline void writeAcceptenceRateInFile(FILE *fp);
 };
 

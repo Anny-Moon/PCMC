@@ -33,7 +33,7 @@ double LennardJones::energy(double distance) const
     
     tmp = rMin/distance;
     tmp = pow(tmp, 6.0);
-    answ = gamma*(tmp - 2.0 * tmp*tmp);
+    answ = gamma*(tmp*tmp - 2.0 * tmp);
     return answ;
 }
 

@@ -38,14 +38,14 @@ int main(int np, char **p)
     printf("-------------------------------------\n");
     printf("============================Anna=====\n");
     
-//    RandomGenerator::initialization(time(NULL));
-    RandomGenerator::initialization(1);
+    RandomGenerator::initialization(time(NULL));
+//    RandomGenerator::initialization(1);
     log_file = fopen("results/log_file","w");
     cfp=fopen("results/confOriginal.dat","w");
     lfp=fopen("results/lengths.dat","w");
     ktfp=fopen("results/kappaTau.dat","w");
     
-    PolymerMC polymer(31); // => 30 kappsa and taus
+    PolymerMC polymer(101); // => 30 kappsa and taus
 //    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
     polymer.setMonomerLengths(3.8);
     polymer.initWithRandomTaus();
@@ -54,22 +54,26 @@ int main(int np, char **p)
     polymer.setMonomerLengthsFromRadiusVectors();
     
     polymer.writeMonomerLengthsInFile(lfp);
-    Hamiltonian hamiltonian(31, 3.5, 1.5, 0.0001,0.0001, 0.0000001);
-    LennardJones lj(0.001, 3.8);
+    Hamiltonian hamiltonian(101, 3.5, 1.5, 0.0001,0.0001, 0.0000001);
+    LennardJones lj(10.0, 3.8);
 //    LennardJones lj(0.0, 1.0); // = 0
     
     for(int c=2;c>-6;c--){
 	temperature = pow(10,c);
 	printf("%i\n",c);
 	
-	for(i=0;i<500;i++){
+	for(i=0;i<100;i++){
 	    polymer.writeKappaTauInFile(ktfp);
 	    tmp = PolymerObservable::radiusGyration(polymer);
 	    fprintf(log_file,"%g\t%g\n", tmp, hamiltonian.energyAllSites(polymer));
 //		polymer.kappaUpdate(3,0.001, hamiltonian, lj);
 	    polymer.updateAllSites(temperature, hamiltonian, lj);
 //		polymer.writeRadiusVectorsInFile(cfp);
+	    
 	}
+	
+	if(!polymer.selfAvoidingCondition(3.0, 15))
+		printf("selfCond %i\n",c);
     }
     
     polymer.writeAcceptenceRateInFile(log_file);

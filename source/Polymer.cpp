@@ -490,7 +490,7 @@ void Polymer::writeKappaTauInFile(FILE* fp) const
     _PCA_CATCH_VOID_POINTER(kappa, "Polymer::writeRadiusVectorsInFile");
     _PCA_CATCH_VOID_POINTER(tau, "Polymer::writeRadiusVectorsInFile");
 
-    for(i=0;i<numMonomers;i++)
+    for(i=1;i<numMonomers;i++)
 	fprintf(fp,"%.15le\t%.15le\n", kappa[i], tau[i]);
 	
     fprintf(fp,"\n\n");
