@@ -12,7 +12,7 @@ CC:= g++
 CFLAGS:= -Wall -std=c++11
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm
+LIB:= -lm -L/usr/local/lib -lgsl -lgslcblas
 
 # Optimization (-O3 or -O2)
 OPT:= -O3
@@ -60,7 +60,7 @@ all: $(STATIC_LIB)
 
 # Linking
 $(STATIC_LIB): $(OBJ)
-	@echo "Generating executable file..." $(notdir $(STATIC_LIB))
+	@echo "Generating library..." $(notdir $(STATIC_LIB))
 #	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
 	@ar rcs $(STATIC_LIB) $(OBJ) 
 

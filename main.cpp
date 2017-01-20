@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "../include/Vector.h"
-#include "../include/Utilities.h"
-#include "../include/Polymer.h"
-#include "../include/PolymerMC.h"
-#include "../include/PolymerObservable.h"
+//#include "Vector.h"
+//#include "Utilities.h"
+//#include "../include/Polymer.h"
+#include "PolymerMC.h"
+#include "PolymerObservable.h"
 
-#include "../include/Random/RandomGenerator.h"
-#include "../include/Random/UniformRand.h"
-#include "../include/Random/DoubleWellRand.h"
+//#include "../include/Random/RandomGenerator.h"
+//#include "../include/Random/UniformRand.h"
+//#include "../include/Random/DoubleWellRand.h"
 
-#include "../include/Energy/Hamiltonian.h"
-#include "../include/Energy/lennardJones.h"
+#include "Energy/Hamiltonian.h"
+#include "Energy/LennardJones.h"
 using namespace std;
 using namespace PCA;
 
@@ -49,11 +49,11 @@ int main(int np, char **p)
     LennardJones lj(10.0, 4.5);
 
     time1 = time(NULL);
-    for (int k=0;k<20;k++){
+    for (int k=0;k<1;k++){
 	printf("--------------- polymer No. %i\n", k);
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf_logT.dat",k);
-	ktfp = fopen(fname1, "w");
+//	sprintf(fname1,"results/Configurations/%iconf_logT.dat",k);
+//	ktfp = fopen(fname1, "w");
 	polymer = new PolymerMC(N);
 	
         polymer->setMonomerLengths(3.8);
@@ -61,7 +61,7 @@ int main(int np, char **p)
     
 	polymer->setMonomerLengthsFromRadiusVectors();
 
-        for(double c=2;c>-6;c-=0.1){
+        for(double c=2;c>1;c-=1){
 	    temperature = pow(10,c);
 	    printf("logT %g\n",c);
 	
@@ -73,10 +73,10 @@ int main(int np, char **p)
 		fprintf(log_file, "selfCond %i %g\n",k, c);
 	}
     
-        polymer->writeKappaTauInFile(ktfp);
+//        polymer->writeKappaTauInFile(ktfp);
     
 	
-	fclose(ktfp);
+//	fclose(ktfp);
 	delete [] fname1;
 	fclose(log_file);
 	delete polymer;

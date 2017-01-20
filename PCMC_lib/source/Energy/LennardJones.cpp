@@ -1,5 +1,5 @@
 /** @package PCMC
-*   @file lennardJones.cpp
+*   @file LennardJones.cpp
 *
 *   Lennard-Jones potential.
 *
