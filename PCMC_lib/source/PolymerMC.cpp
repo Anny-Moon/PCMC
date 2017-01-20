@@ -158,9 +158,9 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
 {
     int i;
-    double probability, tmp;
+    double probability;
     double interactionOld, interactionNew;
-    double mu, sigma, randomNumber;
+    double randomNumber;
     
     /* calculate or take old interaction for site */
     if(interactionSite.site == site)
@@ -207,9 +207,9 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
 {
     int i;
-    double probability, tmp;
+    double probability;
     double interactionOld, interactionNew;
-    double mu, sigma, randomNumber;
+    double randomNumber;
 
     /* calculate or take old interaction for site */
     if(interactionSite.site == site)

@@ -8,10 +8,10 @@
 
 namespace PCA{
 
-double PolymerObservable::radiusGyration(const Polymer& polymer)
+double PolymerObservable::radiusOfGyration(const Polymer& polymer)
 {
     int i,j;
-    double R, answ=0.0;
+    double R;
 
     _CATCH_ERROR(polymer.getRadiusVectors(), "Error in PolymerObservable::radiusGyration()\n");
     
@@ -73,7 +73,7 @@ double PolymerObservable::relativeEndToEndDistance(const Polymer& polymer)
 
 void PolymerObservable::writeMapEndToEnd(const Polymer& polymer, char* fileName)
 {
-    int i, j;
+    int i;
     int frameSize, framePosition;
     double answ = 0.0;
     FILE *fp;

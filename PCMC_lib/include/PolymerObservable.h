@@ -17,7 +17,7 @@ public:
     
     enum Observable {ScalingParameter, TotalAngle, RadiusGyration, AverageMonomersLength};
     
-    static double radiusGyration(const Polymer& polymer);
+    static double radiusOfGyration(const Polymer& polymer);
     static double totalAngle(const Polymer& polymer);
     static double relativeEndToEndDistance(const Polymer& polymer);
 //    static double dotProductTBafterKadanoffTransformation();

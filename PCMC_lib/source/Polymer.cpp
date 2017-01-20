@@ -186,7 +186,6 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 
 Polymer::Polymer(int numberOfMonomers, const Vector* r_in,  const Vector* t_in, const Vector* b_in)
 {
-    int i;
     this->numMonomers = numberOfMonomers;
     
     monomerLength = NULL;
@@ -345,40 +344,6 @@ void Polymer::setVectorsTfromRadiusVectors()
     }
 }
 
-/*
-void Polymer::setVectorsBfromVectorsT()
-{
-    int i;
-    
-    _PCA_CATCH_VOID_POINTER(t, "Polymer::setVectorsBfromVectorsT()");
-    
-    if(b == NULL ){
-	b = new Vector [numMonomers];
-    }
-    /* b[0] is not strictly defined.
-    The are only 2 condition: (b[0],t[0]) = 0 and |b[0]| = 1;
-    We chose the 3rd condition as: b[0].z = 0 (if t[0] has x or y component));
-    NB: b vectors are unitary unlike t vectors!
-     
-    b[0].x =  t[0].y / sqrt(t[0].x*t[0].x + t[0].y*t[0].y);
-    b[0].y = -t[0].x / sqrt(t[0].x*t[0].x + t[0].y*t[0].y);
-    b[0].z = 0.0;
-    
-    //if t[0] has only z component
-    if(_PCA_IS_EQUAL(t[0].x, 0.0) && _PCA_IS_EQUAL(t[0].y, 0.0)){
-	b[0].x = 1.0;
-	b[0].y = 0.0;
-	b[0].z = 0.0;
-    }
-    
-    for(i=1;i<numMonomers;i++){
-	b[i] = t[i-1] * t[i];
-	b[i] = b[i]/b[i].norm();
-    }
-    
-}
-*/
-
 void Polymer::setMonomerLengthsFromRadiusVectors()
 {
     int i;
@@ -431,8 +396,6 @@ void Polymer::setMonomerLengths(double length)
 
 void Polymer::setMonomerLengths(const double* length)
 {
-    int i;
-    
     if(monomerLength == NULL)
 	monomerLength = new double [numMonomers];
     

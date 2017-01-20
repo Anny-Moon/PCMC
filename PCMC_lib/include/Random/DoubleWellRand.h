@@ -53,8 +53,6 @@ private:
     double norm[2];///< normalizing coefficients in each interval (if one interval - only norm[0] is used)
     int N_int_steps = 50;///< number of steps during integration
     
-    int error_code; ///< 0 if everything is ok;
-    
     double polynom(double x) const;
     double firstDerivative(double x) const;
     double secondDerivative(double x) const;

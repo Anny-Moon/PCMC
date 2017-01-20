@@ -42,7 +42,7 @@ void PolymerQuantum::writeTBMfile(char* fileName, const HoppingAmplitudeCalculat
 {
     int i;
     char str [100];
-    int site_to, site_from,  numSites;
+    int numSites;
     complex<double> amplitude;
     Vector rSite;
     
