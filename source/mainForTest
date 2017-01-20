@@ -24,8 +24,7 @@ int main(int np, char **p)
     FILE* cfp, *lfp, *log_file, *ktfp, *fp1;;
     char str [100];
     char str1 [100];
-    char str2 [100];
-    time_t time1, time2;
+    char str2 [100]; 
     
     //logo
     printf("=====================================\n");
@@ -41,49 +40,53 @@ int main(int np, char **p)
     
     RandomGenerator::initialization(time(NULL));
 //    RandomGenerator::initialization(1);
-    char* fname1;
     log_file = fopen("results/log_file","w");
+    cfp=fopen("results/confOriginal.dat","w");
+    lfp=fopen("results/lengths.dat","w");
+    ktfp=fopen("results/kappaTau.dat","w");
+    
     N = 100;
-    PolymerMC *polymer;
+    PolymerMC polymer(N); // => 30 kappsa and taus
+//    PolymerMC polymer(Polymer::FileType::angles, "data/conf_logT-7.dat");
+    polymer.setMonomerLengths(3.8);
+    polymer.initWithRandomTaus();
+    
+    polymer.writeRadiusVectorsInFile(cfp);
+    polymer.setMonomerLengthsFromRadiusVectors();
+    
+    polymer.writeMonomerLengthsInFile(lfp);
     Hamiltonian hamiltonian(N, 3.5, 1.5, 0.0001,0.0001, 0.0000001);
     LennardJones lj(10.0, 4.5);
-
-    time1 = time(NULL);
-    for (int k=0;k<20;k++){
-	printf("--------------- polymer No. %i\n", k);
-	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf_logT.dat",k);
-	ktfp = fopen(fname1, "w");
-	polymer = new PolymerMC(N);
-	
-        polymer->setMonomerLengths(3.8);
-	polymer->initWithRandomTaus();
+//    LennardJones lj(0.0, 1.0); // = 0
     
-	polymer->setMonomerLengthsFromRadiusVectors();
-
-        for(double c=2;c>-6;c-=0.1){
-	    temperature = pow(10,c);
-	    printf("logT %g\n",c);
+    for(int c=2;c>-6;c--){
+	temperature = pow(10,c);
+	printf("%i\n",c);
 	
-	    for(i=0;i<1000;i++){
-		polymer->updateAllSites(temperature, hamiltonian, lj);
-	    }
+	for(i=0;i<100;i++){
 	    
-	    if(!polymer->selfAvoidingCondition(3.8, 15))
-		fprintf(log_file, "selfCond %i %g\n",k, c);
+	    tmp = PolymerObservable::radiusGyration(polymer);
+	    fprintf(log_file,"%g\t%g\n", tmp, hamiltonian.energyAllSites(polymer));
+//		polymer.kappaUpdate(3,0.001, hamiltonian, lj);
+	    polymer.updateAllSites(temperature, hamiltonian, lj);
+//		polymer.writeRadiusVectorsInFile(cfp);
+	    
 	}
-    
-        polymer->writeKappaTauInFile(ktfp);
-    
-	
-	fclose(ktfp);
-	delete [] fname1;
-	fclose(log_file);
-	delete polymer;
+	fprintf(log_file,"%i\t", c);
+	polymer.writeAcceptenceRateInFile(log_file);
+	if(!polymer.selfAvoidingCondition(3.8, 15))
+		printf("selfCond %i\n",c);
     }
-    time2 = time(NULL);
-    printf("time = %g\n", difftime(time2, time1));
     
+    polymer.writeKappaTauInFile(ktfp);
+    polymer.setMonomerLengthsFromRadiusVectors();
+    
+    polymer.writeMonomerLengthsInFile(lfp);
+    fclose(lfp);
+    fclose(ktfp);
+    fclose(cfp);
+    fclose(log_file);
+
     printf("Everything is OK!\n");
 return 0;
 }

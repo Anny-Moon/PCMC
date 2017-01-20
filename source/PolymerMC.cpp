@@ -65,9 +65,7 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
 }
 PolymerMC::~PolymerMC()
 {
-
     delete [] rOld;
-    
     //Polymer distructor
 }
 

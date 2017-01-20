@@ -273,6 +273,7 @@ Polymer::~Polymer()
 
 void Polymer::formatAll()
 {
+
     if(monomerLength != NULL){
 	delete [] monomerLength;
 	monomerLength = NULL;
