@@ -1,14 +1,18 @@
 #!/bin/bash
 
+PROJECT_DIR=$PWD
 INC_DIR=$PWD/PCMC_lib/include
 
 #export PROJECT_DIR
 
 if [ -z "$CPLUS_INCLUDE_PATH" ]
 then
-    CPLUS_INCLUDE_PATH=$INC_DIR*/**/;
+    CPLUS_INCLUDE_PATH=${INC_DIR}/Energy;
 else
-    CPLUS_INCLUDE_PATH+=:$INC_DIR*/**/;
+    CPLUS_INCLUDE_PATH+=:${INC_DIR}/Energy;
 fi
+CPLUS_INCLUDE_PATH+=:${INK_DIR};
+CPLUS_INCLUDE_PATH+=:${INK_DIR}/Random;
+
 echo $CPLUS_INCLUDE_PATH
 #export CPLUS_INCLUDE_PATH

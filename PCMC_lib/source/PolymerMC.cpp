@@ -33,7 +33,9 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
     r = new Vector [numMonomers+1];
     rOld = new Vector [numMonomers+1];
     
-    InteractionSite interactionSite {-100, 0.0};
+    interactionSite.site = -100;
+    interactionSite.site = 0;
+    
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 
@@ -59,7 +61,9 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
 //    }
     
 //    Vector::copyArray(numMonomers+1, rOld, r);
-    InteractionSite interactionSite {-100, 0.0};
+    interactionSite.site = -100;
+    interactionSite.site = 0;
+    
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 }
