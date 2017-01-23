@@ -1,7 +1,7 @@
 reset
 set terminal postscript eps enhanced colour "Times-Roman,20";
 
-n=200 #number of intervals
+n=50 #number of intervals
 max=2.5 #max value
 min=-2.5 #min value
 width=(max-min)/n #interval width
@@ -24,4 +24,4 @@ set ylabel "Probability distribution"
 
 
 #count and plot
-plot  "results/Conf/kappaTauN100.dat" u (hist($1,width)):(1.0) smooth freq w boxes lc rgb "red" notitle
+plot "results/Configurations/kappaTauN100.dat" u (hist($1,width)):(1.0) smooth freq w boxes lc rgb "red" notitle

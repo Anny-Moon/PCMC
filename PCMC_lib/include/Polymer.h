@@ -48,7 +48,7 @@ class Polymer
     * You don't need to have empty line at the end of file.*/
     void readFileWithCoordinates(char* fileName, int linesInBlock, int blockNumber = 1);
     
-    /** Read file with kappa tau angles and fill corresponding arrays. One line - one atom. One block - one chain. */
+    /** Read file with kappa tau angles and fill corresponding arrays. One line - one atom. One block - one chain.*/
     void readFileWithAngles(char* fileName, int linesInBlock, int blockNumber = 1);
     
     /** The same as destructor */
@@ -58,8 +58,17 @@ public:
     enum class FileType {coordinates, angles};
     
     /** Constructor: read coordinates of sites from file. If you have more than one
-    blocks in file then pass the number of the block. You can pass number of sites in
-    the block, but it is not necessarily.*/
+    * blocks in file then pass the number of the block. You can pass number of sites in
+    * the block, but it is not necessarily.
+    *
+    * If FileType::angles
+    * kappa[0] and tau[0] has no sence, so they should not be in the file.
+    * It means: if you have 10 lines in block then you have 11(!) atoms. numMonomers = 11.
+    *
+    * kappa[0] and tau [0] will be set to 0;
+    * monomersLenghth will be set to 3.8 all;
+    * setVectorsTNBfromKappaTau() and setRadiusVectorsFromVectorsT() will be caled.
+    */
     Polymer(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
 
     /** Constructor */

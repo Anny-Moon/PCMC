@@ -44,7 +44,7 @@ int main(int np, char **p)
     log_file = fopen(fname2,"w");
     
     char* fname3;
-    fname2 = new char[100]; 
+    fname3 = new char[100]; 
     sprintf(fname3,"results/AccN/%iacc_num.dat",myCoreNumber);
     accfp = fopen(fname3,"w");
     
@@ -63,10 +63,10 @@ int main(int np, char **p)
     
 	polymer->setMonomerLengthsFromRadiusVectors();
 
-        for(logT=2;logT>1;logT-=1){
+        for(logT=2;logT>-6;logT-=0.1){
 	    temperature = pow(10,logT);
 	
-	    for(i=0;i<100;i++){
+	    for(i=0;i<1000;i++){
 		polymer->updateAllSites(temperature, hamiltonian, lj);
 	    }
 	    fprintf(accfp,"%g\t", logT);

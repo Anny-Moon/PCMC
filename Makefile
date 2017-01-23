@@ -8,6 +8,6 @@ LIB:= -lm -lgsl -lgslcblas
 all:
 	@echo "Generating executable file..." $(PROGRAM)
 #	@$(CC) $(OPT) $(CFLAGS) main.cpp -o $(PROGRAM) -I./PCMC_lib/include  -L./PCMC_lib/build  -lpcmc $(LIB)
-	@$(CC) $(OPT) $(CFLAGS) mainMPI_mac.cpp -o $(PROGRAM)  -I./PCMC_lib/include  -L./PCMC_lib/build  -lpcmc $(LIB)
+	@$(CC) $(OPT) $(CFLAGS) mainAnalyzator.cpp -o $(PROGRAM)  -I./PCMC_lib/include  -L./PCMC_lib/build  -lpcmc $(LIB)
 clean:
 	rm $(PROGRAM)

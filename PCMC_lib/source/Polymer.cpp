@@ -115,16 +115,19 @@ void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumb
 	exit(1);
     }
 
-    int firstElement=0;
+    setKappa(0, 0.0); // set first kappa to 0.0
+    setTau(0, 0.0);
+    
+    int firstElement=1;
     
     if(line[0]!='\n'&&line[0]!='\t'&&line[0]!=' '){
 	sscanf(line,"%le %le",&kappa_in, &tau_in);
-	setKappa(0, kappa_in);
-	setTau(0, tau_in);
-	firstElement = 1;
+	setKappa(1, kappa_in);
+	setTau(1, tau_in);
+	firstElement = 2;
     }
 
-    for(i=firstElement;i<linesInBlock;i++){
+    for(i=firstElement;i<linesInBlock+1;i++){
 	fgets(line, sizeof line, fp);
 	sscanf(line,"%le %le",&kappa_in, &tau_in);
 	setKappa(i, kappa_in);
@@ -154,7 +157,6 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 	size = numberOfLinesInBlock;
 
     
-    
     switch (fileType){
 	case FileType::coordinates:
 	    this->numMonomers = size-1;
@@ -177,8 +179,19 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 	    
 	    kappa = new double[numMonomers];
 	    tau = new double[numMonomers];
+	    readFileWithAngles(fileName, size-1, polymerNumber);
 	    
-	    readFileWithAngles(fileName, size, polymerNumber);
+	    monomerLength = new double[numMonomers];
+	    setMonomerLengths(3.8);
+	    
+	    t = new Vector[numMonomers];
+	    n = new Vector[numMonomers];
+	    b = new Vector[numMonomers];
+	    setVectorsTNBfromKappaTau();
+	    
+	    r = new Vector[numMonomers+1];
+	    setRadiusVectorsFromVectorsT();
+
 	    break;
     
     }
