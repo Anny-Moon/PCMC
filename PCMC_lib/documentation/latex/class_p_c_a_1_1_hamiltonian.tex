@@ -20,11 +20,13 @@ bool \hyperlink{class_p_c_a_1_1_hamiltonian_a3c9bddc6635c2a5a2ba0b2956126eb79}{c
 \item 
 \hyperlink{class_p_c_a_1_1_hamiltonian_a87dcca06e1580312d8ffd4ef7fcad219}{$\sim$\+Hamiltonian} ()
 \item 
-double \hyperlink{class_p_c_a_1_1_hamiltonian_aaf2a99fc482ccd2ebb0dc671f1a8df5a}{energy\+One\+Site} (int site, const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&\hyperlink{classpolymer}{polymer}) const
+double \hyperlink{class_p_c_a_1_1_hamiltonian_aaf2a99fc482ccd2ebb0dc671f1a8df5a}{energy\+One\+Site} (int site, const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&polymer) const
 \item 
-double \hyperlink{class_p_c_a_1_1_hamiltonian_a0751ca31444a5de38e6e5d7d07843538}{energy\+All\+Sites} (const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&\hyperlink{classpolymer}{polymer}) const
+double \hyperlink{class_p_c_a_1_1_hamiltonian_a0751ca31444a5de38e6e5d7d07843538}{energy\+All\+Sites} (const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&polymer) const
 \item 
-double \hyperlink{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b}{generate\+Tau} (double kappa\+\_\+i, double T) const
+double \hyperlink{class_p_c_a_1_1_hamiltonian_a89970a467d0ca05c41361fdd349a9ec7}{generate\+Kappa} (int site, double tau\+\_\+site, double kappa\+\_\+site\+More, double kappa\+\_\+site\+Less, double temperature) const
+\begin{DoxyCompactList}\small\item\em Generate kappa according Double\+Well distribution. \end{DoxyCompactList}\item 
+double \hyperlink{class_p_c_a_1_1_hamiltonian_a4da405a227d850e6e50c87889d4cd360}{generate\+Tau} (int site, double kappa\+\_\+site, double temperature) const
 \begin{DoxyCompactList}\small\item\em Generate tau according Gaussian distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \begin{Indent}{\bf Push functions (fills arrays including from\+Site and to\+Site!)\+:}\par
 \begin{DoxyCompactItemize}
@@ -118,11 +120,21 @@ Constructor for homopolymer.
 \subsubsection{\texorpdfstring{energy\+One\+Site()}{energyOneSite()}}
 {\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::energy\+One\+Site (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{const \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} \&}]{polymer }\end{DoxyParamCaption}) const}
 
-\hypertarget{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b}{}\label{class_p_c_a_1_1_hamiltonian_ad940f8b79c95c45ba11fe21f9491240b} 
+\hypertarget{class_p_c_a_1_1_hamiltonian_a89970a467d0ca05c41361fdd349a9ec7}{}\label{class_p_c_a_1_1_hamiltonian_a89970a467d0ca05c41361fdd349a9ec7} 
+\index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!generate\+Kappa@{generate\+Kappa}}
+\index{generate\+Kappa@{generate\+Kappa}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
+\subsubsection{\texorpdfstring{generate\+Kappa()}{generateKappa()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::generate\+Kappa (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{double}]{tau\+\_\+site,  }\item[{double}]{kappa\+\_\+site\+More,  }\item[{double}]{kappa\+\_\+site\+Less,  }\item[{double}]{temperature }\end{DoxyParamCaption}) const}
+
+
+
+Generate kappa according Double\+Well distribution. 
+
+Rejection sampling algorithm. \[P\sim \exp\left( -a\kappa^4+b\kappa^2+c\kappa\right)\] Coefficients\+: \[a = \alpha q > 0\] \[b = \alpha(ab\tau_i+2qm^2-\frac{c}{2}d\tau^2-2)\] \[c = (2+\mu)(\kappa_{i+1}-\kappa_{i-1})\] \hypertarget{class_p_c_a_1_1_hamiltonian_a4da405a227d850e6e50c87889d4cd360}{}\label{class_p_c_a_1_1_hamiltonian_a4da405a227d850e6e50c87889d4cd360} 
 \index{P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}!generate\+Tau@{generate\+Tau}}
 \index{generate\+Tau@{generate\+Tau}!P\+C\+A\+::\+Hamiltonian@{P\+C\+A\+::\+Hamiltonian}}
 \subsubsection{\texorpdfstring{generate\+Tau()}{generateTau()}}
-{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::generate\+Tau (\begin{DoxyParamCaption}\item[{double}]{kappa\+\_\+i,  }\item[{double}]{T }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Hamiltonian\+::generate\+Tau (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{double}]{kappa\+\_\+site,  }\item[{double}]{temperature }\end{DoxyParamCaption}) const}
 
 
 
@@ -237,5 +249,5 @@ Generate tau according Gaussian distribution.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Energy/\hyperlink{_hamiltonian_8h}{Hamiltonian.\+h}\item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Energy/\hyperlink{_hamiltonian_8cpp}{Hamiltonian.\+cpp}\end{DoxyCompactItemize}
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/include/\+Energy/\hyperlink{_hamiltonian_8h}{Hamiltonian.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/source/\+Energy/\hyperlink{_hamiltonian_8cpp}{Hamiltonian.\+cpp}\end{DoxyCompactItemize}

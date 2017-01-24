@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.12"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PCMC: /Users/annsi118/Documents/Git_projects/PCMC/include/PCAmacros.h File Reference</title>
+<title>PCMC: /Users/annsi118/Documents/Git_projects/PCMC/PCMC_lib/include/PCAmacros.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,6 +85,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a25ee12097a6dd0c586be1dc680326241"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_c_amacros_8h.html#a25ee12097a6dd0c586be1dc680326241">PCA_PI</a>&#160;&#160;&#160;3.141592653589793</td></tr>
 <tr class="memdesc:a25ee12097a6dd0c586be1dc680326241"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="_p_c_amacros_8h.html">PCAmacros.h</a>.  <a href="#a25ee12097a6dd0c586be1dc680326241">More...</a><br /></td></tr>
 <tr class="separator:a25ee12097a6dd0c586be1dc680326241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f53247bb6eed4d90c1fa30a1a55ea86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_c_amacros_8h.html#a6f53247bb6eed4d90c1fa30a1a55ea86">_PCA_ERROR</a>(functionName)</td></tr>
+<tr class="separator:a6f53247bb6eed4d90c1fa30a1a55ea86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1443445dffced41c9dfd07bc3f0ad7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_c_amacros_8h.html#ae1443445dffced41c9dfd07bc3f0ad7f">_PCA_CATCH_VOID_POINTER</a>(pointer,  functionName)</td></tr>
 <tr class="separator:ae1443445dffced41c9dfd07bc3f0ad7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad13d92940fe21eee8513993f5eb98971"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_c_amacros_8h.html#ad13d92940fe21eee8513993f5eb98971">_PCA_CATCH_FILE_ERROR</a>(fp,  action,  fileName,  functionName)</td></tr>
@@ -161,6 +163,24 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span>(pointer==NULL){\</div><div class="line">    printf(<span class="stringliteral">&quot;Error: void pointer\n\tin &quot;</span>);\</div><div class="line">    printf(functionName);\</div><div class="line">    printf(<span class="stringliteral">&quot;\n&quot;</span>);\</div><div class="line">    exit(1);\</div><div class="line">    }</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a6f53247bb6eed4d90c1fa30a1a55ea86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f53247bb6eed4d90c1fa30a1a55ea86">&sect;&nbsp;</a></span>_PCA_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PCA_ERROR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">functionName</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">{   printf(<span class="stringliteral">&quot;Error in %s\n&quot;</span>, functionName;\</div><div class="line">    exit(1);\</div><div class="line">    }</div></div><!-- fragment -->
 </div>
 </div>
 <a id="ae6b6551a8dd59b4b83fa2ce4b85bd27d"></a>

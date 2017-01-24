@@ -93,13 +93,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3c9bddc6635c2a5a2ba0b2956126eb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87dcca06e1580312d8ffd4ef7fcad219"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#a87dcca06e1580312d8ffd4ef7fcad219">~Hamiltonian</a> ()</td></tr>
 <tr class="separator:a87dcca06e1580312d8ffd4ef7fcad219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf2a99fc482ccd2ebb0dc671f1a8df5a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#aaf2a99fc482ccd2ebb0dc671f1a8df5a">energyOneSite</a> (int site, const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;<a class="el" href="classpolymer.html">polymer</a>) const</td></tr>
+<tr class="memitem:aaf2a99fc482ccd2ebb0dc671f1a8df5a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#aaf2a99fc482ccd2ebb0dc671f1a8df5a">energyOneSite</a> (int site, const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;polymer) const</td></tr>
 <tr class="separator:aaf2a99fc482ccd2ebb0dc671f1a8df5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0751ca31444a5de38e6e5d7d07843538"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#a0751ca31444a5de38e6e5d7d07843538">energyAllSites</a> (const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;<a class="el" href="classpolymer.html">polymer</a>) const</td></tr>
+<tr class="memitem:a0751ca31444a5de38e6e5d7d07843538"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#a0751ca31444a5de38e6e5d7d07843538">energyAllSites</a> (const <a class="el" href="class_p_c_a_1_1_polymer_m_c.html">PolymerMC</a> &amp;polymer) const</td></tr>
 <tr class="separator:a0751ca31444a5de38e6e5d7d07843538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad940f8b79c95c45ba11fe21f9491240b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#ad940f8b79c95c45ba11fe21f9491240b">generateTau</a> (double kappa_i, double T) const</td></tr>
-<tr class="memdesc:ad940f8b79c95c45ba11fe21f9491240b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate tau according Gaussian distribution.  <a href="#ad940f8b79c95c45ba11fe21f9491240b">More...</a><br /></td></tr>
-<tr class="separator:ad940f8b79c95c45ba11fe21f9491240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89970a467d0ca05c41361fdd349a9ec7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#a89970a467d0ca05c41361fdd349a9ec7">generateKappa</a> (int site, double tau_site, double kappa_siteMore, double kappa_siteLess, double temperature) const</td></tr>
+<tr class="memdesc:a89970a467d0ca05c41361fdd349a9ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate kappa according DoubleWell distribution.  <a href="#a89970a467d0ca05c41361fdd349a9ec7">More...</a><br /></td></tr>
+<tr class="separator:a89970a467d0ca05c41361fdd349a9ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da405a227d850e6e50c87889d4cd360"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#a4da405a227d850e6e50c87889d4cd360">generateTau</a> (int site, double kappa_site, double temperature) const</td></tr>
+<tr class="memdesc:a4da405a227d850e6e50c87889d4cd360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate tau according Gaussian distribution.  <a href="#a4da405a227d850e6e50c87889d4cd360">More...</a><br /></td></tr>
+<tr class="separator:a4da405a227d850e6e50c87889d4cd360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Push functions (fills arrays including fromSite and toSite!):</div></td></tr>
 <tr class="memitem:aa1acb10e2078e74b747892db50a0342c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_hamiltonian.html#aa1acb10e2078e74b747892db50a0342c">pushAlpha</a> (double alpha_in)</td></tr>
 <tr class="separator:aa1acb10e2078e74b747892db50a0342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,8 +319,68 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad940f8b79c95c45ba11fe21f9491240b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad940f8b79c95c45ba11fe21f9491240b">&sect;&nbsp;</a></span>generateTau()</h2>
+<a id="a89970a467d0ca05c41361fdd349a9ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89970a467d0ca05c41361fdd349a9ec7">&sect;&nbsp;</a></span>generateKappa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double PCA::Hamiltonian::generateKappa </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>site</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>tau_site</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>kappa_siteMore</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>kappa_siteLess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>temperature</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate kappa according DoubleWell distribution. </p>
+<p>Rejection sampling algorithm. </p><p class="formulaDsp">
+\[P\sim \exp\left( -a\kappa^4+b\kappa^2+c\kappa\right)\]
+</p>
+<p> Coefficients: </p><p class="formulaDsp">
+\[a = \alpha q &gt; 0\]
+</p>
+ <p class="formulaDsp">
+\[b = \alpha(ab\tau_i+2qm^2-\frac{c}{2}d\tau^2-2)\]
+</p>
+ <p class="formulaDsp">
+\[c = (2+\mu)(\kappa_{i+1}-\kappa_{i-1})\]
+</p>
+ 
+</div>
+</div>
+<a id="a4da405a227d850e6e50c87889d4cd360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da405a227d850e6e50c87889d4cd360">&sect;&nbsp;</a></span>generateTau()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,14 +388,20 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">double PCA::Hamiltonian::generateTau </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>kappa_i</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>site</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>T</em>&#160;</td>
+          <td class="paramname"><em>kappa_site</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>temperature</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -795,8 +864,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/annsi118/Documents/Git_projects/PCMC/include/Energy/<a class="el" href="_hamiltonian_8h_source.html">Hamiltonian.h</a></li>
-<li>/Users/annsi118/Documents/Git_projects/PCMC/source/Energy/<a class="el" href="_hamiltonian_8cpp.html">Hamiltonian.cpp</a></li>
+<li>/Users/annsi118/Documents/Git_projects/PCMC/PCMC_lib/include/Energy/<a class="el" href="_hamiltonian_8h_source.html">Hamiltonian.h</a></li>
+<li>/Users/annsi118/Documents/Git_projects/PCMC/PCMC_lib/source/Energy/<a class="el" href="_hamiltonian_8cpp.html">Hamiltonian.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

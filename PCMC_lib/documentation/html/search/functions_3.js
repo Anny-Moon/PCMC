@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['der1',['der1',['../classkappa__distribution.html#ae7fee7da2f235cf8d319e00a7f8a4dc3',1,'kappa_distribution']]],
-  ['der2',['der2',['../classkappa__distribution.html#aafde4b907d4e201a59e3706ef5cb7c53',1,'kappa_distribution']]],
-  ['distance',['distance',['../class_p_c_a_1_1_polymer.html#a901d8c030d3edb333498edcc4502b27a',1,'PCA::Polymer::distance()'],['../classpolymer.html#aa27a989548b5622fa6eaab87440a31d5',1,'polymer::distance()']]],
-  ['dotproduct',['dotProduct',['../class_p_c_a_1_1_vector.html#abc89550f2ef587f808a7fea91259a22a',1,'PCA::Vector']]],
-  ['doublewellrand',['DoubleWellRand',['../class_p_c_a_1_1_double_well_rand.html#a5a804723b5487331965c41acfaed8f0a',1,'PCA::DoubleWellRand']]],
-  ['dwparam',['DWparam',['../class_p_c_a_1_1_polymer_energy_1_1_d_wparam.html#a803a7fd6bcd83efd7934ad06a5fe6b71',1,'PCA::PolymerEnergy::DWparam::DWparam(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in=0, double u_in=0)'],['../class_p_c_a_1_1_polymer_energy_1_1_d_wparam.html#af9a9a24e85422d933fb527ef43a620a0',1,'PCA::PolymerEnergy::DWparam::DWparam(int numSites_in, const double *q_in, const double *m_in, const double *c_in, const double *d_in, const double *a_in, const double *b_in=0, const double *u_in=0)']]]
+  ['fillarray',['fillArray',['../namespace_p_c_a.html#af4a7844595578d2c8e09635fba6db3b2',1,'PCA']]],
+  ['findintervals',['findIntervals',['../class_p_c_a_1_1_double_well_rand.html#a89905058cce9c8bbecd5a0dabd21ea3c',1,'PCA::DoubleWellRand']]],
+  ['findmaxima',['findMaxima',['../class_p_c_a_1_1_double_well_rand.html#aa798efa59786f8aeeafb198f4a3319a3',1,'PCA::DoubleWellRand']]],
+  ['findnormcoefficients',['findNormCoefficients',['../class_p_c_a_1_1_double_well_rand.html#ab4d8dfc2a37b647e55fd18cc1d8e11f9',1,'PCA::DoubleWellRand']]],
+  ['firstderivative',['firstDerivative',['../class_p_c_a_1_1_double_well_rand.html#ab3817725d51a9171ef6a7e6a72ce25ef',1,'PCA::DoubleWellRand']]],
+  ['formatall',['formatAll',['../class_p_c_a_1_1_polymer.html#a3fcca4084a54ac8bc1941b36462bc560',1,'PCA::Polymer']]]
 ];

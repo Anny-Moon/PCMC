@@ -16,7 +16,9 @@ Lennard-\/\+Jones potential.
 \item 
 \hyperlink{class_p_c_a_1_1_lennard_jones_ac8acfe0ebd2e7f263d6561ab515f0028}{$\sim$\+Lennard\+Jones} ()
 \item 
-double \hyperlink{class_p_c_a_1_1_lennard_jones_a310360e70f05d8ca7a809823e9c01422}{energy} (const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&r) const
+double \hyperlink{class_p_c_a_1_1_lennard_jones_a5021c95edaa07f8a82c685616b5e6114}{energy} (double distance) const
+\item 
+double \hyperlink{class_p_c_a_1_1_lennard_jones_a4ea7171851de5aec43842d769c54e4e9}{energy\+If\+Site\+Changed} (int site, int size, const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$r) const
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -48,11 +50,17 @@ Lennard-\/\+Jones potential.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_p_c_a_1_1_lennard_jones_a310360e70f05d8ca7a809823e9c01422}{}\label{class_p_c_a_1_1_lennard_jones_a310360e70f05d8ca7a809823e9c01422} 
+\hypertarget{class_p_c_a_1_1_lennard_jones_a5021c95edaa07f8a82c685616b5e6114}{}\label{class_p_c_a_1_1_lennard_jones_a5021c95edaa07f8a82c685616b5e6114} 
 \index{P\+C\+A\+::\+Lennard\+Jones@{P\+C\+A\+::\+Lennard\+Jones}!energy@{energy}}
 \index{energy@{energy}!P\+C\+A\+::\+Lennard\+Jones@{P\+C\+A\+::\+Lennard\+Jones}}
 \subsubsection{\texorpdfstring{energy()}{energy()}}
-{\footnotesize\ttfamily double P\+C\+A\+::\+Lennard\+Jones\+::energy (\begin{DoxyParamCaption}\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} \&}]{r }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Lennard\+Jones\+::energy (\begin{DoxyParamCaption}\item[{double}]{distance }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_p_c_a_1_1_lennard_jones_a4ea7171851de5aec43842d769c54e4e9}{}\label{class_p_c_a_1_1_lennard_jones_a4ea7171851de5aec43842d769c54e4e9} 
+\index{P\+C\+A\+::\+Lennard\+Jones@{P\+C\+A\+::\+Lennard\+Jones}!energy\+If\+Site\+Changed@{energy\+If\+Site\+Changed}}
+\index{energy\+If\+Site\+Changed@{energy\+If\+Site\+Changed}!P\+C\+A\+::\+Lennard\+Jones@{P\+C\+A\+::\+Lennard\+Jones}}
+\subsubsection{\texorpdfstring{energy\+If\+Site\+Changed()}{energyIfSiteChanged()}}
+{\footnotesize\ttfamily double P\+C\+A\+::\+Lennard\+Jones\+::energy\+If\+Site\+Changed (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{int}]{size,  }\item[{const \hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$}]{r }\end{DoxyParamCaption}) const}
 
 
 
@@ -73,5 +81,5 @@ Lennard-\/\+Jones potential.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\+Energy/\hyperlink{_lennard_jones_8h}{Lennard\+Jones.\+h}\item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\+Energy/\hyperlink{_lennard_jones_8cpp}{Lennard\+Jones.\+cpp}\end{DoxyCompactItemize}
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/include/\+Energy/\hyperlink{_lennard_jones_8h}{Lennard\+Jones.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/source/\+Energy/\hyperlink{_lennard_jones_8cpp}{Lennard\+Jones.\+cpp}\end{DoxyCompactItemize}

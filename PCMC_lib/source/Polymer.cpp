@@ -225,8 +225,8 @@ Polymer::Polymer(int numberOfMonomers, const Vector* r_in,  const Vector* t_in, 
 	Vector::copyArray(numMonomers, b, b_in);
     }
 
-    if(r_in == NULL && t_in == NULL && b_in == NULL)
-	printf("Warning: you created Polymer without any data\n");
+//    if(r_in == NULL && t_in == NULL && b_in == NULL)
+//	printf("Warning: you created Polymer without any data\n");
 
 }
 

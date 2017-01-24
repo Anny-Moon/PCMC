@@ -10,21 +10,42 @@ Inheritance diagram for P\+CA\+:\+:Polymer\+MC\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{class_p_c_a_1_1_polymer_m_c}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_p_c_a_1_1_polymer_m_c_1_1_interaction_site}{Interaction\+Site}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25}{Polymer\+MC} (int number\+Of\+Monomers, const double $\ast$\hyperlink{class_p_c_a_1_1_polymer_a1bef29f1613bb4b67981aae7df3d804b}{kappa}, const double $\ast$\hyperlink{class_p_c_a_1_1_polymer_ab3b07298bdbac01a7b20b2554d7b248f}{tau})
+\hyperlink{class_p_c_a_1_1_polymer_m_c_a0d90616fbc7d2eaaeedbdce0bc9057f0}{Polymer\+MC} (int number\+Of\+Monomers)
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_c_a_1_1_polymer_m_c_a4617bc87ec890ae0817f2a1f20644611}{Polymer\+MC} (\hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{File\+Type} file\+Type, char $\ast$file\+Name, int number\+Lines\+In\+Block=0, int polymer\+Number=1)
+\item 
 \hyperlink{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3}{$\sim$\+Polymer\+MC} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_ab075a6b6e2053461e15770d8db4f8917}{init\+With\+Random\+Taus} ()
+\begin{DoxyCompactList}\small\item\em Initialization of \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} with random taus and kappas = 0. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a327234bb757279e61f1b47ba493aaaa2}{init\+Test} ()
+\begin{DoxyCompactList}\small\item\em Initialization of \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} for testing. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a6e0c4626aff4270d9a1ece7fc51f3c0f}{save\+Old\+Radius\+Vectors} (int site)
+\begin{DoxyCompactList}\small\item\em Saves old radius vectors starting from (site+1)\+: r\+Old\mbox{[}site+1\mbox{]}=r\mbox{[}site+1\mbox{]} ... \end{DoxyCompactList}\item 
 void \hyperlink{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd}{set\+New\+Radius\+Vectors\+Via\+Rotation} (int site)
 \begin{DoxyCompactList}\small\item\em This function changes only! r\mbox{[}site+1\mbox{]}, r\mbox{[}site+2\mbox{]}... \end{DoxyCompactList}\item 
 void \hyperlink{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b}{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau} (int site)
+\begin{DoxyCompactList}\small\item\em Set t-\/ n-\/ b\mbox{[}i+1\mbox{]} and t-\/ n-\/ b\+New from kappa-\/ tau\mbox{[}i\mbox{]}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_p_c_a_1_1_polymer_m_c_a6f7e8a68070a688e1d6b0dc00a13b27c}{self\+Avoiding\+Condition} (double min\+Distance, int site)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_aabe0e104c1f34ebe2174a650b7cbe963}{write\+Acceptence\+Rate\+In\+File} (F\+I\+LE $\ast$fp)
 \end{DoxyCompactItemize}
-\begin{Indent}{\bf Monte Carlo updates}\par
+\begin{Indent}{\bf Monte Carlo updates at kappa\mbox{[}site\mbox{]}/tau\mbox{[}site\mbox{]}}\par
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_p_c_a_1_1_polymer_m_c_aa5f0b2a0c75a6e01505afe1a600cf59e}{tau\+Update} (int site, const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&hamiltonian, const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&interaction)
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a8d70317037e998d3a27618a9ecb60fd8}{kappa\+Update} (int site, double temperarture, const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&hamiltonian, const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&interaction)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a087b8392c8ec8eea5c069a1be4c46d2f}{tau\+Update} (int site, double temperarture, const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&hamiltonian, const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&interaction)
+\item 
+void \hyperlink{class_p_c_a_1_1_polymer_m_c_a4bb5653f7159bce31cc0e476b4fd4c8e}{update\+All\+Sites} (double temperature, const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&hamiltonian, const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&interaction)
 \end{DoxyCompactItemize}
 \end{Indent}
 \subsection*{Private Attributes}
@@ -34,27 +55,45 @@ double \hyperlink{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05}
 \item 
 double \hyperlink{class_p_c_a_1_1_polymer_m_c_a6400a8ec5f791281122167837d6e4d7d}{tau\+New}
 \item 
+\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_m_c_a6144923e16ec4e3086f92516d8a9117b}{r\+Old}
+\item 
+struct \hyperlink{struct_p_c_a_1_1_polymer_m_c_1_1_interaction_site}{P\+C\+A\+::\+Polymer\+M\+C\+::\+Interaction\+Site} \hyperlink{class_p_c_a_1_1_polymer_m_c_ac4bbb885c9b1953dd3bd2fbf1656822e}{interaction\+Site}
+\item 
+int \hyperlink{class_p_c_a_1_1_polymer_m_c_adc7d93c4f0f568dd5fd9b74064e0cd88}{accept\+Number\+Kappa}
+\item 
+int \hyperlink{class_p_c_a_1_1_polymer_m_c_a537709e4e856390abc7f511de2cf4c58}{accept\+Number\+Tau}
+\item 
+\hyperlink{class_p_c_a_1_1_uniform_rand}{Uniform\+Rand} \hyperlink{class_p_c_a_1_1_polymer_m_c_ac503a4c28f8c36289d34036ce1ebc0b2}{uni\+Rand}
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf If kappa\+New corresponds to i site then t\+New correspondes to (i+1)}\par
+\begin{DoxyCompactItemize}
+\item 
 \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a1220187032c23f9fd2d78886fd1815b3}{t\+New}
 \item 
 \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a5e493ca12a3eba2f1658ac1cccba3d56}{n\+New}
 \item 
 \hyperlink{class_p_c_a_1_1_vector}{Vector} \hyperlink{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6}{b\+New}
-\item 
-\hyperlink{class_p_c_a_1_1_vector}{Vector} $\ast$ \hyperlink{class_p_c_a_1_1_polymer_m_c_a6144923e16ec4e3086f92516d8a9117b}{r\+Old}
 \end{DoxyCompactItemize}
+\end{Indent}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25}{}\label{class_p_c_a_1_1_polymer_m_c_a3a792caa4db0fe8a7c749c4b0f6fce25} 
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a0d90616fbc7d2eaaeedbdce0bc9057f0}{}\label{class_p_c_a_1_1_polymer_m_c_a0d90616fbc7d2eaaeedbdce0bc9057f0} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!Polymer\+MC@{Polymer\+MC}}
 \index{Polymer\+MC@{Polymer\+MC}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
-\subsubsection{\texorpdfstring{Polymer\+M\+C()}{PolymerMC()}}
-{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+M\+C\+::\+Polymer\+MC (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Monomers,  }\item[{const double $\ast$}]{kappa,  }\item[{const double $\ast$}]{tau }\end{DoxyParamCaption})}
+\subsubsection{\texorpdfstring{Polymer\+M\+C()}{PolymerMC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+M\+C\+::\+Polymer\+MC (\begin{DoxyParamCaption}\item[{int}]{number\+Of\+Monomers }\end{DoxyParamCaption})}
 
 
 
 Constructor. 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a4617bc87ec890ae0817f2a1f20644611}{}\label{class_p_c_a_1_1_polymer_m_c_a4617bc87ec890ae0817f2a1f20644611} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!Polymer\+MC@{Polymer\+MC}}
+\index{Polymer\+MC@{Polymer\+MC}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{Polymer\+M\+C()}{PolymerMC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily P\+C\+A\+::\+Polymer\+M\+C\+::\+Polymer\+MC (\begin{DoxyParamCaption}\item[{\hyperlink{class_p_c_a_1_1_polymer_a1df36a764fbf04ccd5cbe8edb49d43bd}{File\+Type}}]{file\+Type,  }\item[{char $\ast$}]{file\+Name,  }\item[{int}]{number\+Lines\+In\+Block = {\ttfamily 0},  }\item[{int}]{polymer\+Number = {\ttfamily 1} }\end{DoxyParamCaption})}
 
 \hypertarget{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3}{}\label{class_p_c_a_1_1_polymer_m_c_a6ed770992221cd0a7a9e364d4d5fcda3} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!````~Polymer\+MC@{$\sim$\+Polymer\+MC}}
@@ -69,6 +108,48 @@ Destructor.
 
 
 \subsection{Member Function Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a327234bb757279e61f1b47ba493aaaa2}{}\label{class_p_c_a_1_1_polymer_m_c_a327234bb757279e61f1b47ba493aaaa2} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!init\+Test@{init\+Test}}
+\index{init\+Test@{init\+Test}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{init\+Test()}{initTest()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::init\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialization of \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} for testing. 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_ab075a6b6e2053461e15770d8db4f8917}{}\label{class_p_c_a_1_1_polymer_m_c_ab075a6b6e2053461e15770d8db4f8917} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!init\+With\+Random\+Taus@{init\+With\+Random\+Taus}}
+\index{init\+With\+Random\+Taus@{init\+With\+Random\+Taus}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{init\+With\+Random\+Taus()}{initWithRandomTaus()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::init\+With\+Random\+Taus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialization of \hyperlink{class_p_c_a_1_1_polymer_m_c}{Polymer\+MC} with random taus and kappas = 0. 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a8d70317037e998d3a27618a9ecb60fd8}{}\label{class_p_c_a_1_1_polymer_m_c_a8d70317037e998d3a27618a9ecb60fd8} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!kappa\+Update@{kappa\+Update}}
+\index{kappa\+Update@{kappa\+Update}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{kappa\+Update()}{kappaUpdate()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::kappa\+Update (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{double}]{temperarture,  }\item[{const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&}]{hamiltonian,  }\item[{const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&}]{interaction }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6e0c4626aff4270d9a1ece7fc51f3c0f}{}\label{class_p_c_a_1_1_polymer_m_c_a6e0c4626aff4270d9a1ece7fc51f3c0f} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!save\+Old\+Radius\+Vectors@{save\+Old\+Radius\+Vectors}}
+\index{save\+Old\+Radius\+Vectors@{save\+Old\+Radius\+Vectors}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{save\+Old\+Radius\+Vectors()}{saveOldRadiusVectors()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::save\+Old\+Radius\+Vectors (\begin{DoxyParamCaption}\item[{int}]{site }\end{DoxyParamCaption})}
+
+
+
+Saves old radius vectors starting from (site+1)\+: r\+Old\mbox{[}site+1\mbox{]}=r\mbox{[}site+1\mbox{]} ... 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a6f7e8a68070a688e1d6b0dc00a13b27c}{}\label{class_p_c_a_1_1_polymer_m_c_a6f7e8a68070a688e1d6b0dc00a13b27c} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!self\+Avoiding\+Condition@{self\+Avoiding\+Condition}}
+\index{self\+Avoiding\+Condition@{self\+Avoiding\+Condition}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{self\+Avoiding\+Condition()}{selfAvoidingCondition()}}
+{\footnotesize\ttfamily bool P\+C\+A\+::\+Polymer\+M\+C\+::self\+Avoiding\+Condition (\begin{DoxyParamCaption}\item[{double}]{min\+Distance,  }\item[{int}]{site }\end{DoxyParamCaption})}
+
 \hypertarget{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd}{}\label{class_p_c_a_1_1_polymer_m_c_a80c92a94292d085a0d0ce0563ae0a1fd} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!set\+New\+Radius\+Vectors\+Via\+Rotation@{set\+New\+Radius\+Vectors\+Via\+Rotation}}
 \index{set\+New\+Radius\+Vectors\+Via\+Rotation@{set\+New\+Radius\+Vectors\+Via\+Rotation}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
@@ -79,26 +160,60 @@ Destructor.
 
 This function changes only! r\mbox{[}site+1\mbox{]}, r\mbox{[}site+2\mbox{]}... 
 
-\+: And before doing this it saves old r\textquotesingle{}s as r\+Old\mbox{[}site+1\mbox{]}=r\mbox{[}site+1\mbox{]} ... \hypertarget{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b}{}\label{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b} 
+\hypertarget{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b}{}\label{class_p_c_a_1_1_polymer_m_c_ab7ec6ffe521bf27c218f4a6eac6c394b} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}}
 \index{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau@{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
 \subsubsection{\texorpdfstring{set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau()}{setNewVectorsTNBfromKappaTau()}}
 {\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::set\+New\+Vectors\+T\+N\+Bfrom\+Kappa\+Tau (\begin{DoxyParamCaption}\item[{int}]{site }\end{DoxyParamCaption})}
 
-\hypertarget{class_p_c_a_1_1_polymer_m_c_aa5f0b2a0c75a6e01505afe1a600cf59e}{}\label{class_p_c_a_1_1_polymer_m_c_aa5f0b2a0c75a6e01505afe1a600cf59e} 
+
+
+Set t-\/ n-\/ b\mbox{[}i+1\mbox{]} and t-\/ n-\/ b\+New from kappa-\/ tau\mbox{[}i\mbox{]}. 
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a087b8392c8ec8eea5c069a1be4c46d2f}{}\label{class_p_c_a_1_1_polymer_m_c_a087b8392c8ec8eea5c069a1be4c46d2f} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!tau\+Update@{tau\+Update}}
 \index{tau\+Update@{tau\+Update}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
 \subsubsection{\texorpdfstring{tau\+Update()}{tauUpdate()}}
-{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::tau\+Update (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&}]{hamiltonian,  }\item[{const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&}]{interaction }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::tau\+Update (\begin{DoxyParamCaption}\item[{int}]{site,  }\item[{double}]{temperarture,  }\item[{const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&}]{hamiltonian,  }\item[{const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&}]{interaction }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a4bb5653f7159bce31cc0e476b4fd4c8e}{}\label{class_p_c_a_1_1_polymer_m_c_a4bb5653f7159bce31cc0e476b4fd4c8e} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!update\+All\+Sites@{update\+All\+Sites}}
+\index{update\+All\+Sites@{update\+All\+Sites}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{update\+All\+Sites()}{updateAllSites()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::update\+All\+Sites (\begin{DoxyParamCaption}\item[{double}]{temperature,  }\item[{const \hyperlink{class_p_c_a_1_1_hamiltonian}{Hamiltonian} \&}]{hamiltonian,  }\item[{const \hyperlink{class_p_c_a_1_1_lennard_jones}{Lennard\+Jones} \&}]{interaction }\end{DoxyParamCaption})}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_aabe0e104c1f34ebe2174a650b7cbe963}{}\label{class_p_c_a_1_1_polymer_m_c_aabe0e104c1f34ebe2174a650b7cbe963} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!write\+Acceptence\+Rate\+In\+File@{write\+Acceptence\+Rate\+In\+File}}
+\index{write\+Acceptence\+Rate\+In\+File@{write\+Acceptence\+Rate\+In\+File}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{write\+Acceptence\+Rate\+In\+File()}{writeAcceptenceRateInFile()}}
+{\footnotesize\ttfamily void P\+C\+A\+::\+Polymer\+M\+C\+::write\+Acceptence\+Rate\+In\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 \subsection{Member Data Documentation}
+\hypertarget{class_p_c_a_1_1_polymer_m_c_adc7d93c4f0f568dd5fd9b74064e0cd88}{}\label{class_p_c_a_1_1_polymer_m_c_adc7d93c4f0f568dd5fd9b74064e0cd88} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!accept\+Number\+Kappa@{accept\+Number\+Kappa}}
+\index{accept\+Number\+Kappa@{accept\+Number\+Kappa}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{accept\+Number\+Kappa}{acceptNumberKappa}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Polymer\+M\+C\+::accept\+Number\+Kappa\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_a537709e4e856390abc7f511de2cf4c58}{}\label{class_p_c_a_1_1_polymer_m_c_a537709e4e856390abc7f511de2cf4c58} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!accept\+Number\+Tau@{accept\+Number\+Tau}}
+\index{accept\+Number\+Tau@{accept\+Number\+Tau}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{accept\+Number\+Tau}{acceptNumberTau}}
+{\footnotesize\ttfamily int P\+C\+A\+::\+Polymer\+M\+C\+::accept\+Number\+Tau\hspace{0.3cm}{\ttfamily [private]}}
+
 \hypertarget{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6}{}\label{class_p_c_a_1_1_polymer_m_c_a69019643d3a1fd92b8c77647bb4a91d6} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!b\+New@{b\+New}}
 \index{b\+New@{b\+New}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
 \subsubsection{\texorpdfstring{b\+New}{bNew}}
 {\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Polymer\+M\+C\+::b\+New\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{class_p_c_a_1_1_polymer_m_c_ac4bbb885c9b1953dd3bd2fbf1656822e}{}\label{class_p_c_a_1_1_polymer_m_c_ac4bbb885c9b1953dd3bd2fbf1656822e} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!interaction\+Site@{interaction\+Site}}
+\index{interaction\+Site@{interaction\+Site}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{interaction\+Site}{interactionSite}}
+{\footnotesize\ttfamily struct \hyperlink{struct_p_c_a_1_1_polymer_m_c_1_1_interaction_site}{P\+C\+A\+::\+Polymer\+M\+C\+::\+Interaction\+Site}  P\+C\+A\+::\+Polymer\+M\+C\+::interaction\+Site\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05}{}\label{class_p_c_a_1_1_polymer_m_c_a6771be27571e5c106546eb5225edec05} 
 \index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!kappa\+New@{kappa\+New}}
@@ -130,9 +245,15 @@ This function changes only! r\mbox{[}site+1\mbox{]}, r\mbox{[}site+2\mbox{]}...
 \subsubsection{\texorpdfstring{t\+New}{tNew}}
 {\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_vector}{Vector} P\+C\+A\+::\+Polymer\+M\+C\+::t\+New\hspace{0.3cm}{\ttfamily [private]}}
 
+\hypertarget{class_p_c_a_1_1_polymer_m_c_ac503a4c28f8c36289d34036ce1ebc0b2}{}\label{class_p_c_a_1_1_polymer_m_c_ac503a4c28f8c36289d34036ce1ebc0b2} 
+\index{P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}!uni\+Rand@{uni\+Rand}}
+\index{uni\+Rand@{uni\+Rand}!P\+C\+A\+::\+Polymer\+MC@{P\+C\+A\+::\+Polymer\+MC}}
+\subsubsection{\texorpdfstring{uni\+Rand}{uniRand}}
+{\footnotesize\ttfamily \hyperlink{class_p_c_a_1_1_uniform_rand}{Uniform\+Rand} P\+C\+A\+::\+Polymer\+M\+C\+::uni\+Rand\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/include/\hyperlink{_polymer_m_c_8h}{Polymer\+M\+C.\+h}\item 
-/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/source/\hyperlink{_polymer_m_c_8cpp}{Polymer\+M\+C.\+cpp}\end{DoxyCompactItemize}
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/include/\hyperlink{_polymer_m_c_8h}{Polymer\+M\+C.\+h}\item 
+/\+Users/annsi118/\+Documents/\+Git\+\_\+projects/\+P\+C\+M\+C/\+P\+C\+M\+C\+\_\+lib/source/\hyperlink{_polymer_m_c_8cpp}{Polymer\+M\+C.\+cpp}\end{DoxyCompactItemize}

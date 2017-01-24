@@ -77,11 +77,12 @@ public:
     double energyAllSites(const PolymerMC& polymer) const;
     
     /** Generate kappa according DoubleWell distribution.
-    * \f[P\sim \exp\left( -a\kappa^4+b\kappa^2+c\kappa\rigth)\f]
+    * Rejection sampling algorithm.
+    * \f[P\sim \exp\left( -a\kappa^4+b\kappa^2+c\kappa\right)\f]
     * Coefficients:
-    * \f[a = \f]
-    * \f[b = \f]
-    * \f[c = \f]
+    * \f[a = \alpha q > 0\f]
+    * \f[b = \alpha(ab\tau_i+2qm^2-\frac{c}{2}d\tau^2-2)\f]
+    * \f[c = (2+\mu)(\kappa_{i+1}-\kappa_{i-1})\f]
     */
     double generateKappa (
 	    int site,

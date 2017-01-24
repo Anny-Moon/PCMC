@@ -105,18 +105,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2645c33eba98a8ec1670d69b92060c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#ac2645c33eba98a8ec1670d69b92060c8">Polymer</a> (int numberOfMonomers, const <a class="el" href="class_p_c_a_1_1_vector.html">Vector</a> *<a class="el" href="class_p_c_a_1_1_polymer.html#a9822e3b9c3420a04a689706b84e586ca">r</a>=NULL, const <a class="el" href="class_p_c_a_1_1_vector.html">Vector</a> *<a class="el" href="class_p_c_a_1_1_polymer.html#a0fd79e19a8c09a9e4c72903924151b5e">t</a>=NULL, const <a class="el" href="class_p_c_a_1_1_vector.html">Vector</a> *<a class="el" href="class_p_c_a_1_1_polymer.html#ad93199b0187ab557476153b204b921c7">b</a>=NULL)</td></tr>
 <tr class="memdesc:ac2645c33eba98a8ec1670d69b92060c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ac2645c33eba98a8ec1670d69b92060c8">More...</a><br /></td></tr>
 <tr class="separator:ac2645c33eba98a8ec1670d69b92060c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d08722028cd9bf11b042a1b3b0e1d37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a7d08722028cd9bf11b042a1b3b0e1d37">Polymer</a> (int numberOfMonomers, const double *kappa_in, const double *tau_in)</td></tr>
-<tr class="memdesc:a7d08722028cd9bf11b042a1b3b0e1d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a7d08722028cd9bf11b042a1b3b0e1d37">More...</a><br /></td></tr>
-<tr class="separator:a7d08722028cd9bf11b042a1b3b0e1d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ce99540db06e9e48392423ba516cd2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a1ce99540db06e9e48392423ba516cd2f">Polymer</a> (const <a class="el" href="class_p_c_a_1_1_polymer.html">Polymer</a> &amp;<a class="el" href="classpolymer.html">polymer</a>)</td></tr>
+<tr class="memitem:a1ce99540db06e9e48392423ba516cd2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a1ce99540db06e9e48392423ba516cd2f">Polymer</a> (const <a class="el" href="class_p_c_a_1_1_polymer.html">Polymer</a> &amp;polymer)</td></tr>
 <tr class="memdesc:a1ce99540db06e9e48392423ba516cd2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a1ce99540db06e9e48392423ba516cd2f">More...</a><br /></td></tr>
 <tr class="separator:a1ce99540db06e9e48392423ba516cd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0d31fa5c6bee720f8069805d6669606"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#ac0d31fa5c6bee720f8069805d6669606">~Polymer</a> ()</td></tr>
 <tr class="memdesc:ac0d31fa5c6bee720f8069805d6669606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#ac0d31fa5c6bee720f8069805d6669606">More...</a><br /></td></tr>
 <tr class="separator:ac0d31fa5c6bee720f8069805d6669606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55787461ed50776c48819a5cc3911c38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a55787461ed50776c48819a5cc3911c38">setVectorsTNBfromKappaTau</a> ()</td></tr>
-<tr class="memdesc:a55787461ed50776c48819a5cc3911c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set vecors t(not unitary!) , n(unitary), b(unitary) and monomerLengths.  <a href="#a55787461ed50776c48819a5cc3911c38">More...</a><br /></td></tr>
+<tr class="memdesc:a55787461ed50776c48819a5cc3911c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set vecors t, n, b from kappas, taus and monomerlength(!)  <a href="#a55787461ed50776c48819a5cc3911c38">More...</a><br /></td></tr>
 <tr class="separator:a55787461ed50776c48819a5cc3911c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1e36cd67148470485df9b99380d8a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a6b1e36cd67148470485df9b99380d8a8">setMonomerLengths</a> (double length)</td></tr>
+<tr class="memdesc:a6b1e36cd67148470485df9b99380d8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all lengthes of monomers equal to length.  <a href="#a6b1e36cd67148470485df9b99380d8a8">More...</a><br /></td></tr>
+<tr class="separator:a6b1e36cd67148470485df9b99380d8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7939514917930c0d2419fd1d0390c889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a7939514917930c0d2419fd1d0390c889">setMonomerLengths</a> (const double *length)</td></tr>
+<tr class="memdesc:a7939514917930c0d2419fd1d0390c889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set lengths of monomers equal to array of lengthes of size numMonomers.  <a href="#a7939514917930c0d2419fd1d0390c889">More...</a><br /></td></tr>
+<tr class="separator:a7939514917930c0d2419fd1d0390c889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c6e93aa35271b98d92a38afd2b0913d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a0c6e93aa35271b98d92a38afd2b0913d">setRadiusVector</a> (int i, double x_in, double y_in, double z_in)</td></tr>
 <tr class="separator:a0c6e93aa35271b98d92a38afd2b0913d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8631ac2842b00802f24478b525c05db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#ac8631ac2842b00802f24478b525c05db">setKappa</a> (int i, double kappa_in)</td></tr>
@@ -125,6 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4ac116507767651444c852a75ab79c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9859e587476da47e49cfee1152e93fa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a9859e587476da47e49cfee1152e93fa0">writeRadiusVectorsInFile</a> (FILE *fp) const</td></tr>
 <tr class="separator:a9859e587476da47e49cfee1152e93fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2a326cdf255a2311588e25842dcab5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#afa2a326cdf255a2311588e25842dcab5">writeKappaTauInFile</a> (FILE *fp) const</td></tr>
+<tr class="separator:afa2a326cdf255a2311588e25842dcab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a081b8e4d7cac0da6cc411c7b56ff7362"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a081b8e4d7cac0da6cc411c7b56ff7362">writeMonomerLengthsInFile</a> (FILE *fp) const</td></tr>
 <tr class="separator:a081b8e4d7cac0da6cc411c7b56ff7362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac89188a3e56684ff3313a43ff83abea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#ac89188a3e56684ff3313a43ff83abea0">writeTBMfile</a> (char *fileName) const</td></tr>
@@ -134,15 +139,11 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Set ones vectors from another vectors:</div></td></tr>
 <tr class="memitem:aa655eb1299b272fef8c91f003abbf50d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#aa655eb1299b272fef8c91f003abbf50d">setVectorsTfromRadiusVectors</a> ()</td></tr>
 <tr class="separator:aa655eb1299b272fef8c91f003abbf50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dad939cbc8d8df73784526ad4a07aef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a8dad939cbc8d8df73784526ad4a07aef">setVectorsBfromVectorsT</a> ()</td></tr>
-<tr class="separator:a8dad939cbc8d8df73784526ad4a07aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258f607c38c1a247dd37659b236aa3fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a258f607c38c1a247dd37659b236aa3fa">setRadiusVectorsFromVectorsT</a> ()</td></tr>
 <tr class="separator:a258f607c38c1a247dd37659b236aa3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Set lengths of all monomers from vectors:</div></td></tr>
 <tr class="memitem:a2dae638afa952c286c16122c7ab52b6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a2dae638afa952c286c16122c7ab52b6e">setMonomerLengthsFromRadiusVectors</a> ()</td></tr>
 <tr class="separator:a2dae638afa952c286c16122c7ab52b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a217cddfa5b9e5bfe68f8e5d0802e2f31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a217cddfa5b9e5bfe68f8e5d0802e2f31">setMonomerLengthsFromVectorsT</a> ()</td></tr>
-<tr class="separator:a217cddfa5b9e5bfe68f8e5d0802e2f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Functions which returns members:</div></td></tr>
 <tr class="memitem:a5c87b083f77c06ffd14278f87dad47ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a5c87b083f77c06ffd14278f87dad47ea">getNumMonomers</a> () const</td></tr>
 <tr class="separator:a5c87b083f77c06ffd14278f87dad47ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +194,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ab3b07298bdbac01a7b20b2554d7b248f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Frenet frame vectors:</div></td></tr>
 <tr class="memitem:a0fd79e19a8c09a9e4c72903924151b5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_p_c_a_1_1_vector.html">Vector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a0fd79e19a8c09a9e4c72903924151b5e">t</a></td></tr>
-<tr class="memdesc:a0fd79e19a8c09a9e4c72903924151b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">tangent not-unit vectors  <a href="#a0fd79e19a8c09a9e4c72903924151b5e">More...</a><br /></td></tr>
+<tr class="memdesc:a0fd79e19a8c09a9e4c72903924151b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">tangent unit vectors  <a href="#a0fd79e19a8c09a9e4c72903924151b5e">More...</a><br /></td></tr>
 <tr class="separator:a0fd79e19a8c09a9e4c72903924151b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c71d8f5516ae0b0ead3929296135d1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_p_c_a_1_1_vector.html">Vector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_c_a_1_1_polymer.html#a7c71d8f5516ae0b0ead3929296135d1b">n</a></td></tr>
 <tr class="memdesc:a7c71d8f5516ae0b0ead3929296135d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">normal unit vectors  <a href="#a7c71d8f5516ae0b0ead3929296135d1b">More...</a><br /></td></tr>
@@ -231,7 +232,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac835d908dc32b787ca80f26cd0e6c68b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac835d908dc32b787ca80f26cd0e6c68b">&sect;&nbsp;</a></span>Polymer() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac835d908dc32b787ca80f26cd0e6c68b">&sect;&nbsp;</a></span>Polymer() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,12 +270,14 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor: read coordinates of sites from file. </p>
-<p>If you have more than one blocks in file then pass the number of the block. You can pass number of sites in the block, but it is not necessarily. </p>
+<p>If you have more than one blocks in file then pass the number of the block. You can pass number of sites in the block, but it is not necessarily.</p>
+<p>If <a class="el" href="class_p_c_a_1_1_polymer.html#a1df36a764fbf04ccd5cbe8edb49d43bda9bd139e0f52be4a748903ff60b5d3985">FileType::angles</a> kappa[0] and tau[0] has no sence, so they should not be in the file. It means: if you have 10 lines in block then you have 11(!) atoms. numMonomers = 11.</p>
+<p>kappa[0] and tau [0] will be set to 0; monomersLenghth will be set to 3.8 all; <a class="el" href="class_p_c_a_1_1_polymer.html#a55787461ed50776c48819a5cc3911c38" title="Set vecors t, n, b from kappas, taus and monomerlength(!) ">setVectorsTNBfromKappaTau()</a> and <a class="el" href="class_p_c_a_1_1_polymer.html#a258f607c38c1a247dd37659b236aa3fa">setRadiusVectorsFromVectorsT()</a> will be caled. </p>
 
 </div>
 </div>
 <a id="ac2645c33eba98a8ec1670d69b92060c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2645c33eba98a8ec1670d69b92060c8">&sect;&nbsp;</a></span>Polymer() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2645c33eba98a8ec1670d69b92060c8">&sect;&nbsp;</a></span>Polymer() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,44 +318,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7d08722028cd9bf11b042a1b3b0e1d37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d08722028cd9bf11b042a1b3b0e1d37">&sect;&nbsp;</a></span>Polymer() <span class="overload">[3/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">PCA::Polymer::Polymer </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>numberOfMonomers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>kappa_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>tau_in</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructor. </p>
-
-</div>
-</div>
 <a id="a1ce99540db06e9e48392423ba516cd2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ce99540db06e9e48392423ba516cd2f">&sect;&nbsp;</a></span>Polymer() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce99540db06e9e48392423ba516cd2f">&sect;&nbsp;</a></span>Polymer() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -737,6 +704,46 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a6b1e36cd67148470485df9b99380d8a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b1e36cd67148470485df9b99380d8a8">&sect;&nbsp;</a></span>setMonomerLengths() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::Polymer::setMonomerLengths </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>length</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set all lengthes of monomers equal to length. </p>
+
+</div>
+</div>
+<a id="a7939514917930c0d2419fd1d0390c889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7939514917930c0d2419fd1d0390c889">&sect;&nbsp;</a></span>setMonomerLengths() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::Polymer::setMonomerLengths </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>length</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set lengths of monomers equal to array of lengthes of size numMonomers. </p>
+
+</div>
+</div>
 <a id="a2dae638afa952c286c16122c7ab52b6e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2dae638afa952c286c16122c7ab52b6e">&sect;&nbsp;</a></span>setMonomerLengthsFromRadiusVectors()</h2>
 
@@ -745,23 +752,6 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void PCA::Polymer::setMonomerLengthsFromRadiusVectors </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a217cddfa5b9e5bfe68f8e5d0802e2f31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a217cddfa5b9e5bfe68f8e5d0802e2f31">&sect;&nbsp;</a></span>setMonomerLengthsFromVectorsT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PCA::Polymer::setMonomerLengthsFromVectorsT </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -872,23 +862,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8dad939cbc8d8df73784526ad4a07aef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dad939cbc8d8df73784526ad4a07aef">&sect;&nbsp;</a></span>setVectorsBfromVectorsT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PCA::Polymer::setVectorsBfromVectorsT </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aa655eb1299b272fef8c91f003abbf50d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa655eb1299b272fef8c91f003abbf50d">&sect;&nbsp;</a></span>setVectorsTfromRadiusVectors()</h2>
 
@@ -921,7 +894,25 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set vecors t(not unitary!) , n(unitary), b(unitary) and monomerLengths. </p>
+<p>Set vecors t, n, b from kappas, taus and monomerlength(!) </p>
+
+</div>
+</div>
+<a id="afa2a326cdf255a2311588e25842dcab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2a326cdf255a2311588e25842dcab5">&sect;&nbsp;</a></span>writeKappaTauInFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PCA::Polymer::writeKappaTauInFile </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1144,7 +1135,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>tangent not-unit vectors </p>
+<p>tangent unit vectors </p>
 
 </div>
 </div>
@@ -1173,8 +1164,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/annsi118/Documents/Git_projects/PCMC/include/<a class="el" href="_polymer_8h_source.html">Polymer.h</a></li>
-<li>/Users/annsi118/Documents/Git_projects/PCMC/source/<a class="el" href="_polymer_8cpp.html">Polymer.cpp</a></li>
+<li>/Users/annsi118/Documents/Git_projects/PCMC/PCMC_lib/include/<a class="el" href="_polymer_8h_source.html">Polymer.h</a></li>
+<li>/Users/annsi118/Documents/Git_projects/PCMC/PCMC_lib/source/<a class="el" href="_polymer_8cpp.html">Polymer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

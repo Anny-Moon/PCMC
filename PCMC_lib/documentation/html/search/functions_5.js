@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['fillarray',['fillArray',['../namespace_p_c_a.html#af4a7844595578d2c8e09635fba6db3b2',1,'PCA']]],
-  ['findintervals',['findIntervals',['../class_p_c_a_1_1_double_well_rand.html#a89905058cce9c8bbecd5a0dabd21ea3c',1,'PCA::DoubleWellRand']]],
-  ['findmaxima',['findMaxima',['../class_p_c_a_1_1_double_well_rand.html#aa798efa59786f8aeeafb198f4a3319a3',1,'PCA::DoubleWellRand']]],
-  ['findnormcoefficients',['findNormCoefficients',['../class_p_c_a_1_1_double_well_rand.html#ab4d8dfc2a37b647e55fd18cc1d8e11f9',1,'PCA::DoubleWellRand']]],
-  ['firstderivative',['firstDerivative',['../class_p_c_a_1_1_double_well_rand.html#ab3817725d51a9171ef6a7e6a72ce25ef',1,'PCA::DoubleWellRand']]],
-  ['format',['format',['../classpolymer.html#a6ac7f37ee8e4dcdbbd08f8ecb9efee8b',1,'polymer']]],
-  ['formatall',['formatAll',['../class_p_c_a_1_1_polymer.html#a3fcca4084a54ac8bc1941b36462bc560',1,'PCA::Polymer']]],
-  ['fulldwenergy',['fullDWenergy',['../class_p_c_a_1_1_polymer_energy.html#af55384a44f3e1aa5f32788b179d1cfe8',1,'PCA::PolymerEnergy']]]
+  ['hamiltonian',['Hamiltonian',['../class_p_c_a_1_1_hamiltonian.html#a3010d0e945bf871c22e57d530783c02a',1,'PCA::Hamiltonian::Hamiltonian(int numSites_in)'],['../class_p_c_a_1_1_hamiltonian.html#ad2663a98cb52b4675ed01d6b911dd45a',1,'PCA::Hamiltonian::Hamiltonian(int numSites_in, double q_in, double m_in, double c_in, double d_in, double a_in, double b_in=0, double alpha_in=1.0, double mu_in=0)']]],
+  ['hoppingamplitude',['hoppingAmplitude',['../class_p_c_a_1_1_polymer_quantum.html#a2f07ef3198c2a5ca75494df5364c1a89',1,'PCA::PolymerQuantum']]]
 ];

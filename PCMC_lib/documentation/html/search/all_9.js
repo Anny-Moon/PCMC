@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['im_5fepsilon',['im_epsilon',['../class_p_c_a_1_1_double_well_rand.html#a5fa2e0c609851d3e8a8cb9eb4bbd90c6',1,'PCA::DoubleWellRand::im_epsilon()'],['../classkappa__distribution.html#a6506e5322c9a9c919af36d9d34dbb180',1,'kappa_distribution::im_epsilon()']]],
-  ['init',['init',['../classkappa__distribution.html#aaf5ceb9a7a92cd7cdb4ca07cf0f74388',1,'kappa_distribution']]],
+  ['im_5fepsilon',['im_epsilon',['../class_p_c_a_1_1_double_well_rand.html#a5fa2e0c609851d3e8a8cb9eb4bbd90c6',1,'PCA::DoubleWellRand']]],
   ['initialization',['initialization',['../class_p_c_a_1_1_random_generator.html#aa2ea4616dd82da5cf66b8232697ecba8',1,'PCA::RandomGenerator']]],
-  ['intersection',['intersection',['../polymer__attract__binary__updates_8h.html#acc5b8702e5bed54e7e15a42748b2602f',1,'polymer_attract_binary_updates.h']]],
-  ['intersite_5fpotential',['intersite_potential',['../classpolymer.html#a1409622014bc93fe524b0f44570a36fa',1,'polymer']]]
+  ['inittest',['initTest',['../class_p_c_a_1_1_polymer_m_c.html#a327234bb757279e61f1b47ba493aaaa2',1,'PCA::PolymerMC']]],
+  ['initwithrandomtaus',['initWithRandomTaus',['../class_p_c_a_1_1_polymer_m_c.html#ab075a6b6e2053461e15770d8db4f8917',1,'PCA::PolymerMC']]],
+  ['interaction',['interaction',['../struct_p_c_a_1_1_polymer_m_c_1_1_interaction_site.html#a5119d0024d14bc1aa595d108d7588c0c',1,'PCA::PolymerMC::InteractionSite']]],
+  ['interactionsite',['InteractionSite',['../struct_p_c_a_1_1_polymer_m_c_1_1_interaction_site.html',1,'PCA::PolymerMC']]],
+  ['interactionsite',['interactionSite',['../class_p_c_a_1_1_polymer_m_c.html#ac4bbb885c9b1953dd3bd2fbf1656822e',1,'PCA::PolymerMC']]]
 ];
