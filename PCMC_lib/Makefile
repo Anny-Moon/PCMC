@@ -12,7 +12,7 @@ CC:= g++
 CFLAGS:= -Wall -std=c++11
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -L/usr/local/lib -lgsl -lgslcblas
+#LIB:= -lm -L/Users/annsi118/gslInstalled -lgsl -lgslcblas
 
 # Optimization (-O3 or -O2)
 OPT:= -O3
@@ -25,6 +25,9 @@ STATIC_LIB = build/libpcmc.a
 
 # Root directories for .h files
 INC_DIR = ./include
+
+# GSL includes (needed only if it is not stadart path: /usr/local/include)
+GSL_LDLIBS = -I/Users/annsi118/gslInstalled/include
 
 # Root directory for .cpp files
 SRC_DIR:= ./source
@@ -40,7 +43,7 @@ INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
 INC_FILES += $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*/*h))
 
 # All include directories are needed for Includes
-INC_DIRS:= $(dir $(INC_FILES))
+INC_DIRS = $(dir $(INC_FILES))
 
 # Includes: -I ...
 LDLIBS:=$(addprefix -I, $(INC_DIRS))
@@ -62,7 +65,7 @@ all: $(STATIC_LIB)
 $(STATIC_LIB): $(OBJ)
 	@echo "Generating library..." $(notdir $(STATIC_LIB))
 #	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
-	@ar rcs $(STATIC_LIB) $(OBJ) 
+	@ar rcs $(STATIC_LIB) $(OBJ)
 
 # Compiling rule
 define app_compile_template
@@ -72,7 +75,7 @@ define app_compile_template
 
 $$($(1)_OBJ): $(1)
 	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
-	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS)
+	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS) $$(GSL_LDLIBS)
 endef
 
 # Compiling
@@ -88,8 +91,8 @@ list_of_objects:
 
 # For debugging makefile
 print:
-#	@echo $(LDLIBS)
-	@echo $(INC_FILES)
+	@echo $(LDLIBS)
+#	@echo $(INC_FILES)
 #	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 
 love:
