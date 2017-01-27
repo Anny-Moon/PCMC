@@ -1,0 +1,35 @@
+File with parameters for MonteCarlo run
+
+----------------Polymer---------------------------
+NUMBER_OF_MONOMERS 100
+MONOMER_LENGTH 3.8 // fixed for current version of the program
+
+----------------Hamiltonian-----------------------
+HAM_Q	3.5
+HAM_M	1.5
+HAM_C	0.0001
+HAM_D	0.0001
+HAM_A	0.000157
+HAM_B	0.0
+HAM_MU	0.0
+HAM_ALPHA	1.0
+
+----------------Interaction-----------------------
+LENNARD_JONES_MIN	10.0
+LENNARD_JONES_R_MIN	4.5
+
+----------------Solitons--------------------------
+FROM 0
+TO 50
+HAM_A 0.005
+
+FROM 60
+TO 65
+HAM_A 0.03
+---------------Monte Carlo------------------------
+HIGEST_LOG_TEMPERATURE 2.0
+STEPS_BETWEEN 2
+LOWEST_LOG_TEMPERATURE 1.9
+SWEEPS_FOR_ONE_TEMPERATURE_STEP 100
+
+
