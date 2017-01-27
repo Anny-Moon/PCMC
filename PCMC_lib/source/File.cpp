@@ -181,5 +181,18 @@ void File::showNumberOfLinesInBlocks(char* fileName)
     fclose(fp);
 }
 
+bool CompareStrings(char *str1, char *str2)
+{
+    int i=0;
+	do{
+	    if(str1[i]==str2[i])
+		i++;
+	
+	    else
+		return false;
+	}
+	while(str2[i]!='\0'||str1[i]!='\0');
+    return true;
+}
 
 }//end of namespace

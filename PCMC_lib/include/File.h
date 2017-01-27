@@ -42,6 +42,9 @@ public:
     * verbose are false */
     static void showNumberOfLinesInBlocks(char* fileName);
     
+    /** Retern true if str1 is the same as str2, and false otherwise*/
+    bool CompareStrings(char *str1, char *str2);
+    
     ///@{@name Verbose functions:
     static void setVerbose(bool verbose);
     static bool getVerbose();
