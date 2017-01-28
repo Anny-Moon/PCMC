@@ -12,7 +12,7 @@ CC:= g++
 CFLAGS:= -std=c++11 -Wall
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -lgsl -lgslcblas
+LIB:= -lm -L/usr/local/lib -lgsl -lgslcblas -lpcmc
 # Optimization (-O3 or -O2)
 OPT:= -O3
 
@@ -23,13 +23,13 @@ BIN_DIR:= .
 PROGRAM = test
 
 # Root directories for .h files
-INC_DIR:= . 
+INC_DIR:= ./include  
 
 # Root directory for .cpp files
-SRC_DIR:= .
+SRC_DIR:= ./source
 
 # Directory for Objects
-OBJ_DIR:= .
+OBJ_DIR:= ./objects
 
 
 #---------------------No need to change the following!-------------------
@@ -40,7 +40,7 @@ INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
 INC_FILES += $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*/*h))
 # All include directories are needed for Includes
 INC_DIRS:= $(dir $(INC_FILES)) 
-INC_DIRS +=/usr/local/include
+#INC_DIRS +=/usr/local/include
 
 # Includes: -I ...
 LDLIBS:=$(addprefix -I, $(INC_DIRS))

@@ -11,16 +11,14 @@
 #include <tuple>
 #include <string>
 
-namespace std{
+
 
 class ParamFileReader{
 private:
     void reader(char* fileName);
 public:
-    vector<tuple<string, double>> data;
+    std::vector<std::tuple<std::string, double>> data;
     ParamFileReader(char* fileName);
     ~ParamFileReader();
 };
-
-}//end of namespace std
 #endif
