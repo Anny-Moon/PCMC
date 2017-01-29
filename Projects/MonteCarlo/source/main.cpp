@@ -24,7 +24,7 @@ int main(int np, char **p)
 //    RandomGenerator::initialization(1);
     printf("Start main:\n");
     ParamFileReader param("PCMC_parameters.dat");
-    printf("%g %s\n", param.value(1), param.name(1).c_str());
+//    printf("%g %s\n", param.value(1), param.name(1).c_str());
     
 //    N = 100;
     etalon = "NUMBER_OF_MONOMERS";
@@ -44,7 +44,7 @@ int main(int np, char **p)
     else
 	printf("Cannot find %s\n", etalon.c_str());
     
-    printf("g=%g\n", g);
+    printf("gg=%g\n", g);
 //    PolymerMC polymer(N);
     
     

@@ -3,11 +3,11 @@
 
 
 #----------------Polymer---------------------------
-NUMBER_OF_MONOMERS 100
+NUMBER_OF_MONOMERS  100
  MONOMER_LENGTH 3.8  #fixed for current version of the program
 
 #----------------Hamiltonian-----------------------
-HAM_Q	3.5
+HAM_Q	 3.5
 	HAM_M	1.5
 HAM_C	0.0001
 HAM_D	0.0001

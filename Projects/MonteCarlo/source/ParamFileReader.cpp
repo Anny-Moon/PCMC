@@ -1,12 +1,10 @@
 #include "../include/ParamFileReader.h"
 
-#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define commentChar '#'
-
 using namespace std;
+
 ParamFileReader::ParamFileReader(const char* fileName)
 {
     reader(fileName);
@@ -18,32 +16,47 @@ void ParamFileReader::reader(const char* fileName)
 {
     FILE* fp;
     char line[1000];
-    char tmpString[100];
-    double tmp;
+    char word[100];
+    double value;
+    
+    char ifDouble[20];
+    char* ifReadDoubleSuccessfully;
+    
     int flag;
     char ifCommentChar;
     
     fp = fopen(fileName, "r");
     if(fp == NULL){
-	printf("Error: cannot open file '%s'\n",fileName);
+	printf("Error: I cannot open file '%s'\n",fileName);
 	exit(1);
     }
     
+    /* Take line by line (if not empty) */
     while(fgets(line, sizeof line, fp)!=NULL){
-	if(line[0]==commentChar)
+	/* If line is marked as comment then skip it */
+	if(line[0]==COMMENT_CHAR)
 	    continue;
 	
-	flag = sscanf(line,"%s %le %c", &tmpString, &tmp, &ifCommentChar);
-	if(flag>0){
-	    if(flag>2 && ifCommentChar!=commentChar){
-		printf("Error in format of file '%s':\n", fileName);
-		printf("Don't understant the line:\n--->%s\n", line);
-		printf("You shoul put '%c' before comments.\n", commentChar);
-		exit(1);
-	    }
-	    printf("%s\t%g\n", tmpString, tmp);
-	    dictionary.push_back(make_tuple(tmpString, tmp));
+	flag = sscanf(line,"%s %s %c", &word, &ifDouble, &ifCommentChar);
+	
+	/* Chech if there is more than one string in the line */
+	if(flag>1){
+	    /* If there are more then 2 strings then check that the 3rd string is marked as comment */
+	    if(flag>2 && ifCommentChar!=COMMENT_CHAR)
+		_PARAM_FILE_READER_ERROR(fileName, line);
+	    
+	    value = strtod(ifDouble, &ifReadDoubleSuccessfully);
+	    /* Check that the 2nd string is a number */
+	    if(strcmp(ifReadDoubleSuccessfully, "")!=0)
+		_PARAM_FILE_READER_ERROR(fileName, line);
+//	    printf("%s\t%g\n", word, value);
+	    dictionary.push_back(make_tuple(word, value));
 	}
+	
+	/* If only one string in the line then error */
+	else if(flag==1)
+	    _PARAM_FILE_READER_ERROR(fileName, line);
+	
     }
 }
 
@@ -56,7 +69,5 @@ int ParamFileReader::search(std::string word) const
 	    return i;
     }
 
-    //printf("Cannot find '%s'\n", word.c_str());
-    //exit(1);
     return -1;
 }
