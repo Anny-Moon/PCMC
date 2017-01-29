@@ -7,14 +7,14 @@
 #define commentChar '#'
 
 using namespace std;
-ParamFileReader::ParamFileReader(char* fileName)
+ParamFileReader::ParamFileReader(const char* fileName)
 {
     reader(fileName);
 }
 
 ParamFileReader::~ParamFileReader(){};
 
-void ParamFileReader::reader(char* fileName)
+void ParamFileReader::reader(const char* fileName)
 {
     FILE* fp;
     char line[1000];
@@ -42,7 +42,21 @@ void ParamFileReader::reader(char* fileName)
 		exit(1);
 	    }
 	    printf("%s\t%g\n", tmpString, tmp);
-	    data.push_back(make_tuple(tmpString, tmp));
+	    dictionary.push_back(make_tuple(tmpString, tmp));
 	}
     }
+}
+
+int ParamFileReader::search(std::string word) const
+{
+    int i;
+    
+    for(i=0;i<dictionary.size();i++){
+	if(word.compare(get<0>(dictionary[i]))==0)
+	    return i;
+    }
+
+    //printf("Cannot find '%s'\n", word.c_str());
+    //exit(1);
+    return -1;
 }
