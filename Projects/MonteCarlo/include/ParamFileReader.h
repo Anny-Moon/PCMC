@@ -38,6 +38,7 @@ public:
 //    inline std::string name(int number) const;
     inline double value(int number) const;
     int search(std::string word) const;
+    void checkRepeatingOfWords(const char* fileName) const;
 };
 
 inline int ParamFileReader::size()

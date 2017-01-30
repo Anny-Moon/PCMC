@@ -58,6 +58,7 @@ void ParamFileReader::reader(const char* fileName)
 	    _PARAM_FILE_READER_ERROR(fileName, line);
 	
     }
+//    checkRepeatingOfWords(fileName);
 }
 
 int ParamFileReader::search(std::string word) const
@@ -70,4 +71,21 @@ int ParamFileReader::search(std::string word) const
     }
 
     return -1;
+}
+
+void ParamFileReader::checkRepeatingOfWords(const char* fileName) const
+{
+    int i, j;
+
+    for(i=0;i<dictionary.size()-1;i++){
+	for(j=i+1;j<dictionary.size();j++){
+	    if(get<0>(dictionary[i]).compare(get<0>(dictionary[j]))==0){
+		printf("Error in format of file '%s':\n", fileName);
+		printf("This variable: %s is definded more than once.\n",get<0>(dictionary[i]).c_str());
+		exit(1);
+	    }
+	}
+    }
+    
+
 }
