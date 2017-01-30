@@ -16,16 +16,14 @@ using namespace PCA;
 int main(int np, char **p)
 {	
     int N, tmpInt, number;
-    int flag;
     double tmp;
     std::string etalon;
     FILE* logfp;
-    time_t time1, time2;
 //    double temperature, logT;
     
-    
+//    time_t time1, time2;
     logfp = fopen("log.dat","w");
-    RandomGenerator::initialization(time(NULL));
+    RandomGenerator::initialization(1);
     printf("Start main:\n");
     ParserParamFilePCMC parser("PCMC_parameters.dat");
     
@@ -42,23 +40,8 @@ int main(int np, char **p)
     parser.createInteraction(&interaction);
     interaction->writeInParamFile(logfp);
     
-    fprintf(logfp, "\n#------------------Monte-Carlo--------------------\n");
-    ParamFileReader* dictionary;
-    dictionary = parser.getDictionary();
-    
-    etalon = "LOOPS_PER_CORE";
-    int loopsPerCore = 1;
-    number = dictionary->search(etalon);
-    if(number>=0)
-	loopsPerCore = (int)dictionary->value(number);
-    printf("loops %i\n", loopsPerCore);
-    fprintf(logfp,"%s\t%i\n",etalon.c_str(), loopsPerCore);
-    
-    //for(int k;
-    
     fclose(logfp);
     delete interaction;
-    delete hamiltonian;
     delete polymer;
     printf("Everything is OK!\n");
 return 0;

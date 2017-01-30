@@ -22,7 +22,12 @@ public:
     void createPolymer(PolymerMC** polymer) const;
     void createHamiltonian(Hamiltonian** hamiltonian) const;
     void createInteraction(LennardJones** interaction) const;
-
+    inline ParamFileReader* getDictionary() const;
 };
+
+inline ParamFileReader* ParserParamFilePCMC::getDictionary() const
+{
+    return data;
+}
 }//end of namespace PCA
 #endif
