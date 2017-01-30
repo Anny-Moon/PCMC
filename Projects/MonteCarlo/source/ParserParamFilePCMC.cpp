@@ -48,6 +48,100 @@ void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
     //printf("polymer length = %i\n", polymer->getNumMonomers());
 }
 
+void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
+{
+    string etalon;
+    int number;
+    int N;
+    double q,m,c,d,a,b,mu,alpha;
+    
+    etalon = "NUMBER_OF_MONOMERS";
+    number = data->search(etalon);
+    if(number>=0)
+	N = (int)data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_Q";
+    number = data->search(etalon);
+    if(number>=0)
+	q = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_M";
+    number = data->search(etalon);
+    if(number>=0)
+	m = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_C";
+    number = data->search(etalon);
+    if(number>=0)
+	c = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_D";
+    number = data->search(etalon);
+    if(number>=0)
+	d = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_A";
+    number = data->search(etalon);
+    if(number>=0)
+	a = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_B";
+    number = data->search(etalon);
+    if(number>=0)
+	b = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_ALPHA";
+    number = data->search(etalon);
+    if(number>=0)
+	alpha = data->value(number);
+    else{
+	alpha = 1.0;
+	//printf("Cannot find %s\n", etalon.c_str());
+	//exit(1);
+    }
+    
+    etalon = "HAM_MU";
+    number = data->search(etalon);
+    if(number>=0)
+	mu = data->value(number);
+    else{
+	mu = 0.0;
+	//printf("Cannot find %s\n", etalon.c_str());
+	//exit(1);
+    }
+    
+    
+    *hamiltonian = new Hamiltonian(N,q,m,c,d,a,b,alpha,mu);
+}
+
 void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
 {
     string etalon;
