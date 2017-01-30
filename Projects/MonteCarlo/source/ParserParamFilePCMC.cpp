@@ -58,7 +58,7 @@ void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
     etalon = "LENNARD_JONES_MIN";
     number = data->search(etalon);
     if(number>=0)
-	gamma = (int)data->value(number);
+	gamma = data->value(number);
     else{
 	printf("Cannot find %s\n", etalon.c_str());
 	exit(1);
@@ -67,7 +67,8 @@ void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
     etalon = "LENNARD_JONES_R_MIN";
     number = data->search(etalon);
     if(number>=0)
-	r = (int)data->value(number);
+	r = data->value(number);
+	
     else{
 	printf("Cannot find %s\n", etalon.c_str());
 	exit(1);

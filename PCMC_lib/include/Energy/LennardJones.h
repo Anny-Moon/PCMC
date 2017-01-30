@@ -33,7 +33,17 @@ public:
 
     double energy(double distance) const;
     double energyIfSiteChanged(int site, int size, const Vector* r) const;
+    
+    inline void writeInParamFile(FILE* fp) const;
 
 };
+
+inline void LennardJones::writeInParamFile(FILE* fp) const
+{
+    _PCA_CATCH_VOID_POINTER(fp,"LennardJones::writeInParamFile\n\t pass me an open file with parameters.\n");
+    fprintf(fp,"\n#------------------Interaction--------------------\n");
+    fprintf(fp,"LENNARD_JONES_MIN\t%g\n", gamma);
+    fprintf(fp,"LENNARD_JONES_R_MIN\t%g\n", rMin);
+}
 }//end of namespace PCA
 #endif

@@ -517,9 +517,4 @@ void Polymer::writeTBMfile(char* fileName) const
     fclose(fp);
 }
 
-double Polymer::distance(int siteA, int siteB) const
-{
-    return (r[siteA]-r[siteB]).norm();
-}
-
 }// end of namespace

@@ -18,10 +18,11 @@ int main(int np, char **p)
     int N, tmpInt, number;
     double tmp;
     std::string etalon;
+    FILE* logfp;
 //    double temperature, logT;
     
 //    time_t time1, time2;
-
+    logfp = fopen("log.dat","w");
     RandomGenerator::initialization(1);
     printf("Start main:\n");
     ParserParamFilePCMC parser("PCMC_parameters.dat");
@@ -34,12 +35,15 @@ int main(int np, char **p)
 	printf("`````null\n");
     N = polymer->getNumMonomers();
     printf("````N = %i\n", N);
+    
+    polymer->writeInParamFile(logfp);
     delete polymer;
     
     LennardJones* interaction;
     parser.createInteraction(&interaction);
-    printf("``int = %g\n", interaction->energy(5));
+    interaction->writeInParamFile(logfp);
     delete interaction;
+    fclose(logfp);
 /*    ParamFileReader param("PCMC_parameters.dat");
     
     etalon = "NUMBER_OF_MONOMERS";

@@ -122,8 +122,8 @@ public:
     void writeKappaTauInFile(FILE* fp) const;
     void writeMonomerLengthsInFile(FILE* fp) const;
     void writeTBMfile(char* fileName) const;
-    
-    double distance(int siteA, int siteB) const;
+    inline void writeInParamFile(FILE* fp) const;
+    inline double distance(int siteA, int siteB) const;
     
 };
 
@@ -163,5 +163,18 @@ inline double Polymer::getTau(int i) const
     return tau[i];
 }
 
+inline double Polymer::distance(int siteA, int siteB) const
+{
+    return (r[siteA]-r[siteB]).norm();
+}
+
+inline void Polymer::writeInParamFile(FILE* fp) const
+{
+    _PCA_CATCH_VOID_POINTER(fp,"Polymer::writeInParamFile\n\t pass me an open file with parameters.\n");
+    fprintf(fp,"\n#--------------------Polymer----------------------\n");
+    fprintf(fp,"NUMBER_OF_MONOMERS\t%i\n", numMonomers);
+    if(monomerLength!=NULL)
+	fprintf(fp,"MONOMER_LENGTH\t%g\n", monomerLength[0]);
+}
 }// end of namespace
 #endif
