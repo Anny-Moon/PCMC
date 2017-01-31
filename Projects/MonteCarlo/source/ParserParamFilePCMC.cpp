@@ -9,8 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-using namespace PCA;
-using namespace std;
+namespace PCA{
 ParserParamFilePCMC::ParserParamFilePCMC(const char* fileName)
 {
     data = new ParamFileReader(fileName);
@@ -23,7 +22,7 @@ ParserParamFilePCMC::~ParserParamFilePCMC()
 
 void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
 {
-    string etalon;
+    std::string etalon;
     int number;
     int N;
     double tmp;
@@ -50,7 +49,7 @@ void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
 
 void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
 {
-    string etalon;
+    std::string etalon;
     int number;
     int N;
     double q,m,c,d,a,b,mu,alpha;
@@ -144,10 +143,9 @@ void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
 
 void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
 {
-    string etalon;
+    std::string etalon;
     int number;
-    int N;
-    double tmp, gamma, r;
+    double gamma, r;
     
     etalon = "LENNARD_JONES_MIN";
     number = data->search(etalon);
@@ -170,3 +168,75 @@ void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
     
     *interaction = new LennardJones(gamma, r);
 }
+
+void ParserParamFilePCMC::createMonteCarloParam(MonteCarloParam** monteCarloParam) const
+{
+    std::string etalon;
+    int number;
+    int loopsPerCore;
+    double maxLogT;
+    double minLogT;
+    double logTstep;
+    int sweepsPerStep;
+    
+    etalon = "LOOPS_PER_CORE";
+    number = data->search(etalon);
+    if(number>=0)
+	loopsPerCore = (int)data->value(number);
+    else
+	loopsPerCore = 1;
+    
+    etalon = "MAX_LOG_T";
+    number = data->search(etalon);
+    if(number>=0)
+	maxLogT = data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "MIN_LOG_T";
+    number = data->search(etalon);
+    if(number>=0)
+	minLogT = data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "MIN_LOG_T";
+    number = data->search(etalon);
+    if(number>=0)
+	minLogT = data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "LOG_T_STEP";
+    number = data->search(etalon);
+    if(number>=0)
+	logTstep = data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "SWEEPS_PER_STEP";
+    number = data->search(etalon);
+    if(number>=0)
+	sweepsPerStep = (int)data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    *monteCarloParam = new MonteCarloParam(maxLogT, minLogT, logTstep, sweepsPerStep, loopsPerCore);
+}
+
+}//end of namespace PCA

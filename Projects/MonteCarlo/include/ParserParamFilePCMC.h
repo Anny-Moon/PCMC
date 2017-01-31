@@ -8,6 +8,7 @@
 #define PCMC_PARSER_PARAM_FILE_PCMC
 
 #include "ParamFileReader.h"
+#include "MonteCarloParam.h"
 #include "PolymerMC.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/LennardJones.h"
@@ -22,6 +23,8 @@ public:
     void createPolymer(PolymerMC** polymer) const;
     void createHamiltonian(Hamiltonian** hamiltonian) const;
     void createInteraction(LennardJones** interaction) const;
+    void createMonteCarloParam(MonteCarloParam** monteCarloParam) const;
+    
     inline ParamFileReader* getDictionary() const;
 };
 

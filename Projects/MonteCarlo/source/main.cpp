@@ -7,8 +7,11 @@
 #include "PolymerObservable.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/LennardJones.h"
+
 //#include "../include/ParamFileReader.h"
 #include "../include/ParserParamFilePCMC.h"
+#include "../include/MonteCarloParam.h"
+
 using namespace std;
 using namespace PCA;
 
@@ -42,17 +45,10 @@ int main(int np, char **p)
     parser.createInteraction(&interaction);
     interaction->writeInParamFile(logfp);
     
-    fprintf(logfp, "\n#------------------Monte-Carlo--------------------\n");
-    ParamFileReader* dictionary;
-    dictionary = parser.getDictionary();
+    MonteCarloParam* monteCarloParam;
+    parser.createMonteCarloParam(&monteCarloParam);
+    monteCarloParam->writeInParamFile(logfp);
     
-    etalon = "LOOPS_PER_CORE";
-    int loopsPerCore = 1;
-    number = dictionary->search(etalon);
-    if(number>=0)
-	loopsPerCore = (int)dictionary->value(number);
-    printf("loops %i\n", loopsPerCore);
-    fprintf(logfp,"%s\t%i\n",etalon.c_str(), loopsPerCore);
     
     //for(int k;
     
