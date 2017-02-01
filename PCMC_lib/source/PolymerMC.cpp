@@ -262,6 +262,12 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
 void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
 {
     int i;
+    
+    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
+	setVectorsTNBfromKappaTau();
+	setRadiusVectorsFromVectorsT();
+    }
+    
     for(i=1;i<numMonomers;i++){
 	kappaUpdate(i, temperature, hamiltonian, interaction);
 	tauUpdate(i, temperature, hamiltonian, interaction);

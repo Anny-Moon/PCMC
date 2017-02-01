@@ -42,9 +42,8 @@ void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
 	tmp = (int)data->value(number);
 	printf("Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.\n");
     }
-    printf("N = %i\n", N);
+
     *polymer = new PolymerMC(N);
-    //printf("polymer length = %i\n", polymer->getNumMonomers());
 }
 
 void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
