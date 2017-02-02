@@ -1,8 +1,4 @@
 
-#--------------------Polymer----------------------
-NUMBER_OF_MONOMERS	100
-MONOMER_LENGTH	3.8
-
 #------------------Hamiltonian--------------------
 HAM_Q	3.5
 HAM_M	1.5
@@ -21,5 +17,9 @@ LENNARD_JONES_R_MIN	4.5
 LOOPS_PER_CORE	2
 MAX_LOG_T	2.1
 MIN_LOG_T	0.1
-LOG_T_STEP	0.5
-SWEEPS_PER_STEP	10
+LOG_T_STEP	1.1
+SWEEPS_PER_STEP	1000
+
+#--------------------Polymer----------------------
+NUMBER_OF_MONOMERS	100
+MONOMER_LENGTH	3.8

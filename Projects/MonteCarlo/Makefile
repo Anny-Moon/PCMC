@@ -6,13 +6,13 @@
 # Uppsala, Sweden 2016
 
 # Compilator name (for example could be mpicc instead)
-CC:= g++
-
+#CC:= g++
+CC:= mpicxx
 # Compilator flags
 CFLAGS:= -std=c++11 -Wall
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -L/usr/local/lib -lgsl -lgslcblas -lpcmc
+LIB:= -lm -L/Users/annsi118/gslInstalled/lib -lgsl -lgslcblas -lpcmc
 # Optimization (-O3 or -O2)
 OPT:= -O3
 

@@ -1,0 +1,35 @@
+Start main:
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.
+gsl: zsolve.c:78: ERROR: root solving qr method failed to converge
+Default GSL error handler invoked.
+[jupiter6:12012] *** Process received signal ***
+[jupiter6:12012] Signal: Abort trap: 6 (6)
+[jupiter6:12012] Signal code:  (0)
+[jupiter6:12012] [ 0] 0   libsystem_platform.dylib            0x00007fffc3018bba _sigtramp + 26
+[jupiter6:12012] [ 1] 0   ???                                 0x000000010dd76291 0x0 + 4527186577
+[jupiter6:12012] [ 2] 0   libsystem_c.dylib                   0x00007fffc2e9f420 abort + 129
+[jupiter6:12012] [ 3] 0   libgsl.19.dylib                     0x0000000101013ffa gsl_error + 122
+[jupiter6:12012] [ 4] 0   libgsl.19.dylib                     0x00000001010d1a7e gsl_poly_complex_solve + 3422
+[jupiter6:12012] [ 5] 0   test                                0x0000000100fe656c _ZN3PCA14DoubleWellRand13findIntervalsEv + 124
+[jupiter6:12012] [ 6] 0   test                                0x0000000100fe6b08 _ZN3PCA14DoubleWellRandC2Edddd + 184
+[jupiter6:12012] [ 7] 0   test                                0x0000000100fe5f3a _ZNK3PCA11Hamiltonian13generateKappaEidddd + 202
+[jupiter6:12012] [ 8] 0   test                                0x0000000100fe404c _ZN3PCA9PolymerMC11kappaUpdateEidRKNS_11HamiltonianERKNS_12LennardJonesE + 124
+[jupiter6:12012] [ 9] 0   test                                0x0000000100fe4565 _ZN3PCA9PolymerMC14updateAllSitesEdRKNS_11HamiltonianERKNS_12LennardJonesE + 133
+[jupiter6:12012] [10] 0   test                                0x0000000100fdf3e6 main + 902
+[jupiter6:12012] [11] 0   libdyld.dylib                       0x00007fffc2e0b255 start + 1
+[jupiter6:12012] [12] 0   ???                                 0x0000000000000001 0x0 + 1
+[jupiter6:12012] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 3 with PID 0 on node jupiter6 exited on signal 6 (Abort trap: 6).
+--------------------------------------------------------------------------

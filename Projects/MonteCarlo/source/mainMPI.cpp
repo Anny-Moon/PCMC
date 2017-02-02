@@ -21,21 +21,19 @@ int myCoreNumber;
 
 int main(int np, char **p)
 {	
-    int N, tmpInt, number;
-    int flag;
-    double tmp;
+    int number;
     std::string etalon;
     FILE* logfp;
     time_t time1, time2;
 //    double temperature, logT;
     
     MPI_Init(&np, &p);
-    MPI_Comm_size(MPI_COMM_WORLD,&totalCoresNumber);
+    MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
     
     logfp = fopen("log.dat","w");
     RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
-	if(myCoreNumber == 0);
+	if(myCoreNumber == 0)
 	printf("Start main:\n");
 
     time1 = time(NULL);
@@ -69,7 +67,9 @@ int main(int np, char **p)
 	polymer->setMonomerLengths(3.8);
 	polymer->initWithRandomTaus();
 	
-	number = (myCoreNumber+k)*monteCarloParam->getLoopsPerCore();
+	
+    
+	number = myCoreNumber+k*totalCoreNumber;
 	fname1 = new char[100];
 	sprintf(fname1,"results/Configurations/%iconf_logT.dat",number);
 	ktfp = fopen(fname1, "w");
@@ -89,13 +89,14 @@ int main(int np, char **p)
 	    temperature = pow(10,t);
 	    for(int i=0; i<monteCarloParam->getSweepsPerStep();i++){
 		//printf("%i %g %i\n",k, t, i);
-		polymer->updateAllSites(temperature, hamiltonian, interaction);
+		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 	    }
 	
 	}
     polymer->writeKappaTauInFile(ktfp);
     
     delete polymer;
+    
     delete [] fname1;
     fclose(ktfp);
     delete [] fname2;
