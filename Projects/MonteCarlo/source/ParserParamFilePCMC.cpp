@@ -40,7 +40,7 @@ void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
     number = data->search(etalon);
     if(number>=0){
 	tmp = (int)data->value(number);
-	printf("Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.\n");
+//	printf("Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.\n");
     }
 
     *polymer = new PolymerMC(N);

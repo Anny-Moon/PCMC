@@ -74,14 +74,14 @@ int main(int np, char **p)
 	sprintf(fname1,"results/%iconf_logT.dat",number);
 	ktfp = fopen(fname1, "w");
     
-	fname2 = new char[100]; 
+/*	fname2 = new char[100]; 
 	sprintf(fname2,"results/%ilog_file.dat", number);
 	log_file = fopen(fname2,"w");
     
 	fname3 = new char[100]; 
 	sprintf(fname3,"results/%iacc_num.dat", number);
 	accfp = fopen(fname3,"w");
-    
+*/    
 	if(k==0)
 	    polymer->writeInParamFile(logfp);
     
@@ -97,12 +97,12 @@ int main(int np, char **p)
     
     delete polymer;
     
-    delete [] fname1;
+//    delete [] fname1;
     fclose(ktfp);
-    delete [] fname2;
-    fclose(log_file);
-    delete [] fname3;
-    fclose(accfp);
+//    delete [] fname2;
+//    fclose(log_file);
+//    delete [] fname3;
+//    fclose(accfp);
     
     }
     
