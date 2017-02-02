@@ -173,7 +173,7 @@ double Hamiltonian::energyOneSite(int site, const PolymerMC& polymer) const
     if(site == 0)
 	E1 = -(2.0 + mu) * polymer.getKappa(site) * polymer.getKappa(site+1);
     
-    else if(site == numSites)
+    else if(site == numSites-1)
 	E1 = -(2.0 + mu) * polymer.getKappa(site-1) * polymer.getKappa(site);
 
     else 
@@ -202,7 +202,7 @@ double Hamiltonian::energyAllSites(const PolymerMC& polymer) const
 	E1 += -(2.0 + mu) * (polymer.getKappa(i-1) * polymer.getKappa(i) + polymer.getKappa(i) * polymer.getKappa(i+1));
     }
     
-    i=numSites;
+    i=numSites-1;
     E1 += -(2.0 + mu) * polymer.getKappa(i-1) * polymer.getKappa(i);
     
     for(i=0; i<numSites; i++){

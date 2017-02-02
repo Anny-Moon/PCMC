@@ -71,15 +71,15 @@ int main(int np, char **p)
     
 	number = myCoreNumber+k*totalCoreNumber;
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf_logT.dat",number);
+	sprintf(fname1,"results/%iconf_logT.dat",number);
 	ktfp = fopen(fname1, "w");
     
 	fname2 = new char[100]; 
-	sprintf(fname2,"results/Logs/%ilog_file.dat", number);
+	sprintf(fname2,"results/%ilog_file.dat", number);
 	log_file = fopen(fname2,"w");
     
 	fname3 = new char[100]; 
-	sprintf(fname3,"results/AccN/%iacc_num.dat", number);
+	sprintf(fname3,"results/%iacc_num.dat", number);
 	accfp = fopen(fname3,"w");
     
 	if(k==0)

@@ -12,7 +12,8 @@ CC:= mpicxx
 CFLAGS:= -std=c++11 -Wall
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -L/Users/annsi118/gslInstalled/lib -lgsl -lgslcblas -lpcmc
+#LIB:= -lm -L/Users/annsi118/gslInstalled/lib -lgsl -lgslcblas -lpcmc
+LIB:= -lm -lgsl -lgslcblas -lpcmc
 # Optimization (-O3 or -O2)
 OPT:= -O3
 

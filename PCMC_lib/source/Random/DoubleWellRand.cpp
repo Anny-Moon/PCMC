@@ -141,7 +141,7 @@ void DoubleWellRand::findIntervals()
     
     //find all roots:
     //root[0] = Re(x1), root[1] = Im(x1) ... root[6] = Re(x4), root[7] = Im(x4)
-    if(gsl_poly_complex_solve(coefficients, 5, eq_wrkspace, roots)!= 0){// not sure!!! that in 0
+    if(gsl_poly_complex_solve(coefficients, 5, eq_wrkspace, roots)!= GSL_SUCCESS){
 	printf("Error in DoubleWellRand::DoubleWellRand\n");
 	printf("\tCannot solve the equation :(\n");
 	exit(1);

@@ -174,7 +174,12 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
 	
     /* generate new random Kappa according distribution */
-    kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+    if(site==0)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
+    else if(site==numMonomers-1)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], 0.0, kappa[site-1], temperature);
+    else
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
     tauNew = tau[site];
 //    printf("oldKappa[%i] = %g    newKappa = %g\n",site,  kappa[site], kappaNew);
     
