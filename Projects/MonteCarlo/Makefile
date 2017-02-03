@@ -21,7 +21,7 @@ OPT:= -O3
 BIN_DIR:= .
 
 # Name for exectutable
-PROGRAM = test
+PROGRAM = pcmc
 
 # Root directories for .h files
 INC_DIR:= ./include  

@@ -21,44 +21,54 @@ int myCoreNumber;
 
 int main(int np, char **p)
 {	
-    int number;
+    int fakeCoreNumber;
+    double tmp;
     std::string etalon;
-    FILE* logfp;
-    time_t time1, time2;
-//    double temperature, logT;
+    FILE* checkfp;
+    time_t tic1, toc1, tic2, toc2, tic3, toc3;
     
     MPI_Init(&np, &p);
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
     
-    logfp = fopen("log.dat","w");
+    checkfp = fopen("results/checkParamFile.dat","w");
     RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
-	if(myCoreNumber == 0)
-	printf("Start main:\n");
+    if(myCoreNumber == 0){
+	printf("********\n* PCMC * \n********\n");
+	printf("Number of physical cores: %i\n", totalCoreNumber);
+    }
 
-    time1 = time(NULL);
+    tic1 = time(NULL);
     ParserParamFilePCMC parser("PCMC_parameters.dat");
     
     PolymerMC* polymer;
     
     Hamiltonian* hamiltonian;
     parser.createHamiltonian(&hamiltonian);
-    hamiltonian->writeInParamFile(logfp);
+    hamiltonian->writeInParamFile(checkfp);
     
     LennardJones* interaction;
     parser.createInteraction(&interaction);
-    interaction->writeInParamFile(logfp);
+    interaction->writeInParamFile(checkfp);
     
     MonteCarloParam* monteCarloParam;
     parser.createMonteCarloParam(&monteCarloParam);
-    monteCarloParam->writeInParamFile(logfp);
-    
+    monteCarloParam->writeInParamFile(checkfp);
+    if(myCoreNumber == 0)
+	printf("Number of effective cores: %i\n\n", totalCoreNumber*monteCarloParam->getLoopsPerCore());
+	
     char* fname1;
-    FILE* ktfp;
-    char* fname2;
-    FILE* log_file;
-    char* fname3;
-    FILE* accfp;
+    FILE* ktfp, *logfp, *tfp;
+    int stepsPerLoop = (int)((monteCarloParam->getMaxLogT()-monteCarloParam->getMinLogT())/monteCarloParam->getLogTstep())+1;
+    if(myCoreNumber == 0){
+	logfp = fopen("results/log_file", "w");
+	fprintf(logfp,"********\n* PCMC * \n********\n");
+	fprintf(logfp,"Physical cores: %i\n", totalCoreNumber);
+	fprintf(logfp,"Effective cores: %i\n\n", totalCoreNumber*monteCarloParam->getLoopsPerCore());
+	fprintf(logfp,"Loops/core: %i\n", monteCarloParam->getLoopsPerCore());
+	fprintf(logfp,"Steps/loop: %i\n\n", stepsPerLoop);
+	fprintf(logfp,"Output of Core %i:\n", myCoreNumber);
+    }
     
     double temperature;
     
@@ -67,52 +77,73 @@ int main(int np, char **p)
 	polymer->setMonomerLengths(3.8);
 	polymer->initWithRandomTaus();
 	
-	
-    
-	number = myCoreNumber+k*totalCoreNumber;
+	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
 	fname1 = new char[100];
-	sprintf(fname1,"results/%iconf_logT.dat",number);
+	sprintf(fname1,"results/Configurations/%iconf.dat",fakeCoreNumber);
 	ktfp = fopen(fname1, "w");
-    
-/*	fname2 = new char[100]; 
-	sprintf(fname2,"results/%ilog_file.dat", number);
-	log_file = fopen(fname2,"w");
-    
-	fname3 = new char[100]; 
-	sprintf(fname3,"results/%iacc_num.dat", number);
-	accfp = fopen(fname3,"w");
-*/    
-	if(k==0)
-	    polymer->writeInParamFile(logfp);
+	delete [] fname1;
+	
+	if(fakeCoreNumber==0){
+	    polymer->writeInParamFile(checkfp);
+	    fclose(checkfp);
+	    tfp = fopen("results/TemperarureMap.dat","w");
+	    tic2 = time(NULL);
+	}
     
 	for(double t=monteCarloParam->getMaxLogT(); t>monteCarloParam->getMinLogT(); t-=monteCarloParam->getLogTstep()){
 	    temperature = pow(10,t);
-	    for(int i=0; i<monteCarloParam->getSweepsPerStep();i++){
-		//printf("%i %g %i\n",k, t, i);
-		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
+	    
+	    if(myCoreNumber==0 && k==0 && t==monteCarloParam->getMaxLogT())
+		tic3=time(NULL);
+	    
+	    if(fakeCoreNumber==0){
+		fprintf(tfp,"%g\t%.15le\n", t, temperature);
+		fflush(tfp);
 	    }
+	    
+	    if(myCoreNumber==0){
+		fprintf(logfp,"Loop %i:\t%g\n", k, t);
+		fflush(logfp);
+	    }
+	    /* Thermalization */
+	    for(int i=0; i<monteCarloParam->getSweepsPerStep();i++)
+		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 	
+	    polymer->writeKappaTauInFile(ktfp);
+	
+	    if(myCoreNumber==0 && k==0 && t==monteCarloParam->getMaxLogT()){
+		toc3=time(NULL);
+		tmp = difftime(toc3, tic3);
+		tmp = tmp * stepsPerLoop * monteCarloParam->getLoopsPerCore();
+		fprintf(logfp,"\n----Estimated time from start to end: %gs = %gm = %gh\n\n", tmp, tmp/60.0, tmp/60.0/60.0);
+		fflush(logfp);
+		printf("----Estimated time from start to end: %gs = %gm = %gh\n\n", tmp, tmp/60.0, tmp/60.0/60.0);
+	    }
 	}
-    polymer->writeKappaTauInFile(ktfp);
-    
-    delete polymer;
-    
-//    delete [] fname1;
-    fclose(ktfp);
-//    delete [] fname2;
-//    fclose(log_file);
-//    delete [] fname3;
-//    fclose(accfp);
-    
+	
+	if(fakeCoreNumber==0)
+	    fclose(tfp);
+	
+	if(myCoreNumber==0){
+	    toc2=time(NULL);
+	    fprintf(logfp,"-------->Loop %i: time=\t%gs\n", k, difftime(toc2, tic2));
+	    fflush(logfp);
+	}
+	delete polymer;
+	
+	
     }
-    
-    fclose(logfp);
+    if(myCoreNumber == 0){
+        fprintf(logfp,"END\n\n");
+	fclose(logfp);
+    }
     delete interaction;
     delete hamiltonian;
     
-    time2 = time(NULL);
-    printf("\ntime = %g\n", difftime(time2, time1));
-    printf("Everything is OK!\n");
+    toc1 = time(NULL);
+    printf("Core%i: time = %gs =  %gm = %gh\n", myCoreNumber, difftime(toc1, tic1), difftime(toc1, tic1)/60.0,difftime(toc1, tic1)/60.0/60.0);
+
+//    printf("Everything is OK!\n");
 return 0;
 }
     
