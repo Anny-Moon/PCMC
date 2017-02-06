@@ -177,6 +177,7 @@ void ParserParamFilePCMC::createMonteCarloParam(MonteCarloParam** monteCarloPara
     double minLogT;
     double logTstep;
     int sweepsPerStep;
+    int cores;
     
     etalon = "LOOPS_PER_CORE";
     number = data->search(etalon);
@@ -235,7 +236,16 @@ void ParserParamFilePCMC::createMonteCarloParam(MonteCarloParam** monteCarloPara
 	exit(1);
     }
     
-    *monteCarloParam = new MonteCarloParam(maxLogT, minLogT, logTstep, sweepsPerStep, loopsPerCore);
+    etalon = "CORES";
+    number = data->search(etalon);
+    if(number>=0)
+	cores = (int)data->value(number);
+	
+    else{
+	cores = 0;
+    }
+    
+    *monteCarloParam = new MonteCarloParam(maxLogT, minLogT, logTstep, sweepsPerStep, loopsPerCore, cores);
 }
 
 }//end of namespace PCA

@@ -88,7 +88,7 @@ int main(int np, char **p)
 	if(fakeCoreNumber==0){
 	    polymer->writeInParamFile(checkfp);
 	    fclose(checkfp);
-	    tfp = fopen("results/TemperarureMap.dat","w");
+	    tfp = fopen("results/TemperatureMap.dat","w");
 	    tic2 = time(NULL);
 	}
     
