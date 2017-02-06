@@ -1,4 +1,4 @@
-#include "../include/ParamFileReader.h"
+#include "../../include/ReadWriteFiles/ParamFileReader.h"
 
 #include <stdio.h>
 #include <stdlib.h>

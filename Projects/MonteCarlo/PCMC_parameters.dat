@@ -31,7 +31,7 @@ HAM_A 0.03
 #---------------Monte Carlo------------------------
 LOOPS_PER_CORE	3
 
-MAX_LOG_T 2.1
+MAX_LOG_T 2.0
 LOG_T_STEP 1.0
 MIN_LOG_T -3.0
 

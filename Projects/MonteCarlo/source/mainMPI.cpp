@@ -9,8 +9,8 @@
 #include "Energy/LennardJones.h"
 
 //#include "../include/ParamFileReader.h"
-#include "../include/ParserParamFilePCMC.h"
-#include "../include/MonteCarloParam.h"
+#include "ReadWriteFiles/ParserParamFilePCMC.h"
+#include "ReadWriteFiles/MonteCarloParam.h"
 
 using namespace std;
 using namespace PCA;

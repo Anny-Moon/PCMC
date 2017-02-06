@@ -34,7 +34,7 @@
 	printf("\n");\
 	exit(1);\
     }
-#define PCA_NUMERICAL_ERROR 3.0*fabs(atan(1.0)-PCA_PI/4.0)
+#define PCA_NUMERICAL_ERROR 4.0*fabs(atan(1.0)-PCA_PI/4.0)
 
 #define _PCA_IS_EQUAL(a,b)\
      fabs(a-b)<PCA_NUMERICAL_ERROR

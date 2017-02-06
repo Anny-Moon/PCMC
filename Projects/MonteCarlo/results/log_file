@@ -1,0 +1,36 @@
+********
+* PCMC * 
+********
+Physical cores: 2
+Effective cores: 6
+
+Loops/core: 3
+Steps/loop: 6
+
+Output of Core 0:
+Loop 0:	2
+
+----Estimated time from start to end: 36s = 0.6m = 0.01h
+
+Loop 0:	1
+Loop 0:	0
+Loop 0:	-1
+Loop 0:	-2
+Loop 0:	-3
+-------->Loop 0: time=	13s=  0.216667m = 0.00361111h
+Loop 1:	2
+Loop 1:	1
+Loop 1:	0
+Loop 1:	-1
+Loop 1:	-2
+Loop 1:	-3
+-------->Loop 1: time=	26s=  0.433333m = 0.00722222h
+Loop 2:	2
+Loop 2:	1
+Loop 2:	0
+Loop 2:	-1
+Loop 2:	-2
+Loop 2:	-3
+-------->Loop 2: time=	40s=  0.666667m = 0.0111111h
+END
+
