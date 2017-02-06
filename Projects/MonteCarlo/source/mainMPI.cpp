@@ -31,7 +31,7 @@ int main(int np, char **p)
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
     
-    checkfp = fopen("results/checkParamFile.dat","w");
+    checkfp = fopen("results/ParamFilePCMC.dat","w");
     RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
     if(myCoreNumber == 0){
 	printf("********\n* PCMC * \n********\n");
@@ -54,6 +54,8 @@ int main(int np, char **p)
     MonteCarloParam* monteCarloParam;
     parser.createMonteCarloParam(&monteCarloParam);
     monteCarloParam->writeInParamFile(checkfp);
+    fprintf(checkfp,"CORES\t%i\n",totalCoreNumber);
+    
     if(myCoreNumber == 0)
 	printf("Number of effective cores: %i\n\n", totalCoreNumber*monteCarloParam->getLoopsPerCore());
 	
@@ -90,11 +92,14 @@ int main(int np, char **p)
 	    tic2 = time(NULL);
 	}
     
-	for(double t=monteCarloParam->getMaxLogT(); t>monteCarloParam->getMinLogT(); t-=monteCarloParam->getLogTstep()){
-	    temperature = pow(10,t);
-	    
+	for(double t=monteCarloParam->getMaxLogT(); t>=monteCarloParam->getMinLogT(); t-=monteCarloParam->getLogTstep()){
 	    if(myCoreNumber==0 && k==0 && t==monteCarloParam->getMaxLogT())
 		tic3=time(NULL);
+		
+	    if(_PCA_IS_EQUAL(t,0.0))
+		t = 0.0;
+		
+	    temperature = pow(10,t);
 	    
 	    if(fakeCoreNumber==0){
 		fprintf(tfp,"%g\t%.15le\n", t, temperature);
@@ -126,7 +131,7 @@ int main(int np, char **p)
 	
 	if(myCoreNumber==0){
 	    toc2=time(NULL);
-	    fprintf(logfp,"-------->Loop %i: time=\t%gs\n", k, difftime(toc2, tic2));
+	    fprintf(logfp,"-------->Loop %i: time=\t%gs=  %gm = %gh\n", k, difftime(toc2, tic2),difftime(toc2, tic2)/60.0,difftime(toc2, tic2)/60.0/60.0);
 	    fflush(logfp);
 	}
 	delete polymer;
