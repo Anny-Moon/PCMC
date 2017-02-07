@@ -10,7 +10,7 @@
 #ifndef PCMC_HAMILTONIAN
 #define PCMC_HAMILTONIAN
 
-//#include "../PolymerMC.h"
+#include "../Polymer.h"
 #include "../Vector.h"
 #include "../PCAmacros.h"
 #include <stdlib.h>
@@ -18,7 +18,7 @@
 
 namespace PCA{
 
-class PolymerMC;
+//class PolymerMC;
 
 /** Hamiltonian.
 * \f[ 
@@ -73,8 +73,8 @@ public:
     bool checkAllParamAreSeted();
     ~Hamiltonian();
 
-    double energyOneSite(int site, const PolymerMC& polymer) const;
-    double energyAllSites(const PolymerMC& polymer) const;
+    double energyOneSite(int site, const Polymer& polymer) const;
+    double energyAllSites(const Polymer& polymer) const;
     
     /** Generate kappa according DoubleWell distribution.
     * Rejection sampling algorithm.

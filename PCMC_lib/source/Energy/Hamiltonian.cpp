@@ -166,7 +166,7 @@ void Hamiltonian::pushB(double b_in, int fromSite, int toSite)
 }
 
 
-double Hamiltonian::energyOneSite(int site, const PolymerMC& polymer) const
+double Hamiltonian::energyOneSite(int site, const Polymer& polymer) const
 {
     double E1,E2;
 	
@@ -189,7 +189,7 @@ double Hamiltonian::energyOneSite(int site, const PolymerMC& polymer) const
     return E1 + E2;
 }
 
-double Hamiltonian::energyAllSites(const PolymerMC& polymer) const
+double Hamiltonian::energyAllSites(const Polymer& polymer) const
 {
     int i;
     double E1 = 0.0;
