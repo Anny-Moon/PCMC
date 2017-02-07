@@ -60,6 +60,8 @@ int main(int np, char **p){
     int fakeCores = monteCarloParam->getCores() * monteCarloParam->getLoopsPerCore();
     
     double* observable;
+    double (*observableFunction)(const Polymer&);
+    observableFunction = PolymerObservable::radiusOfGyration;
     
     fp = fopen("RadiusOfGyration.dat", "w");
     for(j=0; j<logT.size();j++){
@@ -68,8 +70,10 @@ int main(int np, char **p){
 	    fname = new char[1000];
 	    sprintf(fname,"%s/results/Configurations/%iconf.dat",p[1], i);
 	    polymer = new Polymer(Polymer::FileType::angles, fname, numMonomers-1, j+1);
-	    observable[i] = PolymerObservable::radiusOfGyration(*polymer);
+//	    observable[i] = PolymerObservable::radiusOfGyration(*polymer);
+	    observable[i] = observableFunction(*polymer);
 	    delete polymer;
+	    delete [] fname;
 	}
 	fprintf(fp,"%g\t%g\t%g\n", logT[j], meanValue(fakeCores, observable), standartDeviation(fakeCores, observable));
 	delete [] observable;
