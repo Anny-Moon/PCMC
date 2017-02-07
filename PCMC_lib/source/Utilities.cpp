@@ -26,6 +26,18 @@ double meanValue(int size, const double* values)
     return av;
 }
 
+double meanValue(const std::vector<double> values)
+{
+    int i;
+    double av = 0.0;
+
+    for(i=0; i<values.size(); i++)
+	av += values[i];
+
+    av = av / ((double)values.size());
+    return av;
+}
+
 double standartDeviation(int size, const double* values)
 {   int i;
     double av, sigma;
@@ -35,6 +47,18 @@ double standartDeviation(int size, const double* values)
 	sigma += (values[i] - av) * (values[i] - av);
 
     sigma = sqrt(sigma / ((double)(size * size)));
+    return sigma;
+}
+
+double standartDeviationOfMean(const std::vector<double> values)
+{   int i;
+    double av, sigma;
+    sigma = 0.0;
+    av = meanValue(values);
+    for(i=0; i<values.size(); i++)
+	sigma += (values[i] - av) * (values[i] - av);
+
+    sigma = sqrt(sigma / ((double)((values.size()-1) * values.size())));
     return sigma;
 }
 

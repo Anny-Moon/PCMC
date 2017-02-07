@@ -8,7 +8,7 @@
 #define PCA_UTILITIES
 
 #include <math.h>
-
+#include <vector>
 #include "PCAmacros.h"
 
 
@@ -18,7 +18,9 @@ extern bool globalVerbose;///< if false nobody can print on screen. Exseptions: 
 
 ///@{@name Statistics:
 double meanValue(int size, const double* values);
+double meanValue(const std::vector<double> values);
 double standartDeviation(int size, const double* values);
+double standartDeviationOfMean(const std::vector<double> values);
 ///@}
 
 ///@{@name Work with arrays of doubles
