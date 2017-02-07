@@ -44,15 +44,15 @@ int main(int np, char **p)
     PolymerMC* polymer;
     
     Hamiltonian* hamiltonian;
-    parser.createHamiltonian(&hamiltonian);
+    hamiltonian = parser.createHamiltonian();
     hamiltonian->writeInParamFile(checkfp);
     
     LennardJones* interaction;
-    parser.createInteraction(&interaction);
+    interaction = parser.createInteraction();
     interaction->writeInParamFile(checkfp);
     
     MonteCarloParam* monteCarloParam;
-    parser.createMonteCarloParam(&monteCarloParam);
+    monteCarloParam = parser.createMonteCarloParam();
     monteCarloParam->writeInParamFile(checkfp);
     fprintf(checkfp,"CORES\t%i\n",totalCoreNumber);
     
@@ -75,7 +75,7 @@ int main(int np, char **p)
     double temperature;
     
     for(int k=0; k<monteCarloParam->getLoopsPerCore(); k++){
-	parser.createPolymer(&polymer);
+	polymer = parser.createPolymer();
 	polymer->setMonomerLengths(3.8);
 	polymer->initWithRandomTaus();
 	

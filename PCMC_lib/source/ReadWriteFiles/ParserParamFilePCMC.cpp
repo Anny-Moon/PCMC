@@ -20,7 +20,7 @@ ParserParamFilePCMC::~ParserParamFilePCMC()
     delete data;
 }
 
-void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
+PolymerMC* ParserParamFilePCMC::createPolymer() const
 {
     std::string etalon;
     int number;
@@ -43,10 +43,10 @@ void ParserParamFilePCMC::createPolymer(PolymerMC** polymer) const
 //	printf("Warning: in the current wersion of program MONOMER_LENGTH = 3.8 and you cannot change it.\n");
     }
 
-    *polymer = new PolymerMC(N);
+    return (new PolymerMC(N));
 }
 
-void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
+Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
 {
     std::string etalon;
     int number;
@@ -137,10 +137,10 @@ void ParserParamFilePCMC::createHamiltonian(Hamiltonian** hamiltonian) const
     }
     
     
-    *hamiltonian = new Hamiltonian(N,q,m,c,d,a,b,alpha,mu);
+    return (new Hamiltonian(N,q,m,c,d,a,b,alpha,mu));
 }
 
-void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
+LennardJones* ParserParamFilePCMC::createInteraction() const
 {
     std::string etalon;
     int number;
@@ -165,10 +165,10 @@ void ParserParamFilePCMC::createInteraction(LennardJones** interaction) const
 	exit(1);
     }
     
-    *interaction = new LennardJones(gamma, r);
+    return (new LennardJones(gamma, r));
 }
 
-void ParserParamFilePCMC::createMonteCarloParam(MonteCarloParam** monteCarloParam) const
+MonteCarloParam* ParserParamFilePCMC::createMonteCarloParam() const
 {
     std::string etalon;
     int number;
@@ -245,7 +245,7 @@ void ParserParamFilePCMC::createMonteCarloParam(MonteCarloParam** monteCarloPara
 	cores = 0;
     }
     
-    *monteCarloParam = new MonteCarloParam(maxLogT, minLogT, logTstep, sweepsPerStep, loopsPerCore, cores);
+    return (new MonteCarloParam(maxLogT, minLogT, logTstep, sweepsPerStep, loopsPerCore, cores));
 }
 
 }//end of namespace PCA

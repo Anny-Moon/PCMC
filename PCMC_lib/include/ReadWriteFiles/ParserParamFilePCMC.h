@@ -20,10 +20,10 @@ private:
 public:
     ParserParamFilePCMC (const char* fileName);
     ~ParserParamFilePCMC();
-    void createPolymer(PolymerMC** polymer) const;
-    void createHamiltonian(Hamiltonian** hamiltonian) const;
-    void createInteraction(LennardJones** interaction) const;
-    void createMonteCarloParam(MonteCarloParam** monteCarloParam) const;
+    PolymerMC* createPolymer() const;
+    Hamiltonian* createHamiltonian() const;
+    LennardJones* createInteraction() const;
+    MonteCarloParam* createMonteCarloParam() const;
     
     inline ParamFileReader* getDictionary() const;
 };
