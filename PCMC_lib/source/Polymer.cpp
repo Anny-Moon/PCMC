@@ -179,7 +179,7 @@ Polymer::Polymer(FileType fileType, char* fileName, int numberOfLinesInBlock, in
 	    
 	    kappa = new double[numMonomers];
 	    tau = new double[numMonomers];
-	    readFileWithAngles(fileName, size-1, polymerNumber);
+	    readFileWithAngles(fileName, size, polymerNumber);
 	    
 	    monomerLength = new double[numMonomers];
 	    setMonomerLengths(3.8);
