@@ -12,6 +12,7 @@
 
 #include "Vector.h"
 #include "PCAmacros.h"
+#include "Polymer.h"
 #include <stdlib.h>
 #include <stdio.h>
 
