@@ -32,6 +32,7 @@ public:
     ~LennardJones();
 
     double energy(double distance) const;
+    double energyAllSites(const Polymer& polymer) const;
     double energyIfSiteChanged(int site, int size, const Vector* r) const;
     
     inline void writeInParamFile(FILE* fp) const;

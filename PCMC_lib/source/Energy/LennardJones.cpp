@@ -37,13 +37,25 @@ double LennardJones::energy(double distance) const
     return answ;
 }
 
+double LennardJones::energyAllSites(const Polymer& polymer) const
+{
+    int i, j;
+    double answ = 0.0;
+    
+    for(i=0;i<polymer.getNumMonomers();i++)
+	for(j=i+2;i<polymer.getNumMonomers();j++)
+	    answ += energy(polymer.distance(i,j));
+	
+    return answ;
+}
+
 double LennardJones::energyIfSiteChanged(int site, int size, const Vector* r) const
 {
     int i,j;
     double answ = 0.0;
     
     for(i=0;i<site;i++){
-	for(j=site+1;j<size; j++){
+	for(j=site+2;j<size; j++){
 	    answ += energy((r[i]-r[j]).norm());
 	}
     }
