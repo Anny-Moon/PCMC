@@ -42,10 +42,11 @@ double LennardJones::energyAllSites(const Polymer& polymer) const
     int i, j;
     double answ = 0.0;
     
-    for(i=0;i<polymer.getNumMonomers();i++)
-	for(j=i+2;i<polymer.getNumMonomers();j++)
+    for(i=0;i<polymer.getNumMonomers()+1;i++){
+	for(j=i+2;j<polymer.getNumMonomers()+1;j++){
 	    answ += energy(polymer.distance(i,j));
-	
+	}
+    }
     return answ;
 }
 
