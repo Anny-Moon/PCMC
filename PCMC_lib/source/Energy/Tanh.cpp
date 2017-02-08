@@ -33,7 +33,7 @@ double Tanh::energy(double distance) const
     double tmp;
     
     if(distance<delta){
-	answ = 1e+15;
+	answ = std::numeric_limits<double>::infinity();
     }
     
     else{
@@ -48,10 +48,14 @@ double Tanh::energyAllSites(const Polymer& polymer) const
 {
     int i, j;
     double answ = 0.0;
-    
+    double distance;
     for(i=0;i<polymer.getNumMonomers()+1;i++){
 	for(j=i+2;j<polymer.getNumMonomers()+1;j++){
-	    answ += energy(polymer.distance(i,j));
+	    distance = polymer.distance(i,j);
+	    if(distance < delta)
+		return std::numeric_limits<double>::infinity();
+	    else
+		answ += energy(distance);
 	}
     }
     return answ;
@@ -61,10 +65,15 @@ double Tanh::energyIfSiteChanged(int site, int size, const Vector* r) const
 {
     int i,j;
     double answ = 0.0;
+    double distance;
     
     for(i=0;i<site;i++){
-	for(j=site+2;j<size; j++){
-	    answ += energy((r[i]-r[j]).norm());
+	for(j=site+1;j<size; j++){
+	    distance = (r[i]-r[j]).norm();
+	    if (distance < delta)
+		return std::numeric_limits<double>::infinity();
+	    else
+		answ += energy(distance);
 	}
     }
     return answ;
@@ -77,7 +86,7 @@ void Tanh::writeInParamFile(FILE* fp) const
     
     fprintf(fp,"TANH_SELF_AVOIDING_R\t%g\n", delta);
     fprintf(fp,"TANH_MIN\t%g\n", gamma);
-    fprintf(fp,"TANH_MIN\t%g\n", rMin);
+    fprintf(fp,"TANH_R_MIN\t%g\n", rMin);
 }
 
 }//end of namespace PCA

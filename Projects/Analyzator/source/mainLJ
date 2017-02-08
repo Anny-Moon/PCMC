@@ -58,8 +58,8 @@ int main(int np, char **p){
     Hamiltonian* hamiltonian;
     hamiltonian = parser.createHamiltonian();
     
-    Interaction* interaction;
-    interaction = parser.createTanh();
+    LennardJones* interaction;
+    interaction = parser.createLennardJones();
     
     Polymer* polymer;
     polymer = parser.createPolymer();
@@ -71,8 +71,8 @@ int main(int np, char **p){
     
     double* observable;
     
-    fp = fopen("RadiusOfGyration.dat", "w");
-//    fp = fopen("Energy.dat", "w");
+//    fp = fopen("RadiusOfGyration.dat", "w");
+    fp = fopen("Energy.dat", "w");
     
 
     for(j=0; j<logT.size();j++){
@@ -81,9 +81,9 @@ int main(int np, char **p){
 	    fname = new char[1000];
 	    sprintf(fname,"%s/results/Configurations/%iconf.dat",p[1], i);
 	    polymer = new Polymer(Polymer::FileType::angles, fname, numMonomers-1, j+1);
-	    observable[i] = PolymerObservable::radiusOfGyration(*polymer);
-//	    observable[i] = hamiltonian->energyAllSites(*polymer);
-//	    observable[i]+=interaction->energyAllSites(*polymer);
+//	    observable[i] = PolymerObservable::radiusOfGyration(*polymer);
+	    observable[i] = hamiltonian->energyAllSites(*polymer);
+	    observable[i]+=interaction->energyAllSites(*polymer);
 	    delete polymer;
 	    delete [] fname;
 	}

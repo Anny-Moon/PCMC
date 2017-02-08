@@ -12,6 +12,7 @@
 #include "PolymerMC.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/LennardJones.h"
+#include "Energy/Tanh.h"
 
 namespace PCA{
 class ParserParamFilePCMC{
@@ -23,6 +24,7 @@ public:
     PolymerMC* createPolymer() const;
     Hamiltonian* createHamiltonian() const;
     LennardJones* createLennardJones() const;
+    Tanh* createTanh() const;
     MonteCarloParam* createMonteCarloParam() const;
     
     inline ParamFileReader* getDictionary() const;

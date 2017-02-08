@@ -168,6 +168,43 @@ LennardJones* ParserParamFilePCMC::createLennardJones() const
     return (new LennardJones(gamma, r));
 }
 
+Tanh* ParserParamFilePCMC::createTanh() const
+{
+    std::string etalon;
+    int number;
+    double delta, gamma, r;
+    
+    etalon = "TANH_SELF_AVOIDING_R";
+    number = data->search(etalon);
+    if(number>=0)
+	delta = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "TANH_MIN";
+    number = data->search(etalon);
+    if(number>=0)
+	gamma = data->value(number);
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "TANH_R_MIN";
+    number = data->search(etalon);
+    if(number>=0)
+	r = data->value(number);
+	
+    else{
+	printf("Cannot find %s\n", etalon.c_str());
+	exit(1);
+    }
+    
+    return (new Tanh(delta, gamma, r));
+}
+
 MonteCarloParam* ParserParamFilePCMC::createMonteCarloParam() const
 {
     std::string etalon;
