@@ -56,7 +56,7 @@ double LennardJones::energyIfSiteChanged(int site, int size, const Vector* r) co
     double answ = 0.0;
     
     for(i=0;i<site;i++){
-	for(j=site+2;j<size; j++){
+	for(j=site+1;j<size; j++){
 	    answ += energy((r[i]-r[j]).norm());
 	}
     }
