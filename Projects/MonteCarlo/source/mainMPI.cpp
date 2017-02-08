@@ -5,6 +5,7 @@
 #include <mpi.h>
 #include "PolymerMC.h"
 #include "PolymerObservable.h"
+#include "Energy/Interaction.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/LennardJones.h"
 
@@ -49,6 +50,7 @@ int main(int np, char **p)
     hamiltonian->writeInParamFile(checkfp);
     
     LennardJones* interaction;
+//    Interaction* interaction;
     interaction = parser.createLennardJones();
     interaction->writeInParamFile(checkfp);
     

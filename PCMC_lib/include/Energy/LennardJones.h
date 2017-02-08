@@ -33,11 +33,11 @@ public:
     LennardJones(double gamma_in, double rMin_in);
     ~LennardJones();
 
-    double energy(double distance) const;
-    double energyAllSites(const Polymer& polymer) const;
-    double energyIfSiteChanged(int site, int size, const Vector* r) const;
+    virtual double energy(double distance) const;
+    virtual double energyAllSites(const Polymer& polymer) const;
+    virtual double energyIfSiteChanged(int site, int size, const Vector* r) const;
     
-    void writeInParamFile(FILE* fp) const;
+    virtual void writeInParamFile(FILE* fp) const;
 
 };
 
