@@ -10,14 +10,14 @@ Steps/loop: 6
 Output of Core 0:
 Loop 0:	2
 
-----Estimated time from start to end: 36s = 0.6m = 0.01h
+----Estimated time from start to end: 54s = 0.9m = 0.015h
 
 Loop 0:	1
 Loop 0:	0
 Loop 0:	-1
 Loop 0:	-2
 Loop 0:	-3
--------->Loop 0: time=	13s=  0.216667m = 0.00361111h
+-------->Loop 0: time=	14s=  0.233333m = 0.00388889h
 Loop 1:	2
 Loop 1:	1
 Loop 1:	0

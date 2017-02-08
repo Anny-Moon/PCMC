@@ -22,7 +22,7 @@ public:
     ~ParserParamFilePCMC();
     PolymerMC* createPolymer() const;
     Hamiltonian* createHamiltonian() const;
-    LennardJones* createInteraction() const;
+    LennardJones* createLennardJones() const;
     MonteCarloParam* createMonteCarloParam() const;
     
     inline ParamFileReader* getDictionary() const;

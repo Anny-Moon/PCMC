@@ -33,6 +33,7 @@ int main(int np, char **p)
     
     checkfp = fopen("results/ParamFilePCMC.dat","w");
     RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
+//RandomGenerator::initialization(1*(myCoreNumber+1));
     if(myCoreNumber == 0){
 	printf("********\n* PCMC * \n********\n");
 	printf("Number of physical cores: %i\n", totalCoreNumber);
@@ -48,7 +49,7 @@ int main(int np, char **p)
     hamiltonian->writeInParamFile(checkfp);
     
     LennardJones* interaction;
-    interaction = parser.createInteraction();
+    interaction = parser.createLennardJones();
     interaction->writeInParamFile(checkfp);
     
     MonteCarloParam* monteCarloParam;

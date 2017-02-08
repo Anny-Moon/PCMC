@@ -10,7 +10,7 @@
 #include "Polymer.h"
 #include "Vector.h"
 #include "Energy/Hamiltonian.h"
-#include "Energy/LennardJones.h"
+#include "Energy/Interaction.h"
 #include "Random/UniformRand.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -64,9 +64,9 @@ public:
     
     /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
-    void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
-    void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const LennardJones& interaction);
-    void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction);
+    void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
     ///@}
     
     /* only for chains with equal link lenghts*/

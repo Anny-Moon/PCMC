@@ -159,7 +159,7 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	}
 }
 
-void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
     int i;
     double probability;
@@ -213,7 +213,7 @@ void PolymerMC::kappaUpdate(int site, double temperature, const Hamiltonian& ham
 }
 
 
-void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
     int i;
     double probability;
@@ -264,7 +264,7 @@ void PolymerMC::tauUpdate(int site, double temperature, const Hamiltonian& hamil
     }
 }
 
-void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonian, const LennardJones& interaction)
+void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
     int i;
     

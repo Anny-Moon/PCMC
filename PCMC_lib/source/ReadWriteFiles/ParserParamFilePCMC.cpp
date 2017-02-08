@@ -140,7 +140,7 @@ Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
     return (new Hamiltonian(N,q,m,c,d,a,b,alpha,mu));
 }
 
-LennardJones* ParserParamFilePCMC::createInteraction() const
+LennardJones* ParserParamFilePCMC::createLennardJones() const
 {
     std::string etalon;
     int number;
