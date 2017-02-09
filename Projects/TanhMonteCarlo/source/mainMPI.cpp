@@ -105,11 +105,6 @@ int main(int np, char **p)
 		
 	    temperature = pow(10,t);
 	    
-	    if(fakeCoreNumber==0){
-		fprintf(tfp,"%g\t%.15le\n", t, temperature);
-		fflush(tfp);
-	    }
-	    
 	    if(myCoreNumber==0){
 		fprintf(logfp,"Loop %i:\t%g\n", k, t);
 		fflush(logfp);
@@ -119,6 +114,12 @@ int main(int np, char **p)
 		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 	
 	    polymer->writeKappaTauInFile(ktfp);
+	    
+	    if(fakeCoreNumber==0){
+		fprintf(tfp,"%g\t%.15le\n", t, temperature);
+		fflush(tfp);
+	    }
+	    
 	    if(!polymer->selfAvoidingCondition(3.8, 5))
 		printf("selfAV %g\n", t);
 	    
