@@ -64,10 +64,20 @@ public:
     
     /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
-    void kappaUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
-    void tauUpdate(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateKappa(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateTau(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
     void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
     ///@}
+    
+    /**@name Monte Carlo updates at kappa[site]/tau[site] without Hamiltonian
+    * i.e. kappa and tau generated according uniform random distribution [0,2pi]*/
+    ///@{
+    void updateKappaWithoutH(int site, double temperarture, const Interaction& interaction);
+    void updateTauWithoutH(int site, double temperarture, const Interaction& interaction);
+    void updateAllSitesWithoutH(double temperature, const Interaction& interaction);
+    ///@}
+    
+    
     
     /* only for chains with equal link lenghts*/
     bool selfAvoidingCondition(double minDistance, int site);
