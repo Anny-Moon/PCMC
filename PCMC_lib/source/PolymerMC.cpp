@@ -421,4 +421,25 @@ bool PolymerMC::selfAvoidingCondition(double minDistance, int site)
 
     return true;
 }
+
+void PolymerMC::convertRadiusVectorsToCarray(double* array) const
+{
+    int i;
+    for(i=0;i<numMonomers+1;i++){
+	array[i] = r[i].x;
+	array[i+1] = r[i].y;
+	array[i+2] = r[i].z;
+    }
+
+}
+
+void PolymerMC::convertCarrayToRadiusVectors(const double* array)
+{
+    int i;
+    for(i=0;i<numMonomers+1;i++){
+	r[i].x = array[i];
+	r[i].y = array[i+1];
+	r[i].z = array[i+2];
+    }
+}
 }//end of namespace

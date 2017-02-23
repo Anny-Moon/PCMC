@@ -82,6 +82,25 @@ public:
     /* only for chains with equal link lenghts*/
     bool selfAvoidingCondition(double minDistance, int site);
     inline void writeAcceptenceRateInFile(FILE *fp);
+    
+    /**@name Converting radius vectors to array of doubles and back (needed for OpenCL)
+    * r[0].x r[0].y r[0].z ... r[N-1].x   r[N-1].y     r[N-1].z
+    * m[0]   m[1]   m[2] ...   m[(N-2)*3] m[(N-2)*3+1] m[(N-2)*3+2]
+    */
+    ///@{
+    void convertRadiusVectorsToCarray(double* array) const;
+    void convertCarrayToRadiusVectors(const double* array);
+    ///@}
+    
+    /**@name OpenCL functions: avaliable only in PolymerMC_CL.cpp*/
+    ///@{
+    void convertRadiusVectorsToDouble3ArrayCL(double3* array)const;
+    void cinvertDouble3ArrayToRadiusVectorsCL(const double3* array);
+    
+    void updateKappaCL(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateTauCL(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateAllSitesCL(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    ///@}
 };
 
 inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
