@@ -94,9 +94,6 @@ public:
     
     /**@name OpenCL functions: avaliable only in PolymerMC_CL.cpp*/
     ///@{
-    void convertRadiusVectorsToDouble3ArrayCL(double3* array)const;
-    void cinvertDouble3ArrayToRadiusVectorsCL(const double3* array);
-    
     void updateKappaCL(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
     void updateTauCL(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
     void updateAllSitesCL(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
