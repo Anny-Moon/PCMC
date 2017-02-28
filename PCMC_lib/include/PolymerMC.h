@@ -46,7 +46,7 @@ public:
     
     /** Copy constructor*/
     PolymerMC(const PolymerMC& polymer);
-    Polymer& operator=(const Polymer& polymer);
+    PolymerMC& operator=(const PolymerMC& polymer);
     /** Destructor */
     ~PolymerMC();
     
