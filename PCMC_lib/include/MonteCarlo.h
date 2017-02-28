@@ -39,6 +39,8 @@ public:
     inline void writeInParamFile(FILE* fp) const;
     
     void run();
+    void runCL() const;
+    void initCL() const;
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();

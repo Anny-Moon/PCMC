@@ -37,6 +37,10 @@ public:
     virtual double energyAllSites(const Polymer& polymer) const;
     virtual double energyIfSiteChanged(int site, int size, const Vector* r) const;
     
+    virtual double energyIfSiteChangedCL(int site, int size, const double* r) const;
+    virtual void initCL() const;
+    virtual void cleanCL() const;
+    
     virtual void writeInParamFile(FILE* fp) const;
 
 };
