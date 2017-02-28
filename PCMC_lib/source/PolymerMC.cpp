@@ -67,6 +67,36 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 }
+
+PolymerMC::PolymerMC(const PolymerMC& polymer) : Polymer(polymer)
+{
+    //copy Polymer
+    rOld = new Vector[numMonomers+1];
+    Vector::copyArray(numMonomers+1, rOld, polymer.rOld);
+    
+    interactionSite.site = polymer.interactionSite.site;
+    interactionSite.interaction = polymer.interactionSite.interaction;
+    
+    acceptNumberKappa = polymer.acceptNumberKappa;
+    acceptNumberTau = polymer.acceptNumberTau;
+}
+
+PolymerMC& PolymerMC::operator=(const PolymerMC& polymer)
+{
+    Polymer::operator=(polymer);
+    
+    rOld = new Vector[numMonomers+1];
+    Vector::copyArray(numMonomers+1, rOld, polymer.rOld);
+    
+    interactionSite.site = polymer.interactionSite.site;
+    interactionSite.interaction = polymer.interactionSite.interaction;
+    
+    acceptNumberKappa = polymer.acceptNumberKappa;
+    acceptNumberTau = polymer.acceptNumberTau;
+    
+    return *this;
+}
+
 PolymerMC::~PolymerMC()
 {
     delete [] rOld;

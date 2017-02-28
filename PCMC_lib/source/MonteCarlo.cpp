@@ -16,13 +16,81 @@ namespace PCA{
 MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in)
 {
     readFromParamFile(fileName);
-    polymer = polymer_in;
+    stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
+    
+    polymerEtalon = polymer_in;
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
     
 }
 
 MonteCarlo::~MonteCarlo(){};
+
+void MonteCarlo::run()
+{
+    char* fname1;
+    FILE* ktfp, *logfp, *tfp, *checkfp;
+    PolymerMC *polymer;
+    logfp = fopen("results/log_file", "w");
+    fprintf(logfp,"********\n* PCMC * \n********\n");
+    fprintf(logfp,"CPU SINGLE CORE\n\n");
+    fprintf(logfp,"Loops %i\n", loopsPerCore);
+    fprintf(logfp,"Steps/loop: %i\n\n", stepsPerLoop);
+    
+    checkfp = fopen("results/ParamFilePCMC.dat","w");
+    interaction->writeInParamFile(checkfp);
+    hamiltonian->writeInParamFile(checkfp);
+    polymerEtalon->writeInParamFile(checkfp);
+    fclose(checkfp);
+    
+    double temperature;
+    for(int k=0; k<loopsPerCore; k++){
+	
+	polymer = new PolymerMC(*polymerEtalon);
+	if(k>0)
+	    polymer->initWithRandomTaus();
+	    
+	
+	if(k==0)
+	    tfp = fopen("results/TemperatureMap.dat","w");
+	
+	fname1 = new char[100];
+	sprintf(fname1,"results/Configurations/%iconf.dat",k);
+	ktfp = fopen(fname1, "w");
+	delete [] fname1;
+
+	for(double t=maxLogT; t>=minLogT; t-=logTstep){
+		
+	    if(_PCA_IS_EQUAL(t,0.0))
+		t = 0.0;
+		
+	    temperature = pow(10,t);
+
+	    /* Thermalization */
+	    for(int i=0; i<sweepsPerStep;i++)
+		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
+	
+	    polymer->writeKappaTauInFile(ktfp);
+
+	    if(k==0){
+		fprintf(tfp,"%g\t%.15le\n", t, temperature);
+		fflush(tfp);
+	    }
+	    
+	}	
+
+	if(k==0)
+	    fclose(tfp);
+	
+	delete polymer;
+	
+    }
+    
+    fprintf(logfp,"END\n\n");
+    fclose(logfp);
+    printf("done\n");
+
+}
 
 void MonteCarlo::readFromParamFile(const char* fileName)
 {

@@ -25,8 +25,9 @@ private:
     double logTstep;
     int sweepsPerStep;
     int cores;
+    int stepsPerLoop;
     
-    PolymerMC* polymer;
+    const PolymerMC* polymerEtalon;
     const Hamiltonian* hamiltonian;
     const Interaction* interaction;
     
@@ -36,6 +37,8 @@ public:
     
     void readFromParamFile(const char* fileName);
     inline void writeInParamFile(FILE* fp) const;
+    
+    void run();
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();
