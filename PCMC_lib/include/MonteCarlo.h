@@ -27,13 +27,12 @@ private:
     int cores;
     int stepsPerLoop;
     
-    PolymerMC** polymerOriginal;
-    PolymerMC* polymer;
+    const PolymerMC* polymerEtalon;
     const Hamiltonian* hamiltonian;
     const Interaction* interaction;
     
 public:
-    MonteCarlo(const char* fileName, PolymerMC** polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in);
+    MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in);
     ~MonteCarlo();
     
     void readFromParamFile(const char* fileName);
