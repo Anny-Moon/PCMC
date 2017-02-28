@@ -76,6 +76,7 @@ public:
     
     /** Copy constructor*/
     Polymer(const Polymer& polymer);
+    Polymer& operator=(const Polymer& polymer);
 
     /** Destructor*/
     ~Polymer();

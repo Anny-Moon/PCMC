@@ -44,6 +44,9 @@ public:
     PolymerMC(int numberOfMonomers);
     PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
     
+    /** Copy constructor*/
+    PolymerMC(const PolymerMC& polymer);
+    Polymer& operator=(const Polymer& polymer);
     /** Destructor */
     ~PolymerMC();
     

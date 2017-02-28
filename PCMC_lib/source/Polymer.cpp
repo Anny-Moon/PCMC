@@ -278,6 +278,56 @@ Polymer::Polymer(const Polymer& polymer)
     }
 }
 
+Polymer& Polymer::operator=(const Polymer& polymer)
+{
+    numMonomers = polymer.numMonomers;
+    
+    monomerLength = NULL;
+    r = NULL;
+    t = NULL;
+    n = NULL;
+    b = NULL;
+    kappa = NULL;
+    tau = NULL;
+    
+    if(polymer.monomerLength != NULL){
+	monomerLength = new double[numMonomers];
+	PCA::copyArray(numMonomers, monomerLength, polymer.monomerLength);
+    }
+    
+    if(polymer.r != NULL){
+	r = new Vector[numMonomers+1];
+	Vector::copyArray(numMonomers+1, r, polymer.r);
+    }
+    
+    if(polymer.t != NULL){
+	t = new Vector[numMonomers];
+	Vector::copyArray(numMonomers, t, polymer.t);
+    }
+    
+    if(polymer.b != NULL){
+	b = new Vector[numMonomers];
+	Vector::copyArray(numMonomers, b, polymer.b);
+    }
+    
+    if(polymer.n != NULL){
+	n = new Vector[numMonomers];
+	Vector::copyArray(numMonomers, n, polymer.n);
+    }
+    
+    if(polymer.kappa != NULL){
+	kappa = new double[numMonomers];
+	PCA::copyArray(numMonomers, kappa, polymer.kappa);
+    }
+    
+    if(polymer.tau != NULL){
+	tau = new double[numMonomers];
+	PCA::copyArray(numMonomers, tau, polymer.tau);
+    }
+    
+    return *this;
+}
+
 Polymer::~Polymer()
 {
     formatAll();
