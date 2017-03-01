@@ -7,6 +7,7 @@
 #include "../include/File.h"
 #include "../include/Utilities.h"
 #include "../include/PCAmacros.h"
+#include <sys/types.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -179,6 +180,38 @@ void File::showNumberOfLinesInBlocks(char* fileName)
     }
     
     fclose(fp);
+}
+
+char* File::readFromFileToCharArray(char* fileName, long int* size)
+{
+    FILE *fp;
+    char* array;
+    fp = fopen(fileName, "r");
+    _PCA_CATCH_FILE_ERROR(fp, "open", fileName, "File::readFromFileToCharArray(.)");
+    
+    // obtain file size:
+    fseek (fp , 0 , SEEK_END);
+    long int  lSize = ftell (fp);
+    rewind (fp);
+
+    // allocate memory to contain the whole file:
+    array = (char*) malloc (sizeof(char)*lSize);
+    if (array == NULL){
+	fputs ("Memory error", stderr);
+	exit (1);
+    }
+
+    // copy the file into the buffer:
+    size_t fileSize = fread (array,1,lSize,fp);
+    if (fileSize != lSize){
+	fputs ("Reading error",stderr);
+	exit (2);
+    }
+
+    fclose(fp);
+    
+    size = &lSize;
+    return array;
 }
 
 bool CompareStrings(char *str1, char *str2)

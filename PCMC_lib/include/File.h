@@ -45,6 +45,10 @@ public:
     /** Retern true if str1 is the same as str2, and false otherwise*/
     bool CompareStrings(char *str1, char *str2);
     
+    /** Read everything from file in char array and returns size(needed for cl kernel, for example)*/
+    static char* readFromFileToCharArray(char* fileName, long int* size = NULL);
+    
+    
     ///@{@name Verbose functions:
     static void setVerbose(bool verbose);
     static bool getVerbose();
