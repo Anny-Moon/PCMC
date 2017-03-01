@@ -53,7 +53,8 @@ static struct CL{
 
 static void setCLdevicesInfo()
 {
-int err;
+    int err;
+    int i;
     char* name;
     size_t size;
     cl_uint uint;
@@ -78,7 +79,7 @@ int err;
     _PCA_CATCH_CL_ERROR("getPlatformIDs");
     
     //get platforms Info
-    for(int i=0;i<cl.numPlatforms;i++){
+    for(i=0;i<cl.numPlatforms;i++){
 	err=clGetPlatformInfo(cl.platformIDs[i], CL_PLATFORM_NAME,0,NULL,&size);
 	name = (char*)malloc(sizeof(char)*size);
 	err=clGetPlatformInfo(cl.platformIDs[i], CL_PLATFORM_NAME,size,name,NULL);
@@ -120,7 +121,7 @@ int err;
     
     fprintf(fp,"Available CPUs:\t\ttotal number: %i\n", cl.numCPUs);
     fprintf(fp,"---------------\t\t-------------\n");
-    for(int i=0;i<cl.numCPUs;i++){
+    for(i=0;i<cl.numCPUs;i++){
 	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_NAME, 0, NULL, &size);
 	name = (char*)malloc(sizeof(char)*size);
 	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_NAME, size, name ,NULL);
@@ -146,7 +147,7 @@ int err;
     }
     fprintf(fp,"Available GPUs:\t\ttotal number: %i\n", cl.numGPUs);
     fprintf(fp,"---------------\t\t-------------\n");
-    for(int i=0;i<cl.numGPUs;i++){
+    for(i=0;i<cl.numGPUs;i++){
 	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_NAME, 0, NULL, &size);
 	name = (char*)malloc(sizeof(char)*size);
 	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_NAME, size, name ,NULL);
@@ -177,11 +178,12 @@ int err;
 void LennardJones::initCL() const
 {
     int err;
+    int i;
     setCLdevicesInfo();
     
     char* kernelSource;
-    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel1.cl");
-    printf("%s\n",kernelSource);
+    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel.cl");
+    printf("start:\n%s\nend\n",kernelSource);
     
     /* If no GPUs are available then use all available CPUs*/
     if(cl.numGPUs==0){
@@ -210,13 +212,35 @@ void LennardJones::initCL() const
     }
     
     // Create the compute program from the source buffer
-    cl.program = clCreateProgramWithSource(cl.context, 1, (const char **) & kernelSource, NULL, &err);
-    if (!program){
+    cl.program = clCreateProgramWithSource(cl.context, 1, (const char**)&kernelSource, NULL, &err);
+    if (!cl.program){
     	printf("Error with compute program :'(\n");
 	exit(1);
     }
     
     free(kernelSource);
+        
+    // Build the program executable for all deices on cl.context
+    err = clBuildProgram(cl.program, 0, NULL, NULL, NULL, NULL);
+    if (err != CL_SUCCESS){
+	size_t len;
+	char buffer[2048];
+        printf("Error OpenCL: Failed to build program executable\n");
+	
+	for(i=0;i<cl.numDevices;i++){
+        clGetProgramBuildInfo(cl.program, cl.devices[i], CL_PROGRAM_BUILD_LOG, sizeof(buffer), buffer, &len);
+    	printf("%s\n", buffer);
+    	}
+	exit(1);
+    }
+    
+    // Create the compute kernel in the program we wish to run
+    cl.kernel = clCreateKernel(cl.program, "square", &err);
+    if (!cl.kernel || err != CL_SUCCESS){
+    	printf("Error with kernel :'(\n");
+	exit(1);
+    }
+    
 }
 
 void LennardJones::cleanCL() const

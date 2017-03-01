@@ -195,7 +195,7 @@ char* File::readFromFileToCharArray(char* fileName, long int* size)
     rewind (fp);
 
     // allocate memory to contain the whole file:
-    array = (char*) malloc (sizeof(char)*lSize);
+    array = (char*) malloc (sizeof(char)*(lSize+1));
     if (array == NULL){
 	fputs ("Memory error", stderr);
 	exit (1);
@@ -207,7 +207,7 @@ char* File::readFromFileToCharArray(char* fileName, long int* size)
 	fputs ("Reading error",stderr);
 	exit (2);
     }
-
+    array[lSize]='\0';
     fclose(fp);
     
     size = &lSize;
