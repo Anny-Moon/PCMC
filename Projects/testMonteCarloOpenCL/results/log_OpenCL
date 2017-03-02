@@ -15,16 +15,16 @@ Available CPUs:		total number: 1
 0. Name: Intel(R) Core(TM) i5-5575R CPU @ 2.80GHz
 Number of cores: 4 
 Max work item dimensions: 3 
-Max number of work-items: (4627989976, 4627989976, 140734609511392) 
-Max number of work-items in one work group: 140736880870977 
+Max number of work-items: (1024, 1, 1) 
+Max number of work-items in one work group: 1024 
 Max frequency 2800 MHz
 
 Available GPUs:		total number: 1
 ---------------		-------------
 0. Name: Intel(R) Iris(TM) Pro Graphics 6200
-Cumber of cores: 48
+Number of cores: 48
 Max work item dimensions: 3 
-Max number of work-items: (4627989976, 4627989976, 140734609511392) 
-Max number of work-items in one work group: 140736880870977 
+Max number of work-items: (256, 256, 256) 
+Max number of work-items in one work group: 256 
 Max frequency: 1050 MHz
 

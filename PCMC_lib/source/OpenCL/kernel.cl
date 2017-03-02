@@ -1,7 +1,10 @@
-__kernel void square(
+__kernel void energyLJ(
 	__global double* input,
 	__global double* output,
-	int count)
+	int count,
+	int a,
+	float b,
+	float trash)
 {
 	int i = get_global_id(0);
    	if(i < count)

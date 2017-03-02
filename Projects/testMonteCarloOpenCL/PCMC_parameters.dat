@@ -29,12 +29,12 @@ FROM 60
 TO 65
 HAM_A 0.03
 #---------------Monte Carlo------------------------
-LOOPS_PER_CORE	3
+LOOPS_PER_CORE	1
 
 MAX_LOG_T 2.0
-LOG_T_STEP 1.0
-MIN_LOG_T -0.0
+LOG_T_STEP 2.0
+MIN_LOG_T 1.0
 
-SWEEPS_PER_STEP 100
+SWEEPS_PER_STEP 1
 
 

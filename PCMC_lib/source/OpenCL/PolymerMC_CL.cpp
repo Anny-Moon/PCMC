@@ -25,9 +25,9 @@ void PolymerMC::convertRadiusVectorsToFloatArray(float* array) const
 {
     int i;
     for(i=0;i<numMonomers+1;i++){
-	array[i] = r[i].x;
-	array[i+1] = r[i].y;
-	array[i+2] = r[i].z;
+	array[i*3] = (float)r[i].x;
+	array[i*3+1] = (float)r[i].y;
+	array[i*3+2] = (float)r[i].z;
     }
 
 }
@@ -111,6 +111,7 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
     else{
 	rC = new float [(numMonomers+1)*3];
 	convertRadiusVectorsToFloatArray(rC);
+	
 	interactionOld = interaction.energyIfSiteChangedCL(site, (numMonomers+1)*3, rC);
 	delete [] rC;
     }
@@ -141,7 +142,7 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
 	acceptNumberTau++;
-//	printf("ACCEPT\n");
+	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -150,7 +151,7 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
 	    
 	interactionSite.site = site;
 	interactionSite.interaction = interactionOld;
-//	printf("REJECT\n");
+	printf("REJECT\n");
     }
 }
 
@@ -163,7 +164,8 @@ void PolymerMC::updateAllSitesCL(double temperature, const Hamiltonian& hamilton
 	setRadiusVectorsFromVectorsT();
     }
     
-    for(i=1;i<numMonomers;i++){
+    for(i=10;i<11;i++){
+//    for(i=1;i<numMonomers;i++){
 //	updateKappaCL(i, temperature, hamiltonian, interaction);
 	updateTauCL(i, temperature, hamiltonian, interaction);
     }

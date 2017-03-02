@@ -134,11 +134,11 @@ static void setCLdevicesInfo()
 	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS,sizeof(cl_uint), &uint,&size);
 	fprintf(fp,"Max work item dimensions: %i \n",uint);
 	
-	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_SIZES,sizeof(cl_uint), &workItems, &size);
+	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_SIZES, sizeof(size_t)*3, &workItems, &size);
 	fprintf(fp,"Max number of work-items: (%zu, %zu, %zu) \n",workItems[0], workItems[1], workItems[2]);
 	
-	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_WORK_GROUP_SIZE,sizeof(cl_uint), &workGroup, &size);
-	fprintf(fp,"Max number of work-items in one work group: %zu \n",workGroup);
+	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_WORK_GROUP_SIZE, sizeof(size_t), &workGroup, &size);
+	fprintf(fp,"Max number of work-items in one work group: %zu \n", workGroup);
 	
 	err=clGetDeviceInfo(cl.CPU_IDs[i], CL_DEVICE_MAX_CLOCK_FREQUENCY,sizeof(cl_uint), &uint,&size);
 	fprintf(fp,"Max frequency %i MHz\n",uint);
@@ -155,15 +155,15 @@ static void setCLdevicesInfo()
 	free(name);
 	
 	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_COMPUTE_UNITS,sizeof(cl_uint), &uint,&size);
-	fprintf(fp,"Cumber of cores: %i\n",uint);
+	fprintf(fp,"Number of cores: %i\n",uint);
 	
 	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS,sizeof(cl_uint), &uint,&size);
 	fprintf(fp,"Max work item dimensions: %i \n",uint);
 	
-	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_SIZES,sizeof(cl_uint), &workItems, &size);
+	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_WORK_ITEM_SIZES,sizeof(size_t)*3, &workItems, &size);
 	fprintf(fp,"Max number of work-items: (%zu, %zu, %zu) \n",workItems[0], workItems[1], workItems[2]);
 	    
-	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_WORK_GROUP_SIZE,sizeof(cl_uint), &workGroup, &size);
+	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_WORK_GROUP_SIZE,sizeof(size_t), &workGroup, &size);
 	fprintf(fp,"Max number of work-items in one work group: %zu \n",workGroup);
 	
 	err=clGetDeviceInfo(cl.GPU_IDs[i], CL_DEVICE_MAX_CLOCK_FREQUENCY,sizeof(cl_uint), &uint,&size);
@@ -183,6 +183,7 @@ void LennardJones::initCL() const
     
     char* kernelSource;
     kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel1.cl");
+//    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel.cl");
 //    char kernelSource[1024] = {#include "../source/OpenCL/kernel1.cl"};
     printf("start:\n%s\nend\n",kernelSource);
     
@@ -198,8 +199,8 @@ void LennardJones::initCL() const
     }
     
     // Create a context
-    cl.context = clCreateContext(0, cl.numDevices, cl.devices, NULL, NULL, &err);
-//    cl.context = clCreateContext(0, 1, cl.devices[0], NULL, NULL, &err);
+//    cl.context = clCreateContext(0, cl.numDevices, cl.devices, NULL, NULL, &err);
+    cl.context = clCreateContext(0, 1, &cl.devices[0], NULL, NULL, &err);
     if (!cl.context){
 	printf("Error with context :'(\n");
 	exit(1);
@@ -236,7 +237,7 @@ void LennardJones::initCL() const
     }
     
     // Create the compute kernel in the program we wish to run
-    cl.kernel = clCreateKernel(cl.program, "energy", &err);
+    cl.kernel = clCreateKernel(cl.program, "energyLJ", &err);
     if (!cl.kernel || err != CL_SUCCESS){
     	printf("Error with kernel :'(\n");
 	exit(1);
@@ -250,15 +251,85 @@ void LennardJones::cleanCL() const
 double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) const
 {
     int i,j;
+    int err;
     double answ = 0.0;
+    float* results;
     
-    for(i=0;i<site;i++){
-	for(j=site+1;j<size; j++){
-	    //answ += energy((r[i]-r[j]).norm());
-	    answ = 1;
-	}
+    for(i=0;i<size;i++){
+	if(i%3==0)
+	    printf("\n");
+	printf("%i) %f \t",i, r[i]);
+	
     }
-    return answ;
+    // Create the input (and copy r into it)  and output arrays in device memory for our calculation
+//    cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,  sizeof(float)*size, &r, &err);
+cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY,  sizeof(float)*size, NULL, &err);
+err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r, 0, NULL, NULL);
+    
+    if (err != CL_SUCCESS){
+        printf("Error with writing data in device memory :'(\n");
+	exit(1);
+    }
+
+
+    cl.output = clCreateBuffer(cl.context, CL_MEM_WRITE_ONLY, sizeof(float) *size,NULL, &err);
+    if (!cl.input || !cl.output){
+    	printf("Error with input or output :'(\n");
+	exit(1);
+    }
+    
+    // Set the arguments to our compute kernel
+    err = 0;
+    err  = clSetKernelArg(cl.kernel, 0, sizeof(cl_mem), &cl.input);
+    err |= clSetKernelArg(cl.kernel, 1, sizeof(cl_mem), &cl.output);
+    err |= clSetKernelArg(cl.kernel, 2, sizeof(int), &size);
+    err |= clSetKernelArg(cl.kernel, 3, sizeof(int), &site);
+    err |= clSetKernelArg(cl.kernel, 4, sizeof(float), &gamma);
+    err |= clSetKernelArg(cl.kernel, 5, sizeof(float), &rMin);
+    if (err != CL_SUCCESS){
+        printf("Error with set arguments to the compute kernel :'(\n");
+	exit(1);
+    }
+      
+    // Get the maximum work-group size for executing the kernel on the device
+    err = clGetKernelWorkGroupInfo(cl.kernel, cl.devices[0], CL_KERNEL_WORK_GROUP_SIZE, sizeof(size_t*), &cl.local, NULL);
+
+    if (err != CL_SUCCESS){
+	printf("Error with work-group %i :'(\n", err);
+	exit(1);
+    }
+    
+    // Execute the kernel over the entire range of the data set
+//    cl.global = size;
+cl.global = 1024;
+    printf("local %zu, global %zu\n", cl.local, cl.global);
+    err = clEnqueueNDRangeKernel(cl.queue, cl.kernel, 1, NULL, &cl.global, &cl.local, 0, NULL, NULL);
+    
+    if (err != CL_SUCCESS){
+	printf("Error with executing %i :'(\n", err);
+	exit(1);
+    }
+             
+    // Wait for the command queue to get serviced before reading back results
+    clFinish(cl.queue);
+      
+    results = new float [size];
+    for(i=0;i<size;i++){
+	results[i]=555;
+    }
+    // Read the results from the device
+    err = clEnqueueReadBuffer(cl.queue, cl.output, CL_TRUE, 0, sizeof(float)*size, results, 0, NULL, NULL );
+    if (err != CL_SUCCESS){
+	printf("Error with readingResults %i :'(\n", err);
+	exit(1);
+    }
+    
+    for(i=0;i<size;i++){
+	printf("~~~ %i %g\n", i, (double)results[i]);
+    }
+    delete [] results;
+
+    return 1;
 }
 
 }//end of namespace PCA
