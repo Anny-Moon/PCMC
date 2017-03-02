@@ -28,7 +28,7 @@ public:
     virtual double energyAllSites(const Polymer& polymer) const = 0;
     virtual double energyIfSiteChanged(int site, int size, const Vector* r) const = 0;
     
-    virtual double energyIfSiteChangedCL(int site, int size, const double* r) const = 0;
+    virtual double energyIfSiteChangedCL(int site, int size, const float* r) const = 0;
     virtual void initCL() const = 0;
     virtual void cleanCL() const = 0;
     

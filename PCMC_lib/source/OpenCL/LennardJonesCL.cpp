@@ -182,7 +182,8 @@ void LennardJones::initCL() const
     setCLdevicesInfo();
     
     char* kernelSource;
-    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel.cl");
+    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel1.cl");
+//    char kernelSource[1024] = {#include "../source/OpenCL/kernel1.cl"};
     printf("start:\n%s\nend\n",kernelSource);
     
     /* If no GPUs are available then use all available CPUs*/
@@ -235,7 +236,7 @@ void LennardJones::initCL() const
     }
     
     // Create the compute kernel in the program we wish to run
-    cl.kernel = clCreateKernel(cl.program, "square", &err);
+    cl.kernel = clCreateKernel(cl.program, "energy", &err);
     if (!cl.kernel || err != CL_SUCCESS){
     	printf("Error with kernel :'(\n");
 	exit(1);
@@ -246,7 +247,7 @@ void LennardJones::initCL() const
 void LennardJones::cleanCL() const
 {
 }
-double LennardJones::energyIfSiteChangedCL(int site, int size, const double* r) const
+double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) const
 {
     int i,j;
     double answ = 0.0;

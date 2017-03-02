@@ -25,7 +25,7 @@ void Tanh::cleanCL() const
 {
 }
 
-double Tanh::energyIfSiteChangedCL(int site, int size, const double* r) const
+double Tanh::energyIfSiteChangedCL(int site, int size, const float* r) const
 {
 }
 

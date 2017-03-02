@@ -91,8 +91,8 @@ public:
     * m[0]   m[1]   m[2] ...   m[(N-2)*3] m[(N-2)*3+1] m[(N-2)*3+2]
     */
     ///@{
-    void convertRadiusVectorsToCarray(double* array) const;
-    void convertCarrayToRadiusVectors(const double* array);
+    void convertRadiusVectorsToFloatArray(float* array) const;
+//    void convertCarrayToRadiusVectors(const double* array);
     ///@}
     
     /**@name OpenCL functions: avaliable only in PolymerMC_CL.cpp*/

@@ -21,6 +21,27 @@
 
 namespace PCA{
 
+void PolymerMC::convertRadiusVectorsToFloatArray(float* array) const
+{
+    int i;
+    for(i=0;i<numMonomers+1;i++){
+	array[i] = r[i].x;
+	array[i+1] = r[i].y;
+	array[i+2] = r[i].z;
+    }
+
+}
+/*
+void PolymerMC::convertCarrayToRadiusVectors(const double* array)
+{
+    int i;
+    for(i=0;i<numMonomers+1;i++){
+	r[i].x = array[i];
+	r[i].y = array[i+1];
+	r[i].z = array[i+2];
+    }
+}
+*/
 
 void PolymerMC::updateKappaCL(int site, double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
@@ -82,16 +103,15 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
     double probability;
     double interactionOld, interactionNew;
     double randomNumber;
-    double *rC; //c array for radius vectors;
+    float *rC; //c array for radius vectors;
     /* calculate or take old interaction for site */
     if(interactionSite.site == site)
 	interactionOld = interactionSite.interaction;
     
     else{
-	rC = new double [(numMonomers+1)*3];
-	convertRadiusVectorsToCarray(rC);
+	rC = new float [(numMonomers+1)*3];
+	convertRadiusVectorsToFloatArray(rC);
 	interactionOld = interaction.energyIfSiteChangedCL(site, (numMonomers+1)*3, rC);
-	convertCarrayToRadiusVectors(rC);
 	delete [] rC;
     }
     /* generate new random Tau according distribution */
@@ -103,10 +123,9 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
     setNewRadiusVectorsViaRotation(site);
     
     /* calculate new interaction for site */
-    rC = new double [(numMonomers+1)*3];
-    convertRadiusVectorsToCarray(rC);
+    rC = new float [(numMonomers+1)*3];
+    convertRadiusVectorsToFloatArray(rC);
     interactionNew = interaction.energyIfSiteChangedCL(site, (numMonomers+1)*3, rC);
-    convertCarrayToRadiusVectors(rC);
     delete [] rC;
 //    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
     
