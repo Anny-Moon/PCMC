@@ -19,6 +19,11 @@ void MonteCarlo::initCL() const
     interaction->initCL();
 }
 
+void MonteCarlo::cleanCL() const
+{
+    interaction->cleanCL();
+}
+
 void MonteCarlo::runCL () const
 {
     char* fname1;
@@ -41,7 +46,7 @@ void MonteCarlo::runCL () const
     double temperature;
     
     for(int k=0; k<loopsPerCore; k++){
-	Timer::tick(k);
+	Timer::tick(100+k);
 	polymer = new PolymerMC(*polymerEtalon);
 	if(k>0)
 	    polymer->initWithRandomTaus();
@@ -63,9 +68,11 @@ void MonteCarlo::runCL () const
 	    temperature = pow(10,t);
 
 	    /* Thermalization */
-	    for(int i=0; i<sweepsPerStep;i++)
+	    for(int i=0; i<sweepsPerStep;i++){
+		Timer::tick(i);
 		polymer->updateAllSitesCL(temperature, *hamiltonian, *interaction);
-	
+		Timer::tock(i);
+	    }
 	    polymer->writeKappaTauInFile(ktfp);
 
 	    if(k==0){
@@ -79,9 +86,9 @@ void MonteCarlo::runCL () const
 	    fclose(tfp);
 	
 	delete polymer;
-	Timer::tock(k,"statisctics step");
+	Timer::tock(100+k,"statisctics step");
     }
-    
+    cleanCL();
     fprintf(logfp,"END\n\n");
     fclose(logfp);
     printf("done\n");

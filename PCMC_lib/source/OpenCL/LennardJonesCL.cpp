@@ -185,7 +185,7 @@ void LennardJones::initCL() const
     kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel1.cl");
 //    kernelSource = File::readFromFileToCharArray("../../PCMC_lib/source/OpenCL/kernel.cl");
 //    char kernelSource[1024] = {#include "../source/OpenCL/kernel1.cl"};
-    printf("start:\n%s\nend\n",kernelSource);
+//    printf("start:\n%s\nend\n",kernelSource);
     
     /* If no GPUs are available then use all available CPUs*/
     if(cl.numGPUs==0){
@@ -247,6 +247,10 @@ void LennardJones::initCL() const
 
 void LennardJones::cleanCL() const
 {
+    clReleaseProgram(cl.program);
+    clReleaseKernel(cl.kernel);
+    clReleaseCommandQueue(cl.queue);
+    clReleaseContext(cl.context);
 }
 double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) const
 {
@@ -312,7 +316,7 @@ err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r,
     // Execute the kernel over the entire range of the data set
 //    cl.global = actualSize;
 cl.global = 1024;
-    printf("local %zu, global %zu\n", cl.local, cl.global);
+//    printf("local %zu, global %zu\n", cl.local, cl.global);
     err = clEnqueueNDRangeKernel(cl.queue, cl.kernel, 1, NULL, &cl.global, &cl.local, 0, NULL, NULL);
     
     if (err != CL_SUCCESS){
@@ -335,11 +339,15 @@ cl.global = 1024;
     }
     
     for(i=0;i<resultSize;i++){
-	printf("~~~ %i %g\n", i, (double)results[i]);
+//	printf("~~~ %i %g\n", i, (double)results[i]);
+    answ += results[i];
     }
+    
     delete [] results;
+    clReleaseMemObject(cl.input);
+    clReleaseMemObject(cl.output);
 
-    return 1;
+    return answ;
 }
 
 }//end of namespace PCA

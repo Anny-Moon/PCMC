@@ -49,14 +49,18 @@ void PolymerMC::updateKappaCL(int site, double temperature, const Hamiltonian& h
     double probability;
     double interactionOld, interactionNew;
     double randomNumber;
+    float* rC;
     
     /* calculate or take old interaction for site */
     if(interactionSite.site == site)
 	interactionOld = interactionSite.interaction;
     
-    else
-	interactionOld = interaction.energyIfSiteChanged(site, numMonomers+1, r);
-	
+    else{
+	rC = new float [(numMonomers+1)*3];
+	convertRadiusVectorsToFloatArray(rC);
+	interactionOld = interaction.energyIfSiteChangedCL(site, (numMonomers+1)*3, rC);
+	delete [] rC;
+    }
     /* generate new random Kappa according distribution */
     if(site==0)
 	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
@@ -71,7 +75,10 @@ void PolymerMC::updateKappaCL(int site, double temperature, const Hamiltonian& h
     setNewRadiusVectorsViaRotation(site);
 
     /* calculate new interaction for site */
-    interactionNew = interaction.energyIfSiteChanged(site, numMonomers+1, r);
+    rC = new float [(numMonomers+1)*3];
+    convertRadiusVectorsToFloatArray(rC);
+    interactionNew = interaction.energyIfSiteChangedCL(site, (numMonomers+1)*3, rC);
+    delete [] rC;
 //    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
     
     probability = exp((-interactionNew + interactionOld)/temperature);
@@ -142,7 +149,7 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
 	interactionSite.site = site;
 	interactionSite.interaction = interactionNew;
 	acceptNumberTau++;
-	printf("ACCEPT\n");
+//	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -151,7 +158,7 @@ void PolymerMC::updateTauCL(int site, double temperature, const Hamiltonian& ham
 	    
 	interactionSite.site = site;
 	interactionSite.interaction = interactionOld;
-	printf("REJECT\n");
+//	printf("REJECT\n");
     }
 }
 
@@ -164,9 +171,9 @@ void PolymerMC::updateAllSitesCL(double temperature, const Hamiltonian& hamilton
 	setRadiusVectorsFromVectorsT();
     }
     
-    for(i=10;i<11;i++){
-//    for(i=1;i<numMonomers;i++){
-//	updateKappaCL(i, temperature, hamiltonian, interaction);
+//    for(i=10;i<11;i++){
+    for(i=1;i<numMonomers;i++){
+	updateKappaCL(i, temperature, hamiltonian, interaction);
 	updateTauCL(i, temperature, hamiltonian, interaction);
     }
 }

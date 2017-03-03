@@ -41,6 +41,7 @@ public:
     void run();
     void runCL() const;
     void initCL() const;
+    void cleanCL() const;
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();
