@@ -255,12 +255,20 @@ double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) c
     double answ = 0.0;
     float* results;
     
-    for(i=0;i<size;i++){
+/*    for(i=0;i<size;i++){
 	if(i%3==0)
 	    printf("\n");
 	printf("%i) %f \t",i, r[i]);
 	
     }
+*/
+    // Size of output array. Change only together with kernel!
+    int resultSize;
+    if(site > size/6)
+	resultSize = site;
+    else
+	resultSize = size/3 - site - 1;
+	
     // Create the input (and copy r into it)  and output arrays in device memory for our calculation
 //    cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,  sizeof(float)*size, &r, &err);
 cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY,  sizeof(float)*size, NULL, &err);
@@ -272,7 +280,7 @@ err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r,
     }
 
 
-    cl.output = clCreateBuffer(cl.context, CL_MEM_WRITE_ONLY, sizeof(float) *size,NULL, &err);
+    cl.output = clCreateBuffer(cl.context, CL_MEM_WRITE_ONLY, sizeof(float) *resultSize,NULL, &err);
     if (!cl.input || !cl.output){
     	printf("Error with input or output :'(\n");
 	exit(1);
@@ -284,8 +292,10 @@ err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r,
     err |= clSetKernelArg(cl.kernel, 1, sizeof(cl_mem), &cl.output);
     err |= clSetKernelArg(cl.kernel, 2, sizeof(int), &size);
     err |= clSetKernelArg(cl.kernel, 3, sizeof(int), &site);
-    err |= clSetKernelArg(cl.kernel, 4, sizeof(float), &gamma);
-    err |= clSetKernelArg(cl.kernel, 5, sizeof(float), &rMin);
+    float floatGamma = (float)gamma;
+    float floatRMin = (float)rMin;
+    err |= clSetKernelArg(cl.kernel, 4, sizeof(float), &floatGamma);
+    err |= clSetKernelArg(cl.kernel, 5, sizeof(float), &floatRMin);
     if (err != CL_SUCCESS){
         printf("Error with set arguments to the compute kernel :'(\n");
 	exit(1);
@@ -300,7 +310,7 @@ err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r,
     }
     
     // Execute the kernel over the entire range of the data set
-//    cl.global = size;
+//    cl.global = actualSize;
 cl.global = 1024;
     printf("local %zu, global %zu\n", cl.local, cl.global);
     err = clEnqueueNDRangeKernel(cl.queue, cl.kernel, 1, NULL, &cl.global, &cl.local, 0, NULL, NULL);
@@ -313,18 +323,18 @@ cl.global = 1024;
     // Wait for the command queue to get serviced before reading back results
     clFinish(cl.queue);
       
-    results = new float [size];
-    for(i=0;i<size;i++){
+    results = new float [resultSize];
+    for(i=0;i<resultSize;i++){
 	results[i]=555;
     }
     // Read the results from the device
-    err = clEnqueueReadBuffer(cl.queue, cl.output, CL_TRUE, 0, sizeof(float)*size, results, 0, NULL, NULL );
+    err = clEnqueueReadBuffer(cl.queue, cl.output, CL_TRUE, 0, sizeof(float)*resultSize, results, 0, NULL, NULL );
     if (err != CL_SUCCESS){
 	printf("Error with readingResults %i :'(\n", err);
 	exit(1);
     }
     
-    for(i=0;i<size;i++){
+    for(i=0;i<resultSize;i++){
 	printf("~~~ %i %g\n", i, (double)results[i]);
     }
     delete [] results;
