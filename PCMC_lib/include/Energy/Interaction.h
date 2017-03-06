@@ -28,13 +28,30 @@ public:
     virtual double energyAllSites(const Polymer& polymer) const = 0;
     virtual double energyIfSiteChanged(int site, int size, const Vector* r) const = 0;
     
-    virtual double energyIfSiteChangedCL(int site, int size, const float* r) const = 0;
-    virtual void initCL() const = 0;
-    virtual void cleanCL() const = 0;
+    virtual double energyIfSiteChangedCL(int site, int size, const float* r) const;
+    virtual void initCL() const;
+    virtual void cleanCL() const;
     
     virtual void writeInParamFile(FILE* fp) const = 0;
 };
 
 inline Interaction::~Interaction(){}
+
+inline void Interaction::initCL() const{
+    printf("Error in Interecrion::initCL()\n");
+    printf("\tavaliable only in CL version of the program.\n");
+    exit(1);
+}
+inline void Interaction::cleanCL() const{
+    printf("Error in Interecrion::initCL()\n");
+    printf("\tavaliable only in CL version of the program.\n");
+    exit(1);
+}
+inline double Interaction::energyIfSiteChangedCL(int site, int size, const float* r) const{
+    printf("Error in Interecrion::initCL()\n");
+    printf("\tavaliable only in CL version of the program.\n");
+    exit(1);
+}
+
 }//end of namespace PCA
 #endif

@@ -33,9 +33,9 @@ public:
     double energy(double distance) const;
     double energyAllSites(const Polymer& polymer) const;
     double energyIfSiteChanged(int site, int size, const Vector* r) const;
-    virtual double energyIfSiteChangedCL(int site, int size, const float* r) const;
-    virtual void initCL() const;
-    virtual void cleanCL() const;
+//    virtual double energyIfSiteChangedCL(int site, int size, const float* r) const;
+//    virtual void initCL() const;
+//    virtual void cleanCL() const;
     
     void writeInParamFile(FILE* fp) const;
 
