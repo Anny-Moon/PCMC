@@ -20,7 +20,7 @@ __kernel void energyLJ(
 				    (r[3*i+1]-r[3*j+1])*(r[3*i+1]-r[3*j+1])+\
 				    (r[3*i+2]-r[3*j+2])*(r[3*i+2]-r[3*j+2]));
 				tmp = rMin/tmp;
-				tmp = pow(tmp, 6.0);
+				tmp = pow(tmp, 6);
 				answ += gamma*(tmp*tmp - 2.0 * tmp);
 			}
 			output[i] = answ;
@@ -37,7 +37,7 @@ __kernel void energyLJ(
 				    (r[3*k+2]-r[3*j+2])*(r[3*k+2]-r[3*j+2]));
 			
 				tmp = rMin/tmp;
-				tmp = pow(tmp, 6.0);
+				tmp = pow(tmp, 6);
 				answ += gamma*(tmp*tmp - 2.0 * tmp);
 				
 			}

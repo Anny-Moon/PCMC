@@ -4,7 +4,7 @@
 *   Lennard-Jones potential.
 *
 *   @autor Anna Sinelnikova
-*   @data 2016
+*   @data 2017
 */
 
 #include "LennardJones.h"
@@ -25,7 +25,7 @@
 #endif
 
 #define _PCA_CATCH_CL_ERROR(message) if(err!=CL_SUCCESS)\
-	{printf("Error OpenCL: %s\nCL error number: %i.\n",message,err);exit(1);}
+	{printf("Error OpenCL: %s: CL error number: %i.\n",message,err);exit(1);}
 
 namespace PCA{
 
@@ -50,6 +50,11 @@ static struct CL{
     cl_mem input;          // device memory used for the input array
     cl_mem output;   
 } cl;
+
+static int sizeOfGlobalWorkGroup(int global)
+{
+//    if(glpbal<cl.
+}
 
 static void setCLdevicesInfo()
 {
@@ -201,24 +206,15 @@ void LennardJones::initCL() const
     // Create a context
 //    cl.context = clCreateContext(0, cl.numDevices, cl.devices, NULL, NULL, &err);
     cl.context = clCreateContext(0, 1, &cl.devices[0], NULL, NULL, &err);
-    if (!cl.context){
-	printf("Error with context :'(\n");
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("context");
     
     // Create a command queue on the first device
     cl.queue = clCreateCommandQueue(cl.context, cl.devices[0], 0, &err);
-    if (!cl.queue){
-    	printf("Error with queue :'(\n");
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("queue");
     
     // Create the compute program from the source buffer
     cl.program = clCreateProgramWithSource(cl.context, 1, (const char**)&kernelSource, NULL, &err);
-    if (!cl.program){
-    	printf("Error with compute program :'(\n");
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("program");
     
     free(kernelSource);
         
@@ -226,22 +222,22 @@ void LennardJones::initCL() const
     err = clBuildProgram(cl.program, 0, NULL, NULL, NULL, NULL);
     if (err != CL_SUCCESS){
 	size_t len;
-	char buffer[2048];
+	char* buffer;
         printf("Error OpenCL: Failed to build program executable\n");
 	
 	for(i=0;i<cl.numDevices;i++){
-        clGetProgramBuildInfo(cl.program, cl.devices[i], CL_PROGRAM_BUILD_LOG, sizeof(buffer), buffer, &len);
-    	printf("%s\n", buffer);
+	    clGetProgramBuildInfo(cl.program, cl.devices[i], CL_PROGRAM_BUILD_LOG, 0, NULL, &len);
+	    buffer = (char*)malloc(sizeof(char)*len);
+    	    clGetProgramBuildInfo(cl.program, cl.devices[i], CL_PROGRAM_BUILD_LOG, len, buffer, NULL);
+    	    printf("%s\n", buffer);
+    	    free (buffer);
     	}
 	exit(1);
     }
     
     // Create the compute kernel in the program we wish to run
     cl.kernel = clCreateKernel(cl.program, "energyLJ", &err);
-    if (!cl.kernel || err != CL_SUCCESS){
-    	printf("Error with kernel :'(\n");
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("kernel");
     
 }
 
@@ -252,6 +248,7 @@ void LennardJones::cleanCL() const
     clReleaseCommandQueue(cl.queue);
     clReleaseContext(cl.context);
 }
+
 double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) const
 {
     int i,j;
@@ -259,13 +256,6 @@ double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) c
     double answ = 0.0;
     float* results;
     
-/*    for(i=0;i<size;i++){
-	if(i%3==0)
-	    printf("\n");
-	printf("%i) %f \t",i, r[i]);
-	
-    }
-*/
     // Size of output array. Change only together with kernel!
     int resultSize;
     if(site > size/6)
@@ -273,22 +263,18 @@ double LennardJones::energyIfSiteChangedCL(int site, int size, const float* r) c
     else
 	resultSize = size/3 - site - 1;
 	
-    // Create the input (and copy r into it)  and output arrays in device memory for our calculation
-//    cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,  sizeof(float)*size, &r, &err);
-cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY,  sizeof(float)*size, NULL, &err);
-err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r, 0, NULL, NULL);
+    // Create the input array in device memory for our calculation
+    cl.input = clCreateBuffer(cl.context,  CL_MEM_READ_ONLY,  sizeof(float)*size, NULL, &err);
+    _PCA_CATCH_CL_ERROR("allocate memory on the device");
     
-    if (err != CL_SUCCESS){
-        printf("Error with writing data in device memory :'(\n");
-	exit(1);
-    }
+    // Copy input data from host to the device
+    err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r, 0, NULL, NULL);
+    _PCA_CATCH_CL_ERROR("writing data in the device memory");
 
-
+    // Create the output array in device memory for our calculation
     cl.output = clCreateBuffer(cl.context, CL_MEM_WRITE_ONLY, sizeof(float) *resultSize,NULL, &err);
-    if (!cl.input || !cl.output){
-    	printf("Error with input or output :'(\n");
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("allocate memory on the device");
+    
     
     // Set the arguments to our compute kernel
     err = 0;
@@ -300,47 +286,31 @@ err = clEnqueueWriteBuffer(cl.queue, cl.input, CL_TRUE, 0,sizeof(float)*size, r,
     float floatRMin = (float)rMin;
     err |= clSetKernelArg(cl.kernel, 4, sizeof(float), &floatGamma);
     err |= clSetKernelArg(cl.kernel, 5, sizeof(float), &floatRMin);
-    if (err != CL_SUCCESS){
-        printf("Error with set arguments to the compute kernel :'(\n");
-	exit(1);
-    }
-      
+
+    _PCA_CATCH_CL_ERROR("copy arguments to the kernel");
+    
     // Get the maximum work-group size for executing the kernel on the device
     err = clGetKernelWorkGroupInfo(cl.kernel, cl.devices[0], CL_KERNEL_WORK_GROUP_SIZE, sizeof(size_t*), &cl.local, NULL);
-
-    if (err != CL_SUCCESS){
-	printf("Error with work-group %i :'(\n", err);
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("get size of work-group");
     
     // Execute the kernel over the entire range of the data set
 //    cl.global = actualSize;
 cl.global = 1024;
 //    printf("local %zu, global %zu\n", cl.local, cl.global);
     err = clEnqueueNDRangeKernel(cl.queue, cl.kernel, 1, NULL, &cl.global, &cl.local, 0, NULL, NULL);
-    
-    if (err != CL_SUCCESS){
-	printf("Error with executing %i :'(\n", err);
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("execution");
              
     // Wait for the command queue to get serviced before reading back results
     clFinish(cl.queue);
       
     results = new float [resultSize];
-    for(i=0;i<resultSize;i++){
-	results[i]=555;
-    }
+
     // Read the results from the device
     err = clEnqueueReadBuffer(cl.queue, cl.output, CL_TRUE, 0, sizeof(float)*resultSize, results, 0, NULL, NULL );
-    if (err != CL_SUCCESS){
-	printf("Error with readingResults %i :'(\n", err);
-	exit(1);
-    }
+    _PCA_CATCH_CL_ERROR("read data from the device");
     
     for(i=0;i<resultSize;i++){
-//	printf("~~~ %i %g\n", i, (double)results[i]);
-    answ += results[i];
+        answ += results[i];
     }
     
     delete [] results;
