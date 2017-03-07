@@ -21,7 +21,7 @@ OPT:= -O3
 STATIC_LIB = build/libpcmc.a
 
 # Directories for .h files
-INC_DIR := ./include
+INC_DIR = ./include
 INC_DIR += ./include/Energy
 #INC_DIR += ./include/Quantum
 INC_DIR += ./include/Random
@@ -32,12 +32,12 @@ INC_DIR += ./include/ReadWriteFiles
 GSL_LDLIBS = -I/usr/local/include
 
 # Directory for .cpp files
-SRC_DIR := ./source
+SRC_DIR = ./source
 SRC_DIR += ./source/Energy
 #SRC_DIR += ./source/Quantum
 SRC_DIR += ./source/Random
 SRC_DIR += ./source/ReadWriteFiles
-SRC_DIR_CL:= $(SRC_DIR) ./source/OpenCL
+SRC_DIR_CL:= ./source/OpenCL
 
 # Directory for Objects
 OBJ_DIR:= ./build
@@ -52,8 +52,8 @@ INC_FILES:=  $(foreach inc_dir, $(INC_DIR), $(wildcard $(inc_dir)/*h))
 LDLIBS:=$(addprefix -I, $(INC_DIR))
 
 # Source files
-SRC:=  $(foreach src_dir, $(SRC_DIR), $(wildcard $(src_dir)/*cpp))
-SRC_CL:=  $(foreach src_dir, $(SRC_DIR_CL), $(wildcard $(src_dir)/*cpp))
+SRC :=  $(foreach src_dir, $(SRC_DIR), $(wildcard $(src_dir)/*cpp))
+SRC_CL :=  $(foreach src_dir, $(SRC_DIR_CL), $(wildcard $(src_dir)/*cpp))
 #SRC :=  $(wildcard $(SRC_DIR)/*.cpp)
 #SCR_CL := $(wildcard $(SRC_DIR_CL)/*.cpp)
 
@@ -75,7 +75,7 @@ $(STATIC_LIB): $(OBJ)
 opencl: $(STATIC_LIB) $(OBJ_CL)
 	@echo "Generating library..." $(notdir $(STATIC_LIB))
 #	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
-	@ar rcs $(STATIC_LIB) $(OBJ_CL)
+	@ar rcs $(STATIC_LIB) $(OBJ) $(OBJ_CL)
 	
 	
 # Compiling rule
@@ -87,20 +87,19 @@ define app_compile_template
 
 $$($(1)_OBJ): $(1)
 	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
-	@echo $$(addprefix $$(OBJ_DIR)/,$$($(1)_OBJ))
-#	$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS) $$(GSL_LDLIBS)
-	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$(addprefix $$(OBJ_DIR)/,$$($(1)_OBJ)) $$(LDLIBS) $$(GSL_LDLIBS)
+	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS) $$(GSL_LDLIBS)
+#	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$(addprefix $$(OBJ_DIR)/, $$(notdir $$(patsubst %.cpp, %.o, $(1)))) $$(LDLIBS) $$(GSL_LDLIBS)
 endef
 
 # OpenCL Compiling rule
 define app_compile_template_cl
 
- $(1)_OBJ = $$(addprefix $$(OBJ_DIR_CL)/, $$(notdir $$(patsubst %.cpp, %.o, $(1))))
+ $(1)_OBJ = $$(addprefix $$(OBJ_DIR)/, $$(notdir $$(patsubst %.cpp, %.o, $(1))))
  $(1)_OBJ_PURE = $$(notdir $$($(1)_OBJ))
 
 $$($(1)_OBJ): $(1)
 	@echo "Compiling: " $$(addsuffix .cpp, $$(basename $$($(1)_OBJ_PURE)))
-	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$(addprefix $$(OBJ_DIR_CL)/,$$($(1)_OBJ)) $$(LDLIBS) $$(GSL_LDLIBS)
+	@$$(CC) $$(CFLAGS) $$(OPT) -c $(1) -o $$($(1)_OBJ) $$(LDLIBS) $$(GSL_LDLIBS)
 endef
 
 # Compiling
@@ -119,7 +118,7 @@ list_of_objects:
 # For debugging makefile
 print:
 #	@echo $(LDLIBS)
-	@echo $(OBJ)
+	@echo $(SRC_CL)
 #	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 
 love:
