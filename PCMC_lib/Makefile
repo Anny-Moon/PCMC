@@ -37,6 +37,8 @@ SRC_DIR += ./source/Energy
 #SRC_DIR += ./source/Quantum
 SRC_DIR += ./source/Random
 SRC_DIR += ./source/ReadWriteFiles
+
+SRC_DIR_NO_CL := ./source/NoOpenCL
 SRC_DIR_CL:= ./source/OpenCL
 
 # Directory for Objects
@@ -53,12 +55,14 @@ LDLIBS:=$(addprefix -I, $(INC_DIR))
 
 # Source files
 SRC :=  $(foreach src_dir, $(SRC_DIR), $(wildcard $(src_dir)/*cpp))
+SRC_NO_CL :=  $(foreach src_dir, $(SRC_DIR_NO_CL), $(wildcard $(src_dir)/*cpp))
 SRC_CL :=  $(foreach src_dir, $(SRC_DIR_CL), $(wildcard $(src_dir)/*cpp))
 #SRC :=  $(wildcard $(SRC_DIR)/*.cpp)
 #SCR_CL := $(wildcard $(SRC_DIR_CL)/*.cpp)
 
 # Object files
 OBJ := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.cpp=.o)))
+OBJ_NO_CL := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC_NO_CL:.cpp=.o)))
 OBJ_CL := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC_CL:.cpp=.o)))
 # Files names of objects without directories name
 #OBJ_PURE := $(notdir $(OBJ))
@@ -66,13 +70,13 @@ OBJ_CL := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC_CL:.cpp=.o)))
 all: $(STATIC_LIB)
 
 # Linking
-$(STATIC_LIB): $(OBJ)
+$(STATIC_LIB): $(OBJ) $(OBJ_NO_CL)
 	@echo "Generating library..." $(notdir $(STATIC_LIB))
 #	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
-	@ar rcs $(STATIC_LIB) $(OBJ)
+	@ar rcs $(STATIC_LIB) $(OBJ) $(OBJ_NO_CL)
 
 
-opencl: $(STATIC_LIB) $(OBJ_CL)
+opencl: $(OBJ) $(OBJ_CL)
 	@echo "Generating library..." $(notdir $(STATIC_LIB))
 #	@$(CC) $(CFLAGS) $(OPT)  $(OBJ) -o $(PROGRAM) $(LIB)
 	@ar rcs $(STATIC_LIB) $(OBJ) $(OBJ_CL)
@@ -104,6 +108,7 @@ endef
 
 # Compiling
 $(foreach app, $(SRC), $(eval $(call app_compile_template,$(app))))
+$(foreach app, $(SRC_NO_CL), $(eval $(call app_compile_template,$(app))))
 # OpenCL Compiling
 $(foreach app, $(SRC_CL), $(eval $(call app_compile_template_cl,$(app))))
 
@@ -118,7 +123,7 @@ list_of_objects:
 # For debugging makefile
 print:
 #	@echo $(LDLIBS)
-	@echo $(SRC_CL)
+	@echo $(SRC_NO_CL)
 #	@echo $(addprefix ./object/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 
 love:
