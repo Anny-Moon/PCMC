@@ -7,6 +7,7 @@
 #include "../include/MonteCarlo.h"
 #include "../include/ReadWriteFiles/ParamFileReader.h"
 #include "../include/PCAmacros.h"
+#include "../include/Timer.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -26,36 +27,44 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamilt
 
 MonteCarlo::~MonteCarlo(){};
 
-void MonteCarlo::run()
+void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 {
+    int fakeCoreNumber; //effective core number
     char* fname1;
     FILE* ktfp, *logfp, *tfp, *checkfp;
     PolymerMC *polymer;
-    logfp = fopen("results/log_file", "w");
-    fprintf(logfp,"********\n* PCMC * \n********\n");
-    fprintf(logfp,"CPU SINGLE CORE\n\n");
-    fprintf(logfp,"Loops %i\n", loopsPerCore);
-    fprintf(logfp,"Steps/loop: %i\n\n", stepsPerLoop);
     
-    checkfp = fopen("results/ParamFilePCMC.dat","w");
-    interaction->writeInParamFile(checkfp);
-    hamiltonian->writeInParamFile(checkfp);
-    polymerEtalon->writeInParamFile(checkfp);
-    fclose(checkfp);
+    if(myCoreNumber==0){
+	logfp = fopen("results/log_file", "w");
+	fprintf(logfp,"********\n* PCMC * \n********\n");
+	fprintf(logfp,"CPU MULTY CORE\n\n");
+	fprintf(logfp,"Cores %i\n", totalCoreNumber);
+	fprintf(logfp,"Loops %i\n", loopsPerCore);
+	fprintf(logfp,"Steps/loop: %i\n\n", stepsPerLoop);
+    
+	checkfp = fopen("results/ParamFilePCMC.dat","w");
+	interaction->writeInParamFile(checkfp);
+	hamiltonian->writeInParamFile(checkfp);
+	polymerEtalon->writeInParamFile(checkfp);
+	fclose(checkfp);
+    }
     
     double temperature;
     for(int k=0; k<loopsPerCore; k++){
+	Timer::tick(k);
 	
 	polymer = new PolymerMC(*polymerEtalon);
 	if(k>0)
 	    polymer->initWithRandomTaus();
 	    
 	
-	if(k==0)
+	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
+	
+	if(fakeCoreNumber==0)
 	    tfp = fopen("results/TemperatureMap.dat","w");
 	
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf.dat",k);
+	sprintf(fname1,"results/Configurations/%iconf.dat",fakeCoreNumber);
 	ktfp = fopen(fname1, "w");
 	delete [] fname1;
 
@@ -65,30 +74,38 @@ void MonteCarlo::run()
 		t = 0.0;
 		
 	    temperature = pow(10,t);
-
+	    
+	    if(myCoreNumber==0){
+		fprintf(logfp,"Loop %i:\t%g\n", k, t);
+		fflush(logfp);
+	    }
+	    
 	    /* Thermalization */
 	    for(int i=0; i<sweepsPerStep;i++)
 		polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 	
 	    polymer->writeKappaTauInFile(ktfp);
 
-	    if(k==0){
+	    if(fakeCoreNumber==0){
 		fprintf(tfp,"%g\t%.15le\n", t, temperature);
 		fflush(tfp);
 	    }
 	    
 	}	
-
-	if(k==0)
+	
+	Timer::tock(k, "Loop took");
+	if(fakeCoreNumber==0)
 	    fclose(tfp);
 	
 	delete polymer;
 	
     }
     
-    fprintf(logfp,"END\n\n");
-    fclose(logfp);
-    printf("done\n");
+    if(myCoreNumber==0){
+	fprintf(logfp,"END\n\n");
+	fclose(logfp);
+	printf("done\n");
+    }
 
 }
 

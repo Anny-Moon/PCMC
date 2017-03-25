@@ -38,7 +38,7 @@ public:
     void readFromParamFile(const char* fileName);
     inline void writeInParamFile(FILE* fp) const;
     
-    void run();
+    void run(int myCoreNumber = 0, int totalCoreNumber = 1);
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();
