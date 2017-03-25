@@ -51,7 +51,9 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
     
     double temperature;
     for(int k=0; k<loopsPerCore; k++){
-	Timer::tick(k);
+	
+	if(myCoreNumber==0)
+	    Timer::tick(k);
 	
 	polymer = new PolymerMC(*polymerEtalon);
 	if(k>0)
@@ -93,7 +95,9 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 	    
 	}	
 	
-	Timer::tock(k, "Loop took");
+	if(myCoreNumber==0)
+	    Timer::tock(k, "",logfp);
+	
 	if(fakeCoreNumber==0)
 	    fclose(tfp);
 	

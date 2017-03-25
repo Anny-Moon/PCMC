@@ -23,7 +23,7 @@ private:
     
 public:
     inline static void tick(int tag);
-    inline static void tock(int tag, const char* messege = "");
+    inline static void tock(int tag, const char* messege = "", FILE* fp = stdout);
 };
 
 inline void Timer::tick(int tag)
@@ -32,7 +32,7 @@ inline void Timer::tick(int tag)
     tags.push_back(tag);
 }
 
-inline void Timer::tock(int tag, const char* messege)
+inline void Timer::tock(int tag, const char* messege, FILE* fp)
 {
     std::chrono::time_point<std::chrono::high_resolution_clock> end = std::chrono::high_resolution_clock::now();
     
@@ -46,26 +46,26 @@ inline void Timer::tock(int tag, const char* messege)
 	    int nanoseconds = (std::chrono::duration_cast<std::chrono::nanoseconds>(end - start[i]).count())%1000;
 	    
 	    if(strcmp(messege, "") == 0)
-		printf("Timer No. %i:\t", tag);
+		fprintf(fp,"Timer No. %i:\t", tag);
 		
 	    else
-		printf("Timer %s:\t", messege);
+		fprintf(fp,"Timer %s:\t", messege);
 		
 	    if(hours > 0)
-		printf("%ih", hours);
+		fprintf(fp,"%ih", hours);
 	    if(hours > 0 || minutes > 0)
-		printf("%im", minutes);
+		fprintf(fp,"%im", minutes);
 	    if(hours > 0 || minutes > 0 || seconds > 0)
-		printf("%is", seconds);
+		fprintf(fp,"%is", seconds);
 	    if(hours > 0 || minutes > 0 || seconds > 0 || milliseconds > 0)
-		printf("%ims", milliseconds);
+		fprintf(fp,"%ims", milliseconds);
 	    if(hours > 0 || minutes > 0 || seconds > 0 || milliseconds > 0 || microseconds > 0)
-		printf("%ius", microseconds);
+		fprintf(fp,"%ius", microseconds);
 	    if(hours > 0 || minutes > 0 || seconds > 0 || milliseconds > 0 || microseconds > 0 || nanoseconds > 0)
-		printf("%ins", nanoseconds);
+		fprintf(fp,"%ins", nanoseconds);
 	    
-	    printf("\n");
-	    fflush(stdout);
+	    fprintf(fp,"\n");
+	    fflush(fp);
 	    
 	    start.erase(start.begin()+i);
 	    tags.erase(tags.begin()+i);
