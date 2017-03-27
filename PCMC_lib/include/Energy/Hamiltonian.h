@@ -15,6 +15,7 @@
 #include "../PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <vector>
 
 namespace PCA{
 
@@ -33,6 +34,8 @@ class Hamiltonian
 private:
     int numSites; 
     
+    
+    
     double alpha;
     double mu;
     
@@ -44,6 +47,11 @@ private:
     double* b;
 	
 public:
+/**@name positions of solitons*/
+    //@{
+    std::vector<int> from;
+    std::vector<int> to;
+    //@}
     Hamiltonian(int numSites_in);
 	
     /** Constructor for homopolymer */
@@ -69,6 +77,7 @@ public:
     void pushD(double d_in, int fromSite, int toSite);
     void pushA(double a_in, int fromSite, int toSite);
     void pushB(double b_in, int fromSite, int toSite);
+    
     //@}
     bool checkAllParamAreSeted();
     ~Hamiltonian();

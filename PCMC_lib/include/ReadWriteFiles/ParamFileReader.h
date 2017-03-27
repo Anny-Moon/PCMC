@@ -37,7 +37,7 @@ public:
 //    const char* name(int number) const;
 //    inline std::string name(int number) const;
     inline double value(int number) const;
-    int search(std::string word) const;
+    int search(std::string word, int from = 0, int to = 0) const;
     void checkRepeatingOfWords(const char* fileName) const;
 };
 

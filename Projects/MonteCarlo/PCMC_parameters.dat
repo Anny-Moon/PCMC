@@ -21,13 +21,14 @@ LENNARD_JONES_MIN	10.0
 LENNARD_JONES_R_MIN	4.5
 
 #----------------Solitons--------------------------
-FROM 0
-TO 50
-HAM_A 0.005
+FROM		0
+S_HAM_A		0.005
+TO		50
 
-FROM 60
-TO 65
-HAM_A 0.03
+FROM		60
+S_HAM_A		0.03
+TO		65
+
 #---------------Monte Carlo------------------------
 LOOPS_PER_CORE	3
 
@@ -35,6 +36,6 @@ MAX_LOG_T 2.0
 LOG_T_STEP 1.0
 MIN_LOG_T -3.0
 
-SWEEPS_PER_STEP 50
+SWEEPS_PER_STEP 10
 
 

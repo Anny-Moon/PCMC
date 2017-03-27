@@ -61,11 +61,14 @@ void ParamFileReader::reader(const char* fileName)
 //    checkRepeatingOfWords(fileName);
 }
 
-int ParamFileReader::search(std::string word) const
+int ParamFileReader::search(std::string word, int from, int to) const
 {
     int i;
     
-    for(i=0;i<dictionary.size();i++){
+    if(to == 0)
+	to = dictionary.size();
+	
+    for(i=from;i<to;i++){
 	if(word.compare(get<0>(dictionary[i]))==0)
 	    return i;
     }

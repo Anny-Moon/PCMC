@@ -46,6 +46,88 @@ PolymerMC* ParserParamFilePCMC::createPolymer() const
     return (new PolymerMC(N));
 }
 
+int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFromThisLine) const
+{
+    std::string etalon, etalonFrom, etalonTo;;
+    int number, numberFrom, numberTo;
+    int siteFrom, siteTo;
+    int check = 0;
+    
+    //search for the beginning of a soloton
+    etalonFrom = "FROM";
+printf("``%i\n",*startSearchFromThisLine);
+    numberFrom = data->search(etalonFrom, *startSearchFromThisLine);
+    if(numberFrom>=0){
+	siteFrom = (int)data->value(numberFrom);
+	hamiltonian->from.push_back(siteFrom);
+    }
+    
+    else{
+	return 0;
+    }
+    
+    //search for the end of the soloton
+    etalonTo = "TO";
+    numberTo = data->search(etalonTo,*startSearchFromThisLine);
+    if(numberTo>numberFrom){
+	siteTo = (int)data->value(numberTo);
+	hamiltonian->to.push_back(siteTo);
+    }
+    else{
+	printf("Cannot find the end of soliton. Expect TO after FROM\n");
+	exit(1);
+    }
+    
+    //search for parameters for this soloton
+    etalon = "S_HAM_Q";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushQ(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+	
+    etalon = "S_HAM_M";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushM(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+    
+    etalon = "S_HAM_C";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushC(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+    
+    etalon = "S_HAM_D";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushD(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+    
+    etalon = "S_HAM_A";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushA(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+    
+    etalon = "S_HAM_B";
+    number = data->search(etalon, numberFrom+1, numberTo);
+    if(number>=0)
+	hamiltonian->pushB(data->value(number), siteFrom, siteTo);
+    else
+	check++;
+	
+    if(check == 0)
+	printf("Warning in ParamFilePCMC: soliton %i to %i doesn't have any parameters.\n", siteFrom, siteTo);
+    
+    *startSearchFromThisLine = numberTo+1;
+    return 1;
+}
+
 Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
 {
     std::string etalon;
@@ -136,8 +218,14 @@ Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
 	//exit(1);
     }
     
+    Hamiltonian* hamiltonian = new Hamiltonian(N,q,m,c,d,a,b,alpha,mu);
+    int startSearchFromThisLine = 0;
     
-    return (new Hamiltonian(N,q,m,c,d,a,b,alpha,mu));
+    while(setSoliton(hamiltonian, &startSearchFromThisLine)!=0){
+	printf("soliton from %i to %i\n", hamiltonian->from[hamiltonian->from.size()-1],hamiltonian->to[hamiltonian->to.size()-1]);
+    };
+    
+    return (hamiltonian);
 }
 
 LennardJones* ParserParamFilePCMC::createLennardJones() const
