@@ -245,5 +245,90 @@ double Hamiltonian::generateKappa(int site, double tau_site, double kappa_siteMo
     
 }
 
+void Hamiltonian::writeInParamFile(FILE* fp) const
+{
+    int notSolitonSite;
+    bool onlySolitons = true;
+    
+    _PCA_CATCH_VOID_POINTER(fp,"Hamiltonian::writeInParamFile\n\t pass me an open file with parameters.\n");
+    fprintf(fp,"\n#------------------Hamiltonian--------------------\n");
+    
+    //find not soliton part
+    
+    if(from.size()!=0){
+	//if the first site is not in soliton
+	if(from[0]>0){
+	    notSolitonSite = 0;
+	    onlySolitons  = false;
+	}
+	//else if the last is not in soliton
+	else if(to[to.size()-1]<numSites-1){
+	    notSolitonSite = numSites-1;
+	    onlySolitons  = false;
+	}
+	//else some site between solitons
+	else{
+	    for(int i=0;i<to.size()-1;i++){
+		if(from[i+1] - to[i] > 1){
+		    notSolitonSite = to[i]+1;
+		    onlySolitons  = false;
+		    break;
+		}
+	    }
+	}
+    }
+   
+    // if there is some part of the chain without solitons
+    if(!onlySolitons){
+	fprintf(fp,"HAM_Q\t%g\n", q[notSolitonSite]);
+	fprintf(fp,"HAM_M\t%g\n", m[notSolitonSite]);
+	fprintf(fp,"HAM_C\t%g\n", c[notSolitonSite]);
+	fprintf(fp,"HAM_D\t%g\n", d[notSolitonSite]);
+	fprintf(fp,"HAM_A\t%g\n", a[notSolitonSite]);
+	fprintf(fp,"HAM_B\t%g\n", b[notSolitonSite]);
+	fprintf(fp,"HAM_MU\t%g\n", mu);
+	fprintf(fp,"HAM_ALPHA\t%g\n", alpha);
+	
+    
+	fprintf(fp,"\n#--------------Solitons-----------------\n");
+	for(int i=0;i<from.size();i++){
+	    fprintf(fp,"FROM\t%i\n", from[i]);
+	
+	    if(q[notSolitonSite]!=q[from[i]])
+		fprintf(fp,"S_HAM_Q\t%g\n", q[from[i]]);
+	    if(m[notSolitonSite]!=m[from[i]])
+		fprintf(fp,"S_HAM_M\t%g\n", m[from[i]]);
+	    if(c[notSolitonSite]!=c[from[i]])
+		fprintf(fp,"S_HAM_C\t%g\n", c[from[i]]);
+	    if(d[notSolitonSite]!=d[from[i]])
+		fprintf(fp,"S_HAM_D\t%g\n", d[from[i]]);
+	    if(a[notSolitonSite]!=a[from[i]])
+		fprintf(fp,"S_HAM_A\t%g\n", a[from[i]]);
+	    if(b[notSolitonSite]!=b[from[i]])
+		fprintf(fp,"S_HAM_B\t%g\n", b[from[i]]);
+	    fprintf(fp,"TO\t%i\n", to[i]);
+	    fprintf(fp,"\n");
+	}
+    }
+    
+    //else if solitons cover the entire chain
+    else{
+	fprintf(fp,"HAM_MU\t%g\n", mu);
+	fprintf(fp,"HAM_ALPHA\t%g\n", alpha);
+	fprintf(fp,"\n#--------------Solitons-----------------\n");
+	for(int i=0;i<from.size();i++){
+	    fprintf(fp,"FROM\t%i\n", from[i]);
+	    fprintf(fp,"S_HAM_Q\t%g\n", q[from[i]]);
+	    fprintf(fp,"S_HAM_M\t%g\n", m[from[i]]);
+	    fprintf(fp,"S_HAM_C\t%g\n", c[from[i]]);
+	    fprintf(fp,"S_HAM_D\t%g\n", d[from[i]]);
+	    fprintf(fp,"S_HAM_A\t%g\n", a[from[i]]);
+	    fprintf(fp,"S_HAM_B\t%g\n", b[from[i]]);
+	    fprintf(fp,"TO\t%i\n", to[i]);
+	    fprintf(fp,"\n");
+	}
+    }
+    
+}
 
 }//end of namespace PCA

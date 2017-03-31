@@ -13,20 +13,20 @@ Loop 0:	0
 Loop 0:	-1
 Loop 0:	-2
 Loop 0:	-3
-Timer No. 0:	1s352ms913us499ns
+Timer No. 0:	521ms194us812ns
 Loop 1:	2
 Loop 1:	1
 Loop 1:	0
 Loop 1:	-1
 Loop 1:	-2
 Loop 1:	-3
-Timer No. 1:	1s341ms518us116ns
+Timer No. 1:	517ms473us495ns
 Loop 2:	2
 Loop 2:	1
 Loop 2:	0
 Loop 2:	-1
 Loop 2:	-2
 Loop 2:	-3
-Timer No. 2:	1s363ms595us250ns
+Timer No. 2:	519ms278us690ns
 END
 

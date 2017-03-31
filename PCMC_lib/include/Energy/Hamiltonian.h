@@ -109,23 +109,9 @@ public:
     */
     double generateTau (int site, double kappa_site, double temperature) const;
     
-    inline void writeInParamFile(FILE* fp) const;
+    void writeInParamFile(FILE* fp) const;
 };
 
-inline void Hamiltonian::writeInParamFile(FILE* fp) const
-{
-    _PCA_CATCH_VOID_POINTER(fp,"Hamiltonian::writeInParamFile\n\t pass me an open file with parameters.\n");
-    fprintf(fp,"\n#------------------Hamiltonian--------------------\n");
-    fprintf(fp,"HAM_Q\t%g\n", q[0]);
-    fprintf(fp,"HAM_M\t%g\n", m[0]);
-    fprintf(fp,"HAM_C\t%g\n", c[0]);
-    fprintf(fp,"HAM_D\t%g\n", d[0]);
-    fprintf(fp,"HAM_A\t%g\n", a[0]);
-    fprintf(fp,"HAM_B\t%g\n", b[0]);
-    fprintf(fp,"HAM_ALPHA\t%g\n", alpha);
-    fprintf(fp,"HAM_MU\t%g\n", mu);
-    
-}
 
 }//end of namespace PCA
 #endif

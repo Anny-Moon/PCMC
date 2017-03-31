@@ -21,6 +21,7 @@ private:
     /** Parse for soliton starting from startFromThisLine in the dictionary(data)
     * and push it to hamiltonian. Returns 0 if there is no solitons. */
     int setSoliton(Hamiltonian* hamiltonian, int* startSearchFromThisLine) const;
+    bool checkSolitonsOverlap(Hamiltonian* hamiltonian) const;
     
 public:
     ParserParamFilePCMC (const char* fileName);
