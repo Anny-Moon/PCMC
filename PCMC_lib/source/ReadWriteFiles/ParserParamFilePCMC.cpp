@@ -45,16 +45,19 @@ PolymerMC* ParserParamFilePCMC::createPolymer() const
 
     return (new PolymerMC(N));
 }
-/*
+
 bool ParserParamFilePCMC::checkSolitonsOverlap(Hamiltonian* hamiltonian) const
 {
-    for(int i=0;i<from.size();i++){
-	for(int j=i;j<
+    for(int i=0;i<hamiltonian->from.size();i++){
+	for(int j=i+1;j<hamiltonian->from.size();j++){
+	    if(hamiltonian->from[j]<=hamiltonian->to[i])
+		return false;
+	}
     }
     
     return true;
 }
-*/
+
 int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFromThisLine) const
 {
     std::string etalon, etalonFrom, etalonTo;;
@@ -252,6 +255,11 @@ Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
     int startSearchFromThisLine = 0;
     
     while(setSoliton(hamiltonian, &startSearchFromThisLine)!=0);
+    
+    if(!checkSolitonsOverlap(hamiltonian)){
+	printf("Error in paramFile perser: some solitons have overlap.\n");
+	exit(1);
+    }
     
     return (hamiltonian);
 }
