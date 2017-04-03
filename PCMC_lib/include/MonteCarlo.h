@@ -51,14 +51,20 @@ public:
 inline void MonteCarlo::writeInParamFile(FILE* fp) const{
 
     fprintf(fp,"\n#------------------Monte-Carlo--------------------\n");
+    if(cores>0) //mpirun
+	fprintf(fp,"CORES\t%i\n",cores);
+    else //not mpirun
+	fprintf(fp,"CORES\t%i\n", 1);
+	
     fprintf(fp,"LOOPS_PER_CORE\t%i\n",loopsPerCore);
-    fprintf(fp,"MAX_LOG_T\t%g\n",maxLogT);
-    fprintf(fp,"MIN_LOG_T\t%g\n",minLogT);
+    
+    fprintf(fp,"\nMAX_LOG_T\t%g\n",maxLogT);
     fprintf(fp,"LOG_T_STEP\t%g\n",logTstep);
+    fprintf(fp,"MIN_LOG_T\t%g\n\n",minLogT);
+    
     fprintf(fp,"SWEEPS_PER_STEP\t%i\n",sweepsPerStep);
     
-    if(cores>0)
-	fprintf(fp,"CORES\t%i\n",cores);
+    
 }
 
 inline int MonteCarlo::getLoopsPerCore(){
