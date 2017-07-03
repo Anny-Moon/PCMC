@@ -45,9 +45,9 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     Hamiltonian* hamiltonian;
     hamiltonian = parser.createHamiltonian();
     
-//    LennardJones* interaction;
-    Interaction* interaction = nullptr;
-//    interaction = parser.createLennardJones();
+    LennardJones* interaction;
+//    Interaction* interaction = nullptr;
+    interaction = parser.createLennardJones();
     
     MonteCarlo *monteCarlo;
     monteCarlo = new MonteCarlo(paramFileName, polymer, hamiltonian, interaction, MonteCarlo::Regime::withSA);

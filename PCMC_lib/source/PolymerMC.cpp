@@ -307,6 +307,11 @@ void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonia
 	updateKappa(i, temperature, hamiltonian, interaction);
 	updateTau(i, temperature, hamiltonian, interaction);
     }
+    
+    for(i=0;i<numMonomers;i++){
+	if(!selfAvoidingCondition(i))
+	    printf("!SA\n");
+    }
 }
 
 /////////////////////////WithoutHamiltonian///////////////
@@ -445,21 +450,19 @@ void PolymerMC::updateKappaWithOnlySA(int site, double temperature, const Hamilt
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    for(i = 0; i<numMonomers; i++){
-	if(selfAvoidingCondition(i,minDist)){ //ACCEPT
-	    kappa[site] = kappaNew;
-	    setNewVectorsTNBfromKappaTau(site);
-	    acceptNumberKappa++;
-//		printf("ACCEPT\n");
-	}
-    
-	else{ //REJECT
-	    for(i=site+1;i<numMonomers+1;i++)
-		r[i] = rOld[i];
-	    break;
-//		printf("REJECT\n");
-	}
+    if(selfAvoidingCondition(site,minDist)){ //ACCEPT
+	kappa[site] = kappaNew;
+	setNewVectorsTNBfromKappaTau(site);
+	acceptNumberKappa++;
+//	printf("ACCEPT\n");
     }
+    
+    else{ //REJECT
+	for(i=site+1;i<numMonomers+1;i++)
+	    r[i] = rOld[i];
+//		printf("REJECT\n");
+    }
+
 }
 
 void PolymerMC::updateTauWithOnlySA(int site, double temperature, const Hamiltonian& hamiltonian, double minDist)
@@ -474,20 +477,17 @@ void PolymerMC::updateTauWithOnlySA(int site, double temperature, const Hamilton
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    for(i=0; i<numMonomers; i++){
-        if(selfAvoidingCondition(i, minDist)){ //ACCEPT
-		tau[site] = tauNew;
-		setNewVectorsTNBfromKappaTau(site);
-		acceptNumberTau++;
-//		printf("ACCEPT\n");
-	}
+    if(selfAvoidingCondition(site, minDist)){ //ACCEPT
+	tau[site] = tauNew;
+	setNewVectorsTNBfromKappaTau(site);
+	acceptNumberTau++;
+//	printf("ACCEPT\n");
+    }
     
-	else{ //REJECT
-	    for(i=site+1;i<numMonomers+1;i++)
-		r[i] = rOld[i];
-//		printf("REJECT\n");
-	    break;
-	}
+    else{ //REJECT
+	for(i=site+1;i<numMonomers+1;i++)
+	    r[i] = rOld[i];
+//	printf("REJECT\n");
     }
 }
 
