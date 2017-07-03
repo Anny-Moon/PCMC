@@ -80,10 +80,16 @@ public:
     void updateAllSitesWithoutH(double temperature, const Interaction& interaction);
     ///@}
     
-    
+    /**@name Monte Carlo updates at kappa[site]/tau[site] with only
+    * self avoiding condition, i.e without any atraction*/
+    ///@{
+    void updateKappaWithOnlySA(int site, double temperarture, const Hamiltonian& hamiltonian, double minDist = 3.8);
+    void updateTauWithOnlySA(int site, double temperarture, const Hamiltonian& hamiltonian, double minDist = 3.8);
+    void updateAllSitesWithOnlySA(double temperature, const Hamiltonian& hamiltonian, double minDist = 3.8);
+    ///@}
     
     /* only for chains with equal link lenghts*/
-    bool selfAvoidingCondition(double minDistance, int site);
+    bool selfAvoidingCondition(int site ,double minDist = 3.8);
     inline void writeAcceptenceRateInFile(FILE *fp);
 };
 

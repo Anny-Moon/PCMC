@@ -18,21 +18,9 @@ namespace PCA{
 
 class MonteCarlo
 {
-private:
-    int loopsPerCore;
-    double maxLogT;
-    double minLogT;
-    double logTstep;
-    int sweepsPerStep;
-    int cores;
-    int stepsPerLoop;
-    
-    const PolymerMC* polymerEtalon;
-    const Hamiltonian* hamiltonian;
-    const Interaction* interaction;
-    
 public:
-    MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in);
+    enum class Regime{normal, withoutH, withSA};
+    MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in, const Regime regime_in =Regime::normal);
     ~MonteCarlo();
     
     void readFromParamFile(const char* fileName);
@@ -46,6 +34,23 @@ public:
     inline double getLogTstep();
     inline int getSweepsPerStep();
     inline int getCores();
+    
+    
+private:
+    int loopsPerCore;
+    double maxLogT;
+    double minLogT;
+    double logTstep;
+    int sweepsPerStep;
+    int cores;
+    int stepsPerLoop;
+    
+    const PolymerMC* polymerEtalon;
+    const Hamiltonian* hamiltonian;
+    const Interaction* interaction;
+    
+    Regime regime;
+
 };
 
 inline void MonteCarlo::writeInParamFile(FILE* fp) const{

@@ -427,8 +427,94 @@ void PolymerMC::updateAllSitesWithoutH(double temperature, const Interaction& in
 
 /////////////////////////
 
+///////////With Only Self Avoiding Condition/////////////////
+void PolymerMC::updateKappaWithOnlySA(int site, double temperature, const Hamiltonian& hamiltonian, double minDist)
+{
+    int i;
+    
+    /* generate new random Kappa according distribution */
+    if(site==0)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
+    else if(site==numMonomers-1)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], 0.0, kappa[site-1], temperature);
+    else
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+    tauNew = tau[site];
+//    printf("oldKappa[%i] = %g    newKappa = %g\n",site,  kappa[site], kappaNew);
+    
+    saveOldRadiusVectors(site);
+    setNewRadiusVectorsViaRotation(site);
+    
+    for(i = 0; i<numMonomers; i++){
+	if(selfAvoidingCondition(i,minDist)){ //ACCEPT
+	    kappa[site] = kappaNew;
+	    setNewVectorsTNBfromKappaTau(site);
+	    acceptNumberKappa++;
+//		printf("ACCEPT\n");
+	}
+    
+	else{ //REJECT
+	    for(i=site+1;i<numMonomers+1;i++)
+		r[i] = rOld[i];
+	    break;
+//		printf("REJECT\n");
+	}
+    }
+}
+
+void PolymerMC::updateTauWithOnlySA(int site, double temperature, const Hamiltonian& hamiltonian, double minDist)
+{
+    int i;
+
+    /* generate new random Tau according distribution */
+    tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
+    kappaNew = kappa[site];
+//    printf("oldTau[%i] = %g    newTau = %g\n", site, tau[site], tauNew);
+    
+    saveOldRadiusVectors(site);
+    setNewRadiusVectorsViaRotation(site);
+    
+    for(i=0; i<numMonomers; i++){
+        if(selfAvoidingCondition(i, minDist)){ //ACCEPT
+		tau[site] = tauNew;
+		setNewVectorsTNBfromKappaTau(site);
+		acceptNumberTau++;
+//		printf("ACCEPT\n");
+	}
+    
+	else{ //REJECT
+	    for(i=site+1;i<numMonomers+1;i++)
+		r[i] = rOld[i];
+//		printf("REJECT\n");
+	    break;
+	}
+    }
+}
+
+void PolymerMC::updateAllSitesWithOnlySA(double temperature, const Hamiltonian& hamiltonian, double minDist)
+{
+    int i;
+    
+    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
+	setVectorsTNBfromKappaTau();
+	setRadiusVectorsFromVectorsT();
+    }
+    
+    for(i=1;i<numMonomers;i++){
+	updateKappaWithOnlySA(i, temperature, hamiltonian, minDist);
+	updateTauWithOnlySA(i, temperature, hamiltonian, minDist);
+    }
+    
+    for(i=0;i<numMonomers;i++){
+	if(!selfAvoidingCondition(i))
+	    printf("!SA\n");
+    }
+}
+
+
+/////////////////////////////////////////////////////////////
 /* only for chains with equal link lenghts*/
-bool PolymerMC::selfAvoidingCondition(double minDistance, int site)
+bool PolymerMC::selfAvoidingCondition(int site, double minDist)
 {
     int i,j;
     int M=1;
@@ -437,11 +523,11 @@ bool PolymerMC::selfAvoidingCondition(double minDistance, int site)
     for(i=0; i<=site; i++){
 	for(j=numMonomers; j>site; j-=M){
 	    R = (r[i]-r[j]).norm();
-	    if(R<=minDistance && (j-i)!=1)
+	    if(R<=minDist && (j-i)!=1)
 		return false;
 	    
 	    else{
-		M=(int)((R-minDistance)/monomerLength[0]);
+		M=(int)((R-minDist)/monomerLength[0]);
 		if(M<=0)
 		    M=1;
 		
