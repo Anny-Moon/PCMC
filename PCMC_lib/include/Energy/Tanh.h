@@ -31,7 +31,7 @@ public:
     ~Tanh();
 
     double energy(double distance) const;
-    double energyAllSites(const Polymer& polymer) const;
+    double energyAllSites(int size, const Vector* r) const;
     double energyIfSiteChanged(int site, int size, const Vector* r) const;
     
     void writeInParamFile(FILE* fp) const;

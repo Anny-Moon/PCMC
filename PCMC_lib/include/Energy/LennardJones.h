@@ -34,7 +34,7 @@ public:
     ~LennardJones();
 
     virtual double energy(double distance) const;
-    virtual double energyAllSites(const Polymer& polymer) const;
+    virtual double energyAllSites(int size, const Vector* r) const;
     virtual double energyIfSiteChanged(int site, int size, const Vector* r) const;
     
     virtual void writeInParamFile(FILE* fp) const;

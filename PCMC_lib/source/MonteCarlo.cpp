@@ -109,7 +109,7 @@ if(!polymer->selfAvoidingCondition(0, 3.8))
 printf("Finally !SA\n");
 
 else
-printf("GOOD\n");
+printf("Finally SA is Ok\n");
 	    if(fakeCoreNumber==0){
 		fprintf(tfp,"%g\t%.15le\n", t, temperature);
 		fflush(tfp);

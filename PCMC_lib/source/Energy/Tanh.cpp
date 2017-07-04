@@ -44,14 +44,24 @@ double Tanh::energy(double distance) const
     return answ;
 }
 
-double Tanh::energyAllSites(const Polymer& polymer) const
+double Tanh::energyAllSites(int size, const Vector* r) const
 {
     int i, j;
     double answ = 0.0;
     double distance;
-    for(i=0;i<polymer.getNumMonomers()+1;i++){
+/*    for(i=0;i<polymer.getNumMonomers()+1;i++){
 	for(j=i+2;j<polymer.getNumMonomers()+1;j++){
 	    distance = polymer.distance(i,j);
+	    if(distance < delta)
+		return std::numeric_limits<double>::infinity();
+	    else
+		answ += energy(distance);
+	}
+    }
+*/
+    for(i=0;i<size;i++){
+	for(j=i+2;j<size;j++){
+	    distance = (r[i]-r[j]).norm();
 	    if(distance < delta)
 		return std::numeric_limits<double>::infinity();
 	    else
