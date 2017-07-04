@@ -307,11 +307,12 @@ void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonia
 	updateKappa(i, temperature, hamiltonian, interaction);
 	updateTau(i, temperature, hamiltonian, interaction);
     }
-    
+/*    
     for(i=0;i<numMonomers;i++){
 	if(!selfAvoidingCondition(i))
 	    printf("!SA\n");
     }
+*/
 }
 
 /////////////////////////WithoutHamiltonian///////////////
@@ -504,11 +505,12 @@ void PolymerMC::updateAllSitesWithOnlySA(double temperature, const Hamiltonian& 
 	updateKappaWithOnlySA(i, temperature, hamiltonian, minDist);
 	updateTauWithOnlySA(i, temperature, hamiltonian, minDist);
     }
-    
+/*
     for(i=0;i<numMonomers;i++){
 	if(!selfAvoidingCondition(i))
 	    printf("!SA\n");
     }
+*/
 }
 
 
@@ -525,6 +527,7 @@ bool PolymerMC::selfAvoidingCondition(int site, double minDist)
 	    R = (r[i]-r[j]).norm();
 	    if(R<=minDist && (j-i)!=1)
 		return false;
+		
 	    
 	    else{
 		M=(int)((R-minDist)/monomerLength[0]);

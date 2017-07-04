@@ -105,7 +105,11 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 	    }
 	    
 	    polymer->writeKappaTauInFile(ktfp);
+if(!polymer->selfAvoidingCondition(0, 3.8))
+printf("Finally !SA\n");
 
+else
+printf("GOOD\n");
 	    if(fakeCoreNumber==0){
 		fprintf(tfp,"%g\t%.15le\n", t, temperature);
 		fflush(tfp);
