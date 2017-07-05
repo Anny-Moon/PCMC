@@ -88,6 +88,22 @@ public:
     void updateAllSitesWithOnlySA(double temperature, const Hamiltonian& hamiltonian, double minDist = 3.8);
     ///@}
     
+    /**@name Monte Carlo updates at kappa[site]/tau[site] fot one chain,
+    * but taking into account interaction with another chain.
+    * along the chain there is only self avoiding condition,
+    * between chains - van der Waals interaction */
+    ///@{
+    void updateKappa2chains(int site, double temperarture, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    void updateTau2chains(int site, double temperarture, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    void updateAllSites2chains(double temperature, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    ///@}
+    
     /* only for chains with equal link lenghts*/
     bool selfAvoidingCondition(int site ,double minDist = 3.8);
     inline void writeAcceptenceRateInFile(FILE *fp);
