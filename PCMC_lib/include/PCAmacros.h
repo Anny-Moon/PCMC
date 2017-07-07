@@ -15,7 +15,7 @@
 #define PCA_PI 3.141592653589793
 
 #define _PCA_ERROR(functionName)\
-    {	printf("Error in %s\n", functionName);\
+    {	printf("Error in %s.\n", functionName);\
 	exit(1);\
     }
     

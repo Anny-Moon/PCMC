@@ -19,14 +19,24 @@ namespace PCA{
 class MonteCarlo
 {
 public:
-    enum class Regime{normal, withoutH, withSA};
-    MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in, const Regime regime_in =Regime::normal);
+    enum class Regime{normal, withoutH, withSA, twoChains};
+    
+    MonteCarlo(const char* fileName, PolymerMC* polymer_in,
+		const Hamiltonian* hamiltonian_in,
+		const Interaction* interaction_in,
+		const Regime regime_in =Regime::normal);
+    /** Costructor for 2 chains (equal) case. Regime will be set to twoChains. */
+    MonteCarlo(const char* fileName, PolymerMC* polymer_in1, PolymerMC* polymer_in2,
+		const Hamiltonian* hamiltonian_in,
+		const Interaction* interaction_in,
+		double minDist = 3.8);
     ~MonteCarlo();
     
     void readFromParamFile(const char* fileName);
     inline void writeInParamFile(FILE* fp) const;
     
     void run(int myCoreNumber = 0, int totalCoreNumber = 1);
+    void run2chains(int myCoreNumber = 0, int totalCoreNumber = 1);
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();
@@ -46,8 +56,10 @@ private:
     int stepsPerLoop;
     
     const PolymerMC* polymerEtalon;
+    const PolymerMC* polymerEtalon2;
     const Hamiltonian* hamiltonian;
     const Interaction* interaction;
+    double minDist;
     
     Regime regime;
 

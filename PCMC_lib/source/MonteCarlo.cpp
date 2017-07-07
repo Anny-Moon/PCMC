@@ -14,7 +14,10 @@
 
 namespace PCA{
 
-MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamiltonian* hamiltonian_in, const Interaction* interaction_in, const MonteCarlo::Regime regime_in)
+MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
+			const Hamiltonian* hamiltonian_in,
+			const Interaction* interaction_in,
+			const MonteCarlo::Regime regime_in)
 {
     readFromParamFile(fileName);
     stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
@@ -23,6 +26,23 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in, const Hamilt
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
     regime = regime_in;    
+}
+
+MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in1,
+			PolumerMC* polymer_in2,
+			const Hamiltonian* hamiltonian_in,
+			const Interaction* interaction_in,
+			double minDist)
+{
+    readFromParamFile(fileName);
+    stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
+    
+    polymerEtalon = polymer_in1;
+    polymerEtalon2 = polymer_in2;
+    hamiltonian = hamiltonian_in;
+    interaction = interaction_in;
+    regime = twoChains;
+    minDist = 3.8;
 }
 
 MonteCarlo::~MonteCarlo(){};
@@ -100,6 +120,9 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 		    for(int i=0; i<sweepsPerStep;i++)
 			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
 		break;
+		case Regime::twoChains:
+		    _PCA_ERROR("MonteCarlo:\t for 2 chains regime you should call run2chains() insteda");
+		
 		default:
 		    _PCA_ERROR("MonteCarlo:\t unknown regime");
 	    }
