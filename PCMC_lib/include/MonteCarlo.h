@@ -13,6 +13,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
 
 namespace PCA{
 
@@ -20,6 +21,7 @@ class MonteCarlo
 {
 public:
     enum class Regime{normal, withoutH, withSA, twoChains};
+    inline std::string getRegimeStr();
     
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
@@ -103,6 +105,20 @@ inline int MonteCarlo::getCores(){
     return cores;
 }
 
+inline std::string MonteCarlo::getRegimeStr(){
+    switch(regime){
+	case Regime::normal:
+	    return "normal";
+	case Regime::withoutH:
+	    return "without Hamiltonian";
+	case Regime::withSA:
+	    return "without self avoiding, but without long range attraction";
+	case Regime::twoChains:
+	    return "2 chains: Along the chain there is only self avoiding condition,\nbut between chains - full interaction.";
+	default:
+	    return "unknown regime! All the data from this calculation can be wrong!";
+    }
+}
 
 }// end of namespace
 #endif
