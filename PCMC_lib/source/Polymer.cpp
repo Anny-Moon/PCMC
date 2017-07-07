@@ -372,7 +372,7 @@ void Polymer::formatAll()
     }
 }
 
-void Polymer::setRadiusVectorsFromVectorsT()
+void Polymer::setRadiusVectorsFromVectorsT(const Vector& r0)
 {
     int i;
 
@@ -383,7 +383,8 @@ void Polymer::setRadiusVectorsFromVectorsT()
 	r = new Vector [numMonomers+1];
     }
 
-    r[0]=Vector::zero;
+//    r[0]=Vector::zero;
+    r[0] = r0;
 
     for(i=1;i<numMonomers+1;i++)
         r[i] = r[i-1] + t[i-1]*monomerLength[i-1];
@@ -423,7 +424,7 @@ void Polymer::setMonomerLengthsFromRadiusVectors()
 
 }
 
-void Polymer::setVectorsTNBfromKappaTau()
+void Polymer::setVectorsTNBfromKappaTau(const Vector& t0, const Vector& n0, const Vector& b0)
 {
     int i;
     
@@ -431,9 +432,13 @@ void Polymer::setVectorsTNBfromKappaTau()
     _PCA_CATCH_VOID_POINTER(tau, "Polymer::setVectorsTNBfromKappaTau()\n\ttau = NULL");
 //    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTNBfromKappaTau()\n\tmonomerLength = NULL");
     
-    t[0] = Vector::eZ;
-    n[0] = Vector::eX;
-    b[0] = Vector::eY;
+//    t[0] = Vector::eZ;
+//    n[0] = Vector::eX;
+//    b[0] = Vector::eY;
+    
+    t[0] = t0/t0.norm();
+    n[0] = n0/n0.norm();
+    b[0] = b0/b0.norm();
 
     for(i=0;i<numMonomers-1;i++){
 	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];

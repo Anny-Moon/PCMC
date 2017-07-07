@@ -87,15 +87,18 @@ public:
     ///@{
     void setVectorsTfromRadiusVectors();
 //    void setVectorsBfromVectorsT();
-    void setRadiusVectorsFromVectorsT();
+    void setRadiusVectorsFromVectorsT(const Vector& r0 = Vector::zero );
     ///@}
     
     /** @name Set lengths of all monomers from vectors:*/
     ///@{
     void setMonomerLengthsFromRadiusVectors();
     ///@}    
-    /** Set vecors t, n, b from kappas, taus and monomerlength(!)*/
-    void setVectorsTNBfromKappaTau();
+    /** Set vecors t, n, b from kappas, taus and monomerlength(!)
+    * arguments - t[0], b[0], z[0]*/
+    void setVectorsTNBfromKappaTau(const Vector& t0 = Vector::eZ,
+				const Vector& n0 = Vector::eX,
+				const Vector& b0 = Vector::eY);
     
     /** Set all lengthes of monomers equal to length */
     void setMonomerLengths(double length);

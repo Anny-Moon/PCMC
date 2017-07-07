@@ -103,7 +103,7 @@ PolymerMC::~PolymerMC()
     //Polymer distructor
 }
 
-void PolymerMC::initWithRandomTaus()
+void PolymerMC::initWithRandomTaus(const Vector& r0, const Vector& t0, const Vector& n0, const Vector& b0)
 {
     int i;
     UniformRand uRand(0, 2.0*PCA_PI);
@@ -113,13 +113,13 @@ void PolymerMC::initWithRandomTaus()
 	tau[i] = uRand();
     }
     
-    setVectorsTNBfromKappaTau();
-    setRadiusVectorsFromVectorsT();
+    setVectorsTNBfromKappaTau(t0, n0, b0);
+    setRadiusVectorsFromVectorsT(r0);
     Vector::copyArray(numMonomers+1, rOld, r);
     
 }
 
-void PolymerMC::initTest()
+void PolymerMC::initTest(const Vector& r0, const Vector& t0, const Vector& n0, const Vector& b0)
 {
     int i;
     
@@ -130,8 +130,8 @@ void PolymerMC::initTest()
     
 //    kappa[1] = PCA_PI * 0.5;
     kappa[2] = PCA_PI * 0.5;
-    setVectorsTNBfromKappaTau();
-    setRadiusVectorsFromVectorsT();
+    setVectorsTNBfromKappaTau(t0, n0, b0);
+    setRadiusVectorsFromVectorsT(r0);
     Vector::copyArray(numMonomers+1, rOld, r);
     
 }
@@ -171,10 +171,10 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 {
     int i;
     
-    if(site == 0){
-	printf("Error in PolymerMC::setNewVectorsTNBfromKappaTau()\n");
-	exit(1);
-    }
+//    if(site == 0){
+//	printf("Error in PolymerMC::setNewVectorsTNBfromKappaTau()\n");
+//	exit(1);
+//    }
     
     t[site] = tNew;
     n[site] = nNew;
@@ -658,7 +658,7 @@ void PolymerMC::updateTau2chains(int site, double temperature, const Hamiltonian
 	    
 	/* calculate new interaction for site */
 	interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
-//    	printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+    	printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
 
 	/* Metropolis probabilyty */
 	probability = exp((-interactionNew + interactionOld)/temperature);
@@ -670,7 +670,7 @@ void PolymerMC::updateTau2chains(int site, double temperature, const Hamiltonian
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
 	    acceptNumberTau++;
-//		printf("ACCEPT\n");
+		printf("ACCEPT\n");
 	}
     
 	else{ //REJECT
@@ -679,14 +679,14 @@ void PolymerMC::updateTau2chains(int site, double temperature, const Hamiltonian
 	    
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionOld;
-//		printf("REJECT\n");
+		printf("REJECT\n");
 	}
     }
     
     else{ //REJECT: SALF AVOIDING CONDITION
 	for(i=site+1;i<numMonomers+1;i++)
 	    r[i] = rOld[i];
-//		printf("REJECT SA\n");
+		printf("REJECT SA\n");
     }
 }
 
@@ -696,11 +696,11 @@ void PolymerMC::updateAllSites2chains(double temperature, const Hamiltonian& ham
     int i;
     
     if((acceptNumberKappa+acceptNumberTau)%100 == 0){
-	setVectorsTNBfromKappaTau();
-	setRadiusVectorsFromVectorsT();
+	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+	setRadiusVectorsFromVectorsT(r[0]);
     }
     
-    for(i=1;i<numMonomers;i++){
+    for(i=0;i<numMonomers;i++){ //start with 0-th in case of 2 chains
 	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
 	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
     }

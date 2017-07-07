@@ -26,7 +26,7 @@ public:
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
 		const Interaction* interaction_in,
-		const Regime regime_in =Regime::normal);
+		const Regime regime_in = Regime::normal);
     /** Costructor for 2 chains (equal) case. Regime will be set to twoChains. */
     MonteCarlo(const char* fileName, PolymerMC* polymer_in1, PolymerMC* polymer_in2,
 		const Hamiltonian* hamiltonian_in,

@@ -51,10 +51,17 @@ public:
     ~PolymerMC();
     
     /** Initialization of PolymerMC with random taus and kappas = 0 */
-    void initWithRandomTaus();
+    void initWithRandomTaus(const Vector& r0 = Vector::zero,
+		const Vector& t0 = Vector::eZ,
+		const Vector& n0 = Vector::eX,
+		const Vector& b0 = Vector::eY);
     
     /** Initialization of PolymerMC for testing*/
-    void initTest();
+    void initTest(const Vector& r0 = Vector::zero,
+		const Vector& t0 = Vector::eZ,
+		const Vector& n0 = Vector::eX,
+		const Vector& b0 = Vector::eY
+		);
     
     /** Saves old radius vectors starting from (site+1): rOld[site+1]=r[site+1] ...*/
     void saveOldRadiusVectors(int site);

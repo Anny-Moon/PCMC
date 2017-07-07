@@ -85,14 +85,14 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 	    Timer::tick(k);
 	
 	polymer = new PolymerMC(*polymerEtalon);
-	if(k>0)
-	    polymer->initWithRandomTaus();
+//	if(k>0)
+//	    polymer->initWithRandomTaus();
 	    
-	if(regime==Regime::twoChains){
+//	if(regime==Regime::twoChains){
 		polymer2 = new PolymerMC(*polymerEtalon2);
-	    if(k>0)
-		polymer2->initWithRandomTaus();
-	}
+//	    if(k>0)
+//		polymer2->initWithRandomTaus();
+//	}
 	
 	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
 	
@@ -142,13 +142,21 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 			polymer2->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer, minDist);
 		    }
+		break;
 		default:
-		    _PCA_ERROR("MonteCarlo:\t unknown regime");
+		    _PCA_ERROR("MonteCarlo.run: unknown regime");
 	    }
 	    
 	    polymer->writeKappaTauInFile(ktfp);
-	    if(regime==Regime::2chains)
+	    if(regime==Regime::twoChains){
 		polymer2->writeKappaTauInFile(ktfp2);
+		
+		if(!polymer2->selfAvoidingCondition(0, 3.8))
+	        printf("Finally 2 !SA\n");
+
+		else
+		printf("Finally 2 SA is Ok\n");
+	    }
 	    
 if(!polymer->selfAvoidingCondition(0, 3.8))
 printf("Finally !SA\n");
@@ -169,9 +177,12 @@ printf("Finally SA is Ok\n");
 	    fclose(tfp);
 	
 	delete polymer;
-	if(regime==Regime::twoChains)
-	    delete polymer2;
+	fclose(ktfp);
 	
+	if(regime==Regime::twoChains){
+	    delete polymer2;
+	    fclose(ktfp2);
+	}
     }
     
     if(myCoreNumber==0){
