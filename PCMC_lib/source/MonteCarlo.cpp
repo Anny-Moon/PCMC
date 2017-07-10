@@ -140,7 +140,7 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 		case Regime::twoChains:
 		    for(int i=0; i<sweepsPerStep;i++){
 			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
-			polymer2->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer, minDist);
+			polymer2->updateAllSites2chainsWithFloatingR0(temperature, *hamiltonian, *interaction, *polymer, minDist);
 		    }
 		break;
 		default:

@@ -12,6 +12,7 @@
 #include "Energy/Hamiltonian.h"
 #include "Energy/Interaction.h"
 #include "Random/UniformRand.h"
+#include "Random/GaussRand.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -109,6 +110,13 @@ public:
     void updateAllSites2chains(double temperature, const Hamiltonian& hamiltonian,
 			    const Interaction& interaction, const Polymer& secondChain,
 			    double minDist = 3.8);
+			    
+    void updateR02chains(double temperature, const Interaction& interaction, const Polymer& secondChain);
+    void updateTNB02chains(double temperature, const Interaction& interaction, const Polymer& secondChain);
+    void updateAllSites2chainsWithFloatingR0(double temperature, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    
     ///@}
     
     /* only for chains with equal link lenghts*/
