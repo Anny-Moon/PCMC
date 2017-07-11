@@ -120,7 +120,7 @@ public:
     ///@}
     
     /* only for chains with equal link lenghts*/
-    bool selfAvoidingCondition(int site ,double minDist = 3.8);
+    bool selfAvoidingCondition(int site = 0,double minDist = 3.8);
     inline void writeAcceptenceRateInFile(FILE *fp);
 };
 

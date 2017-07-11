@@ -35,7 +35,7 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in1,
 			PolymerMC* polymer_in2,
 			const Hamiltonian* hamiltonian_in,
 			const Interaction* interaction_in,
-			double minDist)
+			double minDist_in)
 {
     readFromParamFile(fileName);
     stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
@@ -45,7 +45,7 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in1,
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
     regime = Regime::twoChains;
-    minDist = 3.8;
+    minDist = minDist_in;
 }
 
 MonteCarlo::~MonteCarlo(){};
