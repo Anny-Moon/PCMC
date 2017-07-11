@@ -734,7 +734,7 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     r12[numMonomers2+1] = Vector::zero; // any number, never used;
     //add the whole this chain:
     for(i=numMonomers2+2; i<N12; i++)
-	r12[i] = r[i-numMonomers2+2];
+	r12[i] = r[i-numMonomers2-2];
 	    
     /* calculate old interaction for site 0 */
     interactionOld = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
