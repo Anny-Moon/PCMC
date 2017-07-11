@@ -722,7 +722,6 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     double randomNumber;
 
     numMonomers2 = secondChain.getNumMonomers();
-    r2 = new Vector [numMonomers2+1];
     r2 = secondChain.getRadiusVectors();
     N12 = numMonomers + numMonomers2 + 3; // sum number of r-vectors in both chains + trash element
     r12 = new Vector [N12];
@@ -782,7 +781,6 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
 	interactionSite.interaction = interactionOld;
 //	printf("REJECT\n");
     }
-    delete [] r2;
     delete [] r12;
 }
 
@@ -799,7 +797,6 @@ void PolymerMC::updateTNB02chains(double temperature, const Interaction& interac
     double theta, gamma, rotation;
 
     numMonomers2 = secondChain.getNumMonomers();
-    r2 = new Vector [numMonomers2+1];
     r2 = secondChain.getRadiusVectors();
     N12 = numMonomers + numMonomers2 + 3; // sum number of r-vectors in both chains + trash element
     r12 = new Vector [N12];
@@ -880,7 +877,6 @@ void PolymerMC::updateTNB02chains(double temperature, const Interaction& interac
     delete [] tOld;
     delete [] nOld;
     delete [] bOld;
-    delete [] r2;
     delete [] r12;
 }
 
