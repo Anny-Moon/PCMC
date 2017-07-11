@@ -54,7 +54,7 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 {
     int fakeCoreNumber; //effective core number
     char* fname1;
-    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp;
+    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2;
     PolymerMC *polymer;
     PolymerMC *polymer2;
     
@@ -104,10 +104,20 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 	ktfp = fopen(fname1, "w");
 	delete [] fname1;
 	
+	fname1 = new char[100];
+	sprintf(fname1,"results/Configurations/%iconfR.dat",fakeCoreNumber);
+	conffp = fopen(fname1, "w");
+	delete [] fname1;
+	
 	if(regime==Regime::twoChains){
 	    fname1 = new char[100];
 	    sprintf(fname1,"results/Configurations/%iconf2.dat",fakeCoreNumber);
 	    ktfp2 = fopen(fname1, "w");
+	    delete [] fname1;
+	    
+	    fname1 = new char[100];
+	    sprintf(fname1,"results/Configurations/%iconfR2.dat",fakeCoreNumber);
+	    conffp2 = fopen(fname1, "w");
 	    delete [] fname1;
 	}
 
@@ -141,6 +151,8 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 		    for(int i=0; i<sweepsPerStep;i++){
 			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 			polymer2->updateAllSites2chainsWithFloatingR0(temperature, *hamiltonian, *interaction, *polymer, minDist);
+			polymer->writeRadiusVectorsInFile(conffp);
+			polymer2->writeRadiusVectorsInFile(conffp2);
 		    }
 		break;
 		default:
@@ -178,10 +190,12 @@ printf("Finally SA is Ok\n");
 	
 	delete polymer;
 	fclose(ktfp);
+	fclose(conffp);
 	
 	if(regime==Regime::twoChains){
 	    delete polymer2;
 	    fclose(ktfp2);
+	    fclose(conffp2);
 	}
     }
     
