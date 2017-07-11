@@ -750,6 +750,9 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     GaussRand gRandZ(r[0].z, 0.2);
     r[0].z = gRandZ();
 
+    for(i = 1; i<numMonomers; i++)
+	r[i] = r[i] + r[0];
+    
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
 //    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
