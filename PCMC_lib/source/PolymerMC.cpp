@@ -912,11 +912,11 @@ void PolymerMC::updateAllSites2chainsWithFloatingR0(double temperature, const Ha
 //	setRadiusVectorsFromVectorsT(r[0]);
 //    }
 
-//    for(i=1;i<10;i++){
+    for(i=1;i<10;i++){
 	updateTNB02chains(temperature, interaction, secondChain);
-	updateR02chains(temperature, interaction, secondChain);
+//	updateR02chains(temperature, interaction, secondChain);
 	
-//    }
+    }
     for(i=1;i<numMonomers;i++){
 	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
 	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);

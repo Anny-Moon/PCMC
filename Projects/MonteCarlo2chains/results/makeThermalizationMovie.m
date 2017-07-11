@@ -159,16 +159,18 @@ writeVideo(writerObj,frame);
 for k=increment:increment:blockNum
  hold off   
     for i=2:N1{k}-1    
-    axis on;
-    axis equal; 
+        h1=line([B1{k}(i,1) B1{k}(i+1,1)],[B1{k}(i,2) B1{k}(i+1,2)],[B1{k}(i,3) B1{k}(i+1,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]); 
+        h2=stem3(B1{k}(i,1),B1{k}(i,2),B1{k}(i,3),'LineStyle','none','Marker','o', 'MarkerFaceColor',[.0 0 0],'MarkerEdgeColor', [.0 0 0],'MarkerSize',10);
+ 
+        axis equal;
+%        axis ([xLimits yLimits zLimits]);% set axes limits as from the first frame
+        axis on;
+        hold on;
+    end
+    
     view([60, -60, 45]);
-    h1=line([B1{k}(i,1) B1{k}(i+1,1)],[B1{k}(i,2) B1{k}(i+1,2)],[B1{k}(i,3) B1{k}(i+1,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]); 
-    h2=stem3(B1{k}(i,1),B1{k}(i,2),B1{k}(i,3),'LineStyle','none','Marker','o', 'MarkerFaceColor',[.0 0 0],'MarkerEdgeColor', [.0 0 0],'MarkerSize',10);
-    hold on;
-end 
-line([B1{k}(1,1) B1{k}(2,1)],[B1{k}(1,2) B1{k}(2,2)],[B1{k}(1,3) B1{k}(2,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
-line([B1{k}(2,1) B1{k}(3,1)],[B1{k}(2,2) B1{k}(3,2)],[B1{k}(2,3) B1{k}(3,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
-axis equal; 
+    line([B1{k}(1,1) B1{k}(2,1)],[B1{k}(1,2) B1{k}(2,2)],[B1{k}(1,3) B1{k}(2,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
+    line([B1{k}(2,1) B1{k}(3,1)],[B1{k}(2,2) B1{k}(3,2)],[B1{k}(2,3) B1{k}(3,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
     
     hold on;
     fprintf('step = %d\n',k);
