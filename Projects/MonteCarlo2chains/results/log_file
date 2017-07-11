@@ -5,8 +5,11 @@ CPU MULTY CORE
 
 Cores 1
 Loops 1
-Steps/loop: 6
+Steps/loop: 1
 
 Regime: 2 chains: Along the chain there is only self avoiding condition,
 but between chains - full interaction.
 Loop 0:	2
+Timer No. 0:	795us427ns
+END
+

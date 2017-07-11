@@ -739,18 +739,18 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     /* calculate old interaction for site 0 */
     interactionOld = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
     
-    saveOldRadiusVectors(0);
+    saveOldRadiusVectors(-1);
     
     /* generate new r0 according Gaussian distribution*/
-    GaussRand gRandX(r[0].x, 0.2);
+    GaussRand gRandX(r[0].x, 0.8);
     r[0].x = gRandX();
-    GaussRand gRandY(r[0].y, 0.2);
+    GaussRand gRandY(r[0].y, 0.8);
     r[0].y = gRandY();
-    GaussRand gRandZ(r[0].z, 0.2);
+    GaussRand gRandZ(r[0].z, 0.8);
     r[0].z = gRandZ();
 
     for(i = 1; i<numMonomers+1; i++)
-	r[i] = r[i] + r[0];
+	r[i] = rOld[i] + r[0] - rOld[0];
     
     //add the whole this chain:
     for(i=numMonomers2+2; i<N12; i++)
@@ -805,7 +805,7 @@ void PolymerMC::updateTNB02chains(double temperature, const Interaction& interac
     interactionOld = interactionSite.interaction;
     
     /* save old vectors */
-    saveOldRadiusVectors(0);
+    saveOldRadiusVectors(-1);
     tOld = new Vector [numMonomers];
     nOld = new Vector [numMonomers];
     bOld = new Vector [numMonomers];
@@ -886,17 +886,17 @@ void PolymerMC::updateAllSites2chainsWithFloatingR0(double temperature, const Ha
 {
     int i;
     
-    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
-	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
-	setRadiusVectorsFromVectorsT(r[0]);
-    }
+//    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
+//	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+//	setRadiusVectorsFromVectorsT(r[0]);
+//    }
     
     updateR02chains(temperature, interaction, secondChain);
-    updateTNB02chains(temperature, interaction, secondChain);
-    for(i=1;i<numMonomers;i++){
-	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
-	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
-    }
+//    updateTNB02chains(temperature, interaction, secondChain);
+//    for(i=1;i<numMonomers;i++){
+//	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
+//	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
+//    }
 /*    
     for(i=0;i<numMonomers;i++){
 	if(!selfAvoidingCondition(i))
