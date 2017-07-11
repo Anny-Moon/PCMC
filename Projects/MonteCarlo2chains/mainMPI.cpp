@@ -45,7 +45,7 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     PolymerMC* polymer2;
     polymer2 = parser.createPolymer();
     polymer2->setMonomerLengths(3.8);
-    Vector r0(10,5,0);
+    Vector r0(1,0,0);
     polymer2->initWithRandomTaus(r0);
     
     Hamiltonian* hamiltonian;

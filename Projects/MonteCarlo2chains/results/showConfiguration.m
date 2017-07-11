@@ -13,13 +13,26 @@
 %   limitations under the License.
 
 function [] = showConfiguration(step)
+fileName = sprintf('Configurations/0confR2.dat');
+% color scheme
+linkColorR = rand;
+linkColorG = rand;
+linkColorB = rand;
 
-if nargin < 1
+atomColorR = rand;
+atomColorG = rand;
+atomColorB = rand;
+if nargin < 1 %polymer 1
+    fileName = sprintf('Configurations/0confR.dat');
+    linkColorR = 0;
+    linkColorG = 0;
+    linkColorB = 0;
+
+    atomColorR = 0;
+    atomColorG = 0;
+    atomColorB = 0;
     step =0;
 end
-
-%fileName = sprintf('Configurations/%s_configurations.dat',polymerName);
-fileName = sprintf('Configurations/0confR2.dat');
 
 %--------count number of sites-------------
 linesInBlock = 0;
@@ -66,15 +79,6 @@ fclose(fp);
 set(gcf, 'color','white');
 axis equal;
 axis on;
-
-% color scheme
-linkColorR = rand;
-linkColorG = rand;
-linkColorB = rand;
-
-atomColorR = rand;
-atomColorG = rand;
-atomColorB = rand;
 
 % drawing
 k = step+1;
