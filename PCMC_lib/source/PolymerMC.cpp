@@ -541,7 +541,7 @@ void PolymerMC::updateKappa2chains(int site, double temperature, const Hamiltoni
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    if(selfAvoidingCondition(0,minDist)){
+    if(selfAvoidingCondition(site,minDist)){
 	numMonomers2 = secondChain.getNumMonomers();
 	r2 = secondChain.getRadiusVectors();
 	N12 = numMonomers + numMonomers2 + 2 - site; // sum number of r-vectors in both chains + trash element
@@ -624,7 +624,7 @@ void PolymerMC::updateTau2chains(int site, double temperature, const Hamiltonian
     saveOldRadiusVectors(site);
     setNewRadiusVectorsViaRotation(site);
     
-    if(selfAvoidingCondition(0, minDist)){
+    if(selfAvoidingCondition(site, minDist)){
 	numMonomers2 = secondChain.getNumMonomers();
 	r2 = secondChain.getRadiusVectors();
 	N12 = numMonomers + numMonomers2 + 2 - site; // sum number of r-vectors in both chains + trash element
@@ -763,7 +763,7 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
-//    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
 
     /* Metropolis probabilyty */
     probability = exp((-interactionNew + interactionOld)/temperature);
@@ -868,7 +868,7 @@ printf("dp %g\n",Vector::dotProduct(t[0],b[0]));
 	
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
-    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+//    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
 
     /* Metropolis probabilyty */
     probability = exp((-interactionNew + interactionOld)/temperature);
@@ -879,7 +879,7 @@ printf("dp %g\n",Vector::dotProduct(t[0],b[0]));
 	//kappa,tau and t,n,b did't change
 	interactionSite.site = 0;
 	interactionSite.interaction = interactionNew;
-	printf("ACCEPT\n");
+//	printf("ACCEPT\n");
     }
     
     else{ //REJECT
@@ -893,7 +893,7 @@ printf("dp %g\n",Vector::dotProduct(t[0],b[0]));
 	
 	interactionSite.site = 0;
 	interactionSite.interaction = interactionOld;
-	printf("REJECT\n");
+//	printf("REJECT\n");
     }
     delete [] tOld;
     delete [] nOld;
@@ -912,11 +912,11 @@ void PolymerMC::updateAllSites2chainsWithFloatingR0(double temperature, const Ha
 //	setRadiusVectorsFromVectorsT(r[0]);
 //    }
 
-    for(i=1;i<10;i++){
+//    for(i=1;i<10;i++){
 	updateTNB02chains(temperature, interaction, secondChain);
-//	updateR02chains(temperature, interaction, secondChain);
+	updateR02chains(temperature, interaction, secondChain);
 	
-    }
+//    }
     for(i=1;i<numMonomers;i++){
 	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
 	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
