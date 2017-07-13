@@ -100,6 +100,8 @@ public:
 				const Vector& n0 = Vector::eX,
 				const Vector& b0 = Vector::eY);
     
+    void setKappasTausFromVectorsTNB();
+    
     /** Set all lengthes of monomers equal to length */
     void setMonomerLengths(double length);
     
@@ -113,6 +115,7 @@ public:
     const Vector* getRadiusVectors() const;
     const Vector& getRadiusVector(int site) const;
     const Vector* getVectorsT() const;
+    const Vector* getVectorsN() const;
     const Vector* getVectorsB() const;
     double getKappa(int i) const;
     double getTau(int i) const;
@@ -129,6 +132,7 @@ public:
     inline void writeInParamFile(FILE* fp) const;
     inline double distance(int siteA, int siteB) const;
     
+    void reverse();
 };
 
 inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_in)

@@ -21,7 +21,7 @@ end
 
 fileNameIn = sprintf('Configurations/0confR2.dat');
 fileNameIn1 = sprintf('Configurations/0confR.dat');
-fileNameOut = sprintf('termalization.avi');
+fileNameOut = sprintf('thermalization.avi');
 
 %--------count number of blocks and sites-------------
 linesInBlock = 0;
@@ -109,7 +109,7 @@ fclose(fp);
 
 % write video
 writerObj = VideoWriter(fileNameOut);% avi name
-writerObj.FrameRate = 10;% frames per second
+writerObj.FrameRate = 2;% frames per second
 %writeObj.Quaity = 100;
 %writeObj.Height=[2000,2000];
 
@@ -125,13 +125,13 @@ fprintf('Number of monomers in initial chain: %d\n',N{k}-1);
 for i=2:N{k}-1    
     axis on;
     axis equal; 
-    view([60, -60, 45]);
+    view([60, 60, 45]);
     h1=line([B{k}(i,1) B{k}(i+1,1)],[B{k}(i,2) B{k}(i+1,2)],[B{k}(i,3) B{k}(i+1,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .45 .7]); 
     h2=stem3(B{k}(i,1),B{k}(i,2),B{k}(i,3),'LineStyle','none','Marker','o', 'MarkerFaceColor',[.9 0 0],'MarkerEdgeColor', [.3 0 0],'MarkerSize',10);
     hold on;
 end 
 
-view([60, -60, 45]);
+view([60, 60, 45]);
 line([B{k}(1,1) B{k}(2,1)],[B{k}(1,2) B{k}(2,2)],[B{k}(1,3) B{k}(2,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .4 .6]);
 line([B{k}(2,1) B{k}(3,1)],[B{k}(2,2) B{k}(3,2)],[B{k}(2,3) B{k}(3,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .4 .6]);
 axis equal; 
@@ -140,7 +140,7 @@ hold on;
 for i=2:N1{k}-1    
     axis on;
     axis equal; 
-    view([60, -60, 45]);
+    view([60, 60, 45]);
     h1=line([B1{k}(i,1) B1{k}(i+1,1)],[B1{k}(i,2) B1{k}(i+1,2)],[B1{k}(i,3) B1{k}(i+1,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]); 
     h2=stem3(B1{k}(i,1),B1{k}(i,2),B1{k}(i,3),'LineStyle','none','Marker','o', 'MarkerFaceColor',[.0 0 0],'MarkerEdgeColor', [.0 0 0],'MarkerSize',10);
     hold on;
@@ -168,7 +168,7 @@ for k=increment:increment:blockNum
         hold on;
     end
     
-    view([60, -60, 45]);
+    view([60, 60, 45]);
     line([B1{k}(1,1) B1{k}(2,1)],[B1{k}(1,2) B1{k}(2,2)],[B1{k}(1,3) B1{k}(2,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
     line([B1{k}(2,1) B1{k}(3,1)],[B1{k}(2,2) B1{k}(3,2)],[B1{k}(2,3) B1{k}(3,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .0 .0]);
     
@@ -177,7 +177,7 @@ for k=increment:increment:blockNum
     fprintf('Number of monomers: %d\n',N{k}-1);
 
     for i=2:N{k}-1    
-        view([60, -60, 45]);
+        view([60, 60, 45]);
         h1=line([B{k}(i,1) B{k}(i+1,1)],[B{k}(i,2) B{k}(i+1,2)],[B{k}(i,3) B{k}(i+1,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .45 .7]); 
         h2=stem3(B{k}(i,1),B{k}(i,2),B{k}(i,3),'LineStyle','none','Marker','o', 'MarkerFaceColor',[.9 0 0],'MarkerEdgeColor', [.3 0 0],'MarkerSize',10);
  
@@ -187,7 +187,7 @@ for k=increment:increment:blockNum
         hold on;
     end
     
-    view([60, -60, 45]);
+    view([60, 60, 45]);
     line([B{k}(1,1) B{k}(2,1)],[B{k}(1,2) B{k}(2,2)],[B{k}(1,3) B{k}(2,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .4 .6]);
     line([B{k}(2,1) B{k}(3,1)],[B{k}(2,2) B{k}(3,2)],[B{k}(2,3) B{k}(3,3)],'LineStyle','-','LineWidth',3,'Color',[.0 .4 .6]);
     
@@ -201,6 +201,6 @@ for k=increment:increment:blockNum
 end
 
 close(writerObj);
-close;
+%close;
 
 clear;

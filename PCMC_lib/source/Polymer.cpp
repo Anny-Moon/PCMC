@@ -451,6 +451,26 @@ void Polymer::setVectorsTNBfromKappaTau(const Vector& t0, const Vector& n0, cons
     
 }
 
+void Polymer::setKappasTausFromVectorsTNB()
+{
+    int i;
+    int  tmp_i;
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::setKappasTausFromVectorsTNB()\n\tt = NULL");
+    _PCA_CATCH_VOID_POINTER(n, "Polymer::setKappasTausFromVectorsTNB()\n\tn = NULL");
+    _PCA_CATCH_VOID_POINTER(b, "Polymer::setKappasTausFromVectorsTNB()\n\tb = NULL");
+    _PCA_CATCH_VOID_POINTER(kappa, "Polymer::setKappasTausFromVectorsTNB()\n\tkappa = NULL");
+    _PCA_CATCH_VOID_POINTER(tau, "Polymer::setKappasTausFromVectorsTNB()\n\ttau = NULL");
+    
+    kappa[0] = 0.0;
+    tau[0] = 0.0;
+    for(i=1;i<numMonomers;i++){
+	kappa[i]=acos(Vector::dotProduct(t[i], t[i-1]));
+	tau[i] = sign(Vector::dotProduct(b[i-1]*b[i],t[i-1]))*acos(Vector::dotProduct(b[i], b[i-1]));
+//	tmp_i = sign(Vector::dotProduct(b[i-1]*b[i],t[i-1]));
+	//printf("%g %i %g\n",Vector::dotProduct(b[i-1]*b[i],t[i-1]),tmp_i,ac);
+    }
+}
+
 void Polymer::setMonomerLengths(double length)
 {
     int i;
@@ -492,6 +512,12 @@ const Vector* Polymer::getVectorsT() const
 {
     _PCA_CATCH_VOID_POINTER(t, "Polymer::getVectorsT()");
     return t;
+}
+
+const Vector* Polymer::getVectorsN() const
+{
+    _PCA_CATCH_VOID_POINTER(n, "Polymer::getVectorsN()");
+    return n;
 }
 
 const Vector* Polymer::getVectorsB() const
@@ -574,6 +600,44 @@ void Polymer::writeTBMfile(char* fileName) const
     }
     
     fclose(fp);
+}
+
+void Polymer::reverse()
+{
+    int i;
+    Vector tmp;
+    
+    /* reverse radius vectors */
+    for(i=0; i<(numMonomers+1+1)/2 ;i++){
+	tmp = r[i];
+	r[i] = r[numMonomers-i];
+	r[numMonomers-i] = tmp;
+    }
+    
+    /* reverse t */
+    for(i=0; i<(numMonomers+1)/2; i++){
+	tmp = t[i];
+	t[i] = -t[numMonomers-1-i];
+	t[numMonomers-1-i] = -tmp;
+/*	
+	tmp = n[i];
+	n[i] = -n[numMonomers-1-i];
+	n[numMonomers-1-i] = -tmp;
+	
+	tmp = b[i];
+	b[i] = -b[numMonomers-1-i];
+	b[numMonomers-1-i] = -tmp;
+	*/
+    }
+    
+    /* reverse n, b */
+    for(i=0; i<numMonomers; i++){
+	tmp = n[i];
+	n[i] = b[numMonomers-1-i];
+	b[numMonomers-1-i] = tmp;
+    }
+    
+    
 }
 
 }// end of namespace

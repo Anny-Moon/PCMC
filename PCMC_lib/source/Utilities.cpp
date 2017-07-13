@@ -117,5 +117,9 @@ int commonDivisor(int int1, int int2, int upperLimit)
 return 1;
 }
 
+int sign(double x)
+{
+    return ((x > 0) - (x < 0));
+}
 
 }// End namespace

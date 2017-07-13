@@ -30,8 +30,8 @@ int main(int np, char **p)
     
     if (myCoreNumber==0)
 	printf("Start\n");
-//    RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
-RandomGenerator::initialization(1*(myCoreNumber+1));    
+    RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
+//RandomGenerator::initialization(1*(myCoreNumber+1));    
 
     paramFileName = new char[100];
     sprintf(paramFileName, "PCMC_parameters.dat");
@@ -45,7 +45,7 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     PolymerMC* polymer2;
     polymer2 = parser.createPolymer();
     polymer2->setMonomerLengths(3.8);
-    Vector r0(1,0,0);
+    Vector r0(4,0,0);
     polymer2->initWithRandomTaus(r0);
     
     Hamiltonian* hamiltonian;

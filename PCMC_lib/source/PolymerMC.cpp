@@ -763,7 +763,7 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
     
     /* calculate new interaction for site */
     interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
-    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+//    printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
 
     /* Metropolis probabilyty */
     probability = exp((-interactionNew + interactionOld)/temperature);
@@ -907,16 +907,15 @@ void PolymerMC::updateAllSites2chainsWithFloatingR0(double temperature, const Ha
 {
     int i;
     
-//    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
-//	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
-//	setRadiusVectorsFromVectorsT(r[0]);
-//    }
+    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
+	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+	setRadiusVectorsFromVectorsT(r[0]);
+    }
 
-//    for(i=1;i<10;i++){
+    for(i=1;i<10;i++){
 	updateTNB02chains(temperature, interaction, secondChain);
-	updateR02chains(temperature, interaction, secondChain);
-	
-//    }
+    }
+    updateR02chains(temperature, interaction, secondChain);
     for(i=1;i<numMonomers;i++){
 	updateKappa2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);
 	updateTau2chains(i, temperature, hamiltonian, interaction, secondChain, minDist);

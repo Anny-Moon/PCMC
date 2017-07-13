@@ -43,6 +43,9 @@ int rounding(double number);
 * a loop, where upperLimit will be the result of previous step-1.*/
 int commonDivisor(int int1, int int2, int upperLimit=0);
 
+/** Returns sign of value and 0 if x==0 */
+int sign(double x);
+
 }// End of namespace
 
 #endif
