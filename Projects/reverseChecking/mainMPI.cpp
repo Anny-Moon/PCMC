@@ -42,7 +42,7 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     Hamiltonian* hamiltonian;
     hamiltonian = parser.createHamiltonian();
     
-    PolymerMC polymer(Polymer::FileType::angles ,"0conf.dat");
+    PolymerMC polymer(Polymer::FileType::angles ,"0conf.dat",0,5);
 //    polymer = parser.createPolymer();
 //    polymer->setMonomerLengths(3.8);
 //    polymer->initWithRandomTaus();
@@ -51,6 +51,13 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     fp = fopen("kappaTau.dat", "w");
     polymer.writeKappaTauInFile(fp);
     polymer.writeRadiusVectorsInFile(fp);
+    
+    polymer.setKappasTausFromVectorsTNB();
+    polymer.setVectorsTNBfromKappaTau();
+    polymer.setRadiusVectorsFromVectorsT();
+    polymer.writeKappaTauInFile(fp);
+    polymer.writeRadiusVectorsInFile(fp);
+    
     double energy;
     energy = hamiltonian->energyAllSites(polymer);
     fprintf(fp,"old: %g\n",energy);

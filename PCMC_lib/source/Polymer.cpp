@@ -464,7 +464,8 @@ void Polymer::setKappasTausFromVectorsTNB()
     kappa[0] = 0.0;
     tau[0] = 0.0;
     for(i=1;i<numMonomers;i++){
-	kappa[i]=acos(Vector::dotProduct(t[i], t[i-1]));
+//	kappa[i]=acos(Vector::dotProduct(t[i], t[i-1]));
+	kappa[i]=sign(Vector::dotProduct(t[i],b[i-1]))*acos(Vector::dotProduct(t[i], t[i-1]));
 	tau[i] = sign(Vector::dotProduct(b[i-1]*b[i],t[i-1]))*acos(Vector::dotProduct(b[i], b[i-1]));
 //	tmp_i = sign(Vector::dotProduct(b[i-1]*b[i],t[i-1]));
 	//printf("%g %i %g\n",Vector::dotProduct(b[i-1]*b[i],t[i-1]),tmp_i,ac);
@@ -619,15 +620,16 @@ void Polymer::reverse()
 	tmp = t[i];
 	t[i] = -t[numMonomers-1-i];
 	t[numMonomers-1-i] = -tmp;
+
 /*	
 	tmp = n[i];
-	n[i] = -n[numMonomers-1-i];
-	n[numMonomers-1-i] = -tmp;
+	n[i] = n[numMonomers-1-i];
+	n[numMonomers-1-i] = tmp;
 	
 	tmp = b[i];
-	b[i] = -b[numMonomers-1-i];
-	b[numMonomers-1-i] = -tmp;
-	*/
+	b[i] = b[numMonomers-1-i];
+	b[numMonomers-1-i] = tmp;
+*/	
     }
     
     /* reverse n, b */
