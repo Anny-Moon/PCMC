@@ -166,6 +166,26 @@ void PolymerMC::setNewRadiusVectorsViaRotation(int site)
     }
 }
 
+void PolymerMC::setNewRadiusVectorsViaRotationBw(int site)
+{
+    int j;
+    Vector tmpVector;
+    
+    //we changed kappa/tau at site-th site  => r[site-1], r[site-2],... will change
+    tNew = frenetVectorTbw(kappaNew, tauNew, t[site], n[site], b[site]);
+    bNew = frenetVectorBbw(kappaNew, tauNew, t[site], n[site], b[site]);
+    nNew = bNew * tNew;
+/*
+    for(j=site+1;j<numMonomers+1;j++){
+	tmpVector = r[j] - r[site];
+	
+	r[j] = Vector::dotProduct(tmpVector,t[site])*tNew +\
+	    Vector::dotProduct(tmpVector,n[site])*nNew +\
+	    Vector::dotProduct(tmpVector,b[site])*bNew + r[site];
+    }
+*/
+}
+
 /* This function is called when ACCEPT */
 void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 {
@@ -189,6 +209,24 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 	}
 }
 
+void PolymerMC::setNewVectorsTNBfromKappaTauBw(int site)
+{
+    int i;
+    
+    t[site] = tNew;
+    n[site] = nNew;
+    b[site] = bNew;
+    
+    for(i=site;i<numMonomers-1;i++){
+//	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+//	t[i+1] = t[i+1] / t[i+1].norm();
+	t[i-1] = frenetVectorTbw(kappa[i], tau[i], t[i], n[i], b[i]);
+	b[i-1] = frenetVectorBbw(kappa[i], tau[i], t[i], n[i], b[i]);
+//	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
+//	b[i+1] = b[i+1] / b[i+1].norm();
+	n[i-1] = b[i-1] * t[i-1];
+	}
+}
 void PolymerMC::updateKappa(int site, double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
     int i;

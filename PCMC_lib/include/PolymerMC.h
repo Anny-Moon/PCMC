@@ -73,6 +73,15 @@ public:
     /** Set t- n- b[i+1] and t- n- bNew from kappa- tau[i] */
     void setNewVectorsTNBfromKappaTau(int site);
     
+    /**@ Backward functions. Needed for reverse chain Monte Carlo*/
+    ///@{
+    inline const Vector& frenetVectorTbw(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b);
+    inline const Vector& frenetVectorBbw(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b);
+    void setNewVectorsTNBfromKappaTauBw(int site);
+    void setNewRadiusVectorsViaRotationBw(int site);
+    ///@}
     /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
     void updateKappa(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
@@ -129,6 +138,25 @@ inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
     fprintf(fp, "%i\t%i\n", acceptNumberKappa, acceptNumberTau);
     fflush(fp);
 }
+
+inline const Vector& PolymerMC::frenetVectorTbw(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b)
+{    
+    Vector answ;
+    answ = t*cos(kappa)-n*sin(kappa);
+    return (answ/answ.norm());
+}
+
+inline const Vector& PolymerMC::frenetVectorBbw(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b)
+{
+    double tmp;
+    Vector answ;
+    tmp = sin(tau)*sin(tau) + cos(kappa)*cos(tau);
+    answ = (b*cos(tau) + n*sin(tau)*cos(kappa) + t*sin(tau)*sin(kappa))/tmp;
+    return (answ/answ.norm());
+}
+
 
 }//end of namecpace
 #endif
