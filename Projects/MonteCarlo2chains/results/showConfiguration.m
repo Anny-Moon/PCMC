@@ -13,7 +13,7 @@
 %   limitations under the License.
 
 function [] = showConfiguration(step)
-fileName = sprintf('Configurations/0confR2.dat');
+fileName = sprintf('Configurations/0confR.dat');
 % color scheme
 linkColorR = rand;
 linkColorG = rand;
@@ -23,7 +23,7 @@ atomColorR = rand;
 atomColorG = rand;
 atomColorB = rand;
 if nargin < 1 %polymer 1
-    fileName = sprintf('Configurations/0confR.dat');
+    fileName = sprintf('Configurations/0confR2.dat');
     linkColorR = 0;
     linkColorG = 0;
     linkColorB = 0;

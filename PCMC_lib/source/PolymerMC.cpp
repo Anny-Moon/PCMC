@@ -144,6 +144,14 @@ void PolymerMC::saveOldRadiusVectors(int site)
 	rOld[j]=r[j];
 }
 
+void PolymerMC::saveOldRadiusVectorsBw(int site)
+{
+    int j;
+
+    for(j=site-1;j>=0;j--)
+	rOld[j]=r[j];
+}
+
 /* This function is caled before accept-reject condition*/
 void PolymerMC::setNewRadiusVectorsViaRotation(int site)
 {
@@ -177,15 +185,16 @@ void PolymerMC::setNewRadiusVectorsViaRotationBw(int site)
     tNew = frenetVectorTbw(kappaNew, tauNew, t[site], n[site], b[site]);
     bNew = frenetVectorBbw(kappaNew, tauNew, t[site], n[site], b[site]);
     nNew = bNew * tNew;
-/*
-    for(j=site+1;j<numMonomers+1;j++){
-	tmpVector = r[j] - r[site];
+
+    for(j=site-1;j>=0;j--){
+	tmpVector = r[site] - r[j];
 	
-	r[j] = Vector::dotProduct(tmpVector,t[site])*tNew +\
-	    Vector::dotProduct(tmpVector,n[site])*nNew +\
-	    Vector::dotProduct(tmpVector,b[site])*bNew + r[site];
+	r[j] = -Vector::dotProduct(tmpVector,t[site-1])*tNew -\
+	    Vector::dotProduct(tmpVector,n[site-1])*nNew -\
+	    Vector::dotProduct(tmpVector,b[site-1])*bNew + r[site];
+	    
     }
-*/
+printf("%g\n", (r[1]-r[0]).norm());
 }
 
 /* This function is called when ACCEPT */
@@ -217,11 +226,11 @@ void PolymerMC::setNewVectorsTNBfromKappaTauBw(int site)
 {
     int i;
     
-    t[site] = tNew;
-    n[site] = nNew;
-    b[site] = bNew;
+    t[site-1] = tNew;
+    n[site-1] = nNew;
+    b[site-1] = bNew;
     
-    for(i=site;i<numMonomers-1;i++){
+    for(i=site-1;i>0;i--){
 //	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
 //	t[i+1] = t[i+1] / t[i+1].norm();
 	t[i-1] = frenetVectorTbw(kappa[i], tau[i], t[i], n[i], b[i]);
@@ -971,6 +980,212 @@ void PolymerMC::updateAllSites2chainsWithFloatingR0(double temperature, const Ha
 }
 
 /////////////////////////////////////////////////////////////
+//~~~~~~~~~~~~~~~~~~~~~2chains backwards~~~~~~~~~~~~~~~~~~~~~
+void PolymerMC::updateKappa2chainsBw(int site, double temperature, const Hamiltonian& hamiltonian,
+		const Interaction& interaction, const Polymer& secondChain, double minDist)
+{
+    int i;
+    const Vector *r2;
+    Vector *r12;
+    int N12, numMonomers2;
+    double probability;
+    double interactionOld, interactionNew;
+    double randomNumber;
+    
+    /* generate new random Kappa according distribution */
+    if(site==0)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
+    else if(site==numMonomers-1)
+	kappaNew = hamiltonian.generateKappa(site, tau[site], 0.0, kappa[site-1], temperature);
+    else
+	kappaNew = hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+    tauNew = tau[site];
+//    printf("oldKappa[%i] = %g    newKappa = %g\n",site,  kappa[site], kappaNew);
+    
+    saveOldRadiusVectorsBw(site);
+    setNewRadiusVectorsViaRotationBw(site);
+//setVectorsTNBfromKappaTau();
+//setRadiusVectorsFromVectorsT();
+//tNew=t[site-1];
+//nNew=n[site-1];
+//bNew=b[site-1];
+    if(selfAvoidingCondition(site,minDist)){
+	numMonomers2 = secondChain.getNumMonomers();
+	r2 = secondChain.getRadiusVectors();
+	N12 = numMonomers2 + 1 + site + 1; // sum number of r-vectors in both chains + trash element
+	r12 = new Vector [N12];
+	
+    //first calsulate old interaction
+	//write the whole second chain:
+	for(i=0; i<numMonomers2 + 1; i++)
+	    r12[i] = r2[i];
+	    
+	r12[numMonomers2+1] = Vector::zero; // any number, never used;
+	
+	//add the part from this chain:
+	for(i=numMonomers2+2; i<N12; i++)
+	    r12[i] = rOld[site-1-i+numMonomers2+2];
+	    
+	/* calculate or take old interaction for site */
+	if(interactionSite.site == site)
+	    interactionOld = interactionSite.interaction;
+    
+	else
+	    interactionOld = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
+    //second calsulate new interaction
+	//replace in r12 old radius vectors from this chain wiht present ones:
+	for(i=numMonomers2+2; i<N12; i++)
+	    r12[i] = r[site-1-i+numMonomers2+2];
+//printf("site = %i\n", site);
+//for(i=0;i<N12;i++){
+//    r12[i].print();
+//}   
+	/* calculate new interaction for site */
+	interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
+//    	printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+    
+	probability = exp((-interactionNew + interactionOld)/temperature);
+	randomNumber = uniRand();
+//    	printf("prob = %g  rand = %g\n", probability, randomNumber);
+	    
+	    
+	if(randomNumber<probability){ //ACCEPT
+	    kappa[site] = kappaNew;
+	    setNewVectorsTNBfromKappaTauBw(site);
+	    interactionSite.site = site;
+	    interactionSite.interaction = interactionNew;
+	    acceptNumberKappa++;
+		printf("ACCEPT\n");
+	}
+    
+	else{ //REJECT
+	    for(i=site-1;i>=0;i--)
+		r[i] = rOld[i];
+	    interactionSite.site = site;
+	    interactionSite.interaction = interactionOld;
+		printf("REJECT\n");
+	}
+	
+	delete [] r12;
+    }
+    
+    else{ //REJECT: SELF AVOIDING CONDITION
+	    for(i=site-1;i>=0;i--)
+		r[i] = rOld[i];
+		printf("REJECT SA\n");
+	}
+}
+
+void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltonian& hamiltonian,
+		const Interaction& interaction, const Polymer& secondChain, double minDist)
+{
+    int i;
+    const Vector *r2;
+    Vector *r12;
+    int N12, numMonomers2;
+    double probability;
+    double interactionOld, interactionNew;
+    double randomNumber;
+
+    /* generate new random Tau according distribution */
+    tauNew = hamiltonian.generateTau(site, kappa[site], temperature);
+    kappaNew = kappa[site];
+//    printf("oldTau[%i] = %g    newTau = %g\n", site, tau[site], tauNew);
+    
+    saveOldRadiusVectors(site);
+    setNewRadiusVectorsViaRotation(site);
+
+    
+    if(selfAvoidingCondition(site, minDist)){
+	numMonomers2 = secondChain.getNumMonomers();
+	r2 = secondChain.getRadiusVectors();
+	N12 = numMonomers + numMonomers2 + 2 - site; // sum number of r-vectors in both chains + trash element
+	r12 = new Vector [N12];
+	
+    //first calsulate old interaction
+	//write the whole second chain:
+	for(i=0; i<numMonomers2 + 1; i++)
+	    r12[i] = r2[i];
+	    
+	r12[numMonomers2+1] = Vector::zero; // any number, never used;
+	
+	//add the part from this chain:
+	for(i=numMonomers2+2; i<N12; i++)
+	    r12[i] = rOld[site+1+i-numMonomers2-2];
+
+//for(int c=0;c<N12;c++)
+//r12[c].print();
+	    
+	/* calculate or take old interaction for site */
+	if(interactionSite.site == site)
+	    interactionOld = interactionSite.interaction;
+    
+	else
+	    interactionOld = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
+    //second calsulate new interaction
+	//replace in r12 old radius vectors from this chain wiht present ones:
+	for(i=numMonomers2+2; i<N12; i++)
+	    r12[i] = r[site+1+i-numMonomers2-2];
+	    
+	/* calculate new interaction for site */
+	interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
+//    	printf("oldInt = %g    newInt = %g\n", interactionOld, interactionNew);
+
+	/* Metropolis probabilyty */
+	probability = exp((-interactionNew + interactionOld)/temperature);
+    
+	randomNumber = uniRand();
+	if(randomNumber<probability){ //ACCEPT
+	    tau[site] = tauNew;
+	    setNewVectorsTNBfromKappaTau(site);
+	    interactionSite.site = site;
+	    interactionSite.interaction = interactionNew;
+	    acceptNumberTau++;
+//		printf("ACCEPT\n");
+	}
+    
+	else{ //REJECT
+	    for(i=site+1;i<numMonomers+1;i++)
+		r[i] = rOld[i];
+	    
+	    interactionSite.site = site;
+	    interactionSite.interaction = interactionOld;
+//		printf("REJECT\n");
+	}
+	delete [] r12;
+    }
+    
+    else{ //REJECT: SALF AVOIDING CONDITION
+	for(i=site+1;i<numMonomers+1;i++)
+	    r[i] = rOld[i];
+//		printf("REJECT SA\n");
+    }
+}
+
+void PolymerMC::updateAllSites2chainsBw(double temperature, const Hamiltonian& hamiltonian,
+		const Interaction& interaction, const Polymer& secondChain, double minDist)
+{
+    int i;
+/*    
+    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
+	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+	setRadiusVectorsFromVectorsT(r[0]);
+    }
+*/    
+    for(i=numMonomers-1;i>1;i--){//0
+	updateKappa2chainsBw(i, temperature, hamiltonian, interaction, secondChain, minDist);
+//	updateTau2chainsBw(i, temperature, hamiltonian, interaction, secondChain, minDist);
+    }
+/*    
+    for(i=0;i<numMonomers;i++){
+	if(!selfAvoidingCondition(i))
+	    printf("!SA\n");
+    }
+*/
+}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 /* only for chains with equal link lenghts*/
 bool PolymerMC::selfAvoidingCondition(int site, double minDist)
 {

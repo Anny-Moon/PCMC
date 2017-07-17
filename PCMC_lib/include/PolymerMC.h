@@ -67,6 +67,9 @@ public:
     /** Saves old radius vectors starting from (site+1): rOld[site+1]=r[site+1] ...*/
     void saveOldRadiusVectors(int site);
     
+    /** Saves old radius vectors starting from (site-1): rOld[site-1]=r[site-1] ...*/
+    void saveOldRadiusVectorsBw(int site);
+    
     /** This function changes only! r[site+1], r[site+2]... */
     void setNewRadiusVectorsViaRotation(int site);
     
@@ -126,6 +129,15 @@ public:
 			    const Interaction& interaction, const Polymer& secondChain,
 			    double minDist = 3.8);
     
+    void updateKappa2chainsBw(int site, double temperarture, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    void updateTau2chainsBw(int site, double temperarture, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
+    void updateAllSites2chainsBw(double temperature, const Hamiltonian& hamiltonian,
+			    const Interaction& interaction, const Polymer& secondChain,
+			    double minDist = 3.8);
     ///@}
     
     /* only for chains with equal link lenghts*/
