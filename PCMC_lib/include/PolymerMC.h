@@ -75,9 +75,9 @@ public:
     
     /**@ Backward functions. Needed for reverse chain Monte Carlo*/
     ///@{
-    inline const Vector& frenetVectorTbw(double kappa, double tau,
+    inline const Vector frenetVectorTbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b);
-    inline const Vector& frenetVectorBbw(double kappa, double tau,
+    inline const Vector frenetVectorBbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b);
     void setNewVectorsTNBfromKappaTauBw(int site);
     void setNewRadiusVectorsViaRotationBw(int site);
@@ -139,7 +139,7 @@ inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
     fflush(fp);
 }
 
-inline const Vector& PolymerMC::frenetVectorTbw(double kappa, double tau,
+inline const Vector PolymerMC::frenetVectorTbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b)
 {    
     Vector answ;
@@ -147,7 +147,7 @@ inline const Vector& PolymerMC::frenetVectorTbw(double kappa, double tau,
     return (answ/answ.norm());
 }
 
-inline const Vector& PolymerMC::frenetVectorBbw(double kappa, double tau,
+inline const Vector PolymerMC::frenetVectorBbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b)
 {
     double tmp;

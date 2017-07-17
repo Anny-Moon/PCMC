@@ -441,11 +441,13 @@ void Polymer::setVectorsTNBfromKappaTau(const Vector& t0, const Vector& n0, cons
     b[0] = b0/b0.norm();
 
     for(i=0;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
-	t[i+1] = t[i+1] / t[i+1].norm();
+//	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+//	t[i+1] = t[i+1] / t[i+1].norm();
 	    //t[i+1]=t[i]*(1-s*s*kappa[i]*kappa[i]/2)+n[i]*s*kappa[i]*sqrt(1-s*s*kappa[i]*kappa[i]/4);
-	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
-	b[i+1] = b[i+1] / b[i+1].norm();
+	t[i+1] = frenetVectorT(kappa[i+1], tau[i+1], t[i], n[i], b[i]);
+//	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
+//	b[i+1] = b[i+1] / b[i+1].norm();
+	b[i+1] = frenetVectorB(kappa[i+1], tau[i+1], t[i], n[i], b[i]);
 	n[i+1] = b[i+1] * t[i+1];
     }
     

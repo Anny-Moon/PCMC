@@ -96,6 +96,11 @@ public:
     ///@}    
     /** Set vecors t, n, b from kappas, taus and monomerlength(!)
     * arguments - t[0], b[0], z[0]*/
+    inline const Vector frenetVectorT(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b);
+    inline const Vector frenetVectorB(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b);
+    
     void setVectorsTNBfromKappaTau(const Vector& t0 = Vector::eZ,
 				const Vector& n0 = Vector::eX,
 				const Vector& b0 = Vector::eY);
@@ -134,6 +139,22 @@ public:
     
     void reverse();
 };
+
+inline const Vector Polymer::frenetVectorT(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b)
+{    
+    Vector answ;
+    answ = cos(kappa)*t + sin(kappa)*cos(tau)*n + sin(kappa)*sin(tau)*b;
+    return (answ/answ.norm());
+}
+inline const Vector Polymer::frenetVectorB(double kappa, double tau,
+			const Vector& t, const Vector& n, const Vector& b)
+{    
+    Vector answ;
+    answ = cos(tau)*b - sin(tau)*n;
+    return (answ/answ.norm());
+}
+
 
 inline void Polymer::setRadiusVector(int i, double x_in, double y_in, double z_in)
 {

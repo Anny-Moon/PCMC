@@ -151,10 +151,12 @@ void PolymerMC::setNewRadiusVectorsViaRotation(int site)
     Vector tmpVector;
     
     //we changed kappa/tau at site-th site  => r[site+1], r[site+2],... will change
-    tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
-    tNew = tNew / tNew.norm();
-    bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
-    bNew = bNew / bNew.norm();
+//    tNew = cos(kappaNew)*t[site-1] + sin(kappaNew)*cos(tauNew)*n[site-1] + sin(kappaNew)*sin(tauNew)*b[site-1];
+//    tNew = tNew / tNew.norm();
+    tNew = frenetVectorT(kappaNew, tauNew, t[site-1], n[site-1], b[site-1]);
+//    bNew = cos(tauNew)*b[site-1]-sin(tauNew)*n[site-1];
+//    bNew = bNew / bNew.norm();
+    bNew = frenetVectorB(kappaNew, tauNew, t[site-1], n[site-1], b[site-1]);
     nNew = bNew * tNew;
     
     for(j=site+1;j<numMonomers+1;j++){
@@ -201,10 +203,12 @@ void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
     b[site] = bNew;
     
     for(i=site;i<numMonomers-1;i++){
-	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
-	t[i+1] = t[i+1] / t[i+1].norm();
-	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
-	b[i+1] = b[i+1] / b[i+1].norm();
+//	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+//	t[i+1] = t[i+1] / t[i+1].norm();
+	t[i+1] = frenetVectorT(kappa[i+1], tau[i+1], t[i], n[i], b[i]);
+//	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
+//	b[i+1] = b[i+1] / b[i+1].norm();
+	b[i+1] = frenetVectorB(kappa[i+1], tau[i+1], t[i], n[i], b[i]);
 	n[i+1] = b[i+1] * t[i+1];
 	}
 }
