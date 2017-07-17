@@ -156,9 +156,9 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 			    polymer2->writeRadiusVectorsInFile(conffp2);
 			}
 //			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
-//polymer->writeRadiusVectorsInFile(conffp);
+polymer->writeRadiusVectorsInFile(conffp);
 			polymer->updateAllSites2chainsBw(temperature, *hamiltonian, *interaction, *polymer2, minDist);
-//			polymer2->updateAllSites2chainsWithFloatingR0(temperature, *hamiltonian, *interaction, *polymer, minDist);
+			polymer2->updateAllSites2chainsWithFloatingR0(temperature, *hamiltonian, *interaction, *polymer, minDist);
 			
 		    }
 		break;

@@ -194,7 +194,6 @@ void PolymerMC::setNewRadiusVectorsViaRotationBw(int site)
 	    Vector::dotProduct(tmpVector,b[site-1])*bNew + r[site];
 	    
     }
-printf("%g\n", (r[1]-r[0]).norm());
 }
 
 /* This function is called when ACCEPT */
@@ -1004,8 +1003,8 @@ void PolymerMC::updateKappa2chainsBw(int site, double temperature, const Hamilto
     
     saveOldRadiusVectorsBw(site);
     setNewRadiusVectorsViaRotationBw(site);
-//setVectorsTNBfromKappaTau();
-//setRadiusVectorsFromVectorsT();
+//setVectorsTNBfromKappaTau(t[0],n[0],b[0]);
+//setRadiusVectorsFromVectorsT(r[0]);
 //tNew=t[site-1];
 //nNew=n[site-1];
 //bNew=b[site-1];
@@ -1055,7 +1054,7 @@ void PolymerMC::updateKappa2chainsBw(int site, double temperature, const Hamilto
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
 	    acceptNumberKappa++;
-		printf("ACCEPT\n");
+//		printf("ACCEPT\n");
 	}
     
 	else{ //REJECT
@@ -1063,7 +1062,7 @@ void PolymerMC::updateKappa2chainsBw(int site, double temperature, const Hamilto
 		r[i] = rOld[i];
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionOld;
-		printf("REJECT\n");
+//		printf("REJECT\n");
 	}
 	
 	delete [] r12;
@@ -1072,7 +1071,7 @@ void PolymerMC::updateKappa2chainsBw(int site, double temperature, const Hamilto
     else{ //REJECT: SELF AVOIDING CONDITION
 	    for(i=site-1;i>=0;i--)
 		r[i] = rOld[i];
-		printf("REJECT SA\n");
+//		printf("REJECT SA\n");
 	}
 }
 
@@ -1092,14 +1091,14 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
     kappaNew = kappa[site];
 //    printf("oldTau[%i] = %g    newTau = %g\n", site, tau[site], tauNew);
     
-    saveOldRadiusVectors(site);
-    setNewRadiusVectorsViaRotation(site);
+    saveOldRadiusVectorsBw(site);
+    setNewRadiusVectorsViaRotationBw(site);
 
     
     if(selfAvoidingCondition(site, minDist)){
 	numMonomers2 = secondChain.getNumMonomers();
 	r2 = secondChain.getRadiusVectors();
-	N12 = numMonomers + numMonomers2 + 2 - site; // sum number of r-vectors in both chains + trash element
+	N12 = numMonomers2 + 2 + site; // sum number of r-vectors in both chains + trash element
 	r12 = new Vector [N12];
 	
     //first calsulate old interaction
@@ -1111,7 +1110,7 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
 	
 	//add the part from this chain:
 	for(i=numMonomers2+2; i<N12; i++)
-	    r12[i] = rOld[site+1+i-numMonomers2-2];
+	    r12[i] = rOld[site-1-i+numMonomers2+2];
 
 //for(int c=0;c<N12;c++)
 //r12[c].print();
@@ -1125,7 +1124,7 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
     //second calsulate new interaction
 	//replace in r12 old radius vectors from this chain wiht present ones:
 	for(i=numMonomers2+2; i<N12; i++)
-	    r12[i] = r[site+1+i-numMonomers2-2];
+	    r12[i] = r[site-1-i+numMonomers2+2];
 	    
 	/* calculate new interaction for site */
 	interactionNew = interaction.energyIfSiteChanged(numMonomers2+1, N12, r12);
@@ -1137,7 +1136,7 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
 	randomNumber = uniRand();
 	if(randomNumber<probability){ //ACCEPT
 	    tau[site] = tauNew;
-	    setNewVectorsTNBfromKappaTau(site);
+	    setNewVectorsTNBfromKappaTauBw(site);
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
 	    acceptNumberTau++;
@@ -1145,7 +1144,7 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
 	}
     
 	else{ //REJECT
-	    for(i=site+1;i<numMonomers+1;i++)
+	    for(i=site-1;i>=0;i--)
 		r[i] = rOld[i];
 	    
 	    interactionSite.site = site;
@@ -1156,7 +1155,7 @@ void PolymerMC::updateTau2chainsBw(int site, double temperature, const Hamiltoni
     }
     
     else{ //REJECT: SALF AVOIDING CONDITION
-	for(i=site+1;i<numMonomers+1;i++)
+	for(i=site-1;i>=0;i--)
 	    r[i] = rOld[i];
 //		printf("REJECT SA\n");
     }
@@ -1174,7 +1173,7 @@ void PolymerMC::updateAllSites2chainsBw(double temperature, const Hamiltonian& h
 */    
     for(i=numMonomers-1;i>1;i--){//0
 	updateKappa2chainsBw(i, temperature, hamiltonian, interaction, secondChain, minDist);
-//	updateTau2chainsBw(i, temperature, hamiltonian, interaction, secondChain, minDist);
+	updateTau2chainsBw(i, temperature, hamiltonian, interaction, secondChain, minDist);
     }
 /*    
     for(i=0;i<numMonomers;i++){
