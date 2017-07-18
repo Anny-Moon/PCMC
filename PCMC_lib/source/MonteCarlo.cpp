@@ -88,17 +88,17 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 //	if(k>0)
 //	    polymer->initWithRandomTaus();
 	    
-//	if(regime==Regime::twoChains){
+	if(regime==Regime::twoChains){
 		polymer2 = new PolymerMC(*polymerEtalon2);
-//	    if(k>0)
-//		polymer2->initWithRandomTaus();
-//	}
+	    if(k>0)
+		polymer2->initWithRandomTaus();
+	}
 	
 	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
 	
 	if(fakeCoreNumber==0)
 	    tfp = fopen("results/TemperatureMap.dat","w");
-	
+
 	fname1 = new char[100];
 	sprintf(fname1,"results/Configurations/%iconf.dat",fakeCoreNumber);
 	ktfp = fopen(fname1, "w");
@@ -150,15 +150,31 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 		case Regime::twoChains:
 //		polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%1==0){
+			if(i%50==0){
 			    printf("%g\t%i\n",t, i);
 			    polymer->writeRadiusVectorsInFile(conffp);
 			    polymer2->writeRadiusVectorsInFile(conffp2);
 			}
-//			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
+			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
+if(i%50==0)
 polymer->writeRadiusVectorsInFile(conffp);
 			polymer->updateAllSites2chainsBw(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 			polymer2->updateAllSites2chainsWithFloatingR0(temperature, *hamiltonian, *interaction, *polymer, minDist);
+			
+		    }
+		break;
+		
+		case Regime::backwards:
+		printf("backwards\n");
+		    for(int i=0; i<sweepsPerStep;i++){
+			if(i%50==0){
+			    printf("%g\t%i\n",t, i);
+			    polymer->writeRadiusVectorsInFile(conffp);
+			}
+//			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
+//if(i%50==0)
+//polymer->writeRadiusVectorsInFile(conffp);
+			polymer->updateAllSitesBW(temperature, *hamiltonian, *interaction);
 			
 		    }
 		break;

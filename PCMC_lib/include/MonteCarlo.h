@@ -20,7 +20,7 @@ namespace PCA{
 class MonteCarlo
 {
 public:
-    enum class Regime{normal, withoutH, withSA, twoChains};
+    enum class Regime{normal, withoutH, withSA, twoChains, backwards};
     inline std::string getRegimeStr();
     
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
@@ -115,6 +115,8 @@ inline std::string MonteCarlo::getRegimeStr(){
 	    return "without self avoiding, but without long range attraction";
 	case Regime::twoChains:
 	    return "2 chains: Along the chain there is only self avoiding condition,\nbut between chains - full interaction.";
+	case Regime::backwards:
+	    return "backwards";
 	default:
 	    return "unknown regime! All the data from this calculation can be wrong!";
     }

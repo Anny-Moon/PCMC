@@ -68,7 +68,7 @@ public:
     void saveOldRadiusVectors(int site);
     
     /** Saves old radius vectors starting from (site-1): rOld[site-1]=r[site-1] ...*/
-    void saveOldRadiusVectorsBw(int site);
+    void saveOldRadiusVectorsBW(int site);
     
     /** This function changes only! r[site+1], r[site+2]... */
     void setNewRadiusVectorsViaRotation(int site);
@@ -82,14 +82,21 @@ public:
 			const Vector& t, const Vector& n, const Vector& b);
     inline const Vector frenetVectorBbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b);
-    void setNewVectorsTNBfromKappaTauBw(int site);
-    void setNewRadiusVectorsViaRotationBw(int site);
+    void setNewVectorsTNBfromKappaTauBW(int site);
+    void setNewRadiusVectorsViaRotationBW(int site);
     ///@}
     /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
     void updateKappa(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
     void updateTau(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
     void updateAllSites(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    ///@}
+    
+    /**@name Monte Carlo updates at kappa[site]/tau[site] but going backwards*/
+    ///@{
+    void updateKappaBW(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateTauBW(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
+    void updateAllSitesBW(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction);
     ///@}
     
     /**@name Monte Carlo updates at kappa[site]/tau[site] without Hamiltonian
