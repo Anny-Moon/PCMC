@@ -82,6 +82,10 @@ public:
 			const Vector& t, const Vector& n, const Vector& b);
     inline const Vector frenetVectorBbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b);
+    
+    void setVectorsTNBfromKappaTauBW(const Vector& t0 = Vector::eZ,
+				const Vector& n0 = Vector::eX,
+				const Vector& b0 = Vector::eY);
     void setNewVectorsTNBfromKappaTauBW(int site);
     void setNewRadiusVectorsViaRotationBW(int site);
     ///@}

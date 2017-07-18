@@ -195,6 +195,36 @@ void PolymerMC::setNewRadiusVectorsViaRotationBW(int site)
 	    
     }
 }
+/* the same as in class Polymer but backwards. Should give the same result as the original*/
+
+void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& t0, const Vector& n0, const Vector& b0)
+{
+    int i;
+    
+    _PCA_CATCH_VOID_POINTER(kappa, "Polymer::setVectorsTNBfromKappaTau()\n\tkappa = NULL");
+    _PCA_CATCH_VOID_POINTER(tau, "Polymer::setVectorsTNBfromKappaTau()\n\ttau = NULL");
+//    _PCA_CATCH_VOID_POINTER(monomerLength, "Polymer::setVectorsTNBfromKappaTau()\n\tmonomerLength = NULL");
+    
+//    t[0] = Vector::eZ;
+//    n[0] = Vector::eX;
+//    b[0] = Vector::eY;
+    
+    t[numMonomers-1] = t0/t0.norm();
+    n[numMonomers-1] = n0/n0.norm();
+    b[numMonomers-1] = b0/b0.norm();
+
+    for(i=numMonomers-1;i>0;i--){
+//	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
+//	t[i+1] = t[i+1] / t[i+1].norm();
+	    //t[i+1]=t[i]*(1-s*s*kappa[i]*kappa[i]/2)+n[i]*s*kappa[i]*sqrt(1-s*s*kappa[i]*kappa[i]/4);
+	t[i-1] = frenetVectorTbw(kappa[i], tau[i], t[i], n[i], b[i]);
+//	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
+//	b[i+1] = b[i+1] / b[i+1].norm();
+	b[i-1] = frenetVectorBbw(kappa[i], tau[i], t[i], n[i], b[i]);
+	n[i-1] = b[i+1] * t[i+1];
+    }
+    
+}
 
 /* This function is called when ACCEPT */
 void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
@@ -477,12 +507,13 @@ void PolymerMC::updateTauBW(int site, double temperature, const Hamiltonian& ham
 void PolymerMC::updateAllSitesBW(double temperature, const Hamiltonian& hamiltonian, const Interaction& interaction)
 {
     int i;
-/* doesn't work correctly   
-    if((acceptNumberKappa+acceptNumberTau)%100 == 0){
-	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+// doesn't work correctly   
+    if((acceptNumberKappa+acceptNumberTau)%10 == 0){
+//	setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+//setVectorsTNBfromKappaTauBW(t[numMonomers-1], n[numMonomers-1], b[numMonomers-1]);
 	setRadiusVectorsFromVectorsT(r[0]);
     }
-*/    
+    
     for(i=numMonomers-1;i>0;i--){
 	updateKappaBW(i, temperature, hamiltonian, interaction);
 	updateTauBW(i, temperature, hamiltonian, interaction);
