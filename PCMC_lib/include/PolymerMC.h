@@ -173,10 +173,8 @@ inline const Vector PolymerMC::frenetVectorTbw(double kappa, double tau,
 inline const Vector PolymerMC::frenetVectorBbw(double kappa, double tau,
 			const Vector& t, const Vector& n, const Vector& b)
 {
-    double tmp;
     Vector answ;
-    tmp = sin(tau)*sin(tau) + cos(kappa)*cos(tau);
-    answ = (b*cos(tau) + n*sin(tau)*cos(kappa) + t*sin(tau)*sin(kappa))/tmp;
+    answ = b*cos(tau) + n*sin(tau)*cos(kappa) + t*sin(tau)*sin(kappa);
     return (answ/answ.norm());
 }
 
