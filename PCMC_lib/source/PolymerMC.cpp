@@ -197,7 +197,7 @@ void PolymerMC::setNewRadiusVectorsViaRotationBW(int site)
 }
 /* the same as in class Polymer but backwards. Should give the same result as the original*/
 
-void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& t0, const Vector& n0, const Vector& b0)
+void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& tLast, const Vector& nLast, const Vector& bLast)
 {
     int i;
     
@@ -209,9 +209,9 @@ void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& t0, const Vector& n0, 
 //    n[0] = Vector::eX;
 //    b[0] = Vector::eY;
     
-    t[numMonomers-1] = t0/t0.norm();
-    n[numMonomers-1] = n0/n0.norm();
-    b[numMonomers-1] = b0/b0.norm();
+    t[numMonomers-1] = tLast/tLast.norm();
+    n[numMonomers-1] = nLast/nLast.norm();
+    b[numMonomers-1] = bLast/bLast.norm();
 
     for(i=numMonomers-1;i>0;i--){
 //	t[i+1] = cos(kappa[i+1])*t[i] + sin(kappa[i+1])*cos(tau[i+1])*n[i] + sin(kappa[i+1])*sin(tau[i+1])*b[i];
@@ -221,7 +221,8 @@ void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& t0, const Vector& n0, 
 //	b[i+1] = cos(tau[i+1])*b[i] - sin(tau[i+1])*n[i];
 //	b[i+1] = b[i+1] / b[i+1].norm();
 	b[i-1] = frenetVectorBbw(kappa[i], tau[i], t[i], n[i], b[i]);
-	n[i-1] = b[i+1] * t[i+1];
+	n[i-1] = b[i-1] * t[i-1];
+//	n[i-1] = frenetVectorNbw(kappa[i], tau[i], t[i], n[i], b[i]);
     }
     
 }

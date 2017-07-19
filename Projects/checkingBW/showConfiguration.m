@@ -12,12 +12,13 @@
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 
-function [] = showConfiguration(polymerName, step)
+function [] = showConfiguration(step)
 
-if nargin < 2
+if nargin < 1
     step =0;
 end
 
+%fileName = sprintf('0confR.dat');
 fileName = sprintf('kappaTau.dat');
 
 %--------count number of sites-------------
