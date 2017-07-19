@@ -382,8 +382,8 @@ void PolymerMC::updateAllSites(double temperature, const Hamiltonian& hamiltonia
     int i;
     
     if((acceptNumberKappa+acceptNumberTau)%100 == 0){
-	setVectorsTNBfromKappaTau();
-	setRadiusVectorsFromVectorsT();
+	setVectorsTNBfromKappaTau(t[0],n[0],b[0]);
+	setRadiusVectorsFromVectorsT(r[0]);
     }
     
     for(i=1;i<numMonomers;i++){
