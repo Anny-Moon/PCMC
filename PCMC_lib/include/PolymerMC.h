@@ -25,7 +25,7 @@ private:
     double kappaNew;
     double tauNew;
     
-    /**@name If kappaNew corresponds to i site then tNew correspondes to (i+1)*/
+    /**@name If kappaNew corresponds to i site then tNew correspondes to (i+1) (not in BW algorithms)*/
     ///@{
     Vector tNew; /* new tangent (one!) vector */
     Vector nNew; /* new normal (one!) vector */
@@ -36,11 +36,15 @@ private:
     
     /** Save the interaction at site*/
     struct InteractionSite {int site; double interaction;} interactionSite;
-    
-    /**@name If kappaNew corresponds to i site then tNew correspondes to (i+1)*/
+
+    /**@name Acceptence numbers*/
     ///@{
     int acceptNumberKappa;
     int acceptNumberTau;
+    unsigned long int* acceptNumberR;
+    void acceptNumberRupdate(int site);
+    void acceptNumberRupdateBW(int site);
+    
     ///@}
     
     UniformRand uniRand; //< for all Metropolises
@@ -164,8 +168,10 @@ public:
     
     /* only for chains with equal link lenghts*/
     bool selfAvoidingCondition(int site = 0, double minDist = 3.8);
+    void printAcceptNumberR(FILE* fp = NULL);
     inline void writeAcceptenceRateInFile(FILE *fp);
 };
+
 
 inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
 {
@@ -188,6 +194,7 @@ inline const Vector PolymerMC::frenetVectorBbw(double kappa, double tau,
     answ = b*cos(tau) + n*sin(tau)*cos(kappa) + t*sin(tau)*sin(kappa);
     return (answ/answ.norm());
 }
+
 
 
 }//end of namecpace

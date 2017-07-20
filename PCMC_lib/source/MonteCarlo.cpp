@@ -228,7 +228,10 @@ printf("Finally SA is Ok\n");
 	fclose(logfp);
 	printf("done\n");
     }
-
+polymer->printAcceptNumberR();
+    if(polymer2!=NULL)
+	polymer2->printAcceptNumberR();
+    
 }
 
 

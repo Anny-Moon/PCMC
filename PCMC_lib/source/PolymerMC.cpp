@@ -32,6 +32,9 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
     interactionSite.site = -100;
     interactionSite.interaction = 0;
     
+    acceptNumberR = new unsigned long int [numMonomers+1]();
+//    for(int i=0;i<numMonomers+1;i++)
+//	acceptNumberR[i] = 0;
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 
@@ -43,10 +46,13 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
     rOld = new Vector [numMonomers+1];
     
     Vector::copyArray(numMonomers+1, rOld, r);
-    
+
     interactionSite.site = -100;
     interactionSite.interaction = 0;
     
+    acceptNumberR = new unsigned long int [numMonomers+1]();
+//    for(int i=0;i<numMonomers+1;i++)
+//	acceptNumberR[i] = 0;
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 }
@@ -60,6 +66,10 @@ PolymerMC::PolymerMC(const PolymerMC& polymer) : Polymer(polymer)
     interactionSite.site = polymer.interactionSite.site;
     interactionSite.interaction = polymer.interactionSite.interaction;
     
+    acceptNumberR = new unsigned long int [numMonomers+1];
+    for(int i=0;i<numMonomers+1;i++)
+	acceptNumberR[i] = polymer.acceptNumberR[i];
+	
     acceptNumberKappa = polymer.acceptNumberKappa;
     acceptNumberTau = polymer.acceptNumberTau;
 }
@@ -75,7 +85,10 @@ PolymerMC& PolymerMC::operator=(const PolymerMC& polymer)
     
 	interactionSite.site = polymer.interactionSite.site;
 	interactionSite.interaction = polymer.interactionSite.interaction;
-    
+	
+	acceptNumberR = new unsigned long int [numMonomers+1];
+	for(int i=0;i<numMonomers+1;i++)
+	    acceptNumberR[i] = polymer.acceptNumberR[i];
 	acceptNumberKappa = polymer.acceptNumberKappa;
 	acceptNumberTau = polymer.acceptNumberTau;
     }
@@ -85,6 +98,7 @@ PolymerMC& PolymerMC::operator=(const PolymerMC& polymer)
 PolymerMC::~PolymerMC()
 {
     delete [] rOld;
+    delete [] acceptNumberR;
     /* calling Polymer distructor */
 }
 
@@ -130,15 +144,29 @@ void PolymerMC::loadOldRadiusVectors(int site)
 	r[j]=rOld[j];
 }
 
+void PolymerMC::acceptNumberRupdate(int site)
+{
+    for(int j=site+1;j<numMonomers+1;j++)
+	acceptNumberR[j]++;
+}
+
 void PolymerMC::saveOldRadiusVectorsBW(int site)
 {
     for(int j=site-1;j>=0;j--)
 	rOld[j]=r[j];
 }
+
 void PolymerMC::loadOldRadiusVectorsBW(int site)
 {
     for(int j=site-1;j>=0;j--)
 	r[j]=rOld[j];
+}
+
+void PolymerMC::acceptNumberRupdateBW(int site)
+{
+    for(int j=site-1;j>=0;j--)
+	acceptNumberR[j]++; 
+	
 }
 /* This function is caled before accept-reject condition*/
 void PolymerMC::setNewRadiusVectorsViaRotation(int site)
@@ -722,6 +750,8 @@ void PolymerMC::updateKappa2chains(int site, double temperature, const Hamiltoni
 	    setNewVectorsTNBfromKappaTau(site);
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
+	    
+	    acceptNumberRupdate(site);
 	    acceptNumberKappa++;
 //		printf("ACCEPT\n");
 	}
@@ -805,6 +835,8 @@ void PolymerMC::updateTau2chains(int site, double temperature, const Hamiltonian
 	    setNewVectorsTNBfromKappaTau(site);
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
+	    
+	    acceptNumberRupdate(site);
 	    acceptNumberTau++;
 //		printf("ACCEPT\n");
 	}
@@ -906,6 +938,8 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
 	//kappa,tau and t,n,b did't change
 	interactionSite.site = 0;
 	interactionSite.interaction = interactionNew;
+	
+	acceptNumberRupdate(-1);
 //	printf("ACCEPT\n");
     }
     
@@ -928,7 +962,6 @@ void PolymerMC::updateTNB02chains(double temperature, const Interaction& interac
     double interactionOld, interactionNew;
     double randomNumber;
     Vector* tOld, *nOld, *bOld;
-    //double theta, gamma, rotation;
     double pseudoKappa, pseudoTau;
 
     numMonomers2 = secondChain.getNumMonomers();
@@ -993,6 +1026,8 @@ void PolymerMC::updateTNB02chains(double temperature, const Interaction& interac
 	//kappa,tau and t,n,b did't change
 	interactionSite.site = 0;
 	interactionSite.interaction = interactionNew;
+	
+	acceptNumberRupdate(-1);
 //	printf("ACCEPT\n");
     }
     
@@ -1090,6 +1125,8 @@ void PolymerMC::updateKappa2chainsBW(int site, double temperature, const Hamilto
 	    setNewVectorsTNBfromKappaTauBW(site);
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
+	    
+	    acceptNumberRupdateBW(site);
 	    acceptNumberKappa++;
 //		printf("ACCEPT\n");
 	}
@@ -1174,6 +1211,8 @@ void PolymerMC::updateTau2chainsBW(int site, double temperature, const Hamiltoni
 	    setNewVectorsTNBfromKappaTauBW(site);
 	    interactionSite.site = site;
 	    interactionSite.interaction = interactionNew;
+	    
+	    acceptNumberRupdateBW(site);
 	    acceptNumberTau++;
 //		printf("ACCEPT\n");
 	}
@@ -1241,4 +1280,25 @@ bool PolymerMC::selfAvoidingCondition(int site, double minDist)
 
     return true;
 }
+
+void PolymerMC::printAcceptNumberR(FILE *fp)
+{
+    if(fp==NULL){
+	for(int i=0;i<numMonomers+1;i++){
+//	    fprintf(stdout, "%i\t%i\n",i, (int)acceptNumberR[i]);
+	    fprintf(stdout, "%i\t%lu\n", i, acceptNumberR[i]);
+	}
+	fprintf(stdout,"\n");
+	fflush(stdout);
+    }
+    
+    else{
+	for(int i=0;i<numMonomers+1;i++)
+	    fprintf(fp, "%i\t%lu\n",i, acceptNumberR[i]);
+	fprintf(fp,"\n");
+	fflush(fp);
+    }
+
+}
+
 }//end of namespace

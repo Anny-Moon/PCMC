@@ -59,7 +59,8 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     monteCarlo = new MonteCarlo(paramFileName, polymer, polymer2, hamiltonian, interaction, 3.8);
     
     monteCarlo->run(myCoreNumber, totalCoreNumber);
-    
+    printf("accept numbers\n");
+
     delete polymer;
     delete interaction;
     delete hamiltonian;
