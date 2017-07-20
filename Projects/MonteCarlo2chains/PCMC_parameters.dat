@@ -18,8 +18,8 @@ HAM_MU	0.0
 HAM_ALPHA	1.0
 
 #----------------Interaction-----------------------
-LENNARD_JONES_MIN	0.1
-LENNARD_JONES_R_MIN	50.0
+LENNARD_JONES_MIN	0000.1
+LENNARD_JONES_R_MIN	5.0
 
 #---------------Monte Carlo------------------------
 LOOPS_PER_CORE	1
