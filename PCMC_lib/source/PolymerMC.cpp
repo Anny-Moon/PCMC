@@ -33,8 +33,6 @@ PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
     interactionSite.interaction = 0;
     
     acceptNumberR = new unsigned long int [numMonomers+1]();
-//    for(int i=0;i<numMonomers+1;i++)
-//	acceptNumberR[i] = 0;
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 
@@ -51,8 +49,6 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
     interactionSite.interaction = 0;
     
     acceptNumberR = new unsigned long int [numMonomers+1]();
-//    for(int i=0;i<numMonomers+1;i++)
-//	acceptNumberR[i] = 0;
     acceptNumberKappa = 0;
     acceptNumberTau = 0;
 }
@@ -146,8 +142,9 @@ void PolymerMC::loadOldRadiusVectors(int site)
 
 void PolymerMC::acceptNumberRupdate(int site)
 {
-    for(int j=site+1;j<numMonomers+1;j++)
-	acceptNumberR[j]++;
+//    for(int j=site+1;j<numMonomers+1;j++)
+//	acceptNumberR[j]++;
+    acceptNumberR[site]++;
 }
 
 void PolymerMC::saveOldRadiusVectorsBW(int site)
@@ -164,9 +161,9 @@ void PolymerMC::loadOldRadiusVectorsBW(int site)
 
 void PolymerMC::acceptNumberRupdateBW(int site)
 {
-    for(int j=site-1;j>=0;j--)
-	acceptNumberR[j]++; 
-	
+//    for(int j=site-1;j>=0;j--)
+//	acceptNumberR[j]++; 
+    acceptNumberR[site]++;
 }
 /* This function is caled before accept-reject condition*/
 void PolymerMC::setNewRadiusVectorsViaRotation(int site)
@@ -939,7 +936,7 @@ void PolymerMC::updateR02chains(double temperature, const Interaction& interacti
 	interactionSite.site = 0;
 	interactionSite.interaction = interactionNew;
 	
-	acceptNumberRupdate(-1);
+	acceptNumberRupdate(0);
 //	printf("ACCEPT\n");
     }
     
