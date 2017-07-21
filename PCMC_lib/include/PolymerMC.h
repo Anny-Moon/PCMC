@@ -106,6 +106,18 @@ public:
     void setNewRadiusVectorsViaRotationBW(int site);
     ///@}
     
+    /**@name inline functions for Monte Carlo*/
+    ///@{
+    double generateKappa(int site, double temperature, const Hamiltonian& hamiltonian) const;
+    double generateTau(int site, double temperature, const Hamiltonian& hamiltonian) const;
+    double findOldInteraction(int site, const Interaction& interaction) const;
+    double calculateNewInteraction(int site, const Interaction& interaction) const;
+    bool doMetropolisUpdateKappa(int site, double temperature, double interactionOld, double interactionNew);
+    bool doMetropolisUpdateTau(int site, double temperature, double interactionOld, double interactionNew);
+    bool doMetropolisUpdateKappaBW(int site, double temperature, double interactionOld, double interactionNew);
+    bool doMetropolisUpdateTauBW(int site, double temperature, double interactionOld, double interactionNew);
+    ///@}
+    
     /**@name Monte Carlo updates at kappa[site]/tau[site]*/
     ///@{
     void updateKappa(int site, double temperarture, const Hamiltonian& hamiltonian, const Interaction& interaction);
@@ -171,6 +183,156 @@ public:
     void printAcceptNumberR(FILE* fp = NULL);
     inline void writeAcceptenceRateInFile(FILE *fp);
 };
+
+inline double PolymerMC::generateKappa(int site, double temperature, const Hamiltonian& hamiltonian) const
+{
+
+    if(site==0)
+	return hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
+    else if(site==numMonomers-1)
+	return hamiltonian.generateKappa(site, tau[site], 0.0, kappa[site-1], temperature);
+    else
+	return hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+}
+
+inline double PolymerMC::generateTau(int site, double temperature, const Hamiltonian& hamiltonian) const
+{
+    return hamiltonian.generateTau(site, kappa[site], temperature);
+}
+
+inline double PolymerMC::calculateNewInteraction(int site, const Interaction& interaction) const
+{
+	return interaction.energyIfSiteChanged(site, numMonomers+1, r);
+}
+
+inline double PolymerMC::findOldInteraction(int site, const Interaction& interaction) const
+{
+    if(interactionSite.site == site)
+	return interactionSite.interaction;
+    
+    else
+	return calculateNewInteraction(site, interaction);
+}
+
+inline bool PolymerMC::doMetropolisUpdateKappa(int site, double temperature, double interactionOld, double interactionNew)
+{
+    bool ifAccept;
+    
+    double probability = exp((-interactionNew + interactionOld)/temperature);
+    double randomNumber = uniRand();
+//    	printf("prob = %g  rand = %g\n", probability, randomNumber);    
+
+    if(randomNumber<probability){ //ACCEPT
+	ifAccept = true;
+	kappa[site] = kappaNew;
+	setNewVectorsTNBfromKappaTau(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
+	
+	acceptNumberRupdate(site);
+	acceptNumberKappa++;
+//	printf("ACCEPT\n");
+    }
+    
+    else{ //REJECT
+	ifAccept = false;
+	loadOldRadiusVectors(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
+//	printf("REJECT\n");
+    }
+	
+    return ifAccept;
+}
+
+inline bool PolymerMC::doMetropolisUpdateTau(int site, double temperature, double interactionOld, double interactionNew)
+{
+    bool ifAccept;
+    
+    double probability = exp((-interactionNew + interactionOld)/temperature);
+    double randomNumber = uniRand();
+	
+    if(randomNumber<probability){ //ACCEPT
+	ifAccept = true;
+	tau[site] = tauNew;
+	setNewVectorsTNBfromKappaTau(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
+	    
+	acceptNumberRupdate(site);
+	acceptNumberTau++;
+//	printf("ACCEPT\n");
+    }
+    
+    else{ //REJECT
+	ifAccept = false;
+	loadOldRadiusVectors(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
+//	printf("REJECT\n");
+    }
+    return ifAccept;
+}
+
+inline bool PolymerMC::doMetropolisUpdateKappaBW(int site, double temperature, double interactionOld, double interactionNew)
+{
+    bool ifAccept;
+    
+    double probability = exp((-interactionNew + interactionOld)/temperature);
+    double randomNumber = uniRand();
+//    	printf("prob = %g  rand = %g\n", probability, randomNumber);    
+
+    if(randomNumber<probability){ //ACCEPT
+	ifAccept = true;
+	kappa[site] = kappaNew;
+	setNewVectorsTNBfromKappaTauBW(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
+	
+	acceptNumberRupdate(site);
+	acceptNumberKappa++;
+//	printf("ACCEPT\n");
+    }
+    
+    else{ //REJECT
+	ifAccept = false;
+	loadOldRadiusVectorsBW(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
+//	printf("REJECT\n");
+    }
+	
+    return ifAccept;
+}
+
+inline bool PolymerMC::doMetropolisUpdateTauBW(int site, double temperature, double interactionOld, double interactionNew)
+{
+    bool ifAccept;
+    
+    double probability = exp((-interactionNew + interactionOld)/temperature);
+    double randomNumber = uniRand();
+	
+    if(randomNumber<probability){ //ACCEPT
+	ifAccept = true;
+	tau[site] = tauNew;
+	setNewVectorsTNBfromKappaTauBW(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionNew;
+	    
+	acceptNumberRupdate(site);
+	acceptNumberTau++;
+//	printf("ACCEPT\n");
+    }
+    
+    else{ //REJECT
+	ifAccept = false;
+	loadOldRadiusVectorsBW(site);
+	interactionSite.site = site;
+	interactionSite.interaction = interactionOld;
+//	printf("REJECT\n");
+    }
+    return ifAccept;
+}
 
 
 inline void PolymerMC::writeAcceptenceRateInFile(FILE *fp)
