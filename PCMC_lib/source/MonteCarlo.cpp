@@ -205,7 +205,10 @@ printf("Finally SA is Ok\n");
 	    }
 	    
 	}	
-	
+	polymer->printAcceptNumberR();
+        if(polymer2!=NULL)
+	    polymer2->printAcceptNumberR();
+	    
 	if(myCoreNumber==0)
 	    Timer::tock(k, "",logfp);
 	
@@ -228,9 +231,7 @@ printf("Finally SA is Ok\n");
 	fclose(logfp);
 	printf("done\n");
     }
-polymer->printAcceptNumberR();
-    if(polymer2!=NULL)
-	polymer2->printAcceptNumberR();
+
     
 }
 
