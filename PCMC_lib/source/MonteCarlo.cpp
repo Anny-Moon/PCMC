@@ -56,7 +56,7 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
     char* fname1;
     FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2;
     PolymerMC *polymer;
-    PolymerMC *polymer2;
+    PolymerMC *polymer2 = nullptr;
     
     if(myCoreNumber==0){
 	logfp = fopen("results/log_file", "w");
@@ -136,16 +136,26 @@ void MonteCarlo::run(int myCoreNumber, int totalCoreNumber)
 	    switch(regime){
 	    /* Thermalization */
 		case Regime::normal:
-		    for(int i=0; i<sweepsPerStep;i++)
+		    for(int i=0; i<sweepsPerStep;i++){
+			if(i%50==0){
+			    printf("%g\t%i\n",t, i);
+			    polymer->writeRadiusVectorsInFile(conffp);
+			}
 			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
+		    }
 		break;
 		case Regime::withoutH:
 		    for(int i=0; i<sweepsPerStep;i++)
 			polymer->updateAllSitesWithoutH(temperature, *interaction);
 		break;
 		case Regime::withSA:
-		    for(int i=0; i<sweepsPerStep;i++)
+		    for(int i=0; i<sweepsPerStep;i++){
+			if(i%500==0){
+			    printf("%g\t%i\n",t, i);
+			    polymer->writeRadiusVectorsInFile(conffp);
+			}
 			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
+		    }
 		break;
 		case Regime::twoChains:
 //		polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
@@ -205,21 +215,23 @@ printf("Finally SA is Ok\n");
 		fflush(tfp);
 	    }
 	    
-	}	
+	}
+	polymer->writeRadiusVectorsInFile(conffp);
 	polymer->printAcceptNumberR();
+//printf("here 0\n"); fflush(stdout);	
         if(polymer2!=NULL)
 	    polymer2->printAcceptNumberR();
-	    
+//printf("here 1\n"); fflush(stdout);
 	if(myCoreNumber==0)
 	    Timer::tock(k, "",logfp);
-	
+//printf("here 2\n");fflush(stdout);
 	if(fakeCoreNumber==0)
 	    fclose(tfp);
-	
+//printf("here 3\n");fflush(stdout);
 	delete polymer;
 	fclose(ktfp);
 	fclose(conffp);
-	
+//printf("here 4\n");fflush(stdout);	
 	if(regime==Regime::twoChains){
 	    delete polymer2;
 	    fclose(ktfp2);
