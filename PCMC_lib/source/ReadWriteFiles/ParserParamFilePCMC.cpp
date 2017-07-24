@@ -96,7 +96,7 @@ int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFr
     //search for the end of the soloton
     etalonTo = "TO";
     numberTo = data->search(etalonTo,*startSearchFromThisLine);
-    if(numberTo>numberFrom){
+    if(numberTo>=numberFrom){
 	siteTo = (int)data->value(numberTo);
 	
 	//if last site of soliton exceed length of the chain.
@@ -114,46 +114,42 @@ int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFr
     //search for parameters for this soloton
     etalon = "S_HAM_Q";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushQ(data->value(number), siteFrom, siteTo);
-    else
 	check++;
-	
+    }
     etalon = "S_HAM_M";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushM(data->value(number), siteFrom, siteTo);
-    else
 	check++;
-    
+    }
     etalon = "S_HAM_C";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushC(data->value(number), siteFrom, siteTo);
-    else
 	check++;
-    
+    }
     etalon = "S_HAM_D";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushD(data->value(number), siteFrom, siteTo);
-    else
 	check++;
-    
+    }
     etalon = "S_HAM_A";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushA(data->value(number), siteFrom, siteTo);
-    else
 	check++;
+    }
 
     etalon = "S_HAM_B";
     number = data->search(etalon, numberFrom+1, numberTo);
-    if(number>=0)
+    if(number>=0){
 	hamiltonian->pushB(data->value(number), siteFrom, siteTo);
-    else
 	check++;
-	
+    }
+    
     if(check == 0)
 	printf("Warning in ParamFilePCMC: soliton %i to %i doesn't have any own parameters.\n", siteFrom, siteTo);
     
