@@ -980,3 +980,4 @@ void PolymerMC::printAcceptNumberR(FILE *fp)
 }
 
 }//end of namespace
+
