@@ -2,6 +2,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import random
 
 class Chain():
     def __init__(self):
@@ -48,8 +49,7 @@ class ChainFile():
     
 	self.numBlocks = blockNum-1;
 	#---------------------------end--------------------------------
-	print "Number of chains: ";
-	print self.numBlocks;
+	print ('Number of chains: {}.'.format(self.numBlocks));
 
     def plot(self, ax, confNum):
 	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699');
@@ -57,6 +57,8 @@ class ChainFile():
     
     def getChain(self, chainNum):
 	return self.chain[chainNum];
+    def getN(self, chainNum):
+	return self.N[chainNum];
 	
 class EqualAxes():
     def __init__(self):
@@ -82,18 +84,23 @@ class EqualAxes():
 
 fileName = "Configurations/0confR.dat";
 chain = ChainFile(fileName);
-	
-if(len(sys.argv)<2):
-    confNum = 0;
-else:
-    confNum = int(sys.argv[1]);
 
 fig = plt.figure()
 ax = fig.gca(projection='3d');
 ax.set_aspect('equal');
-chain.plot(ax,confNum);
 eqAx = EqualAxes();
-eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
-eqAx.set(ax);
 
+if(len(sys.argv)<2):
+    confNum = 0;
+    chain.plot(ax,confNum);
+    eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
+
+else:
+    for i in range(1,len(sys.argv)):
+	confNum = int(sys.argv[i]);
+	print('Chain {} has {} atoms.'.format(sys.argv[i], chain.getN(confNum)));
+	chain.plot(ax,confNum);
+	eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
+
+eqAx.set(ax);
 plt.show();
