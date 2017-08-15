@@ -36,7 +36,7 @@ class ChainFile():
 	    for line in fp:
 		if (line==emptyLine):
     		    if(prevLineIsEmpty==False):
-        		self.N.append(lineNum - 1);
+        		self.N.append(lineNum);
         		blockNum = blockNum + 1;
         		self.chain.append(Chain());
         		lineNum = 0;
@@ -52,11 +52,16 @@ class ChainFile():
 	print('Number of chains: %i.' % self.numBlocks);
     def plot(self, ax, confNum):
 	r = lambda: random.randint(0,255);
-	color = '#%02X%02X%02X' % (r(),r(),r());
-	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c=color);
-	color = '#%02X%02X%02X' % (r(),r(),r());
-	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c=color, alpha=1);
-    
+	colorLine = '#%02X%02X%02X' % (r(),r(),r());
+	r = lambda: random.randint(0,255);
+	colorDot = '#%02X%02X%02X' % (r(),r(),r());
+	for i in range (0, self.N[confNum]-1):
+	    line = [(self.chain[confNum].x[i],self.chain[confNum].y[i],self.chain[confNum].z[i]),
+		(self.chain[confNum].x[i+1],self.chain[confNum].y[i+1],self.chain[confNum].z[i+1])];
+	    (x, y, z) = zip(*line);
+	    ax.scatter(x,y,z, c = colorDot, alpha = 1, s=30);
+	    ax.plot(x,y,z, c = colorLine, alpha = 1);
+	
     def plotWithStandardColors(self, ax, confNum):
 	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699');
 	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#e60000', alpha=1);
