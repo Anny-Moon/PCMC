@@ -58,7 +58,9 @@ class ChainFile():
 	r = lambda: random.randint(0,255);
 	r = lambda: random.randint(0,255);
 	colorDot = '#%02X%02X%02X' % (r(),r(),r());
-	sizeDot = 800/axMaxRange;
+#	sizeDot = 800/axMaxRange;
+	sizeDot = 1000/axMaxRange;
+	
 	for i in range (0, self.N[confNum]-1):
 	    line = [(self.chain[confNum].x[i],self.chain[confNum].y[i],self.chain[confNum].z[i]),
 		(self.chain[confNum].x[i+1],self.chain[confNum].y[i+1],self.chain[confNum].z[i+1])];
@@ -66,10 +68,10 @@ class ChainFile():
 	    ax.scatter(x,y,z, c = colorDot, alpha = 1, s=sizeDot);
 	    ax.plot(x,y,z, c = colorLine, alpha = 1, lw=sizeLine);
 	
-    def plotWithStandardColors(self, ax, confNum):
-	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699');
-	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#e60000', alpha=1);
-
+    def plotOld(self, ax, confNum):
+	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699', zorder=1);
+	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#e60000', alpha=1, s = 50, zorder=2);
+	
     def getChain(self, chainNum):
 	return self.chain[chainNum];
     def getN(self, chainNum):
@@ -113,7 +115,7 @@ eqAx = EqualAxes();
 
 if(len(sys.argv)<2):
     confNum = 0;
-    chain.plot(ax,confNum);
+    chain.plot(confNum, ax, 40);
     eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
 
 else:
@@ -128,6 +130,8 @@ else:
 	confNum = int(sys.argv[i]);
 	
 	chain.plot(confNum,ax,axMaxRange);
+#	chain.plotOld(ax, confNum);
+	
     
 eqAx.set(ax);
 plt.show();
