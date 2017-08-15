@@ -49,12 +49,18 @@ class ChainFile():
     
 	self.numBlocks = blockNum-1;
 	#---------------------------end--------------------------------
-	print ('Number of chains: {}.'.format(self.numBlocks));
-
+	print('Number of chains: %i.' % self.numBlocks);
     def plot(self, ax, confNum):
+	r = lambda: random.randint(0,255);
+	color = '#%02X%02X%02X' % (r(),r(),r());
+	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c=color);
+	color = '#%02X%02X%02X' % (r(),r(),r());
+	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c=color, alpha=1);
+    
+    def plotWithStandardColors(self, ax, confNum):
 	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699');
 	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#e60000', alpha=1);
-    
+
     def getChain(self, chainNum):
 	return self.chain[chainNum];
     def getN(self, chainNum):
@@ -98,7 +104,7 @@ if(len(sys.argv)<2):
 else:
     for i in range(1,len(sys.argv)):
 	confNum = int(sys.argv[i]);
-	print('Chain {} has {} atoms.'.format(sys.argv[i], chain.getN(confNum)));
+	print('Chain %s has %i atoms.' % (sys.argv[i], chain.getN(confNum)));
 	chain.plot(ax,confNum);
 	eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
 
