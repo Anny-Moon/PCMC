@@ -5,10 +5,12 @@ class EqualAxes():
 	self.X = [];
 	self.Y = [];
 	self.Z = [];
+	
     def push(self,X,Y,Z):
-	self.X.append(X);
-	self.Y.append(Y);
-	self.Z.append(Z);
+	self.X+=X;
+	self.Y+=Y;
+	self.Z+=Z;
+	
     def findMaxRange(self):
 	X=np.asarray(self.X);
 	Y=np.asarray(self.Y);

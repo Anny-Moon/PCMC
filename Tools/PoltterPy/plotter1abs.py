@@ -3,7 +3,7 @@ import ChainFile
 import EqualAxes
 import sys
 
-fileName = "0confR.dat";
+fileName = "1abs_configurations.dat";
 chain = ChainFile.ChainFile(fileName);
 
 fig = plt.figure()

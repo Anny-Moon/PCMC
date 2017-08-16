@@ -13,14 +13,25 @@ class Chain():
 	self.y.append(y);
 	self.z.append(z);
     
-    def plot(self, ax, axMaxRange, colorDot=None, colorLine=None):
-	r = lambda: random.randint(0,255);
-	colorLine = '#%02X%02X%02X' % (r(),r(),r());
-	sizeLine = 40/axMaxRange;
-	r = lambda: random.randint(0,255);
-	colorDot = '#%02X%02X%02X' % (r(),r(),r());
-#	sizeDot = 800/axMaxRange;
+    def plot(self, ax, axMaxRange=None, colorDot=None, colorLine=None):
+	
+	if(axMaxRange == None):
+	    axMaxRange = 20;
+	sizeLine = 30/axMaxRange;
+	if(sizeLine<2):
+	    sizeLine=2;
+	#sizeDot = 800/axMaxRange;
 	sizeDot = 1000/axMaxRange;
+	
+	if(colorDot == None):
+	    r = lambda: random.randint(0,255);
+	    r = lambda: random.randint(0,255);
+	    colorDot = '#%02X%02X%02X' % (r(),r(),r());
+	
+	if(colorLine == None):
+	    r = lambda: random.randint(0,255);
+	    colorLine = '#%02X%02X%02X' % (r(),r(),r());
+
 	N=len(self.x);
 	for i in range (0, N-1):
 	    line = [(self.x[i],self.y[i],self.z[i]),

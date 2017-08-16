@@ -32,7 +32,7 @@ class ChainFile():
 	#---------------------------end--------------------------------
 	print('Number of chains: %i.' % self.numBlocks);
 	
-    def plot(self, confNum, ax, axMaxRange, colorDot=None, colorLine=None):
+    def plot(self, confNum, ax, axMaxRange=None, colorDot=None, colorLine=None):
 	self.chain[confNum].plot(ax, axMaxRange, colorDot, colorLine);
 	
     def plotOld(self, confNum, ax, colorDot=None, colorLine=None):
