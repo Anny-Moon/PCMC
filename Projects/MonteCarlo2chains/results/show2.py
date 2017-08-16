@@ -50,7 +50,7 @@ class ChainFile():
 	self.numBlocks = blockNum-1;
 	#---------------------------end--------------------------------
 	print('Number of chains: %i.' % self.numBlocks);
-    def plot(self, confNum, ax, axMaxRange, colorDot=None, colorLine=None):
+    def plot(self, confNum, ax, axMaxRange):
 	r = lambda: random.randint(0,255);
 	r = lambda: random.randint(0,255);
 	colorLine = '#%02X%02X%02X' % (r(),r(),r());
@@ -68,7 +68,7 @@ class ChainFile():
 	    ax.scatter(x,y,z, c = colorDot, alpha = 1, s=sizeDot);
 	    ax.plot(x,y,z, c = colorLine, alpha = 1, lw=sizeLine);
 	
-    def plotOld(self, confNum, ax):
+    def plotOld(self, ax, confNum):
 	ax.plot(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#006699', zorder=1);
 	ax.scatter(self.chain[confNum].x, self.chain[confNum].y, self.chain[confNum].z, c='#e60000', alpha=1, s = 50, zorder=2);
 	
@@ -107,6 +107,8 @@ class EqualAxes():
 
 fileName = "Configurations/0confR.dat";
 chain = ChainFile(fileName);
+fileName = "Configurations/0confR2.dat";
+chain2 = ChainFile(fileName);
 
 fig = plt.figure()
 ax = fig.gca(projection='3d');
@@ -117,6 +119,8 @@ if(len(sys.argv)<2):
     confNum = 0;
     chain.plot(confNum, ax, 40);
     eqAx.push(chain.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
+    chain2.plot(confNum, ax, 40);
+    eqAx.push(chain2.getChain(confNum).getX(),chain.getChain(confNum).getY(),chain.getChain(confNum).getZ());
 
 else:
     for i in range(1,len(sys.argv)):
@@ -130,7 +134,7 @@ else:
 	confNum = int(sys.argv[i]);
 	
 	chain.plot(confNum,ax,axMaxRange);
-#	chain.plotOld(confNum, ax);
+#	chain.plotOld(ax, confNum);
 	
     
 eqAx.set(ax);
