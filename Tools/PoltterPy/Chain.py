@@ -25,12 +25,15 @@ class Chain():
 	
 	if(colorDot == None):
 	    r = lambda: random.randint(0,255);
-	    r = lambda: random.randint(0,255);
-	    colorDot = '#%02X%02X%02X' % (r(),r(),r());
+	    rr = lambda: random.randint(0,255);
+	    rrr = lambda: random.randint(0,255);
+	    colorDot = '#%02X%02X%02X' % (r(),rr(),rrr());
 	
 	if(colorLine == None):
 	    r = lambda: random.randint(0,255);
-	    colorLine = '#%02X%02X%02X' % (r(),r(),r());
+	    rr = lambda: random.randint(0,255);
+	    rrr = lambda: random.randint(0,255);
+	    colorLine = '#%02X%02X%02X' % (r(),rr(),rrr());
 
 	N=len(self.x);
 	for i in range (0, N-1):

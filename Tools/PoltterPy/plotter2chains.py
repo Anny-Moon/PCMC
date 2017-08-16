@@ -21,10 +21,11 @@ if(len(sys.argv)<2):
     eqAx.push(chain.getX(confNum),chain.getY(confNum),chain.getZ(confNum));
     eqAx.push(chain2.getX(confNum),chain2.getY(confNum),chain2.getZ(confNum));
 else:
-    confNum = int(sys.argv[1]);
-    print('Chain %s has %i atoms.' % (sys.argv[1], chain.getN(confNum)));
-    eqAx.push(chain.getX(confNum),chain.getY(confNum),chain.getZ(confNum));
-    eqAx.push(chain2.getX(confNum),chain2.getY(confNum),chain2.getZ(confNum));
+    for i in range(1,len(sys.argv)):
+	confNum = int(sys.argv[i]);
+	print('Chain %s has %i atoms.' % (sys.argv[i], chain.getN(confNum)));
+	eqAx.push(chain.getX(confNum),chain.getY(confNum),chain.getZ(confNum));
+	eqAx.push(chain2.getX(confNum),chain2.getY(confNum),chain2.getZ(confNum));
     
     axMaxRange=eqAx.findMaxRange();
     
