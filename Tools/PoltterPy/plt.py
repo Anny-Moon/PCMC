@@ -1,13 +1,26 @@
+"""
+This file should be run from Python shell.
+Do it like this:
+
+>>> import Polymer
+>>> import sys
+>>> polymer = Polymer.Polymer('5dn7.pca')
+>>> sys.argv = ['plt.py','50', '80', '110']
+>>> execfile('plt.py')
+
+You can close the figure and try other
+configurations, by repeating 2 last steps.
+"""
+
 import matplotlib.pyplot as plt
 import Polymer
 import EqualAxes
 import sys
 
-fileName = "0confR.dat";
-polymer = Polymer.Polymer(fileName);
-
-fileName2 = "0confR2.dat";
-polymer2 = Polymer.Polymer(fileName2);
+#if(fileName == None):
+#    fileName = "1abs_configurations.dat";
+#if(polymer==None):
+#    polymer = Polymer.Polymer(fileName);
 
 fig = plt.figure()
 ax = fig.gca(projection='3d');
@@ -16,23 +29,19 @@ eqAx = EqualAxes.EqualAxes();
 
 if(len(sys.argv)<2):
     confNum = 0;
-    polymer.plot(confNum,ax,None,'#e60000','#006699');
-    polymer2.plot(confNum,ax,None,'#006699','#e60000');
+    polymer.plot(confNum, ax);
     eqAx.push(polymer.getX(confNum),polymer.getY(confNum),polymer.getZ(confNum));
-    eqAx.push(polymer2.getX(confNum),polymer2.getY(confNum),polymer2.getZ(confNum));
 else:
     for i in range(1,len(sys.argv)):
 	confNum = int(sys.argv[i]);
-	print('Chain %s has %i atoms.' % (sys.argv[i], polymer.getN(confNum)));
+	print('chain %s has %i atoms.' % (sys.argv[i], polymer.getN(confNum)));
 	eqAx.push(polymer.getX(confNum),polymer.getY(confNum),polymer.getZ(confNum));
-	eqAx.push(polymer2.getX(confNum),polymer2.getY(confNum),polymer2.getZ(confNum));
     
     axMaxRange=eqAx.findMaxRange();
     
     for i in range(1,len(sys.argv)):
 	confNum = int(sys.argv[i]);
-	polymer.plot(confNum,ax,axMaxRange,'#e60000','#006699');
-	polymer2.plot(confNum,ax,axMaxRange,'#006699','#e60000');
+	polymer.plot(confNum,ax,axMaxRange);
 #	polymer.plotOld(confNum, ax);
 	
     

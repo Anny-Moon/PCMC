@@ -1,6 +1,6 @@
 import Chain
 
-class ChainFile():
+class Polymer():
     def __init__(self, fileName):
 	#--------read and count chains and number of sites-------------
 	linesInBlock = 0;
