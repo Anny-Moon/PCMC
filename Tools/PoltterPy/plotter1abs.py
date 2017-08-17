@@ -3,8 +3,10 @@ import ChainFile
 import EqualAxes
 import sys
 
-fileName = "1abs_configurations.dat";
-chain = ChainFile.ChainFile(fileName);
+#if(fileName == None):
+#    fileName = "1abs_configurations.dat";
+#if(chain==None):
+#    chain = ChainFile.ChainFile(fileName);
 
 fig = plt.figure()
 ax = fig.gca(projection='3d');

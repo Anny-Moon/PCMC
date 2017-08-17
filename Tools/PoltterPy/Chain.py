@@ -20,8 +20,8 @@ class Chain():
 	sizeLine = 30/axMaxRange;
 	if(sizeLine<2):
 	    sizeLine=2;
-	#sizeDot = 800/axMaxRange;
-	sizeDot = 1000/axMaxRange;
+	sizeDot = 800/axMaxRange;
+	#sizeDot = 1000/axMaxRange;
 	
 	if(colorDot == None):
 	    r = lambda: random.randint(0,255);
