@@ -28,7 +28,8 @@ class Polymer():
     		    lineNum = lineNum + 1;
     		    prevLineIsEmpty = False;
     
-	self.numBlocks = blockNum-1;
+	#self.numBlocks = blockNum-1;
+	self.numBlocks = blockNum;
 	#---------------------------end--------------------------------
 	print('Number of chains: %i.' % self.numBlocks);
 	
