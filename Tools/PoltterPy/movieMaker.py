@@ -8,11 +8,20 @@ are not included in 'matplotlib'.
 For saving gif 'imagemagick' pack is needed.
 For saving mp4 'ffmpeg' pack is needed.
 """
+
+fps = 2;
+dpi = 200;
+dotSize = 8;
+dotColor = '#cc0000';
+lineColor = '#006699';
+frames = None;
+
 import matplotlib.pyplot as plt
 import Polymer
 import EqualAxes
 import sys
 import matplotlib.animation as animation
+
 
 def update(i, increment):
 	confNum = increment+(i-1)*increment;
@@ -20,15 +29,8 @@ def update(i, increment):
 	print('Chain %s has %i atoms.' % (confNum,polymer.getN(confNum)));
     
     #axMaxRange=eqAx.findMaxRange();
-	polymer.plot(confNum,ax,None,'#e60000', '#006699');
+	polymer.plot(confNum,ax,800/dotSize, dotColor, lineColor);
 	eqAx.set(ax);
-
-def init():
-#    line.set_data([], [])
-    eqAx.push(polymer.getX(0),polymer.getY(0),polymer.getZ(0));
-    eqAx.set(ax);
-    polymer.plot(0,ax,None,'#000000', '#000000');
-    return (ax)
 
 if(len(sys.argv)<2):
     print("Error: Give me name of the file you want me to open.");
@@ -52,10 +54,11 @@ if(len(sys.argv)>2):
     increment = int(sys.argv[2]);
     if(increment < 1):
 	increment = 1;
-
+if(frames==None):
+    frames = int((polymer.getNumChains()+increment)/increment);
 anim = animation.FuncAnimation(fig, update,
-		    frames=3,
-		    interval=200,
+		    frames=frames,
+		    interval=1000/fps,
 		    fargs = (increment,),
 		    repeat = False
 		    );
@@ -75,8 +78,9 @@ else:
 	fileNameOut = sys.argv[4] + extention;
     
     if(sys.argv[3]=='gif'):
-	anim.save('movie.gif', dpi=80, writer='imagemagick');
+	writer = animation.ImageMagickFileWriter(fps=fps);
     if(sys.argv[3]=='mp4'):
-	writer = animation.FFMpegWriter(fps=2);
-	anim.save('movie.mp4', writer=writer);
+	writer = animation.FFMpegWriter(fps=fps);
+	
+    anim.save(fileNameOut, writer=writer, dpi=dpi);
     print("File %s was successfully generated!" % fileNameOut);

@@ -18,8 +18,8 @@ class Chain():
 	if(axMaxRange == None):
 	    axMaxRange = 20;
 	sizeLine = 30/axMaxRange;
-	if(sizeLine<2):
-	    sizeLine=2;
+	if(sizeLine<1):
+	    sizeLine=1;
 	sizeDot = 800/axMaxRange;
 	#sizeDot = 1000/axMaxRange;
 	

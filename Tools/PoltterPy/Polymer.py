@@ -42,7 +42,8 @@ class Polymer():
 	return self.chain[chainNum];
     def getN(self, chainNum):
 	return self.N[chainNum];
-	
+    def getNumChains(self):
+	return self.numBlocks;
     def getX(self, chainNum):
 	return self.chain[chainNum].getX();
     def getY(self, chainNum):
