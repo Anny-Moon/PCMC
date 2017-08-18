@@ -1,2 +1,4 @@
 #Ignore .pyc-files
 *.pyc
+*.mp4
+*.gif
