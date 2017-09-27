@@ -1,4 +1,4 @@
-programDescription ="""\
+"""\
 Run it like this:
 python ./movieMaker.py <path/fileIn.ext> <increment> <gif/mp4> <path/fileOut>
 python ./movieMaker.py 5dn7.pca 3 gif movie
@@ -16,14 +16,21 @@ For saving mp4 ffmpeg pack is needed.
 """
 #============ parameters ===============
 # Video
-fps = 2;
-dpi = 200;
+fps = 3;
+dpi = 250;
 frames = None; #number of frames, defailt = all frames
 
 # Plot
-dotSize = 8;
-dotColor = '#cc0000';
-lineColor = '#006699';
+dotSize = 20; #if None then optimal size will be found
+lineSize = 1; #if None then optimal size will be found
+
+dotColor = '#006699'; #if None then random color
+lineColor = '#c21734'; # = '#ee0000'; if None then random color
+
+dotHueDispersion = 0.02; #[0,1];
+dotSaturationDispersion = 0.5; #[0,1];
+dotVolumeDispersion = 0.2; #[0,1];
+
 
 # Axes
 elevation = None;
@@ -34,6 +41,7 @@ axisOnOff ='off';
 import matplotlib.pyplot as plt
 import Polymer
 import EqualAxes
+import Color
 import sys
 import math
 import matplotlib.animation as animation
@@ -45,26 +53,29 @@ def update(i, increment):
 	print('Chain %s has %i atoms.' % (confNum,polymer.getN(confNum)));
     
     #axMaxRange=eqAx.findMaxRange();
-	polymer.plot(confNum,ax,800/dotSize, dotColor, lineColor);
-	eqAx.set(ax);
+	
+	polymer.plot(confNum, eqAx, dotSize, lineSize, dotSmartColors, lineColor);
+#	polymer.smartColorPlot(confNum,ax,800/dotSize, dotColor, lineColor);
+	eqAx.set();
 	ax.view_init(elevation, azimut);
 	plt.axis(axisOnOff);
 
 if(len(sys.argv)<2):
-    print(programDescription);
+    print(__doc__);
     exit();
 
 fileNameIn = sys.argv[1];
 polymer = Polymer.Polymer(fileNameIn);
-
+dotSmartColors = Color.arrayWithSmartColors(polymer.getChainLenght(0),
+		dotHueDispersion, dotSaturationDispersion, dotVolumeDispersion, dotColor);
 fig = plt.figure()
 ax = fig.gca(projection='3d');
 ax.set_aspect('equal');
-eqAx = EqualAxes.EqualAxes();
+eqAx = EqualAxes.EqualAxes(ax);
 
 #first frame
 eqAx.push(polymer.getX(0),polymer.getY(0),polymer.getZ(0));
-eqAx.set(ax);
+eqAx.set();
 ax.view_init(elevation, azimut);
 plt.axis(axisOnOff);
 
@@ -93,11 +104,11 @@ if(len(sys.argv)<4):
 else:
     extention = sys.argv[3];
     fileName=fileNameIn[:-3];
-    fileNameOut=fileName + extention;
+    fileNameOut=fileName +extention;
     
     #if pass fileNameOut
     if(len(sys.argv)>4):
-	fileNameOut = sys.argv[4] + extention;
+	fileNameOut = sys.argv[4] +"."+ extention;
     
     if(sys.argv[3]=='gif'):
 	writer = animation.ImageMagickFileWriter(fps=fps);
