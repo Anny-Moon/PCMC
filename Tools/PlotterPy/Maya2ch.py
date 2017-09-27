@@ -62,6 +62,6 @@ else:
 # Your fantastic plotting script
 
 #mlab.save('pure_beauty.png')	
-f=mlab.figure(bgcolor = (1, 1, 1))
+#f=mlab.figure(bgcolor = (1, 1, 1))
 mlab.show()
 

@@ -4,7 +4,6 @@ import random
 import Color
 from matplotlib.collections import LineCollection
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
-from mayavi import mlab
 
 class FixZorderCollection(Line3DCollection):
     _zorder = 1000
@@ -75,11 +74,9 @@ class Chain():
 	    line = [(self.x[i],self.y[i],self.z[i]),
 		(self.x[i+1],self.y[i+1],self.z[i+1])];
 	    (x, y, z) = zip(*line);
-#	    ax.scatter(self.x[i],self.y[i],self.z[i], c = colorDotArray[i], alpha = 1, s=sizeDot);
-#	    ax.plot(x,y,z, c = colorLine, alpha = 1, lw=sizeLine);
-	    mlab.plot3d(x,y,z,tube_radius=0.1, color = (0.7,0.10,0.1));
-	    mlab.points3d(x, y, z,color = (0.9,0.0,0.1));
-#	ax.scatter3D(self.x[N-1],self.y[N-1],self.z[N-1], c = colorDotArray[N-1], alpha = 1, s=sizeDot);
+	    ax.scatter(self.x[i],self.y[i],self.z[i], c = colorDotArray[i], alpha = 1, s=sizeDot);
+	    ax.plot(x,y,z, c = colorLine, alpha = 1, lw=sizeLine);
+	ax.scatter3D(self.x[N-1],self.y[N-1],self.z[N-1], c = colorDotArray[N-1], alpha = 1, s=sizeDot);
 	
     def happyPlot(self, ax, axMaxRange=None):
 	if(axMaxRange == None):

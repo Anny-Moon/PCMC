@@ -11,7 +11,12 @@ class EqualAxes():
 	self.X+=X;
 	self.Y+=Y;
 	self.Z+=Z;
-	
+    
+    def clean(self):
+	self.X = [];
+	self.Y = [];
+	self.Z = [];
+    
     def findMaxRange(self):
 	X=np.asarray(self.X);
 	Y=np.asarray(self.Y);

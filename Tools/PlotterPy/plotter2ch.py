@@ -24,8 +24,8 @@ dotSaturationDispersion = 0.1; #[0,1];
 dotVolumeDispersion = 0.1; #[0,1];
 
 # Axes
-elevation = 0;
-azimut = 300;
+elevation = None;
+azimut = None;
 axisOnOff ='on';
 #=======================================
 
@@ -36,7 +36,6 @@ import EqualAxes
 import Color
 import sys
 import random
-from mayavi import mlab
 
 random.seed(randomSeed);
 
@@ -85,11 +84,8 @@ else:
 #	polymer.happyPlot(confNum,ax, axMaxRange);
 #	polymer.plotOld(confNum, ax);
 	
-#mlab.savefig('test_Plot3D.pdf')
-#mlab.figure(bgcolor=(1,1,1));
-mlab.show()
 
-#eqAx.set();
-#ax.view_init(elevation, azimut);
-#plt.axis(axisOnOff);
-#plt.show();
+eqAx.set();
+ax.view_init(elevation, azimut);
+plt.axis(axisOnOff);
+plt.show();
