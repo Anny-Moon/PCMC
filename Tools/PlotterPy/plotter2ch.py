@@ -36,6 +36,7 @@ import EqualAxes
 import Color
 import sys
 import random
+from mayavi import mlab
 
 random.seed(randomSeed);
 
@@ -84,8 +85,11 @@ else:
 #	polymer.happyPlot(confNum,ax, axMaxRange);
 #	polymer.plotOld(confNum, ax);
 	
-    
-eqAx.set();
-ax.view_init(elevation, azimut);
-plt.axis(axisOnOff);
-plt.show();
+#mlab.savefig('test_Plot3D.pdf')
+#mlab.figure(bgcolor=(1,1,1));
+mlab.show()
+
+#eqAx.set();
+#ax.view_init(elevation, azimut);
+#plt.axis(axisOnOff);
+#plt.show();
