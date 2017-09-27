@@ -1,4 +1,20 @@
-/** @file Vector.h
+/*  Copyright 2017 Anna Sinelnikova
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*/
+
+/** @package PCA
+*   @file Vector.h
 *
 *   @autor Anna Sinelnikova
 *   @data 2016
@@ -65,6 +81,9 @@ public:
     
     static double dotProduct(const Vector& A, const Vector& B);
     
+    /** Make array r from x,y,z : r[0] = {x[0],y[0],z[0]}, ...*/
+    static void makeArray(int size, Vector* r, double* x, double* y, double* z);
+    
     /** Copy array of size N: vector_to = vector_from */
     static void copyArray(int size, Vector* vector_to, const Vector* vector_from);
     static void KadanoffTransformation(int size, Vector* vector_out, const Vector* vector_in);
@@ -128,7 +147,7 @@ inline double Vector::norm () const
 
 inline void Vector::writeInFile(FILE* fp)
 {
-    fprintf(fp, "%g\t%g\t%g\n",x, y, z);
+    fprintf(fp, "%.15le\t%.15le\t%.15le\n",x, y, z);
 }
 
 }//end of namespace PCA

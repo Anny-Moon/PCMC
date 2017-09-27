@@ -15,18 +15,18 @@ dotSize = None; #if None then optimal size will be found
 lineSize = None; # = '#ee0000'; if None then optimal size will be found
 
 dotColor = "#cc0000"; #if None then will be random
-lineColor = "black"; #if None then will be random
+lineColor = "#660000"; #if None then will be random
 dotColor2 = "#0066cc"; #if None then will be random
-lineColor2 = "black"; #if None then will be random
+lineColor2 = "#00264d"; #if None then will be random
 
 dotHueDispersion = 0.05; #[0,1];
 dotSaturationDispersion = 0.1; #[0,1];
 dotVolumeDispersion = 0.1; #[0,1];
 
 # Axes
-elevation = None;
-azimut = None;
-axisOnOff ='off';
+elevation = 0;
+azimut = 300;
+axisOnOff ='on';
 #=======================================
 
 
@@ -43,8 +43,8 @@ if(len(sys.argv)<2):
     print(__doc__);
     exit();
 #fileName = sys.argv[1];
-fileName = "0confR.dat";
-fileName2 = "0confR2.dat";
+fileName = "/Users/annsi118/Documents/Git_projects/PCMC/Projects/MonteCarlo2chains/results/Configurations/0confR.dat";
+fileName2 = "/Users/annsi118/Documents/Git_projects/PCMC/Projects/MonteCarlo2chains/results/Configurations/0confR2.dat";
 polymer = Polymer.Polymer(fileName);
 polymer2 = Polymer.Polymer(fileName2);
 
@@ -86,5 +86,6 @@ else:
 	
     
 eqAx.set();
+ax.view_init(elevation, azimut);
 plt.axis(axisOnOff);
 plt.show();

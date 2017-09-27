@@ -2,6 +2,19 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import random
 import Color
+from matplotlib.collections import LineCollection
+from mpl_toolkits.mplot3d.art3d import Line3DCollection
+
+class FixZorderCollection(Line3DCollection):
+    _zorder = 1000
+
+    @property
+    def zorder(self):
+    	return self._zorder
+
+    @zorder.setter
+    def zorder(self, value):
+    	pass
 
 class Chain():
     def __init__(self):
@@ -47,6 +60,15 @@ class Chain():
 	    r = lambda: random.randint(0,255);
 	    colorLine = '#%02X%02X%02X' % (r(),r(),r());
 
+	xi = [-10,10]
+	yi = [-10,10]
+	zs= [-10,10];
+	l=zip(xi,yi)
+	lines = LineCollection((l,l),zorder=1000,color='black',lw=3)
+#	ax.add_collection3d(lines,zs=zs)
+
+#	ax.collections[-1].__class__ = FixZorderCollection
+
 	
 	for i in range (0, N-1):
 	    line = [(self.x[i],self.y[i],self.z[i]),
@@ -54,7 +76,7 @@ class Chain():
 	    (x, y, z) = zip(*line);
 	    ax.scatter(self.x[i],self.y[i],self.z[i], c = colorDotArray[i], alpha = 1, s=sizeDot);
 	    ax.plot(x,y,z, c = colorLine, alpha = 1, lw=sizeLine);
-	ax.scatter(self.x[N-1],self.y[N-1],self.z[N-1], c = colorDotArray[N-1], alpha = 1, s=sizeDot);
+	ax.scatter3D(self.x[N-1],self.y[N-1],self.z[N-1], c = colorDotArray[N-1], alpha = 1, s=sizeDot);
 	
     def happyPlot(self, ax, axMaxRange=None):
 	if(axMaxRange == None):
