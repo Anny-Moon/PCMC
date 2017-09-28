@@ -28,10 +28,10 @@ class Chain():
 	self.y.append(y);
 	self.z.append(z);
     
-    def plot(self, sizeDot=None, sizeLine=None, colorDot=None, colorLine=None):
+    def plot(self, fig, sizeDot=None, sizeLine=None, colorDot=None, colorLine=None):
 	
-	mlab.points3d(self.x,self.y,self.z, color = colorDot,scale_factor=.8);
-	mlab.plot3d(self.x,self.y,self.z,tube_radius=0.15, color = colorLine);
+	mlab.points3d(self.x,self.y,self.z, color = colorDot, scale_factor=sizeDot, figure = fig);
+	mlab.plot3d(self.x,self.y,self.z, tube_radius=sizeLine, color = colorLine, figure = fig);
 	
 	
     def happyPlot(self, ax, axMaxRange=None):
