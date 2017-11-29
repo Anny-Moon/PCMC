@@ -13,7 +13,7 @@ print("\t%s\n" %content[0]);
 
 with open(fileOut, "w") as fp:
     
-    fp.write("#Generated automaticcaly from data from Vladivostok\n")
+    fp.write("#Generated automaticaly from data from Vladivostok\n")
     fp.write("#2l86\n")
     fp.write("\n\n")
     fp.write("#----------------Polymer---------------------------\n")
@@ -64,14 +64,14 @@ with open(fileOut, "w") as fp:
 	line+=1;
 	
 	fp.write("FROM\t%i\n" % From);
-	fp.write("S_HAM_Q\t%f\n" % c1);
-	fp.write("S_HAM_M\t%f\n" % m1);
+	fp.write("S_HAM_Q\t%e\n" % c1);
+	fp.write("S_HAM_M\t%e\n" % m1);
 	
-	fp.write("S_HAM_A\t%f\n" % (-d));
-	fp.write("S_HAM_B\t%f\n" % (q/d));
+	fp.write("S_HAM_A\t%e\n" % (-d));
+	fp.write("S_HAM_B\t%e\n" % (q/d));
 	
-	fp.write("S_HAM_C\t%f\n" % (2.0*e));
-	fp.write("S_HAM_D\t%f\n" % (b/e));
+	fp.write("S_HAM_C\t%e\n" % (2.0*e));
+	fp.write("S_HAM_D\t%e\n" % (b/e));
 	fp.write("TO\t%i\n" %To);
 	fp.write("\n");
 	
@@ -80,14 +80,14 @@ with open(fileOut, "w") as fp:
 	lastSite = To;
 	
 	fp.write("FROM\t%i\n" % From);
-	fp.write("S_HAM_Q\t%f\n" % c2);
-	fp.write("S_HAM_M\t%f\n" % m2);
+	fp.write("S_HAM_Q\t%e\n" % c2);
+	fp.write("S_HAM_M\t%e\n" % m2);
 	
-	fp.write("S_HAM_A\t%f\n" % (-d));
-	fp.write("S_HAM_B\t%f\n" % (q/d));
+	fp.write("S_HAM_A\t%e\n" % (-d));
+	fp.write("S_HAM_B\t%e\n" % (q/d));
 	
-	fp.write("S_HAM_C\t%f\n" % (2.0*e));
-	fp.write("S_HAM_D\t%f\n" % (b/e));
+	fp.write("S_HAM_C\t%e\n" % (2.0*e));
+	fp.write("S_HAM_D\t%e\n" % (b/e));
 	fp.write("TO\t%i\n" %To);
 	fp.write("\n");
 
