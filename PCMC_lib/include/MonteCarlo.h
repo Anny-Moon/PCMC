@@ -21,7 +21,7 @@ class MonteCarlo
 {
 public:
     enum class Regime{normal, withoutH, withSA, twoChains, backwards};
-    inline std::string getRegimeStr();
+    inline std::string getRegimeStr() const;
     
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
@@ -70,6 +70,7 @@ private:
 inline void MonteCarlo::writeInParamFile(FILE* fp) const{
 
     fprintf(fp,"\n#------------------Monte-Carlo--------------------\n");
+    fprintf(fp,"REGIME\t%i\t#%s\n",regime, getRegimeStr().c_str());
     if(cores>0) //mpirun
 	fprintf(fp,"CORES\t%i\n",cores);
     else //not mpirun
@@ -105,7 +106,7 @@ inline int MonteCarlo::getCores(){
     return cores;
 }
 
-inline std::string MonteCarlo::getRegimeStr(){
+inline std::string MonteCarlo::getRegimeStr() const{
     switch(regime){
 	case Regime::normal:
 	    return "normal";
