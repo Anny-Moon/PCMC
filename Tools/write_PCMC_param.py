@@ -8,12 +8,27 @@ with open(fileIn, "r") as fp:
 
 lastSite = -1;
 
+print("Comments in file '%s':" % sys.argv[1]);
+print("\t%s\n" %content[0]);
+
 with open(fileOut, "w") as fp:
-    line = 0;
-    print(len(content))
+    
+    fp.write("#Generated automaticcaly from data from Vladivostok\n")
+    fp.write("#2l86\n")
+    fp.write("\n\n")
+    fp.write("#----------------Polymer---------------------------\n")
+    fp.write("NUMBER_OF_MONOMERS  %i\n" % int(content[1]));
+    fp.write("MONOMER_LENGTH 3.8  #fixed for current version of the program\n")
+    fp.write("\n")
+    fp.write("#----------------Hamiltonian-----------------------\n")
+    fp.write("HAM_MU	0.0\n")
+    fp.write("HAM_ALPHA	1.0\n")
+    fp.write("\n")
+    fp.write("#---------------Solitons---------------------------\n")
+
+    
+    line = 2;
     while(line < len(content)-1):
-	print(line);
-	print content[line];
 	length, cent = content[line].split();
 	length = int(length);
 	cent = int(cent);
@@ -75,4 +90,20 @@ with open(fileOut, "w") as fp:
 	fp.write("S_HAM_D\t%f\n" % (b/e));
 	fp.write("TO\t%i\n" %To);
 	fp.write("\n");
-	
+
+
+    fp.write("#----------------Interaction-----------------------\n")
+    fp.write("LENNARD_JONES_MIN	1.1\n");
+    fp.write("LENNARD_JONES_R_MIN	5.0\n");
+    fp.write("\n");
+    fp.write("#---------------Monte Carlo------------------------\n");
+    fp.write("REGIME	0\n\n");
+    fp.write("LOOPS_PER_CORE	1\n");
+    fp.write("\n");
+    fp.write("MAX_LOG_T 1.0\n");
+    fp.write("LOG_T_STEP 0.5\n");
+    fp.write("MIN_LOG_T -13.0\n");
+    fp.write("\n");
+    fp.write("SWEEPS_PER_STEP 505\n");
+
+print("Generated file '%s'." % fileOut);

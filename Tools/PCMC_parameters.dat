@@ -1,3 +1,16 @@
+#Generated automaticcaly from data from Vladivostok
+#2l86
+
+
+#----------------Polymer---------------------------
+NUMBER_OF_MONOMERS  37
+MONOMER_LENGTH 3.8  #fixed for current version of the program
+
+#----------------Hamiltonian-----------------------
+HAM_MU	0.0
+HAM_ALPHA	1.0
+
+#---------------Solitons---------------------------
 FROM	0
 S_HAM_Q	0.951605
 S_HAM_M	1.336089
@@ -52,3 +65,17 @@ S_HAM_C	0.000000
 S_HAM_D	395.785888
 TO	36
 
+#----------------Interaction-----------------------
+LENNARD_JONES_MIN	1.1
+LENNARD_JONES_R_MIN	5.0
+
+#---------------Monte Carlo------------------------
+REGIME	0
+
+LOOPS_PER_CORE	1
+
+MAX_LOG_T 1.0
+LOG_T_STEP 0.5
+MIN_LOG_T -13.0
+
+SWEEPS_PER_STEP 505
