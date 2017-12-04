@@ -16,8 +16,7 @@ namespace PCA{
 
 MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 			const Hamiltonian* hamiltonian_in,
-			const Interaction* interaction_in,
-			const MonteCarlo::Regime regime_in)
+			const Interaction* interaction_in)
 {
     readFromParamFile(fileName);
     stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
@@ -25,7 +24,6 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
     polymerEtalon = polymer_in;
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
-    regime = regime_in;
     
     if(regime==Regime::twoChains)
 	_PCA_ERROR("MonteCarlo constructor:\n\tFor 2 chains you should use another constructor.");

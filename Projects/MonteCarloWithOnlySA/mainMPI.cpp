@@ -30,8 +30,8 @@ int main(int np, char **p)
     
     if (myCoreNumber==0)
 	printf("Start\n");
-//    RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
-RandomGenerator::initialization(1*(myCoreNumber+1));    
+    RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
+//RandomGenerator::initialization(1*(myCoreNumber+1));    
 
     paramFileName = new char[100];
     sprintf(paramFileName, "PCMC_parameters.dat");
@@ -45,17 +45,12 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     Hamiltonian* hamiltonian;
     hamiltonian = parser.createHamiltonian();
     
-    LennardJones* interaction;
-//    Interaction* interaction = nullptr;
-    interaction = parser.createLennardJones();
-    
     MonteCarlo *monteCarlo;
-    monteCarlo = new MonteCarlo(paramFileName, polymer, hamiltonian, interaction, MonteCarlo::Regime::withSA);
+    monteCarlo = new MonteCarlo(paramFileName, polymer, hamiltonian, nullptr);
     
     monteCarlo->run(myCoreNumber, totalCoreNumber);
     
     delete polymer;
-    delete interaction;
     delete hamiltonian;
     delete [] paramFileName;
     

@@ -97,7 +97,7 @@ with open(fileOut, "w") as fp:
     fp.write("LENNARD_JONES_R_MIN	5.0\n");
     fp.write("\n");
     fp.write("#---------------Monte Carlo------------------------\n");
-    fp.write("REGIME	0\n\n");
+    fp.write("REGIME	2\n\n");
     fp.write("LOOPS_PER_CORE	1\n");
     fp.write("\n");
     fp.write("MAX_LOG_T 1.0\n");

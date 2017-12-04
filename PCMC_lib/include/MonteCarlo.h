@@ -25,8 +25,7 @@ public:
     
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
-		const Interaction* interaction_in,
-		const Regime regime_in = Regime::normal);
+		const Interaction* interaction_in);
     /** Costructor for 2 chains (equal) case. Regime will be set to twoChains. */
     MonteCarlo(const char* fileName, PolymerMC* polymer_in1, PolymerMC* polymer_in2,
 		const Hamiltonian* hamiltonian_in,
@@ -113,7 +112,7 @@ inline std::string MonteCarlo::getRegimeStr() const{
 	case Regime::withoutH:
 	    return "without Hamiltonian";
 	case Regime::withSA:
-	    return "without self avoiding, but without long range attraction";
+	    return "with self avoiding, but without long range attraction";
 	case Regime::twoChains:
 	    return "2 chains: Along the chain there is only self avoiding condition,\nbut between chains - full interaction.";
 	case Regime::backwards:

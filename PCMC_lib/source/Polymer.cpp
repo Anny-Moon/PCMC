@@ -456,7 +456,6 @@ void Polymer::setVectorsTNBfromKappaTau(const Vector& t0, const Vector& n0, cons
 void Polymer::setKappasTausFromVectorsTNB()
 {
     int i;
-    int  tmp_i;
     _PCA_CATCH_VOID_POINTER(t, "Polymer::setKappasTausFromVectorsTNB()\n\tt = NULL");
     _PCA_CATCH_VOID_POINTER(n, "Polymer::setKappasTausFromVectorsTNB()\n\tn = NULL");
     _PCA_CATCH_VOID_POINTER(b, "Polymer::setKappasTausFromVectorsTNB()\n\tb = NULL");

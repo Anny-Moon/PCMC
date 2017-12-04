@@ -3,7 +3,7 @@
 
 
 #----------------Polymer---------------------------
-NUMBER_OF_MONOMERS  10
+NUMBER_OF_MONOMERS  70
 MONOMER_LENGTH 3.8  #fixed for current version of the program
 
 #----------------Hamiltonian-----------------------
@@ -17,11 +17,23 @@ HAM_MU	0.0
 HAM_ALPHA	1.0
 
 #----------------Interaction-----------------------
-LENNARD_JONES_MIN	0.001
-LENNARD_JONES_R_MIN	5.0
+LENNARD_JONES_MIN	10.0
+LENNARD_JONES_R_MIN	4.5
+
+#----------------Solitons--------------------------
+FROM		0
+S_HAM_A		88888
+S_HAM_M		2.2
+TO		50
+
+FROM		52
+S_HAM_A		77777
+TO		77
 
 #---------------Monte Carlo------------------------
-LOOPS_PER_CORE	1
+REGIME 2
+
+LOOPS_PER_CORE	3
 
 MAX_LOG_T 2.0
 LOG_T_STEP 1.0
