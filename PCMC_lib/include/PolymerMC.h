@@ -186,18 +186,12 @@ public:
 
 inline double PolymerMC::generateKappa(int site, double temperature, const Hamiltonian& hamiltonian) const
 {
-
-    if(site==0)
-	return hamiltonian.generateKappa(site, tau[site], kappa[site+1], 0.0, temperature);
-    else if(site==numMonomers-1)
-	return hamiltonian.generateKappa(site, tau[site], 0.0, kappa[site-1], temperature);
-    else
-	return hamiltonian.generateKappa(site, tau[site], kappa[site+1], kappa[site-1], temperature);
+    return hamiltonian.generateKappa(site, kappa, tau, temperature);
 }
 
 inline double PolymerMC::generateTau(int site, double temperature, const Hamiltonian& hamiltonian) const
 {
-    return hamiltonian.generateTau(site, kappa[site], temperature);
+    return hamiltonian.generateTau(site, kappa, tau, temperature);
 }
 
 inline double PolymerMC::calculateNewInteraction(int site, const Interaction& interaction) const

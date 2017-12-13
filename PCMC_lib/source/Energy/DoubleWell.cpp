@@ -4,10 +4,11 @@
 *   Double well potential as a fucnctions of kappa, tau angles.
 *
 *   @autor Anna Sinelnikova
-*   @data 2016
+*   @data 2017
 */
 
 #include "../../include/Energy/Hamiltonian.h"
+#include "../../include/Energy/DoubleWell.h"
 #include "../../include/PolymerMC.h"
 #include "../../include/Random/GaussRand.h"
 #include "../../include/Random/DoubleWellRand.h"
@@ -19,7 +20,7 @@
 
 namespace PCA{
 
-Hamiltonian::Hamiltonian(int numSites_in)
+DoubleWell::DoubleWell(int numSites_in)
 {
     numSites = numSites_in;
     alpha = 1.0;
@@ -34,7 +35,7 @@ Hamiltonian::Hamiltonian(int numSites_in)
     
 }
 
-Hamiltonian::Hamiltonian(
+DoubleWell::DoubleWell(
     int numSites_in,
     double q_in,
     double m_in,
@@ -66,7 +67,7 @@ Hamiltonian::Hamiltonian(
     
 }
 
-Hamiltonian::~Hamiltonian()
+DoubleWell::~DoubleWell()
 {
 
     if(q!=NULL){
@@ -101,72 +102,72 @@ Hamiltonian::~Hamiltonian()
     
 }
 
-void Hamiltonian::pushAlpha(double alpha_in)
+void DoubleWell::pushAlpha(double alpha_in)
 {
     alpha = alpha_in;
 }
 
-void Hamiltonian::pushMu(double mu_in)
+void DoubleWell::pushMu(double mu_in)
 {
     mu = mu_in;
 }
 
-void Hamiltonian::pushQ(double q_in, int fromSite, int toSite)
+void DoubleWell::pushQ(double q_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(q, "Hamiltonian::Param::pushQ(.)");
+    _PCA_CATCH_VOID_POINTER(q, "DoubleWell::Param::pushQ(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	q[i] = q_in;
 }
 
-void Hamiltonian::pushM(double m_in, int fromSite, int toSite)
+void DoubleWell::pushM(double m_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(m, "Hamiltonian::Param::pushM(.)");
+    _PCA_CATCH_VOID_POINTER(m, "DoubleWell::Param::pushM(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	m[i] = m_in;
 }
 
-void Hamiltonian::pushC(double c_in, int fromSite, int toSite)
+void DoubleWell::pushC(double c_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(c, "Hamiltonian::Param::pushC(.)");
+    _PCA_CATCH_VOID_POINTER(c, "DoubleWell::Param::pushC(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	c[i] = c_in;
 }
 
-void Hamiltonian::pushD(double d_in, int fromSite, int toSite)
+void DoubleWell::pushD(double d_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(d, "Hamiltonian::Param::pushD(.)");
+    _PCA_CATCH_VOID_POINTER(d, "DoubleWell::Param::pushD(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	d[i] = d_in;
 }
 
-void Hamiltonian::pushA(double a_in, int fromSite, int toSite)
+void DoubleWell::pushA(double a_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(a, "Hamiltonian::Param::pushA(.)");
+    _PCA_CATCH_VOID_POINTER(a, "DoubleWell::Param::pushA(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	a[i] = a_in;
 }
 
-void Hamiltonian::pushB(double b_in, int fromSite, int toSite)
+void DoubleWell::pushB(double b_in, int fromSite, int toSite)
 {
     int i;
-    _PCA_CATCH_VOID_POINTER(b, "Hamiltonian::Param::pushB(.)");
+    _PCA_CATCH_VOID_POINTER(b, "DoubleWell::Param::pushB(.)");
     
     for(i=fromSite; i<toSite+1; i++)
 	b[i] = b_in;
 }
 
 
-double Hamiltonian::energyOneSite(int site, const Polymer& polymer) const
+double DoubleWell::energyOneSite(int site, const Polymer& polymer) const
 {
     double E1,E2;
 	
@@ -189,7 +190,7 @@ double Hamiltonian::energyOneSite(int site, const Polymer& polymer) const
     return E1 + E2;
 }
 
-double Hamiltonian::energyAllSites(const Polymer& polymer) const
+double DoubleWell::energyAllSites(const Polymer& polymer) const
 {
     int i;
     double E1 = 0.0;
@@ -217,13 +218,13 @@ double Hamiltonian::energyAllSites(const Polymer& polymer) const
     return E1 + E2;
 }
 
-double Hamiltonian::generateTau (int site, double kappa_site, double temperature) const
+double DoubleWell::generateTau (int site, const double* kappa, const double* tau, double temperature) const
 {
     double A2, B, mu, sigma;
     
     
-    A2 = c[site] * (d[site] * kappa_site*kappa_site + 1.0);
-    B = a[site] * (b[site] * kappa_site*kappa_site + 1.0);
+    A2 = c[site] * (d[site] * kappa[site]*kappa[site] + 1.0);
+    B = a[site] * (b[site] * kappa[site]*kappa[site] + 1.0);
     
     mu = B / A2;
     sigma = sqrt(temperature / (alpha * A2));
@@ -232,12 +233,26 @@ double Hamiltonian::generateTau (int site, double kappa_site, double temperature
 
 }
 
-double Hamiltonian::generateKappa(int site, double tau_site, double kappa_siteMore, double kappa_siteLess, double temperature) const
+double DoubleWell::generateKappa(int site, const double* kappa, const double* tau, double temperature) const
 {
     double A,B,C;
+    double kappa_siteMore, kappa_siteLess;
+    
+    if(site==0){
+	kappa_siteMore = kappa[site+1];
+	kappa_siteLess = 0.0;
+    }
+    else if(site==numSites-1){
+	kappa_siteMore = 0.0;
+	kappa_siteLess = kappa[site-1];
+    }
+    else{
+	kappa_siteMore = kappa[site+1];
+	kappa_siteLess = kappa[site-1];
+    }
     
     A = alpha/temperature * q[site];
-    B = alpha/temperature * (a[site]*b[site]*tau_site + 2.0*q[site]*m[site]*m[site]-c[site]*0.5*d[site]*tau_site*tau_site - 2.0);
+    B = alpha/temperature * (a[site]*b[site]*tau[site] + 2.0*q[site]*m[site]*m[site]-c[site]*0.5*d[site]*tau[site]*tau[site] - 2.0);
     C = (2.0 + mu)/temperature * (kappa_siteLess+kappa_siteMore);
     
     DoubleWellRand dwRand(A,B,C);
@@ -245,12 +260,12 @@ double Hamiltonian::generateKappa(int site, double tau_site, double kappa_siteMo
     
 }
 
-void Hamiltonian::writeInParamFile(FILE* fp) const
+void DoubleWell::writeInParamFile(FILE* fp) const
 {
     int notSolitonSite;
     bool onlySolitons = true;
     
-    _PCA_CATCH_VOID_POINTER(fp,"Hamiltonian::writeInParamFile\n\t pass me an open file with parameters.\n");
+    _PCA_CATCH_VOID_POINTER(fp,"DoubleWell::writeInParamFile\n\t pass me an open file with parameters.\n");
     fprintf(fp,"\n#------------------Hamiltonian--------------------\n");
     
     //find not soliton part
@@ -330,5 +345,10 @@ void Hamiltonian::writeInParamFile(FILE* fp) const
     }
     
 }
+
+bool DoubleWell::checkAllParamAreSeted(){
+    printf("Error: in DoubleWell: the function is not supported.\n");
+    exit(1);
+};
 
 }//end of namespace PCA

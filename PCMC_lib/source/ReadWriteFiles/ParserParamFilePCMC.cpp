@@ -58,7 +58,7 @@ bool ParserParamFilePCMC::checkSolitonsOverlap(Hamiltonian* hamiltonian) const
     return true;
 }
 
-int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFromThisLine) const
+int ParserParamFilePCMC::setSoliton(DoubleWell* hamiltonian, int* startSearchFromThisLine) const
 {
     std::string etalon, etalonFrom, etalonTo;;
     int numSites, number, numberFrom, numberTo;
@@ -157,7 +157,7 @@ int ParserParamFilePCMC::setSoliton(Hamiltonian* hamiltonian, int* startSearchFr
     return 1;
 }
 
-Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
+DoubleWell* ParserParamFilePCMC::createDoubleWell() const
 {
     std::string etalon;
     int number;
@@ -247,7 +247,7 @@ Hamiltonian* ParserParamFilePCMC::createHamiltonian() const
 	//exit(1);
     }
     
-    Hamiltonian* hamiltonian = new Hamiltonian(N,q,m,c,d,a,b,alpha,mu);
+    DoubleWell* hamiltonian = new DoubleWell(N,q,m,c,d,a,b,alpha,mu);
     int startSearchFromThisLine = 0;
     
     while(setSoliton(hamiltonian, &startSearchFromThisLine)!=0);
