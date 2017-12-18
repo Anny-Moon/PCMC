@@ -4,7 +4,7 @@
 CPU MULTY CORE
 
 Cores 1
-Loops 1
+Loops 2
 Steps/loop: 5
 
 Regime: normal
@@ -13,6 +13,12 @@ Loop 0:	0
 Loop 0:	-1
 Loop 0:	-2
 Loop 0:	-3
-Timer No. 0:	127ms244us313ns
+Timer No. 0:	101ms225us642ns
+Loop 1:	1
+Loop 1:	0
+Loop 1:	-1
+Loop 1:	-2
+Loop 1:	-3
+Timer No. 1:	98ms747us663ns
 END
 
