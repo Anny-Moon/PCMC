@@ -72,7 +72,11 @@ public:
     void pushB(double b_in, int fromSite, int toSite);
     
     //@}
+    DoubleWell (const DoubleWell& ham);
+    DoubleWell& operator=(const DoubleWell& ham);
     ~DoubleWell();
+    
+    
     
     virtual bool checkAllParamAreSeted();
     virtual double energyOneSite(int site, const Polymer& polymer) const;
@@ -97,8 +101,9 @@ public:
     virtual double generateTau (int site, const double* kappa, const double* tau, double temperature) const;
     
     virtual void writeInParamFile(FILE* fp) const;
+    
+    const double* getA() const;
 };
-
 
 }//end of namespace PCA
 #endif

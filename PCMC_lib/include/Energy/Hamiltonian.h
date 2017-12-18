@@ -34,6 +34,7 @@ public:
     std::vector<int> to;
     //@}
     virtual ~Hamiltonian() = 0;
+    
     virtual bool checkAllParamAreSeted() = 0;
 
     virtual double energyOneSite(int site, const Polymer& polymer) const = 0;

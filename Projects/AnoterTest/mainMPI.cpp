@@ -43,10 +43,13 @@ RandomGenerator::initialization(1*(myCoreNumber+1));
     polymer->setMonomerLengths(3.8);
     polymer->initWithRandomTaus();
 
-    Hamiltonian* hamiltonian;
+    DoubleWell* hamiltonian;
 //    hamiltonian = parser.createHamiltonian();
     hamiltonian = parser.createDoubleWell();
-
+    
+    const double* a = hamiltonian->getA();
+    printf("a = % g %g\n", a[0], a[5]);
+    
     LennardJones* interaction;
 //    Interaction* interaction;
     interaction = parser.createLennardJones();

@@ -67,6 +67,97 @@ DoubleWell::DoubleWell(
     
 }
 
+DoubleWell::DoubleWell (const DoubleWell& ham)
+{
+    numSites = ham.numSites;
+    
+    from = ham.from;
+    to = ham.to;
+    
+    alpha = ham.alpha;
+    mu = ham.mu;
+    
+    q = nullptr;
+    m = nullptr;
+    a = nullptr;
+    b = nullptr;
+    c = nullptr;
+    d = nullptr;
+    
+    if(ham.q!=nullptr){
+	q = new double[numSites];
+	copyArray(numSites, q, ham.q);
+    }
+    if(ham.m!=nullptr){
+	m = new double[numSites];
+	copyArray(numSites, m, ham.m);
+    }
+    if(ham.a!=nullptr){
+	a = new double[numSites];
+	copyArray(numSites, a, ham.a);
+    }
+    if(ham.b!=nullptr){
+	b = new double[numSites];
+	copyArray(numSites, b, ham.b);
+    }
+    if(ham.c!=nullptr){
+	c = new double[numSites];
+	copyArray(numSites, c, ham.c);
+    }
+    if(ham.d!=nullptr){
+	d = new double[numSites];
+	copyArray(numSites, d, ham.d);
+    }
+    
+}
+
+DoubleWell& DoubleWell::operator=(const DoubleWell& ham)
+{
+    if(this == &ham)
+	return *this;
+    
+    numSites = ham.numSites;
+    
+    from = ham.from;
+    to = ham.to;
+    
+    alpha = ham.alpha;
+    mu = ham.mu;
+    
+    q = nullptr;
+    m = nullptr;
+    a = nullptr;
+    b = nullptr;
+    c = nullptr;
+    d = nullptr;
+    
+    if(ham.q!=nullptr){
+	q = new double[numSites];
+	copyArray(numSites, q, ham.q);
+    }
+    if(ham.m!=nullptr){
+	m = new double[numSites];
+	copyArray(numSites, m, ham.m);
+    }
+    if(ham.a!=nullptr){
+	a = new double[numSites];
+	copyArray(numSites, a, ham.a);
+    }
+    if(ham.b!=nullptr){
+	b = new double[numSites];
+	copyArray(numSites, b, ham.b);
+    }
+    if(ham.c!=nullptr){
+	c = new double[numSites];
+	copyArray(numSites, c, ham.c);
+    }
+    if(ham.d!=nullptr){
+	d = new double[numSites];
+	copyArray(numSites, d, ham.d);
+    }
+    
+    return *this;
+}
 DoubleWell::~DoubleWell()
 {
 
@@ -293,6 +384,17 @@ void DoubleWell::writeInParamFile(FILE* fp) const
 	}
     }
    
+    else{ // no solitons - homopolymer case;
+	fprintf(fp,"HAM_Q\t%g\n", q[0]);
+	fprintf(fp,"HAM_M\t%g\n", m[0]);
+	fprintf(fp,"HAM_C\t%g\n", c[0]);
+	fprintf(fp,"HAM_D\t%g\n", d[0]);
+	fprintf(fp,"HAM_A\t%g\n", a[0]);
+	fprintf(fp,"HAM_B\t%g\n", b[0]);
+	fprintf(fp,"HAM_MU\t%g\n", mu);
+	fprintf(fp,"HAM_ALPHA\t%g\n", alpha);
+	return;
+    }
     // if there is some part of the chain without solitons
     if(!onlySolitons){
 	fprintf(fp,"HAM_Q\t%g\n", q[notSolitonSite]);
@@ -350,5 +452,10 @@ bool DoubleWell::checkAllParamAreSeted(){
     printf("Error: in DoubleWell: the function is not supported.\n");
     exit(1);
 };
+
+const double* DoubleWell::getA() const
+{
+    return a;
+}
 
 }//end of namespace PCA
