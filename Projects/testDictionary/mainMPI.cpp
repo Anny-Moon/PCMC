@@ -32,9 +32,9 @@ int main(int np, char **p)
     Dictionary dic2 = dictionary({"HAM_B","FROM", "NUMBER_OF_MONOMERS"});
     dic2.printAll();
     
-    printf("\n");
+    printf("\n~~~~~~\n");
     
-    Dictionary dic3 = dictionary({"FROM", "TO"});
+    Dictionary dic3 = dictionary({"CARE","FROM","LOVE","S_HAM_A","S_HAM_M", "TO"});
     dic3.printAll();
 //    PolymerMC* polymer;
 //    polymer = parser.createPolymer();

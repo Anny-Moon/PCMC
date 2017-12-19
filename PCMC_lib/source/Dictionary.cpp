@@ -20,16 +20,23 @@ Dictionary::~Dictionary(){};
 const Dictionary Dictionary::operator() (const vector<string>& keyWords)
 {
     std::vector<std::tuple<std::string, double>> dic;
-    
-    for(int i=0; i<keyWords.size();i++){
-	for(int j=0; j<size(); j++){
-	    j = search(keyWords[i],j);
-	    //printf("``` %i\n", j);
-	    if(j==-1)
-		break;
-	    dic.push_back(dictionary[j]);
+    int count =0;
+    int j=0, tmpJ=0;
+    do{
+	for(int i=0; i<keyWords.size();i++){
+	    tmpJ = search(keyWords[i],j+1);
+	    if(tmpJ>-1){ // find the word
+		j=tmpJ;
+		dic.push_back(dictionary[j]);
+		count=0;
+	    }
+	    
+	    else
+		count++; // how many words in block can't find
+	    
 	}
-    }
+    }while(count<keyWords.size()); // quit when can't find all words in a block
+    
     return Dictionary(dic);
 }
 
