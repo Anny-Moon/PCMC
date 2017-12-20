@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include <chrono>
+#include <cstring>
 
 namespace PCA{
 
@@ -45,7 +46,7 @@ inline void Timer::tock(int tag, const char* messege, FILE* fp)
 	    int microseconds = (std::chrono::duration_cast<std::chrono::microseconds>(end - start[i]).count())%1000;
 	    int nanoseconds = (std::chrono::duration_cast<std::chrono::nanoseconds>(end - start[i]).count())%1000;
 	    
-	    if(strcmp(messege, "") == 0)
+	    if(std::strcmp(messege, "") == 0)
 		fprintf(fp,"Timer No. %i:\t", tag);
 		
 	    else
