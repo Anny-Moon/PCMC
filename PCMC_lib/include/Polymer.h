@@ -51,8 +51,7 @@ class Polymer
     /** Read file with kappa tau angles and fill corresponding arrays. One line - one atom. One block - one chain.*/
     void readFileWithAngles(char* fileName, int linesInBlock, int blockNumber = 1);
     
-    /** The same as destructor */
-    void formatAll();
+    
 
 public:
     enum class FileType {coordinates, angles};
@@ -74,10 +73,15 @@ public:
     /** Constructor */
     Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
     
+    /** initianalize with same kappas ans taus*/
+    void init(double kappa = 1.5, double tau = 1);//< default alpha-helix
+    
     /** Copy constructor*/
     Polymer(const Polymer& polymer);
     Polymer& operator=(const Polymer& polymer);
-
+    
+    /** The same as destructor */
+    void formatAll();
     /** Destructor*/
     ~Polymer();
 

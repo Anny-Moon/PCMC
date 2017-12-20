@@ -230,6 +230,35 @@ Polymer::Polymer(int numberOfMonomers, const Vector* r_in,  const Vector* t_in, 
 
 }
 
+void Polymer::init(double kappa_in, double tau_in)
+{
+    if(kappa == NULL){
+	kappa = new double[numMonomers];
+	PCA::fillArray(numMonomers, kappa, kappa_in);
+    }
+    
+    if(tau == NULL){
+	tau = new double[numMonomers];
+	PCA::fillArray(numMonomers, tau, tau_in);
+    }
+    
+    if(monomerLength == NULL){
+	monomerLength = new double[numMonomers];
+	PCA::fillArray(numMonomers, monomerLength, 3.8);
+    }
+    
+    if(t == NULL)
+	t = new Vector[numMonomers];
+    
+    if(n == NULL)
+	n = new Vector[numMonomers];
+
+    if(b == NULL)
+	b = new Vector[numMonomers];
+    
+    setVectorsTNBfromKappaTau();
+}
+
 Polymer::Polymer(const Polymer& polymer)
 {
     numMonomers = polymer.numMonomers;
