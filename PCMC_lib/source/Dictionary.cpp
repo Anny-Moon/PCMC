@@ -17,7 +17,44 @@ Dictionary::Dictionary(const std::vector<std::tuple<std::string, double>> dictio
 
 Dictionary::~Dictionary(){};
 
-const Dictionary Dictionary::operator() (const vector<string>& keyWords)
+std::vector<Dictionary> Dictionary::fromToExtract() const
+{
+    string from = "FROM";
+    string to = "TO";
+    std::vector<std::tuple<std::string, double>> dic;
+    vector<Dictionary> answ;
+    int tmpValue;
+    bool flag = false;
+    
+    for(int i=0;i<dictionary.size();i++){
+	if(get<0>(dictionary[i]).compare(from)==0){
+	    if(dic.size()>0){
+		answ.push_back(dic);
+		dic.clear();
+	    }
+	    dic.push_back(dictionary[i]);
+	    flag = true;
+	    continue;
+	}
+	
+	if(get<0>(dictionary[i]).compare(to)==0){
+	    dic.push_back(dictionary[i]);
+	    flag = false;
+	    continue;
+	}
+	
+	if(flag){
+	    dic.push_back(dictionary[i]);
+	}
+    }
+    
+    if(dic.size()>0)
+	answ.push_back(dic);
+    
+    return answ;
+}
+//const Dictionary Dictionary::operator() (const vector<string>& keyWords)
+const Dictionary Dictionary::oldVersion(const vector<string>& keyWords)
 {
     std::vector<std::tuple<std::string, double>> dic;
     int count =0;

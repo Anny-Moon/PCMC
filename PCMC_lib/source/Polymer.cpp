@@ -14,6 +14,37 @@
 
 namespace PCA{
 
+Polymer::Polymer(const FileCoordinates& reader)
+{
+    int size;
+    double *x, *y, *z;
+    size = reader.getNumLines();
+
+    this->numMonomers = size-1;
+    
+    monomerLength = NULL;
+    r = NULL;
+    t = NULL;
+    
+    r = new Vector [size];
+    x = new double [size];
+    y = new double [size];
+    z = new double [size];
+    reader.fillCoordinates(x,y,z);
+    Vector::makeArray(size, r, x, y, z);
+    delete [] x;
+    delete [] y;
+    delete [] z;
+    
+    monomerLength = new double [numMonomers];
+    setMonomerLengthsFromRadiusVectors();
+    
+    t = new Vector[numMonomers];
+    setVectorsTfromRadiusVectors();
+    
+}
+
+
 void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int blockNumber)
 {
     int i=0;

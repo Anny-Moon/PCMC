@@ -34,7 +34,10 @@ public:
     Dictionary(const std::vector<std::tuple<std::string, double>> dictionary_in);
     ~Dictionary();
     
-    const Dictionary operator() (const std::vector<std::string>& keyWords);
+//    const Dictionary operator() (const std::vector<std::string>& keyWords);
+    /** return vector of dictionaries: everyting from FROM to TO*/
+    std::vector<Dictionary> fromToExtract() const;
+    const Dictionary oldVersion(const std::vector<std::string>& keyWords);
     double operator[] (const std::string word) const;
     
     inline int size();

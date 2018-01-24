@@ -29,13 +29,24 @@ int main(int np, char **p)
     
     printf("\n");
     
-    Dictionary dic2 = dictionary({"HAM_B","FROM", "NUMBER_OF_MONOMERS"});
+    //Dictionary dic2 = dictionary({"HAM_B","FROM", "NUMBER_OF_MONOMERS"});
+    Dictionary dic2 = dictionary.oldVersion({"HAM_B","FROM", "NUMBER_OF_MONOMERS"});
+    
     dic2.printAll();
     
     printf("\n~~~~~~\n");
     
-    Dictionary dic3 = dictionary({"CARE","FROM","LOVE","S_HAM_A","S_HAM_M", "TO"});
+    //Dictionary dic3 = dictionary({"CARE","FROM","LOVE","S_HAM_M","S_HAM_A", "TO"});
+    Dictionary dic3 = dictionary.oldVersion({"CARE","FROM","LOVE","S_HAM_M","S_HAM_A", "TO"});
     dic3.printAll();
+    
+    printf("\n\n~~--~~--\n");
+    vector<Dictionary> vecDic;
+    vecDic = dictionary.fromToExtract();
+    for(int i=0;i<vecDic.size();i++){
+	printf("i = %i\n", i);
+	vecDic[i].printAll();
+    }
 //    PolymerMC* polymer;
 //    polymer = parser.createPolymer();
 //    polymer->setMonomerLengths(3.8);

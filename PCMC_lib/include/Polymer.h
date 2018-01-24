@@ -8,6 +8,7 @@
 #ifndef PCA_POLYMER
 #define PCA_POLYMER
 
+#include "FileHandler/FileCoordinates.h"
 #include "Vector.h"
 #include "Utilities.h"
 #include "PCAmacros.h"
@@ -55,6 +56,11 @@ class Polymer
 
 public:
     enum class FileType {coordinates, angles};
+    
+    /** Constructor. Read coordinates of sites from file. If you have more than one
+    * blocks in file then pass the number of the block. You can pass number of sites in
+    * the block, but it is not necessarily.*/
+    Polymer(const FileCoordinates& reader);
     
     /** Constructor: read coordinates of sites from file. If you have more than one
     * blocks in file then pass the number of the block. You can pass number of sites in
