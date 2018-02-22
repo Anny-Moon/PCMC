@@ -23,6 +23,20 @@
 	exit(1);\
     }
 
+#define _IF_DICTIONARY_WORD_NUMBER_ERROR(word, value)\
+    {\
+	if(value==-1){\
+	    printf("Error in format of parameter file .pcap:\n");\
+	    printf("\tcannon find parameter '%s'.\n",word);\
+	    exit(1);\
+	}\
+	if(value==-2){\
+	    printf("Error in format of parameter file .pcap:\n");\
+	    printf("\tthe parameter '%s' is defined more than once.\n",word);\
+	    exit(1);\
+	}\
+    }
+
 class Dictionary{
 private:
     std::vector<std::tuple<std::string, double>> dictionary;
@@ -43,7 +57,22 @@ public:
     inline int size();
     inline double value(int number) const;
     
+    /** Search the word and retern the line number or -1 if can't find.
+    * No protection from repeating the word. It returns the line number,
+    * where meets the word for the first time.
+    * Use searchAndCheck(.) for checking repeating the words during search.
+    */
     int search(std::string word, int from = 0, int to = 0) const;
+    
+    /** Search the word and retern the line number or
+    * -1 if can't find
+    * -2 if the word meets more than once.
+    */
+    int searchAndCheck(std::string word, int from = 0, int to = 0) const;
+    
+    /** if the word repeats then return true,
+    if meets only once (or not found!) then return false*/
+    bool ifWordRepeats(const std::string etalon) const;
     void checkRepeatingOfWords(const char* fileName) const;
     
     void printAll(FILE* fp = stdout);
@@ -51,7 +80,7 @@ public:
 
 inline double Dictionary::operator[] (const std::string word) const
 {
-    return value(search(word));
+    return value(searchAndCheck(word));
 }
 
 inline int Dictionary::size()

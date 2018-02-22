@@ -20,6 +20,17 @@
 
 namespace PCA{
 
+DoubleWell::DoubleWell(const Dictionary& dictionary)
+{
+    double value;
+    std::string etalon = "NUMBER_OF_MONOMERS";
+    value = dictionary[etalon];
+    _IF_DICTIONARY_WORD_NUMBER_ERROR(etalon, value);
+    
+    
+
+}
+
 DoubleWell::DoubleWell(int numSites_in)
 {
     numSites = numSites_in;

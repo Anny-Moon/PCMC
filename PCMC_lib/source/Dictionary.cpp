@@ -141,6 +141,47 @@ int Dictionary::search(std::string word, int from, int to) const
     return -1;
 }
 
+
+int Dictionary::searchAndCheck(std::string word, int from, int to) const
+{
+    int i, count;
+    int lineNumber;
+    
+    if(to == 0)
+	to = dictionary.size();
+    
+    count = 0;
+    for(i=from;i<to;i++){
+	if(word.compare(get<0>(dictionary[i]))==0){
+	    lineNumber=i;
+	    count++;
+	}
+    }
+    
+    if(count==1) //success
+	return lineNumber;
+    else if(count==0) // the word is not found
+	return -1;
+    else // the word found more than once
+	return -2;
+    
+}
+
+bool Dictionary::ifWordRepeats(const std::string etalon) const
+{
+    int count = 0;
+    
+    for(int i = 0;i<dictionary.size();i++){
+	if(get<0>(dictionary[i]).compare(etalon)==0)
+	    count++;
+    }
+    
+    if(count>1)
+	return true;
+    else
+	return false;
+}
+
 void Dictionary::checkRepeatingOfWords(const char* fileName) const
 {
     int i, j;

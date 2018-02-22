@@ -13,6 +13,7 @@
 #include "../Polymer.h"
 #include "../Vector.h"
 #include "../PCAmacros.h"
+#include "../Dictionary.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <vector>

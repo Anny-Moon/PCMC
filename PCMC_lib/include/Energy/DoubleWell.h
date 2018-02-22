@@ -14,6 +14,7 @@
 #include "../Polymer.h"
 #include "../Vector.h"
 #include "../PCAmacros.h"
+#include "../Dictionary.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <vector>
@@ -45,6 +46,9 @@ private:
     double* b;
 	
 public:
+    /** Constructor from Dictionary*/
+    DoubleWell(const Dictionary& dictionary);
+    
     DoubleWell(int numSites_in);
 	
     /** Constructor for homopolymer */
@@ -59,7 +63,7 @@ public:
 	double alpha_in = 1.0,
 	double mu_in = 0
     );
-	
+    
     /**@name Push functions (fills arrays including fromSite and toSite!):*/
     //@{
     void pushAlpha(double alpha_in);
