@@ -199,7 +199,7 @@ void Dictionary::checkRepeatingOfWords(const char* fileName) const
 
 }
 
-void Dictionary::printAll(FILE* fp)
+void Dictionary::printAll(FILE* fp) const
 {
     for(int i=0; i<size(); i++){
 	fprintf(fp,"%s\t%g\n",get<0>(dictionary[i]).c_str(), get<1>(dictionary[i]));

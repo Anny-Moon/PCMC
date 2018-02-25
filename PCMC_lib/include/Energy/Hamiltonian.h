@@ -29,11 +29,7 @@ private:
     
 public:
     int numSites;
-/**@name positions of solitons*/
-    //@{
-    std::vector<int> from;
-    std::vector<int> to;
-    //@}
+
     virtual ~Hamiltonian() = 0;
     
     virtual bool checkAllParamAreSeted() = 0;

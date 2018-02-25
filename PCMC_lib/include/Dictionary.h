@@ -10,6 +10,8 @@
 #include <vector>
 #include <tuple>
 #include <string>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define COMMENT_CHAR '#'
 #define _PARAM_FILE_READER_ERROR(fileName, line)\
@@ -27,12 +29,12 @@
     {\
 	if(value==-1){\
 	    printf("Error in format of parameter file .pcap:\n");\
-	    printf("\tcannon find parameter '%s'.\n",word);\
+	    printf("\tcannon find parameter '%s'.\n",word.c_str());\
 	    exit(1);\
 	}\
 	if(value==-2){\
 	    printf("Error in format of parameter file .pcap:\n");\
-	    printf("\tthe parameter '%s' is defined more than once.\n",word);\
+	    printf("\tthe parameter '%s' is defined more than once.\n",word.c_str());\
 	    exit(1);\
 	}\
     }
@@ -54,7 +56,7 @@ public:
     const Dictionary oldVersion(const std::vector<std::string>& keyWords);
     double operator[] (const std::string word) const;
     
-    inline int size();
+    inline int size() const;
     inline double value(int number) const;
     
     /** Search the word and retern the line number or -1 if can't find.
@@ -75,15 +77,17 @@ public:
     bool ifWordRepeats(const std::string etalon) const;
     void checkRepeatingOfWords(const char* fileName) const;
     
-    void printAll(FILE* fp = stdout);
+    void printAll(FILE* fp = stdout) const;
 };
 
 inline double Dictionary::operator[] (const std::string word) const
 {
-    return value(searchAndCheck(word));
+    int number = searchAndCheck(word);
+    _IF_DICTIONARY_WORD_NUMBER_ERROR(word, number);
+    return value(number);
 }
 
-inline int Dictionary::size()
+inline int Dictionary::size() const
 {
     return dictionary.size();
 }

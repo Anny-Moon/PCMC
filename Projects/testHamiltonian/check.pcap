@@ -1,0 +1,21 @@
+
+#------------------Hamiltonian--------------------
+HAM_Q	3.5
+HAM_M	1.5
+HAM_C	0.0001
+HAM_D	0.0001
+HAM_A	0.000157
+HAM_B	0
+HAM_MU	0
+HAM_ALPHA	1
+
+#--------------Solitons-----------------
+FROM	22
+S_HAM_M	2.2
+S_HAM_A	88888
+TO	50
+
+FROM	52
+S_HAM_A	77777
+TO	77
+

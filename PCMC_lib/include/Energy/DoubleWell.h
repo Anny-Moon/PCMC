@@ -34,7 +34,6 @@ namespace PCA{
 class DoubleWell : public Hamiltonian
 {
 private:
-    
     double alpha;
     double mu;
     
@@ -44,6 +43,14 @@ private:
     double* d;
     double* a;
     double* b;
+    
+    /**@name positions of solitons*/
+    //@{
+    std::vector<int> from;
+    std::vector<int> to;
+    //@}
+    
+    void setSoliton(const Dictionary& solitonDic);
 	
 public:
     /** Constructor from Dictionary*/

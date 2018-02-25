@@ -20,15 +20,175 @@
 
 namespace PCA{
 
+void DoubleWell::setSoliton(const Dictionary& solitonDic)
+{
+    double result;
+    std::string etalon, etalonFrom, etalonTo;
+    int tmpFrom, tmpTo;
+    
+    etalon  = "FROM";
+    tmpFrom = (int)solitonDic[etalon];
+    from.push_back(tmpFrom);
+
+    etalon  = "TO";
+    tmpTo = (int)solitonDic[etalon];
+    to.push_back(tmpTo);
+
+    int number;
+
+    etalon = "S_HAM_Q";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushQ(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+
+    etalon = "S_HAM_M";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushM(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+    
+    etalon = "S_HAM_A";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushA(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+
+    etalon = "S_HAM_B";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushB(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+    
+    etalon = "S_HAM_C";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushC(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+    
+    etalon = "S_HAM_D";
+    number = solitonDic.searchAndCheck(etalon);
+    if(number>=0){
+	result = solitonDic.value(number);
+	pushD(result, tmpFrom, tmpTo);
+    }
+    
+    if(number==-2){
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	exit(1);
+    }
+    
+}
+
 DoubleWell::DoubleWell(const Dictionary& dictionary)
 {
-    double value;
-    std::string etalon = "NUMBER_OF_MONOMERS";
-    value = dictionary[etalon];
-    _IF_DICTIONARY_WORD_NUMBER_ERROR(etalon, value);
+    double result;
+    std::string etalon;
     
+    etalon  = "NUMBER_OF_MONOMERS";
+    int N = (int)dictionary[etalon];
     
-
+    etalon = "HAM_Q";
+    result = dictionary[etalon];
+    q = new double [numSites];
+printf("q= %g\n",result);
+    fillArray(N, q, result);
+    
+    etalon = "HAM_M";
+    result = dictionary[etalon];
+    m = new double [numSites];
+    fillArray(N, m, result);
+    
+    etalon = "HAM_A";
+    result = dictionary[etalon];
+    a = new double [numSites];
+    fillArray(N, a, result);
+    
+    etalon = "HAM_B";
+    result = dictionary[etalon];
+    b = new double [numSites];
+    fillArray(N, b, result);
+    
+    etalon = "HAM_C";
+    result = dictionary[etalon];
+    c = new double [numSites];
+    fillArray(N, c, result);
+    
+    etalon = "HAM_D";
+    result = dictionary[etalon];
+    d = new double [numSites];
+    fillArray(N, d, result);
+    
+    // The following parameters are not nesessary
+    int number;
+    
+    etalon = "HAM_ALPHA";
+    number = dictionary.searchAndCheck(etalon);
+    if(number>=0)
+	alpha = dictionary.value(number);
+    else if (number==-1)
+	alpha = 1.0;
+    else{
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "HAM_MU";
+    number = dictionary.searchAndCheck(etalon);
+    if(number>=0)
+	mu = dictionary.value(number);
+    else if (number==-1)
+	mu = 0.0;
+    else{
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	exit(1);
+    }
+    
+    //SOLITONS
+    std::vector<Dictionary> solitonsDic;
+    solitonsDic = dictionary.fromToExtract();
+    for (int i=0;i<solitonsDic.size();i++){
+	setSoliton(solitonsDic[i]);
+    }
+    
 }
 
 DoubleWell::DoubleWell(int numSites_in)
