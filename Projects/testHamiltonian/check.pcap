@@ -10,12 +10,17 @@ HAM_MU	0
 HAM_ALPHA	1
 
 #--------------Solitons-----------------
-FROM	22
+FROM	2
 S_HAM_M	2.2
 S_HAM_A	88888
-TO	50
+TO	12
 
-FROM	52
-S_HAM_A	77777
-TO	77
+FROM	17
+S_HAM_A	11.23
+TO	22
+
+FROM	41
+S_HAM_A	19.2
+S_HAM_B	0.13
+TO	51
 

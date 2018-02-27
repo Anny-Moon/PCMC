@@ -19,6 +19,7 @@ Dictionary::~Dictionary(){};
 
 std::vector<Dictionary> Dictionary::fromToExtract() const
 {
+    int i;
     string from = "FROM";
     string to = "TO";
     std::vector<std::tuple<std::string, double>> dic;
@@ -26,8 +27,15 @@ std::vector<Dictionary> Dictionary::fromToExtract() const
     int tmpValue;
     bool flag = false;
     
-    for(int i=0;i<dictionary.size();i++){
+    for(i=0;i<dictionary.size();i++){
 	if(get<0>(dictionary[i]).compare(from)==0){
+	    //if find FROM before TO
+	    if(flag){
+		printf("Error in parameter file:\n");
+		printf("\texpect 'TO' after 'FROM'.\n");
+		printf("\tThis soliton 'FROM %g' starts before the previous ends.\n",get<1>(dictionary[i]));
+		exit(1);
+	    }
 	    if(dic.size()>0){
 		answ.push_back(dic);
 		dic.clear();
@@ -38,6 +46,12 @@ std::vector<Dictionary> Dictionary::fromToExtract() const
 	}
 	
 	if(get<0>(dictionary[i]).compare(to)==0){
+	    if(!flag){
+		printf("Error in parameter file:\n");
+		printf("\texpect 'FROM' before 'TO'.\n");
+		printf("\tThis soliton 'TO %g' does not have 'FROM' parameter.\n",get<1>(dictionary[i]));
+		exit(1);
+	    }
 	    dic.push_back(dictionary[i]);
 	    flag = false;
 	    continue;
@@ -46,6 +60,13 @@ std::vector<Dictionary> Dictionary::fromToExtract() const
 	if(flag){
 	    dic.push_back(dictionary[i]);
 	}
+    }
+    
+    if(flag){
+	printf("Error in parameter file:\n");
+	printf("\texpect 'TO' after 'FROM'.\n");
+	printf("\tThe last soliton does not have 'TO' parameter.\n");
+	exit(1);
     }
     
     if(dic.size()>0)
