@@ -51,7 +51,7 @@ private:
     //@}
     
     void setSoliton(const Dictionary& solitonDic);
-	
+    void checkSolitonsOverlap() const;
 public:
     /** Constructor from Dictionary*/
     DoubleWell(const Dictionary& dictionary);

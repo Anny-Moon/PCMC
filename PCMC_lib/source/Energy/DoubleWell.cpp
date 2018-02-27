@@ -28,12 +28,42 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     
     etalon  = "FROM";
     tmpFrom = (int)solitonDic[etalon];
-    from.push_back(tmpFrom);
-
+    
     etalon  = "TO";
     tmpTo = (int)solitonDic[etalon];
+    
+    if(tmpFrom>tmpTo){
+	printf("Error in parameter file:\n");
+	printf("\tsoliton 'FROM %i ... TO %i' ends before starts.\n", tmpFrom, tmpTo);
+	exit(1);
+    }
+    
+    //if soliton starts with negative number
+    if(tmpFrom<0){
+	printf("Warning form parameter file:\n");
+	printf("\tSoliton 'FROM %i ... TO %i' exeed chain length.\n", tmpFrom, tmpTo);
+	printf("\tI changed 'FROM' from '%i' to the first site of the chain '%i'.\n", tmpFrom, 0);
+	tmpFrom = 0;
+    }
+    //if soliton starts with 1
+    if(tmpFrom==1){
+	printf("Warning form parameter file:\n");
+	printf("\tSoliton 'FROM %i ... TO %i' starts form 1.\n", tmpFrom, tmpTo);
+	printf("\tThe chain starts from site 0, not 1.\n");
+	printf("\tPlease change '1' to '0' in the parameter file if you want to start soliton form the beginning of the chain.\n");
+    }
+    //if soliton end is larger than chain size
+    if(tmpTo>numSites){
+	printf("Warning form parameter file:\n");
+	printf("\tSoliton 'FROM %i ... TO %i' exeed chain length (%i).\n", tmpFrom, tmpTo, numSites);
+	printf("\tThe first site of the chain is equal to %i, and the last to %i.\n", 0, numSites-1);
+	printf("\tI changed 'TO' from '%i' to '%i'.\n", tmpTo, numSites-1);
+	tmpTo = numSites-1;
+    }
+    
+    from.push_back(tmpFrom);
     to.push_back(tmpTo);
-
+    
     int number;
 
     etalon = "S_HAM_Q";
@@ -116,44 +146,56 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     
 }
 
+void DoubleWell::checkSolitonsOverlap() const
+{
+    for(int i=0;i<from.size();i++){
+	for(int j=i+1;j<from.size();j++){
+	    if(from[j]<=to[i]){
+		printf("Error in format of parameter file .pcap:\n");
+		printf("\tSoliton 'FROM %i ... TO %i' overlaps with soliton 'FROM %i ... TO %i.'\n", from[i], to[i], from[j], to[j]);
+		exit(1);
+	    }
+	}
+    }
+}
+
 DoubleWell::DoubleWell(const Dictionary& dictionary)
 {
     double result;
     std::string etalon;
     
     etalon  = "NUMBER_OF_MONOMERS";
-    int N = (int)dictionary[etalon];
+    numSites = (int)dictionary[etalon];
     
     etalon = "HAM_Q";
     result = dictionary[etalon];
     q = new double [numSites];
-printf("q= %g\n",result);
-    fillArray(N, q, result);
+    fillArray(numSites, q, result);
     
     etalon = "HAM_M";
     result = dictionary[etalon];
     m = new double [numSites];
-    fillArray(N, m, result);
+    fillArray(numSites, m, result);
     
     etalon = "HAM_A";
     result = dictionary[etalon];
     a = new double [numSites];
-    fillArray(N, a, result);
+    fillArray(numSites, a, result);
     
     etalon = "HAM_B";
     result = dictionary[etalon];
     b = new double [numSites];
-    fillArray(N, b, result);
+    fillArray(numSites, b, result);
     
     etalon = "HAM_C";
     result = dictionary[etalon];
     c = new double [numSites];
-    fillArray(N, c, result);
+    fillArray(numSites, c, result);
     
     etalon = "HAM_D";
     result = dictionary[etalon];
     d = new double [numSites];
-    fillArray(N, d, result);
+    fillArray(numSites, d, result);
     
     // The following parameters are not nesessary
     int number;
@@ -188,7 +230,7 @@ printf("q= %g\n",result);
     for (int i=0;i<solitonsDic.size();i++){
 	setSoliton(solitonsDic[i]);
     }
-    
+    checkSolitonsOverlap();
 }
 
 DoubleWell::DoubleWell(int numSites_in)
