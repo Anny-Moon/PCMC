@@ -150,7 +150,7 @@ void DoubleWell::checkSolitonsOverlap() const
 {
     for(int i=0;i<from.size();i++){
 	for(int j=i+1;j<from.size();j++){
-	    if(from[j]<=to[i]){
+	    if(from[j]<=to[i] && from[j]>from[i]){
 		printf("Error in format of parameter file .pcap:\n");
 		printf("\tSoliton 'FROM %i ... TO %i' overlaps with soliton 'FROM %i ... TO %i.'\n", from[i], to[i], from[j], to[j]);
 		exit(1);
