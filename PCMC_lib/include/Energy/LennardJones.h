@@ -13,6 +13,7 @@
 #include "Energy/Interaction.h"
 //#include "Vector.h"
 #include "PCAmacros.h"
+#include "Dictionary.h"
 //#include "Polymer.h"
 //#include <stdlib.h>
 //#include <stdio.h>
@@ -30,6 +31,7 @@ private:
     double rMin;
 
 public:
+    LennardJones(const Dictionary& dictionary);
     LennardJones(double gamma_in, double rMin_in);
     ~LennardJones();
 

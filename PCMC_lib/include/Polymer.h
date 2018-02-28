@@ -77,7 +77,7 @@ public:
     Polymer(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
 
     /** Constructor */
-    Polymer(int numberOfMonomers, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
+    Polymer(int numberOfMonomers=1, const Vector* r = NULL, const Vector* t = NULL, const Vector* b = NULL);
     
     /** initianalize with same kappas ans taus*/
     void init(double kappa = 1.5, double tau = 1);//< default alpha-helix

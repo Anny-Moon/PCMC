@@ -9,6 +9,7 @@
 
 #include "Polymer.h"
 #include "Vector.h"
+#include "Dictionary.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/Interaction.h"
 #include "Random/UniformRand.h"
@@ -51,6 +52,7 @@ private:
 
 public:
     /** Constructor */
+    PolymerMC(const Dictionary& dictionary);
     PolymerMC(int numberOfMonomers);
     PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
     

@@ -33,12 +33,17 @@ int main(int np, char **p)
     FILE* fpOut;
     fpOut=fopen("check.pcap", "w");
     hamiltonian.writeInParamFile(fpOut);
-    fclose(fpOut);
+    
 //    MonteCarlo *monteCarlo;
 //    monteCarlo = new MonteCarlo(paramFileName, polymer, hamiltonian, nullptr);
+    LennardJones potential(dictionary);
+    potential.writeInParamFile(fpOut);
     
+    PolymerMC polymer(dictionary);
+    polymer.writeInParamFile(fpOut);
     
 //    delete polymer;
+    fclose(fpOut);
     delete [] paramFileName;
     
     printf("\nEverything is OK!\n");

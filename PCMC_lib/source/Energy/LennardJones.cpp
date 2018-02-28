@@ -17,11 +17,21 @@
 
 namespace PCA{
 
+LennardJones::LennardJones(const Dictionary& dictionary)
+{
+    std::string etalon;
+    
+    etalon  = "LENNARD_JONES_MIN";
+    gamma = dictionary[etalon];
+    
+    etalon  = "LENNARD_JONES_R_MIN";
+    rMin = dictionary[etalon];
+}
+
 LennardJones::LennardJones(double gamma_in, double rMin_in)
 {
     gamma = gamma_in;
     rMin = rMin_in;
-
 }
 
 LennardJones::~LennardJones(){};

@@ -24,3 +24,11 @@ S_HAM_A	19.2
 S_HAM_B	0.13
 TO	30
 
+
+#------------------Interaction--------------------
+LENNARD_JONES_MIN	10
+LENNARD_JONES_R_MIN	4.5
+
+#--------------------Polymer----------------------
+NUMBER_OF_MONOMERS	70
+MONOMER_LENGTH	3.8

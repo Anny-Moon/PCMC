@@ -77,4 +77,18 @@ void Vector::copyArray(int size, Vector* vector_to, const Vector* vector_from)
 	vector_to[i] = vector_from[i];
 
 }
+
+void Vector::makeArray(int size, Vector* r, double* x, double* y, double* z){
+    int i;
+    _PCA_CATCH_VOID_POINTER(r, "Vector::makeArray(.)\n\tGive me pointer to final array.");
+    _PCA_CATCH_VOID_POINTER(x, "Vector::makeArray(.)\n\tGive me x.");
+    _PCA_CATCH_VOID_POINTER(y, "Vector::makeArray(.)\n\tGive me y.");
+    _PCA_CATCH_VOID_POINTER(z, "Vector::makeArray(.)\n\tGive me z.");
+    
+    for(i=0;i<size;i++){
+	r[i].x = x[i];
+	r[i].y = y[i];
+	r[i].z = z[i];
+    }
+}
 }//end of namespace

@@ -15,6 +15,47 @@
 
 namespace PCA{
 
+PolymerMC::PolymerMC(const Dictionary& dictionary)
+{
+    std::string etalon;
+    double length;
+    
+    etalon  = "NUMBER_OF_MONOMERS";
+    numMonomers = dictionary[etalon];
+    if(numMonomers<1){
+	printf("Error in parameter file:\n");
+	printf("\t'NUMBER_OF_MONOMERS' cannot be less than 1.\n");
+	exit(1);
+    }
+    
+    etalon  = "MONOMER_LENGTH";
+    length = dictionary[etalon];
+    if(length!=3.8){
+	printf("Warning in parameter file:\n");
+	printf("\t'MONOMER_LENGTH' not equal to 3.8 could lead to mistakes im calculations.\n");
+    }
+    
+    monomerLength = new double[numMonomers];
+    fillArray(numMonomers, monomerLength, length);
+
+    kappa = new double [numMonomers];
+    tau = new double [numMonomers];
+    
+    t = new Vector [numMonomers];
+    n = new Vector [numMonomers];
+    b = new Vector [numMonomers];
+    
+    r = new Vector [numMonomers+1];
+    rOld = new Vector [numMonomers+1];
+    
+    interactionSite.site = -100;
+    interactionSite.interaction = 0;
+    
+    acceptNumberR = new unsigned long int [numMonomers+1]();
+    acceptNumberKappa = 0;
+    acceptNumberTau = 0;
+}
+
 PolymerMC::PolymerMC(int numberOfMonomers) : Polymer(numberOfMonomers)
 {
     /* calling Polymer constructor */

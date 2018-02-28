@@ -166,6 +166,11 @@ DoubleWell::DoubleWell(const Dictionary& dictionary)
     
     etalon  = "NUMBER_OF_MONOMERS";
     numSites = (int)dictionary[etalon];
+    if(numSites<1){
+	printf("Error in parameter file:\n");
+	printf("\t'NUMBER_OF_MONOMERS' cannot be less than 1.\n");
+	exit(1);
+    }
     
     etalon = "HAM_Q";
     result = dictionary[etalon];
