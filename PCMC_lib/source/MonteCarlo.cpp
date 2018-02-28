@@ -14,6 +14,52 @@
 
 namespace PCA{
 
+MonteCarlo::MonteCarlo(const Dixtionary& dictionary)
+{
+    std::string etalon;
+    int number;
+    
+    etalon = "LOOPS_PER_CORE";
+    number =dictionary.searchAndCheck(etalon);
+    if(number>=0)
+	loopsPerCore = (int)dictionary.value(number);
+    else if (number==-1)
+	loopsPerCore = 1;
+    else{
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "MAX_LOG_T";
+    maxLogT = dictionary[etalon];
+    
+    etalon = "MIN_LOG_T";
+    minLogT = dictionary[etalon];
+    
+    etalon = "LOG_T_STEP";
+    logTstep = dictionary[etalon];
+    
+    etalon = "SWEEPS_PER_STEP";
+    sweepsPerStep = (int)dictionary[etalon];
+
+    etalon = "CORES";
+    number =dictionary.searchAndCheck(etalon);
+    if(number>=0)
+	cores = (int)dictionary.value(number);
+    else if (number==-1)
+	cores = 0;
+    else{
+	printf("Error in format of parameter file .pcap:\n");
+	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	exit(1);
+    }
+    
+    etalon = "REGIME";
+    regime = (int)dictionary[etalon];
+
+}
+
 MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 			const Hamiltonian* hamiltonian_in,
 			const Interaction* interaction_in)

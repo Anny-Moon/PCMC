@@ -8,6 +8,7 @@
 #define PCA_MONTE_CARLO
 
 #include "PolymerMC.h"
+#include "Dictionary.h"
 #include "Energy/Hamiltonian.h"
 #include "Energy/Interaction.h"
 
@@ -22,6 +23,8 @@ class MonteCarlo
 public:
     enum class Regime{normal, withoutH, withSA, twoChains, backwards};
     inline std::string getRegimeStr() const;
+    
+    MonteCarlo(const Dictionary& dictionary);
     
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
