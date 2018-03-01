@@ -14,7 +14,7 @@
 
 namespace PCA{
 
-MonteCarlo::MonteCarlo(const Dixtionary& dictionary)
+MonteCarlo::MonteCarlo(const Dictionary& dictionary)
 {
     std::string etalon;
     int number;
@@ -56,7 +56,7 @@ MonteCarlo::MonteCarlo(const Dixtionary& dictionary)
     }
     
     etalon = "REGIME";
-    regime = (int)dictionary[etalon];
+    regime = (Regime)dictionary[etalon];
 
 }
 

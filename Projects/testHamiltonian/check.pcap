@@ -32,3 +32,14 @@ LENNARD_JONES_R_MIN	4.5
 #--------------------Polymer----------------------
 NUMBER_OF_MONOMERS	70
 MONOMER_LENGTH	3.8
+
+#------------------Monte-Carlo--------------------
+REGIME	2	#with self avoiding, but without long range attraction
+CORES	1
+LOOPS_PER_CORE	3
+
+MAX_LOG_T	2
+LOG_T_STEP	1
+MIN_LOG_T	-3
+
+SWEEPS_PER_STEP	10

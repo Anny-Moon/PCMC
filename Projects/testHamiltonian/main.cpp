@@ -42,6 +42,9 @@ int main(int np, char **p)
     PolymerMC polymer(dictionary);
     polymer.writeInParamFile(fpOut);
     
+    MonteCarlo monteCarlo(dictionary);
+    monteCarlo.writeInParamFile(fpOut);
+    
 //    delete polymer;
     fclose(fpOut);
     delete [] paramFileName;
