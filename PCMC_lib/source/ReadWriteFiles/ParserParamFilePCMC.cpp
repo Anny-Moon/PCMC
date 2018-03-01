@@ -46,7 +46,7 @@ PolymerMC* ParserParamFilePCMC::createPolymer() const
     return (new PolymerMC(N));
 }
 
-bool ParserParamFilePCMC::checkSolitonsOverlap(Hamiltonian* hamiltonian) const
+bool ParserParamFilePCMC::checkSolitonsOverlap(DoubleWell* hamiltonian) const
 {
     for(int i=0;i<hamiltonian->from.size();i++){
 	for(int j=i+1;j<hamiltonian->from.size();j++){

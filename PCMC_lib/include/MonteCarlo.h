@@ -39,7 +39,11 @@ public:
     void readFromParamFile(const char* fileName);
     inline void writeInParamFile(FILE* fp) const;
     
-    void run(int myCoreNumber = 0, int totalCoreNumber = 1);
+    void run(PolymerMC* polymer_in,
+		const Hamiltonian* hamiltonian_in,
+		const Interaction* interaction_in,
+		double minDist_in = 3.8,
+		int myCoreNumber = 0, int totalCoreNumber = 1);
     void run2chains(int myCoreNumber = 0, int totalCoreNumber = 1);
     
     inline int getLoopsPerCore();

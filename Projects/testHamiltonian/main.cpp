@@ -9,7 +9,7 @@
 #include "Energy/Hamiltonian.h"
 #include "Energy/DoubleWell.h"
 #include "Energy/LennardJones.h"
-
+#include "PCAmacros.h"
 #include "Dictionary.h"
 #include "MonteCarlo.h"
 
@@ -21,17 +21,27 @@ int main(int np, char **p)
     
     char* paramFileName;
     paramFileName = new char[100];
-    sprintf(paramFileName, "test.pcap");
+    sprintf(paramFileName, "test.pcmc");
 //    ParserParamFilePCMC parser(paramFileName);
     Dictionary dictionary(paramFileName);
     dictionary.printAll();
     
     printf("\n");
     
-    DoubleWell hamiltonian(dictionary);
+    
     
     FILE* fpOut;
-    fpOut=fopen("check.pcap", "w");
+    fpOut=fopen("check.pcmc", "w");
+    
+    fprintf(fpOut,"#This file was generated automatically.\n");
+    //string info = PCMC_VERSION_STRING;
+    //fprintf(fpOut,"#Version: %s\n",info.c_str());
+    //info = PCMC_GET_CURRENT_TIME_STRING();
+    //fprintf(fpOut,"#Date: %s\n",info.c_str());
+    string info=PCMC_COMMENTED_RUNTIME_CONTEXT_STRING;
+    fprintf(fpOut, "%s", info.c_str());
+    
+    DoubleWell hamiltonian(dictionary);
     hamiltonian.writeInParamFile(fpOut);
     
 //    MonteCarlo *monteCarlo;

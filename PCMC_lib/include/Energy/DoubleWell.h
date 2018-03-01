@@ -44,16 +44,17 @@ private:
     double* a;
     double* b;
     
-    /**@name positions of solitons*/
-    //@{
-    std::vector<int> from;
-    std::vector<int> to;
-    //@}
+    
     
     void setSoliton(const Dictionary& solitonDic);
     void checkSolitonsOverlap() const;
     bool isParameterTheSameInAllSolitons(const double* param) const;
 public:
+    /**@name positions of solitons*/
+    //@{
+    std::vector<int> from;
+    std::vector<int> to;
+    //@}
     /** Constructor from Dictionary*/
     DoubleWell(const Dictionary& dictionary);
     
