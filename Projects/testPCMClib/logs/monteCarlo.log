@@ -1,0 +1,15 @@
+PCMC
+Version: 3.0.0
+Date: Thu Mar  1 19:47:37 2018
+********
+* PCMC * 
+********
+CPU MULTY CORE
+
+Cores 2
+Loops 3
+Steps/loop: 6
+
+Regime: normal
+Loop 0:	2
+2	0

@@ -22,17 +22,17 @@ int main(int np, char **p)
     char* paramFileName;
     int myCoreNumber, totalCoreNumber;
     
-    fp = fopen("main.log", "w");
+    fp = fopen("logs/main.log", "w");
     _PCMC_WRITE_RUNTIME_CONTEXT(fp);
     
     MPI_Init(&np, &p);
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
     
-    if (myCoreNumber==0)
-	fprintf(fp,"Start\n");
     long unsigned int seed = time(NULL)*(myCoreNumber+1);
-    RandomGenerator::initialization(time(NULL)*(myCoreNumber+1));
+    for(int i=0; i<totalCoreNumber; i++)
+	fprintf(fp,"Seed of randomGenerator, core %i: %lu\n", myCoreNumber, seed);
+    RandomGenerator::initialization(seed);
 //RandomGenerator::initialization(1*(myCoreNumber+1));    
     paramFileName = new char[100];
     sprintf(paramFileName, "test.pcmc");
@@ -52,7 +52,6 @@ int main(int np, char **p)
     fprintf(fp,"Done core %i\n",myCoreNumber);
     if(myCoreNumber==0)
 	fprintf(fp,"Everything is OK!\n");
-printf("5\n");
 MPI_Finalize();
     fclose(fp);
 return 0;
