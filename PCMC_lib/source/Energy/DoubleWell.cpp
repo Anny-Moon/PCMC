@@ -569,6 +569,16 @@ double DoubleWell::generateKappa(int site, const double* kappa, const double* ta
     
 }
 
+bool DoubleWell::isParameterTheSameInAllSolitons(const double* param) const
+{
+    for(int i=0;i<from.size();i++){
+	    for(int j=i+1;j<from.size();j++){
+		if(param[from[i]]!=param[from[j]])
+		    return false;
+	    }
+	}
+    return true;
+}
 void DoubleWell::writeInParamFile(FILE* fp) const
 {
     int notSolitonSite;
@@ -647,18 +657,38 @@ void DoubleWell::writeInParamFile(FILE* fp) const
     }
     
     //else if solitons cover the entire chain
+    
     else{
+	if(isParameterTheSameInAllSolitons(q))
+	    fprintf(fp,"HAM_Q\t%g\n", q[0]);
+	if(isParameterTheSameInAllSolitons(m))
+	    fprintf(fp,"HAM_M\t%g\n", m[0]);
+	if(isParameterTheSameInAllSolitons(c))
+	    fprintf(fp,"HAM_C\t%g\n", c[0]);
+	if(isParameterTheSameInAllSolitons(d))
+	    fprintf(fp,"HAM_D\t%g\n", d[0]);
+	if(isParameterTheSameInAllSolitons(a))
+	    fprintf(fp,"HAM_A\t%g\n", a[0]);
+	if(isParameterTheSameInAllSolitons(b))
+	    fprintf(fp,"HAM_B\t%g\n", b[0]);
+	    
 	fprintf(fp,"HAM_MU\t%g\n", mu);
 	fprintf(fp,"HAM_ALPHA\t%g\n", alpha);
 	fprintf(fp,"\n#--------------Solitons-----------------\n");
 	for(int i=0;i<from.size();i++){
 	    fprintf(fp,"FROM\t%i\n", from[i]);
-	    fprintf(fp,"S_HAM_Q\t%g\n", q[from[i]]);
-	    fprintf(fp,"S_HAM_M\t%g\n", m[from[i]]);
-	    fprintf(fp,"S_HAM_C\t%g\n", c[from[i]]);
-	    fprintf(fp,"S_HAM_D\t%g\n", d[from[i]]);
-	    fprintf(fp,"S_HAM_A\t%g\n", a[from[i]]);
-	    fprintf(fp,"S_HAM_B\t%g\n", b[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(q))
+		fprintf(fp,"S_HAM_Q\t%g\n", q[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(m))
+		fprintf(fp,"S_HAM_M\t%g\n", m[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(c))
+		fprintf(fp,"S_HAM_C\t%g\n", c[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(d))
+		fprintf(fp,"S_HAM_D\t%g\n", d[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(a))
+		fprintf(fp,"S_HAM_A\t%g\n", a[from[i]]);
+	    if(!isParameterTheSameInAllSolitons(b))
+		fprintf(fp,"S_HAM_B\t%g\n", b[from[i]]);
 	    fprintf(fp,"TO\t%i\n", to[i]);
 	    fprintf(fp,"\n");
 	}

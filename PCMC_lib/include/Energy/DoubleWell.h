@@ -52,6 +52,7 @@ private:
     
     void setSoliton(const Dictionary& solitonDic);
     void checkSolitonsOverlap() const;
+    bool isParameterTheSameInAllSolitons(const double* param) const;
 public:
     /** Constructor from Dictionary*/
     DoubleWell(const Dictionary& dictionary);
