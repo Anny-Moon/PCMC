@@ -144,6 +144,7 @@ void Dictionary::readFile(const char* fileName)
 	    _PARAM_FILE_READER_ERROR(fileName, line);
 	
     }
+    fclose(fp);
 //    checkRepeatingOfWords(fileName);
 }
 
