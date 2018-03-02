@@ -18,20 +18,23 @@ using namespace PCA;
 
 int main(int np, char **p)
 {	
-    FILE* fp;
     char* paramFileName;
     int myCoreNumber, totalCoreNumber;
-    
-    fp = fopen("logs/main.log", "w");
-    _PCMC_WRITE_RUNTIME_CONTEXT(fp);
+    FILE* fp;
+    char* fname1;
     
     MPI_Init(&np, &p);
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
     
+    fname1 = new char[100];
+    sprintf(fname1,"logs/core%imain.log",myCoreNumber);
+    fp = fopen(fname1, "w");
+    delete [] fname1;
+    _PCMC_WRITE_RUNTIME_CONTEXT(fp);
+
     long unsigned int seed = time(NULL)*(myCoreNumber+1);
-    for(int i=0; i<totalCoreNumber; i++)
-	fprintf(fp,"Seed of randomGenerator, core %i: %lu\n", myCoreNumber, seed);
+    fprintf(fp,"Seed of randomGenerator: %lu\n", seed);
     RandomGenerator::initialization(seed);
 //RandomGenerator::initialization(1*(myCoreNumber+1));    
     paramFileName = new char[100];
@@ -49,11 +52,10 @@ int main(int np, char **p)
     monteCarlo.run(&polymer, &hamiltonian, &interaction, myCoreNumber, totalCoreNumber);
     delete [] paramFileName;
     
-    fprintf(fp,"Done core %i\n",myCoreNumber);
-    if(myCoreNumber==0)
-	fprintf(fp,"Everything is OK!\n");
-MPI_Finalize();
+    fprintf(fp,"Everything is ok!\n");
     fclose(fp);
+MPI_Finalize();
+
 return 0;
 }
     
