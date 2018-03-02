@@ -3,6 +3,8 @@
 #include <math.h>
 #include <time.h>
 #include <mpi.h>
+#include <functional>
+#include <string>
 
 #include "PCAmacros.h"
 #include "PolymerMC.h"
@@ -33,9 +35,18 @@ int main(int np, char **p)
     delete [] fname1;
     _PCMC_WRITE_RUNTIME_CONTEXT(fp);
 
-    long unsigned int seed = time(NULL)*(myCoreNumber+1);
-    fprintf(fp,"Seed of randomGenerator: %lu\n", seed);
+
+    int len;
+    char ndName[1000];
+    MPI_Get_processor_name(ndName, &len);
+    std::string nodeName(ndName);
+    std::hash<std::string> hash_fn;
+    size_t nodeNameHash = hash_fn(nodeName);
+    fprintf(fp,"hashNodeName = %zu\n",nodeNameHash);
+    size_t seed = time(NULL)*(myCoreNumber+1)*nodeNameHash;
+    fprintf(fp,"Seed of randomGenerator: %zu\n", seed);
     RandomGenerator::initialization(seed);
+    
 //RandomGenerator::initialization(1*(myCoreNumber+1));    
     paramFileName = new char[100];
     sprintf(paramFileName, "test.pcmc");
