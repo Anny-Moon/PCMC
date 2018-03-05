@@ -19,7 +19,7 @@ MonteCarlo::MonteCarlo(const Dictionary& dictionary)
     std::string etalon;
     int number;
     
-    etalon = "LOOPS_PER_CORE";
+    etalon = "THREADS_PER_CORE";
     number =dictionary.searchAndCheck(etalon);
     if(number>=0)
 	loopsPerCore = (int)dictionary.value(number);

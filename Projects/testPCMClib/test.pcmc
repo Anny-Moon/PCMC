@@ -32,7 +32,7 @@ TO		77
 
 #---------------Monte Carlo------------------------
 REGIME 0
-LOOPS_PER_CORE	3
+THREADS_PER_CORE	3
 CORES 2
 MAX_LOG_T 1.0
 LOG_T_STEP 0.5

@@ -82,7 +82,7 @@ inline void MonteCarlo::writeInParamFile(FILE* fp) const{
     else //not mpirun
 	fprintf(fp,"CORES\t%i\n", 1);
 	
-    fprintf(fp,"LOOPS_PER_CORE\t%i\n",loopsPerCore);
+    fprintf(fp,"THREADS_PER_CORE\t%i\n",loopsPerCore);
     
     fprintf(fp,"\nMAX_LOG_T\t%g\n",maxLogT);
     fprintf(fp,"LOG_T_STEP\t%g\n",logTstep);
