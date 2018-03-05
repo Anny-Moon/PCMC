@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <vector>
 #include "PCAmacros.h"
-#include "Polymer.h"
+#include "PolymerMC.h"
+#include "MonteCarlo.h"
 #include "PolymerObservable.h"
-#include "ReadWriteFiles/ParserParamFilePCMC.h"
-#include "ReadWriteFiles/MonteCarloParam.h"
+#include "Dictionary.h"
+
 using namespace std;
 using namespace PCA;
 
@@ -16,8 +17,6 @@ int main(int np, char **p){
     char line[100];
     char *fname, *fnameIn, *fnameOut;
     vector<double> logT;
-    double certanLogT;
-    int certanI;
     double tmp;
 
     if(p[1]==NULL){
@@ -46,25 +45,23 @@ int main(int np, char **p){
     
     
     fname = new char[1000];
-    sprintf(fname,"%s/results/ParamFilePCMC.dat",p[1]);
-    ParserParamFilePCMC parser(fname);
+    sprintf(fname,"%s/results/ParamFileLog.pcmc",p[1]);
     delete [] fname;
     
-    MonteCarloParam* monteCarloParam;
-    monteCarloParam = parser.createMonteCarloParam();
+    Dictionary dictionary(fname);
+    MonteCarlo monteCarlo(dictionary);
+    
+    PolymerMC polymerMC(dictionary);
+    int numMonomers = polymerMC.getNumMonomers();
+    printf("numMonomers: %i.\n", numMonomers);
+    
+    int fakeCores = monteCarlo.getCores() * monteCarlo.getLoopsPerCore();
+    printf("statistices: %i configurations.\n", fakeCores);
     
     Polymer* polymer;
-    polymer = parser.createPolymer();
-    int numMonomers = polymer->getNumMonomers();
-    delete polymer;
-    printf("numMonomers = %i\n", numMonomers);
-    
-    int fakeCores = monteCarloParam->getCores() * monteCarloParam->getLoopsPerCore();
-    
-
     for(j=0; j<logT.size();j++){
 	fnameOut = new char[1000];
-	sprintf(fnameOut,"%s/R_Configurations/xyz_N%i_logT%g.dat",p[1], numMonomers, logT[j]);
+	sprintf(fnameOut,"%s/results/Configurations/N%i_logT%g_stat%i.pca",p[1], numMonomers, logT[j], fakeCores);
 	fp = fopen(fnameOut, "w");
 	
 	for(i=0;i<fakeCores;i++){
@@ -81,8 +78,7 @@ int main(int np, char **p){
 	delete [] fnameOut;
 	fclose(fp);
     }
-    delete monteCarloParam;
     
-    printf("All right!\n");
+    printf("Everything is ok!\n");
     return 0;
 }

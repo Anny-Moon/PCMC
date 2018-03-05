@@ -12,7 +12,7 @@ CC:= g++
 CFLAGS:= -Wall -std=c++11
 
 # Libraries (can also include path to these libraries as -L/SOME_PATH)
-LIB:= -lm -L/Users/annsi118/gslInstalled -lgsl -lgslcblas
+#LIB:= -lm -L/Users/annsi118/gslInstalled -lgsl -lgslcblas
 
 # Optimization (-O3 or -O2)
 OPT:= -O3
@@ -27,8 +27,8 @@ STATIC_LIB = build/libpcmc.a
 INC_DIR = ./include
 
 # GSL includes (needed only if it is not stadart path: /usr/local/include)
-GSL_LDLIBS = -I/Users/annsi118/gslInstalled/include
-#GSL_LDLIBS = -I/usr/local/include
+#GSL_LDLIBS = -I/Users/annsi118/gslInstalled/include
+GSL_LDLIBS = -I/usr/local/include
 
 # Root directory for .cpp files
 SRC_DIR:= ./source

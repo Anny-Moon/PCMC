@@ -11,7 +11,7 @@ namespace PCA{
 
 UniformRand::UniformRand(double min, double max) : distribution(min, max)
 {
-    if(seed == 0){
+/*    if(seed == 0){
 	printf("----------------\n");
 	printf("Warning:\n------\n");
 	printf("You should initialize abstract RandomGenerator before ");
@@ -23,6 +23,7 @@ UniformRand::UniformRand(double min, double max) : distribution(min, max)
 	printf("----------------\n");
 //	exit(1);
     }
+*/
 }
 UniformRand::~UniformRand(){};
 
