@@ -5,7 +5,7 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Random/GaussRand.h"
+#include "PCMC/Random/GaussRand.h"
 
 namespace PCA{
 

@@ -8,10 +8,10 @@
 #ifndef PCA_POLYMER
 #define PCA_POLYMER
 
-#include "FileHandler/FileCoordinates.h"
-#include "Vector.h"
-#include "Utilities.h"
-#include "PCAmacros.h"
+#include "PCMC/FileHandler/FileCoordinates.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
 

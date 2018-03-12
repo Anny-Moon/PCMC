@@ -4,8 +4,8 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Quantum/YukawaCalculator.h"
-#include "../../include/Quantum/HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/YukawaCalculator.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 #include <math.h>
 

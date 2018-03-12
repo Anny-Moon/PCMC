@@ -25,8 +25,8 @@
 
 #include <math.h>
 #include <stdio.h>
-#include "Utilities.h"
-#include "PCAmacros.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 
 namespace PCA{
 

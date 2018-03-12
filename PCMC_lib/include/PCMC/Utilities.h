@@ -9,7 +9,7 @@
 
 #include <math.h>
 #include <vector>
-#include "PCAmacros.h"
+#include "PCMC/PCAmacros.h"
 
 
 namespace PCA{

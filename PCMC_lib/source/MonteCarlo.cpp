@@ -4,10 +4,10 @@
 *  Uppsala, Sweden 2017
 */
 
-#include "../include/MonteCarlo.h"
-#include "../include/ReadWriteFiles/ParamFileReader.h"
-#include "../include/PCAmacros.h"
-#include "../include/Timer.h"
+#include "PCMC/MonteCarlo.h"
+#include "PCMC/ReadWriteFiles/ParamFileReader.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/Timer.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

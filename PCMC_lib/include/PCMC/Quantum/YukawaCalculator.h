@@ -7,7 +7,7 @@
 #ifndef PCA_YUKAWA_CALCULATOR
 #define PCA_YUKAWA_CALCULATOR
 
-#include "HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 
 namespace PCA{

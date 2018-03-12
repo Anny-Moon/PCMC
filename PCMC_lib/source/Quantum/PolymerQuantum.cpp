@@ -5,13 +5,13 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Quantum/PolymerQuantum.h"
-#include "../../include/Quantum/HoppingAmplitudeCalculator.h"
-#include "../../include/Quantum/StepFunctionCalculator.h"
-#include "../../include/Quantum/TrancatedExpCalculator.h"
-#include "../../include/Quantum/YukawaCalculator.h"
-#include "../../include/Polymer.h"
-#include "../../include/Utilities.h"
+#include "PCMC/Quantum/PolymerQuantum.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/StepFunctionCalculator.h"
+#include "PCMC/Quantum/TrancatedExpCalculator.h"
+#include "PCMC/Quantum/YukawaCalculator.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Utilities.h"
 #include <stdio.h>
 #include <math.h>
 #include <complex>

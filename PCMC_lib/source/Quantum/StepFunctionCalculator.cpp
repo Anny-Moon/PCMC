@@ -4,8 +4,8 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Quantum/StepFunctionCalculator.h"
-#include "../../include/Quantum/HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/StepFunctionCalculator.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 #include <math.h>
 

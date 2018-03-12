@@ -10,10 +10,10 @@
 #ifndef PCMC_HAMILTONIAN
 #define PCMC_HAMILTONIAN
 
-#include "../Polymer.h"
-#include "../Vector.h"
-#include "../PCAmacros.h"
-#include "../Dictionary.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Vector.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/Dictionary.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <vector>

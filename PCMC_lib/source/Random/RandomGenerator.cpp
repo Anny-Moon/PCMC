@@ -5,9 +5,9 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Random/RandomGenerator.h"
-#include "../include/Utilities.h"
-#include "../include/PCAmacros.h"
+#include "PCMC/Random/RandomGenerator.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

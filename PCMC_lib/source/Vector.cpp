@@ -5,8 +5,8 @@
 */
 
 
-#include "../include/Vector.h"
-#include "../include/PCAmacros.h"
+#include "PCMC/Vector.h"
+#include "PCMC/PCAmacros.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

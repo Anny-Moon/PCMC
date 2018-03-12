@@ -5,10 +5,10 @@
 *   @data 2016
 */
 
-#include "../include/Polymer.h"
-#include "../include/PCAmacros.h"
-#include "../include/Utilities.h"
-#include "../include/File.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/File.h"
 #include <stdio.h>
 #include <math.h>
 

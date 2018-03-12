@@ -7,13 +7,13 @@
 #ifndef PCMC_PARSER_PARAM_FILE_PCMC
 #define PCMC_PARSER_PARAM_FILE_PCMC
 
-#include "ParamFileReader.h"
-#include "MonteCarloParam.h"
-#include "PolymerMC.h"
+#include "PCMC/ReadWriteFiles/ParamFileReader.h"
+#include "PCMC/ReadWriteFiles/MonteCarloParam.h"
+#include "PCMC/PolymerMC.h"
 //#include "Energy/Hamiltonian.h"
-#include "Energy/DoubleWell.h"
-#include "Energy/LennardJones.h"
-#include "Energy/Tanh.h"
+#include "PCMC/Energy/DoubleWell.h"
+#include "PCMC/Energy/LennardJones.h"
+#include "PCMC/Energy/Tanh.h"
 
 namespace PCA{
 class ParserParamFilePCMC{

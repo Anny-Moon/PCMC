@@ -7,14 +7,14 @@
 *   @data 2017
 */
 
-#include "../../include/Energy/Hamiltonian.h"
-#include "../../include/Energy/DoubleWell.h"
-#include "../../include/PolymerMC.h"
-#include "../../include/Random/GaussRand.h"
-#include "../../include/Random/DoubleWellRand.h"
-#include "../../include/Vector.h"
-#include "../../include/Utilities.h"
-#include "../../include/PCAmacros.h"
+#include "PCMC/Energy/Hamiltonian.h"
+#include "PCMC/Energy/DoubleWell.h"
+#include "PCMC/PolymerMC.h"
+#include "PCMC/Random/GaussRand.h"
+#include "PCMC/Random/DoubleWellRand.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <stdlib.h>
 #include <stdio.h>
 

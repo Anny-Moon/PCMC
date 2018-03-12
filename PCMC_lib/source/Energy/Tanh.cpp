@@ -7,10 +7,10 @@
 *   @data 2017
 */
 
-#include "Tanh.h"
-#include "Vector.h"
-#include "Utilities.h"
-#include "PCAmacros.h"
+#include "PCMC/Tanh.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

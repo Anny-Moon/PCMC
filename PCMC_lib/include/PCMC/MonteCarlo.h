@@ -7,10 +7,10 @@
 #ifndef PCA_MONTE_CARLO
 #define PCA_MONTE_CARLO
 
-#include "PolymerMC.h"
-#include "Dictionary.h"
-#include "Energy/Hamiltonian.h"
-#include "Energy/Interaction.h"
+#include "PCMC/PolymerMC.h"
+#include "PCMC/Dictionary.h"
+#include "PCMC/Energy/Hamiltonian.h"
+#include "PCMC/Energy/Interaction.h"
 
 #include <stdlib.h>
 #include <stdio.h>

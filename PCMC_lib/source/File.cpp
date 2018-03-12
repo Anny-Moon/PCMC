@@ -4,9 +4,9 @@
 *  Uppsala, Sweden 2016
 */
 
-#include "../include/File.h"
-#include "../include/Utilities.h"
-#include "../include/PCAmacros.h"
+#include "PCMC/File.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

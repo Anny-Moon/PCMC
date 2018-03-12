@@ -5,7 +5,7 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Random/DoubleWellRand.h"
+#include "PCMC/Random/DoubleWellRand.h"
 #include "gsl/gsl_poly.h"
 #include "gsl/gsl_complex.h"
 #include "gsl/gsl_sort.h"

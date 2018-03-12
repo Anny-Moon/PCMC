@@ -10,7 +10,7 @@
 #ifndef PCMC_INTERACTION
 #define PCMC_INTERACTION
 
-#include "Vector.h"
+#include "PCMC/Vector.h"
 #include <stdlib.h>
 #include <stdio.h>
 

@@ -7,13 +7,13 @@
 #ifndef PCMC_POLYMER_MC
 #define PCMC_POLYMER_MC
 
-#include "Polymer.h"
-#include "Vector.h"
-#include "Dictionary.h"
-#include "Energy/Hamiltonian.h"
-#include "Energy/Interaction.h"
-#include "Random/UniformRand.h"
-#include "Random/GaussRand.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Dictionary.h"
+#include "PCMC/Energy/Hamiltonian.h"
+#include "PCMC/Energy/Interaction.h"
+#include "PCMC/Random/UniformRand.h"
+#include "PCMC/Random/GaussRand.h"
 #include <stdlib.h>
 #include <stdio.h>
 

@@ -7,7 +7,7 @@
 #ifndef PCA_STEP_FUNCTION_CALCULATOR
 #define PCA_STEP_FUNCTION_CALCULATOR
 
-#include "HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 
 namespace PCA{

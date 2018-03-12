@@ -1,9 +1,9 @@
 #ifndef PCA_POLYMER_OBSERVABLE
 #define PCA_POLYMER_OBSERVABLE
 
-#include "Polymer.h"
-#include "Vector.h"
-#include "Utilities.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
 #include <stdlib.h>
 #include <stdio.h>
 

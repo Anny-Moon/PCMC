@@ -7,7 +7,7 @@
 #ifndef PCA_TRANCATED_EXP_CALCULATOR
 #define PCA_TRANCATED_EXP_CALCULATOR
 
-#include "HoppingAmplitudeCalculator.h"
+#include "PCMC/Quantum/HoppingAmplitudeCalculator.h"
 #include <complex>
 
 namespace PCA{

@@ -11,10 +11,10 @@
 #define PCMC_DOUBLE_WELL
 
 #include "Hamiltonian.h"
-#include "../Polymer.h"
-#include "../Vector.h"
-#include "../PCAmacros.h"
-#include "../Dictionary.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Vector.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/Dictionary.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <vector>

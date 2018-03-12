@@ -8,7 +8,7 @@
 #ifndef PCMC_RANDOM_UNIFORM
 #define PCMC_RANDOM_UNIFORM
 
-#include "RandomGenerator.h"
+#include "PCMC/Random/RandomGenerator.h"
 #include <random>
 
 namespace PCA{

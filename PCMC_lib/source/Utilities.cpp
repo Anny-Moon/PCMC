@@ -6,7 +6,7 @@
 
 
 #include <math.h>
-#include "../include/Utilities.h"
+#include "PCMC/Utilities.h"
 #include <stdlib.h>
 #include <stdio.h>
 

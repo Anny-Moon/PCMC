@@ -1,6 +1,6 @@
-#include "../include/PolymerObservable.h"
-#include "../include/Polymer.h"
-#include "../include/Utilities.h"
+#include "PCMC/PolymerObservable.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Utilities.h"
 #include <stdio.h>
 #include <math.h>
 

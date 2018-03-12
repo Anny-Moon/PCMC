@@ -8,7 +8,7 @@
 #ifndef PCMC_RANDOM_GAUSS
 #define PCMC_RANDOM_GAUSS
 
-#include "RandomGenerator.h"
+#include "PCMC/Random/RandomGenerator.h"
 #include <random>
 
 namespace PCA{

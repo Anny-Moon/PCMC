@@ -8,7 +8,7 @@
 #ifndef PCMC_RANDOM_DOUBLE_WELL
 #define PCMC_RANDOM_DOUBLE_WELL
 
-#include "UniformRand.h"
+#include "PCMC/Random/UniformRand.h"
 
 namespace PCA{
 /** Generate random numbers according distribution:

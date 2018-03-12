@@ -5,11 +5,11 @@
 */
 
 
-#include "../include/PolymerMC.h"
-#include "../include/Polymer.h"
-#include "../include/Vector.h"
-#include "../include/Utilities.h"
-#include "../include/PCAmacros.h"
+#include "PCMC/PolymerMC.h"
+#include "PCMC/Polymer.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <stdio.h>
 #include <math.h>
 

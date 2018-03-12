@@ -7,10 +7,10 @@
 *   @data 2016
 */
 
-#include "LennardJones.h"
-#include "Vector.h"
-#include "Utilities.h"
-#include "PCAmacros.h"
+#include "PCMC/LennardJones.h"
+#include "PCMC/Vector.h"
+#include "PCMC/Utilities.h"
+#include "PCMC/PCAmacros.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

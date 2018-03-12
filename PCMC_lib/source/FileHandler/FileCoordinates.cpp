@@ -20,7 +20,7 @@
 *   @data 2017
 */
 
-#include "../../include/FileHandler/FileCoordinates.h"
+#include "PCMC/FileHandler/FileCoordinates.h"
 
 using namespace PCA;
 using namespace std;

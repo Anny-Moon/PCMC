@@ -10,10 +10,10 @@
 #ifndef PCMC_LENNARD_JONES
 #define PCMC_LENNARD_JONES
 
-#include "Energy/Interaction.h"
+#include "PCMC/Energy/Interaction.h"
 //#include "Vector.h"
-#include "PCAmacros.h"
-#include "Dictionary.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/Dictionary.h"
 //#include "Polymer.h"
 //#include <stdlib.h>
 //#include <stdio.h>

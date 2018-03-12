@@ -4,7 +4,7 @@
 *  Uppsala, Sweden 2017
 */
 
-#include "../include/Timer.h"
+#include "PCMC/Timer.h"
 
 namespace PCA{
 

@@ -5,7 +5,7 @@
 *   Uppsala, Sweden 2016
 */
 
-#include "../../include/Random/UniformRand.h"
+#include "PCMC/Random/UniformRand.h"
 
 namespace PCA{
 

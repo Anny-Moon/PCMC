@@ -1,4 +1,4 @@
-#include "../../include/Dictionary.h"
+#include "PCMC/Dictionary.h"
 
 #include <stdio.h>
 #include <stdlib.h>

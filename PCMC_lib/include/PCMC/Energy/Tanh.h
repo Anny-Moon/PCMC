@@ -10,7 +10,7 @@
 #ifndef PCMC_TANH
 #define PCMC_TANH
 
-#include "Energy/Interaction.h"
+#include "PCMC/Energy/Interaction.h"
 
 namespace PCA{
 
