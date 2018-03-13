@@ -7,7 +7,7 @@
 *   @data 2017
 */
 
-#include "PCMC/Tanh.h"
+#include "PCMC/Energy/Tanh.h"
 #include "PCMC/Vector.h"
 #include "PCMC/Utilities.h"
 #include "PCMC/PCAmacros.h"

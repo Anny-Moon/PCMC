@@ -7,7 +7,7 @@
 *   @data 2016
 */
 
-#include "PCMC/LennardJones.h"
+#include "PCMC/Energy/LennardJones.h"
 #include "PCMC/Vector.h"
 #include "PCMC/Utilities.h"
 #include "PCMC/PCAmacros.h"
