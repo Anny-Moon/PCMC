@@ -32,10 +32,23 @@ TARGET_LINK_LIBRARIES(pcmc ${PCMC_LIBRARIES})
 SET_TARGET_PROPERTIES(pcmc PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ###################################################################################
-# Instalation
+CONFIGURE_FILE(
+    CMake/PCMCconfigTemplate.cmake
+    "${CMAKE_CURRENT_BINARY_DIR}/CMake/PCMCConfig.cmake"
+    COPYONLY
+)
+# Installation
 INSTALL(
     TARGETS pcmc
     LIBRARY DESTINATION lib/PCMC
     ARCHIVE DESTINATION lib/PCMC
+)
+
+SET(ConfigPackageLocation lib/PCMC/CMake)
+INSTALL(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/CMake/PCMCConfig.cmake 
+    #"${CMAKE_CURRENT_BINARY_DIR}/CMake/TBTKVersion.cmake"
+    DESTINATION ${ConfigPackageLocation}
+    COMPONENT Devel
 )
 #MESSAGE(${CMAKE_INSTALL_PREFIX})
