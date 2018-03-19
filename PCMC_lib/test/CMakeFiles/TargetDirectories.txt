@@ -1,0 +1,4 @@
+/Users/annasinelnikova/Documents/git_projects/PCMC/PCMC_lib/test/CMakeFiles/rebuild_cache.dir
+/Users/annasinelnikova/Documents/git_projects/PCMC/PCMC_lib/test/CMakeFiles/edit_cache.dir
+/Users/annasinelnikova/Documents/git_projects/PCMC/PCMC_lib/test/CMakeFiles/test.dir
+/Users/annasinelnikova/Documents/git_projects/PCMC/PCMC_lib/test/CMakeFiles/pcmcTest.dir
