@@ -1,0 +1,105 @@
+PCMC
+Version: 3.0.0
+Date: Wed Mar 14 16:22:01 2018
+********
+* PCMC * 
+********
+CPU MULTY CORE
+
+Cores 2
+fakeCores 3
+Steps/fakeCore: 5
+
+Regime: normal
+fakeCore: 0;	logT: 1
+fakeCore: 0;	logT: 0.5
+fakeCore: 0;	logT: 0
+fakeCore: 0;	logT: -0.5
+fakeCore: 0;	logT: -1
+0	0
+1	94
+2	95
+3	95
+4	95
+5	94
+6	46
+7	51
+8	50
+9	51
+10	3
+11	50
+12	52
+13	50
+14	3
+15	51
+16	4
+17	51
+18	50
+19	1
+20	50
+21	50
+22	49
+23	3
+24	49
+25	49
+26	50
+27	2
+28	3
+29	50
+30	51
+31	2
+32	3
+33	50
+34	2
+35	52
+36	50
+37	2
+38	50
+39	50
+40	51
+41	50
+42	49
+43	51
+44	2
+45	50
+46	1
+47	51
+48	1
+49	50
+50	48
+51	1
+52	50
+53	51
+54	2
+55	50
+56	50
+57	3
+58	52
+59	9
+60	99
+61	99
+62	99
+63	99
+64	98
+65	98
+66	100
+67	99
+68	100
+69	100
+70	0
+
+Timer No. 0:	420ms368us93ns
+fakeCore: 1;	logT: 1
+fakeCore: 1;	logT: 0.5
+fakeCore: 1;	logT: 0
+fakeCore: 1;	logT: -0.5
+fakeCore: 1;	logT: -1
+Timer No. 1:	393ms884us304ns
+fakeCore: 2;	logT: 1
+fakeCore: 2;	logT: 0.5
+fakeCore: 2;	logT: 0
+fakeCore: 2;	logT: -0.5
+fakeCore: 2;	logT: -1
+Timer No. 2:	396ms968us279ns
+END
+
