@@ -1,3 +1,0 @@
-/Users/annsi118/Documents/Git_projects/PCMCapp/test1/CMakeFiles/rebuild_cache.dir
-/Users/annsi118/Documents/Git_projects/PCMCapp/test1/CMakeFiles/edit_cache.dir
-/Users/annsi118/Documents/Git_projects/PCMCapp/test1/CMakeFiles/pcmcApp.dir

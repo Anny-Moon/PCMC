@@ -13,10 +13,11 @@
 #include "PCMC/Energy/DoubleWell.h"
 #include "PCMC/Energy/LennardJones.h"
 #include "PCMC/MonteCarlo.h"
+#include "PCMC/Utilities.h"
+
 
 using namespace std;
 using namespace PCA;
-
 
 int main(int np, char **p)
 {	
@@ -28,6 +29,23 @@ int main(int np, char **p)
     MPI_Init(&np, &p);
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
     MPI_Comm_rank(MPI_COMM_WORLD,&myCoreNumber);
+    
+    if(myCoreNumber==0){
+	if(p[1]==NULL){
+	    printf("Error: I need name of pcmc-file (without extention) as the first argument.\n");
+	    printf("Example: polycarlo test\n");
+	    exit(1);
+	}
+    }
+    
+    //create or check if dirictories exist/////////////
+    if(myCoreNumber==0){
+	Util::createDir("results");
+	Util::createDir("results/configurations");
+	Util::createDir("logs");
+    }
+    ////////////////////////////////////
+    MPI_Barrier(MPI_COMM_WORLD);
     
     fname1 = new char[100];
     sprintf(fname1,"logs/core%imain.log",myCoreNumber);
@@ -49,7 +67,7 @@ int main(int np, char **p)
     
 //RandomGenerator::initialization(1*(myCoreNumber+1));    
     paramFileName = new char[100];
-    sprintf(paramFileName, "test.pcmc");
+    sprintf(paramFileName,"%s.pcmc",p[1]);
     
     Dictionary dictionary(paramFileName);
     PolymerMC polymer(dictionary);

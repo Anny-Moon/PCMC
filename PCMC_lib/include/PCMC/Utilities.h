@@ -9,6 +9,7 @@
 
 #include <math.h>
 #include <vector>
+#include <string>
 #include "PCMC/PCAmacros.h"
 
 
@@ -45,6 +46,14 @@ int commonDivisor(int int1, int int2, int upperLimit=0);
 
 /** Returns sign of value and 0 if x==0 */
 int sign(double x);
+
+class Util{
+public:
+    /** Get path to the executable*/
+    static std::string getExePath();
+    /** Create (if not exist) dirictory. Only in Unix OS!*/
+    static void createDir(const std::string fullname);
+};
 
 }// End of namespace
 

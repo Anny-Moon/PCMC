@@ -1,0 +1,7 @@
+pcmcApp
+logs/
+results/
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
