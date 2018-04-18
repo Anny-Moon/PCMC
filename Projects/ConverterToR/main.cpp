@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-#include "PCAmacros.h"
-#include "PolymerMC.h"
-#include "MonteCarlo.h"
-#include "PolymerObservable.h"
-#include "Dictionary.h"
+#include "PCMC/PCAmacros.h"
+#include "PCMC/PolymerMC.h"
+#include "PCMC/MonteCarlo.h"
+#include "PCMC/PolymerObservable.h"
+#include "PCMC/Dictionary.h"
 
 using namespace std;
 using namespace PCA;
@@ -20,7 +20,7 @@ int main(int np, char **p){
     double tmp;
 
     if(p[1]==NULL){
-	printf("I need path to result dirictory.\n");
+	printf("I need path to the result dirictory.\n");
 	exit(1);
     }
     
@@ -78,6 +78,28 @@ int main(int np, char **p){
 	delete [] fnameOut;
 	fclose(fp);
     }
+    
+    if(monteCarlo.getRegime()==2){ // 2 chains
+    for(j=0; j<logT.size();j++){
+	fnameOut = new char[1000];
+	sprintf(fnameOut,"%s/results/Configurations/N%i_logT%g_stat%i_2.pca",p[1], numMonomers, logT[j], fakeCores);
+	fp = fopen(fnameOut, "w");
+	
+	for(i=0;i<fakeCores;i++){
+	    fnameIn = new char[1000];
+	    sprintf(fnameIn,"%s/results/Configurations/%iconf2.dat",p[1], i);
+	    polymer = new Polymer(Polymer::FileType::angles, fnameIn, numMonomers-1, j+1);
+	    delete [] fnameIn;
+
+	    polymer->writeRadiusVectorsInFile(fp);
+	    //polymer->writeKappaTauInFile(fp);
+	    delete polymer;
+	    
+	}
+	delete [] fnameOut;
+	fclose(fp);
+    }
+    }//end if
     
     printf("Everything is ok!\n");
     return 0;

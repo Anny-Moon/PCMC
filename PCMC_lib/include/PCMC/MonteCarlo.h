@@ -21,7 +21,7 @@ namespace PCA{
 class MonteCarlo
 {
 public:
-    enum class Regime{normal, withoutH, withSA, twoChains, backwards};
+    enum class Regime{normal, withoutH, twoChains, withSA, backwards};
     inline std::string getRegimeStr() const;
     
     MonteCarlo(const Dictionary& dictionary);
@@ -52,7 +52,7 @@ public:
     inline double getLogTstep();
     inline int getSweepsPerStep();
     inline int getCores();
-    
+    inline int getRegime();
     
 private:
     int loopsPerCore;
@@ -112,16 +112,20 @@ inline int MonteCarlo::getCores(){
     return cores;
 }
 
+inline int MonteCarlo::getRegime(){
+    return (int)regime;
+}
+
 inline std::string MonteCarlo::getRegimeStr() const{
     switch(regime){
 	case Regime::normal:
 	    return "normal";
 	case Regime::withoutH:
 	    return "without Hamiltonian";
+	case Regime::twoChains:
+	    return "2 chains: Along the chain there is only self avoiding condition,but between chains - full interaction.";
 	case Regime::withSA:
 	    return "with self avoiding, but without long range attraction";
-	case Regime::twoChains:
-	    return "2 chains: Along the chain there is only self avoiding condition,\nbut between chains - full interaction.";
 	case Regime::backwards:
 	    return "backwards";
 	default:

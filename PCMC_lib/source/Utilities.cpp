@@ -139,7 +139,7 @@ void Util::createDir(const std::string dirName)
 {
     bool isDirExists=false;
     int nError = 0;
-    mode_t nMode = 0764; // UNIX style permissions
+    mode_t nMode = 0770; // UNIX style permissions
     
     std::string pwd = getExePath();
     std::string fullName = pwd + "/" +dirName;
