@@ -147,9 +147,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 //	    polymer->initWithRandomTaus();
 	    
 	if(regime==Regime::twoChains){
-		polymer2 = new PolymerMC(*polymerEtalon2);
-	    if(k>0)
-		polymer2->initWithRandomTaus();
+	    polymer2 = new PolymerMC(*polymerEtalon2);
+	//    if(k>0)
+	    Vector r0_2(4,0,0);
+	    polymer2->initWithRandomTaus(r0_2);
+	    
 	}
 	
 	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
@@ -163,10 +165,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	delete [] fname1;
 	
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconfR.dat",fakeCoreNumber);
+	sprintf(fname1,"results/Configurations/%iconf.pca",fakeCoreNumber);
 	conffp = fopen(fname1, "w");
 	delete [] fname1;
 	
+	polymer->writeRadiusVectorsInFile(conffp);
 	if(regime==Regime::twoChains){
 	    fname1 = new char[100];
 	    sprintf(fname1,"results/Configurations/%iconf2.dat",fakeCoreNumber);
@@ -174,9 +177,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    delete [] fname1;
 	    
 	    fname1 = new char[100];
-	    sprintf(fname1,"results/Configurations/%iconfR2.dat",fakeCoreNumber);
+	    sprintf(fname1,"results/Configurations/%iconf2.pca",fakeCoreNumber);
 	    conffp2 = fopen(fname1, "w");
 	    delete [] fname1;
+	
+	    polymer2->writeRadiusVectorsInFile(conffp2);
 	}
 
 	for(double t=maxLogT; t>=minLogT; t-=logTstep){
@@ -218,11 +223,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		case Regime::twoChains:
 //		polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%50==0){
+//			if(i%50==0){
 //			    printf("%g\t%i\n",t, i);
-			    polymer->writeRadiusVectorsInFile(conffp);
-			    polymer2->writeRadiusVectorsInFile(conffp2);
-			}
+//			    polymer->writeRadiusVectorsInFile(conffp);
+//			    polymer2->writeRadiusVectorsInFile(conffp2);
+//			}
 			polymer->updateR02chains(temperature, *interaction, *polymer2);
 			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 			polymer2->updateAllSites2chainsBW(temperature, *hamiltonian, *interaction, *polymer, minDist);
@@ -252,11 +257,15 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		default:
 		    _PCA_ERROR("MonteCarlo.run: unknown regime");
 	    }
-	    
+//polymer->printAcceptNumberR();
+//polymer2->printAcceptNumberR();
+
 	    polymer->writeKappaTauInFile(ktfp);
+	    polymer->writeRadiusVectorsInFile(conffp);
+	    
 	    if(regime==Regime::twoChains){
 		polymer2->writeKappaTauInFile(ktfp2);
-		
+		polymer2->writeRadiusVectorsInFile(conffp2);
 //		if(!polymer2->selfAvoidingCondition(0, 3.8))
 //	        printf("Finally 2 !SA\n");
 
@@ -275,7 +284,7 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    }
 	    
 	}
-	polymer->writeRadiusVectorsInFile(conffp);
+	
 	
 	if(fakeCoreNumber==0)
 	    polymer->printAcceptNumberR(logfp);
