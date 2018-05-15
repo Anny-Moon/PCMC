@@ -3,7 +3,7 @@
 
 
 #----------------Polymer---------------------------
-NUMBER_OF_MONOMERS  70
+NUMBER_OF_MONOMERS  50
 MONOMER_LENGTH 3.8  #fixed for current version of the program
 
 #----------------Hamiltonian-----------------------
@@ -24,9 +24,9 @@ LENNARD_JONES_R_MIN	4.5
 FROM		0
 S_HAM_A		88888
 S_HAM_M		2.2
-TO		50
+TO		22
 
-FROM		52
+FROM		33
 S_HAM_A		77777
 TO		77
 
@@ -36,8 +36,8 @@ THREADS_PER_CORE	3
 CORES 2
 MAX_LOG_T 1.0
 LOG_T_STEP 0.5
-MIN_LOG_T -1.0
+MIN_LOG_T -5.0
 
-SWEEPS_PER_STEP 10
+SWEEPS_PER_STEP 100
 
 

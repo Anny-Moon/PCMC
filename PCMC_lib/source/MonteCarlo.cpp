@@ -8,6 +8,7 @@
 #include "PCMC/ReadWriteFiles/ParamFileReader.h"
 #include "PCMC/PCAmacros.h"
 #include "PCMC/Timer.h"
+#include "PCMC/PolymerObservable.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -112,7 +113,7 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 
     int fakeCoreNumber; //effective core number
     char* fname1;
-    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2;
+    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2, *rgyrFinalfp, *rgyrCurrentfp;
     PolymerMC *polymer;
     PolymerMC *polymer2 = nullptr;
     if(myCoreNumber==0){
@@ -156,28 +157,31 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	
 	fakeCoreNumber = myCoreNumber+k*totalCoreNumber;
 	
-	if(fakeCoreNumber==0)
+	if(fakeCoreNumber==0){
 	    tfp = fopen("results/TemperatureMap.dat","w");
-
+	    rgyrCurrentfp = fopen("results/RadiusOfGyrationCurrent.dat","w");
+	    rgyrFinalfp = fopen("results/RadiusOfGyrationFinal.dat","w");
+	}
+	
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf.dat",fakeCoreNumber);
+	sprintf(fname1,"results/configurations/%iconf.dat",fakeCoreNumber);
 	ktfp = fopen(fname1, "w");
 	delete [] fname1;
 	
 	fname1 = new char[100];
-	sprintf(fname1,"results/Configurations/%iconf.pca",fakeCoreNumber);
+	sprintf(fname1,"results/configurations/%iconf.pca",fakeCoreNumber);
 	conffp = fopen(fname1, "w");
 	delete [] fname1;
 	
 	polymer->writeRadiusVectorsInFile(conffp);
 	if(regime==Regime::twoChains){
 	    fname1 = new char[100];
-	    sprintf(fname1,"results/Configurations/%iconf2.dat",fakeCoreNumber);
+	    sprintf(fname1,"results/configurations/%iconf2.dat",fakeCoreNumber);
 	    ktfp2 = fopen(fname1, "w");
 	    delete [] fname1;
 	    
 	    fname1 = new char[100];
-	    sprintf(fname1,"results/Configurations/%iconf2.pca",fakeCoreNumber);
+	    sprintf(fname1,"results/configurations/%iconf2.pca",fakeCoreNumber);
 	    conffp2 = fopen(fname1, "w");
 	    delete [] fname1;
 	
@@ -199,35 +203,39 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    switch(regime){
 	    /* Thermalization */
 		case Regime::normal:
+		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%50==0){
+			if(i%5==0){
 //			    fprintf(logfp,"%g\t%i\n",t, i);fflush(logfp);
-			    polymer->writeRadiusVectorsInFile(conffp);
+//			    polymer->writeRadiusVectorsInFile(conffp);
+			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			}
 			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 		    }
 		break;
 		case Regime::withoutH:
-		    for(int i=0; i<sweepsPerStep;i++)
+		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    for(int i=0; i<sweepsPerStep;i++){
+			if(i%5==0)
+			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
+			
 			polymer->updateAllSitesWithoutH(temperature, *interaction);
+		    }
 		break;
 		case Regime::withSA:
+		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%500==0){
-//			    printf("%g\t%i\n",t, i);
-			    polymer->writeRadiusVectorsInFile(conffp);
-			}
+			if(i%5==0)
+			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
 		    }
 		break;
 		case Regime::twoChains:
-//		polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
+		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
 		    for(int i=0; i<sweepsPerStep;i++){
-//			if(i%50==0){
-//			    printf("%g\t%i\n",t, i);
-//			    polymer->writeRadiusVectorsInFile(conffp);
-//			    polymer2->writeRadiusVectorsInFile(conffp2);
-//			}
+			if(i%5==0)
+			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
+			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
 			polymer->updateR02chains(temperature, *interaction, *polymer2);
 			polymer->updateAllSites2chains(temperature, *hamiltonian, *interaction, *polymer2, minDist);
 			polymer2->updateAllSites2chainsBW(temperature, *hamiltonian, *interaction, *polymer, minDist);
@@ -244,11 +252,10 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		break;
 		
 		case Regime::backwards:
+		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%50==0){
-//			    printf("%g\t%i\n",t, i);
-			    polymer->writeRadiusVectorsInFile(conffp);
-			}
+			if(i%5==0)
+			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 			polymer->updateAllSitesBW(temperature, *hamiltonian, *interaction);
 			
@@ -281,6 +288,9 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    if(fakeCoreNumber==0){
 		fprintf(tfp,"%g\t%.15le\n", t, temperature);
 		fflush(tfp);
+		
+		fprintf(rgyrFinalfp, "%.6le\n", PolymerObservable::radiusOfGyration(*polymer));
+		fflush(rgyrFinalfp);
 	    }
 	    
 	}
@@ -296,8 +306,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	if(myCoreNumber==0)
 	    Timer::tock(k, "",logfp);
 //printf("here 2\n");fflush(stdout);
-	if(fakeCoreNumber==0)
+	if(fakeCoreNumber==0){
 	    fclose(tfp);
+	    fclose(rgyrCurrentfp);
+	    fclose(rgyrFinalfp);
+	}
 //printf("here 3\n");fflush(stdout);
 	delete polymer;
 	fclose(ktfp);
