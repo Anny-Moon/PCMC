@@ -31,12 +31,12 @@ S_HAM_A		77777
 TO		77
 
 #---------------Monte Carlo------------------------
-REGIME 0
-THREADS_PER_CORE	3
+REGIME 2
+THREADS_PER_CORE	1
 CORES 2
 MAX_LOG_T 1.0
 LOG_T_STEP 0.5
-MIN_LOG_T -5.0
+MIN_LOG_T -1.0
 
 SWEEPS_PER_STEP 100
 
