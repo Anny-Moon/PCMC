@@ -113,7 +113,8 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 
     int fakeCoreNumber; //effective core number
     char* fname1;
-    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2, *rgyrFinalfp, *rgyrCurrentfp;
+    FILE* ktfp, *ktfp2, *logfp, *tfp, *checkfp, *conffp, *conffp2,
+	*rgyrFinalfp, *rgyrCurrentfp,*eFinalfp, *eCurrentfp;
     PolymerMC *polymer;
     PolymerMC *polymer2 = nullptr;
     if(myCoreNumber==0){
@@ -161,6 +162,8 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    tfp = fopen("results/TemperatureMap.dat","w");
 	    rgyrCurrentfp = fopen("results/RadiusOfGyrationCurrent.dat","w");
 	    rgyrFinalfp = fopen("results/RadiusOfGyrationFinal.dat","w");
+	    eCurrentfp = fopen("results/EnergyCurrent.dat","w");
+	    eFinalfp = fopen("results/EnergyFinal.dat","w");
 	}
 	
 	fname1 = new char[100];
@@ -291,6 +294,12 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		
 		fprintf(rgyrFinalfp, "%.6le\n", PolymerObservable::radiusOfGyration(*polymer));
 		fflush(rgyrFinalfp);
+		
+		const Vector* r1=polymer->getRadiusVectors();
+		double e1 = hamiltonian->energyAllSites(*polymer) + interaction->energyAllSites(polymer->getNumMonomers(), r1);
+		fprintf(eFinalfp, "%.6le\n", e1);
+		fflush(eFinalfp);
+		
 	    }
 	    
 	}
@@ -310,6 +319,8 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    fclose(tfp);
 	    fclose(rgyrCurrentfp);
 	    fclose(rgyrFinalfp);
+	    fclose(eCurrentfp);
+	    fclose(eFinalfp);
 	}
 //printf("here 3\n");fflush(stdout);
 	delete polymer;
