@@ -3,7 +3,7 @@
 
 
 #----------------Polymer---------------------------
-NUMBER_OF_MONOMERS  50
+NUMBER_OF_MONOMERS  37
 MONOMER_LENGTH 3.8  #fixed for current version of the program
 
 #----------------Hamiltonian-----------------------

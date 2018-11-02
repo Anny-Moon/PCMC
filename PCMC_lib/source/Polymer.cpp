@@ -26,6 +26,11 @@ Polymer::Polymer(const FileCoordinates& reader)
     r = NULL;
     t = NULL;
     
+    n = NULL;
+    b = NULL;
+    kappa = NULL;
+    tau = NULL;
+    
     r = new Vector [size];
     x = new double [size];
     y = new double [size];
@@ -511,6 +516,47 @@ void Polymer::setVectorsTNBfromKappaTau(const Vector& t0, const Vector& n0, cons
 	n[i+1] = b[i+1] * t[i+1];
     }
     
+}
+
+void Polymer::setVectorsNBfromVectorsT()
+{
+    int i;
+    double denominator = 1.0;
+    
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::setVectorsNBfromVectorsT()\n\tkappa = NULL");
+    if(n == NULL ){
+	n = new Vector [numMonomers];
+    }
+    
+    if(b == NULL ){
+	b = new Vector [numMonomers];
+    }
+    
+    
+    for(i=0;i<numMonomers;i++){
+	denominator = sqrt(t[i].x*t[i].x + t[i].y*t[i].y);
+	if(denominator==0){
+	    b[i] = Vector::eX;
+	    n[i] = b[i] * t[i];
+	    continue;
+	}
+	b[i].x = t[i].y / denominator;
+	b[i].y = - t[i].x / denominator;
+	b[i].z = 0.0;
+	
+	n[i] = b[i] * t[i];
+    }
+    
+    //this function will be called before setKappasTausFromVectorsTNB()
+    //but the later function expect the memory already be aloccated 
+    //for angles
+    if(kappa == NULL ){
+	kappa = new double [numMonomers];
+    }
+    if(tau == NULL ){
+	tau = new double [numMonomers];
+    }
+
 }
 
 void Polymer::setKappasTausFromVectorsTNB()

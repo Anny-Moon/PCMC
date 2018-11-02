@@ -29,7 +29,7 @@ public:
     MonteCarlo(const char* fileName, PolymerMC* polymer_in,
 		const Hamiltonian* hamiltonian_in,
 		const Interaction* interaction_in);
-    /** Costructor for 2 chains (equal) case. Regime will be set to twoChains. */
+    /** Costructor for 2 chains case. Regime will be set to twoChains. */
     MonteCarlo(const char* fileName, PolymerMC* polymer_in1, PolymerMC* polymer_in2,
 		const Hamiltonian* hamiltonian_in,
 		const Interaction* interaction_in,
@@ -39,12 +39,12 @@ public:
     void readFromParamFile(const char* fileName);
     inline void writeInParamFile(FILE* fp) const;
     
-    void run(PolymerMC* polymer_in,
-		const Hamiltonian* hamiltonian_in,
-		const Interaction* interaction_in,
+    void run(PolymerMC* polymer_in = nullptr,
+		const Hamiltonian* hamiltonian_in = nullptr,
+		const Interaction* interaction_in = nullptr,
 		int myCoreNumber = 0, int totalCoreNumber = 1,
 		double minDist_in = 3.8);
-    void run2chains(int myCoreNumber = 0, int totalCoreNumber = 1);
+//    void run2chains(int myCoreNumber = 0, int totalCoreNumber = 1);
     
     inline int getLoopsPerCore();
     inline double getMaxLogT();

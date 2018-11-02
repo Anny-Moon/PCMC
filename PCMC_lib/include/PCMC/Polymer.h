@@ -114,6 +114,8 @@ public:
     void setVectorsTNBfromKappaTau(const Vector& t0 = Vector::eZ,
 				const Vector& n0 = Vector::eX,
 				const Vector& b0 = Vector::eY);
+    /** The first n0 and b0 are arbitrary*/
+    void setVectorsNBfromVectorsT();
     
     void setKappasTausFromVectorsTNB();
     

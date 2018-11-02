@@ -60,6 +60,12 @@ MonteCarlo::MonteCarlo(const Dictionary& dictionary)
     regime = (Regime)dictionary[etalon];
     stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
     
+    polymerEtalon = nullptr;
+    polymerEtalon2 = nullptr;
+    hamiltonian = nullptr;
+    interaction = nullptr;
+    
+    minDist = 3.8;
 }
 
 MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
@@ -70,8 +76,10 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in,
     stepsPerLoop = (int)((maxLogT-minLogT)/logTstep)+1;
     
     polymerEtalon = polymer_in;
+    polymerEtalon2 = nullptr;
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
+    minDist = 3.8;
     
     if(regime==Regime::twoChains)
 	_PCA_ERROR("MonteCarlo constructor:\n\tFor 2 chains you should use another constructor.");
@@ -102,13 +110,19 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 			int myCoreNumber, int totalCoreNumber,
 			double minDist_in)
 {	
-    polymerEtalon = polymer_in;
-    polymerEtalon2 = nullptr;
-    if(regime==Regime::twoChains)
-	polymerEtalon2 = polymer_in;
-    hamiltonian = hamiltonian_in;
-    interaction = interaction_in;
-    minDist = minDist_in;
+    
+    if(polymer_in!=nullptr)
+	polymerEtalon = polymer_in;
+
+//    polymerEtalon2 = nullptr;
+//    if(regime==Regime::twoChains)
+//	polymerEtalon2 = polymer_in;
+    if(hamiltonian_in!=nullptr)
+	hamiltonian = hamiltonian_in;
+    if(interaction_in!=nullptr)
+	interaction = interaction_in;
+    if(minDist!=0)
+	minDist = minDist_in;
     cores = totalCoreNumber;
 
     int fakeCoreNumber; //effective core number
@@ -151,8 +165,8 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	if(regime==Regime::twoChains){
 	    polymer2 = new PolymerMC(*polymerEtalon2);
 	//    if(k>0)
-	    Vector r0_2(4,0,0);
-	    polymer2->initWithRandomTaus(r0_2);
+	//    Vector r0_2(4,0,0);
+	//    polymer2->initWithRandomTaus(r0_2);
 	    
 	}
 	

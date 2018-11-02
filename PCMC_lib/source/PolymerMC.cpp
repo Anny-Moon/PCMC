@@ -94,6 +94,20 @@ PolymerMC::PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock, 
     acceptNumberTau = 0;
 }
 
+PolymerMC::PolymerMC(const Polymer& polymer) : Polymer(polymer)
+{
+    /* calling copy Polymer*/
+    rOld = new Vector[numMonomers+1];
+    Vector::copyArray(numMonomers+1, rOld, r);
+    
+    interactionSite.site = -100;
+    interactionSite.interaction = 0;
+    
+    acceptNumberR = new unsigned long int [numMonomers+1];
+    acceptNumberKappa = 0;
+    acceptNumberTau = 0;
+}
+
 PolymerMC::PolymerMC(const PolymerMC& polymer) : Polymer(polymer)
 {
     /* calling copy Polymer */

@@ -8,12 +8,14 @@
 
 #include "PCMC/PCAmacros.h"
 #include "PCMC/PolymerMC.h"
+#include "PCMC/Vector.h"
 #include "PCMC/PolymerObservable.h"
 #include "PCMC/Energy/Interaction.h"
 #include "PCMC/Energy/DoubleWell.h"
 #include "PCMC/Energy/LennardJones.h"
 #include "PCMC/MonteCarlo.h"
 #include "PCMC/Utilities.h"
+#include "PCMC/FileHandler/FilePCA.h"
 
 
 using namespace std;
@@ -70,15 +72,40 @@ int main(int np, char **p)
     sprintf(paramFileName,"%s.pcmc",p[1]);
     
     Dictionary dictionary(paramFileName);
-    PolymerMC polymer(dictionary);
-    polymer.initWithRandomTaus();
+//    PolymerMC polymer(dictionary);
+//    polymer.initWithRandomTaus();
+    FilePCA reader1("1.pca");
+    Polymer plm1(reader1);
+    plm1.setVectorsNBfromVectorsT();
+    plm1.setKappasTausFromVectorsTNB();
     
+    
+    
+    FilePCA reader2("2.pca");
+    Polymer plm2(reader2);
+    plm2.setVectorsNBfromVectorsT();
+    plm2.setKappasTausFromVectorsTNB();
+    
+    const Vector* t = plm2.getVectorsT();
+    printf("\nhere\n\n");
+    t[5].print();
+    
+    const Vector* n = plm2.getVectorsN();
+    n[5].print();
+    
+    const Vector* b = plm2.getVectorsB();
+    b[5].print();
+    
+    PolymerMC polymer1(plm1);
+    PolymerMC polymer2(plm2);
+
     DoubleWell hamiltonian(dictionary);
     LennardJones interaction(dictionary);
    
-    MonteCarlo monteCarlo(dictionary);
-
-    monteCarlo.run(&polymer, &hamiltonian, &interaction, myCoreNumber, totalCoreNumber);
+//    MonteCarlo monteCarlo(dictionary);
+    MonteCarlo monteCarlo(paramFileName, &polymer1, &polymer2, &hamiltonian, &interaction, 3.8);
+    monteCarlo.run();
+//    monteCarlo.run(&polymer, &hamiltonian, &interaction, myCoreNumber, totalCoreNumber);
     delete [] paramFileName;
     
     fprintf(fp,"Everything is ok!\n");

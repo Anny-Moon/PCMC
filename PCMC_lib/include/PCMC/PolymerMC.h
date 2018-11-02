@@ -55,6 +55,8 @@ public:
     PolymerMC(const Dictionary& dictionary);
     PolymerMC(int numberOfMonomers);
     PolymerMC(FileType fileType, char* fileName, int numberLinesInBlock = 0, int polymerNumber = 1);
+    /** Constructor: extend any polymer object to PolymerMC by copy it*/
+    PolymerMC(const Polymer& polymer);
     
     /** Copy constructor*/
     PolymerMC(const PolymerMC& polymer);
