@@ -23,10 +23,12 @@ using namespace PCA;
 
 int main(int np, char **p)
 {	
-    char* paramFileName;
+    char* paramFileName, *polymer1FileName, *polymer2FileName;
+    int numMonomersInFile;
     int myCoreNumber, totalCoreNumber;
     FILE* fp;
     char* fname1;
+    
     
     MPI_Init(&np, &p);
     MPI_Comm_size(MPI_COMM_WORLD,&totalCoreNumber);
@@ -35,7 +37,19 @@ int main(int np, char **p)
     if(myCoreNumber==0){
 	if(p[1]==NULL){
 	    printf("Error: I need name of pcmc-file (without extention) as the first argument.\n");
-	    printf("Example: polycarlo test\n");
+	    printf("Example: polycarlo test polymer1 polymer2\n");
+	    exit(1);
+	}
+	
+	if(p[2]==NULL){
+	    printf("Error: I need name of pca-file with the first prolymer (without extention) as the second argument.\n");
+	    printf("Example: polycarlo test polymer1 polymer2\n");
+	    exit(1);
+	}
+	
+	if(p[3]==NULL){
+	    printf("Error: I need name of pca-file with the second prolymer (without extention) as the third argument.\n");
+	    printf("Example: polycarlo test polymer1 polymer2\n");
 	    exit(1);
 	}
     }
@@ -68,24 +82,43 @@ int main(int np, char **p)
     RandomGenerator::initialization(seed);
     
 //RandomGenerator::initialization(1*(myCoreNumber+1));    
-    paramFileName = new char[100];
+    paramFileName = new char[1000];
     sprintf(paramFileName,"%s.pcmc",p[1]);
-    
     Dictionary dictionary(paramFileName);
-//    PolymerMC polymer(dictionary);
-//    polymer.initWithRandomTaus();
-    FilePCA reader1("1.pca");
+
+    numMonomersInFile =  (int)dictionary["NUMBER_OF_MONOMERS"];
+
+//    printf("num mon %i\n",numMonomersInFile);
+    polymer1FileName = new char[1000];
+    sprintf(polymer1FileName,"%s.pca",p[2]);
+    FilePCA reader1(polymer1FileName,3);
     Polymer plm1(reader1);
+    if(numMonomersInFile != plm1.getNumMonomers()){
+    	printf("\tError: number of monomers in .pcmc file '%s' and in .pca file '%s' does not match!\n", paramFileName, polymer1FileName);
+    	printf("\tIt is %i and %i correspondently.",numMonomersInFile,plm1.getNumMonomers());
+    	exit(1);
+    }
     plm1.setVectorsNBfromVectorsT();
     plm1.setKappasTausFromVectorsTNB();
-    
-    
-    
-    FilePCA reader2("2.pca");
+
+
+    polymer2FileName = new char[1000];
+    sprintf(polymer2FileName,"%s.pca",p[3]);
+    FilePCA reader2(polymer2FileName,3);
     Polymer plm2(reader2);
+    if(numMonomersInFile != plm2.getNumMonomers()){
+    	printf("\tError: number of monomers in .pcmc file '%s' and in .pca file '%s' does not match!\n", paramFileName, polymer2FileName);
+    	printf("\tIt is %i and %i correspondently.",numMonomersInFile,plm2.getNumMonomers());
+    	exit(1);
+    }
     plm2.setVectorsNBfromVectorsT();
     plm2.setKappasTausFromVectorsTNB();
     
+
+//    plm2.translate(Vector::eX*10);
+    plm2.rotate(10, 10);
+    
+/*
     const Vector* t = plm2.getVectorsT();
     printf("\nhere\n\n");
     t[5].print();
@@ -95,17 +128,18 @@ int main(int np, char **p)
     
     const Vector* b = plm2.getVectorsB();
     b[5].print();
-    
+*/
     PolymerMC polymer1(plm1);
     PolymerMC polymer2(plm2);
 
     DoubleWell hamiltonian(dictionary);
     LennardJones interaction(dictionary);
-   
+
 //    MonteCarlo monteCarlo(dictionary);
     MonteCarlo monteCarlo(paramFileName, &polymer1, &polymer2, &hamiltonian, &interaction, 3.8);
     monteCarlo.run();
 //    monteCarlo.run(&polymer, &hamiltonian, &interaction, myCoreNumber, totalCoreNumber);
+
     delete [] paramFileName;
     
     fprintf(fp,"Everything is ok!\n");

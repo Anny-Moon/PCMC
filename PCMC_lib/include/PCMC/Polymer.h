@@ -150,6 +150,8 @@ public:
     inline double distance(int siteA, int siteB) const;
     
     void reverse();
+    void translate(const Vector& R);
+    void rotate(double pseudoKappa=0.0, double pseudoTau=0.0);
 };
 
 inline const Vector Polymer::frenetVectorT(double kappa, double tau,

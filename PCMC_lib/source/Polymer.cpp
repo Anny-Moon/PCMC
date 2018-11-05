@@ -749,4 +749,41 @@ void Polymer::reverse()
     
 }
 
+void Polymer::translate(const Vector& R)
+{
+    int i;
+    
+    if(r == nullptr){
+	printf("\t Error: I need to know radius vectors r to translate the chain");
+	exit(1);
+    }
+    
+    for(i=0;i<numMonomers+1;i++)
+	r[i] = r[i]+R;
+    
+}
+
+void Polymer::rotate(double pseudoKappa, double pseudoTau)
+{
+    
+    _PCA_CATCH_VOID_POINTER(r, "Polymer::rotate()");
+    _PCA_CATCH_VOID_POINTER(t, "Polymer::rotate()");
+    
+    if(n == nullptr || b == nullptr)
+	setVectorsNBfromVectorsT();
+
+    
+    if(kappa == nullptr || tau == nullptr)
+	setKappasTausFromVectorsTNB();
+
+    t[0] = cos(pseudoKappa)*t[0] + sin(pseudoKappa)*cos(pseudoTau)*n[0] + sin(pseudoKappa)*sin(pseudoTau)*b[0];
+    t[0] = t[0] / t[0].norm();
+    b[0] = cos(pseudoTau)*b[0] - sin(pseudoTau)*n[0];
+    b[0] = b[0] / b[0].norm();
+    n[0] = b[0] * t[0];
+    
+    setVectorsTNBfromKappaTau(t[0], n[0], b[0]);
+    setRadiusVectorsFromVectorsT(r[0]);
+}
+
 }// end of namespace
