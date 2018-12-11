@@ -103,7 +103,7 @@ int main(int np, char **p)
 //    printf("num mon %i\n",numMonomersInFile);
     polymer1FileName = new char[1000];
     sprintf(polymer1FileName,"%s.pca",p[2]);
-    FilePCA reader1(polymer1FileName,3);
+    FilePCA reader1(polymer1FileName,0);
     Polymer plm1(reader1);
     if(numMonomersInFile != plm1.getNumMonomers()){
 	if(myCoreNumber==0){
@@ -118,7 +118,7 @@ int main(int np, char **p)
 
     polymer2FileName = new char[1000];
     sprintf(polymer2FileName,"%s.pca",p[3]);
-    FilePCA reader2(polymer2FileName,3);
+    FilePCA reader2(polymer2FileName,0);
     Polymer plm2(reader2);
     if(numMonomersInFile != plm2.getNumMonomers()){
 	if(myCoreNumber==0){
@@ -148,7 +148,7 @@ int main(int np, char **p)
 	plm2.rotate(kappa, tau);
 	
 	if(myCoreNumber==0)
-	printf("I will rotate the second polymer by kappa = %g, tau = %g}.\n", kappa, tau);
+	printf("I will rotate the second polymer by kappa = %g, tau = %g.\n", kappa, tau);
     
     }
     

@@ -98,7 +98,6 @@ MonteCarlo::MonteCarlo(const char* fileName, PolymerMC* polymer_in1,
     polymerEtalon2 = polymer_in2;
     hamiltonian = hamiltonian_in;
     interaction = interaction_in;
-    regime = Regime::twoChains;
     minDist = minDist_in;
 }
 
