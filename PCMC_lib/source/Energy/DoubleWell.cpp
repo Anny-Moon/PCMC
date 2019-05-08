@@ -505,15 +505,10 @@ double DoubleWell::energyAllSites(const Polymer& polymer) const
     double E1 = 0.0;
     double E2 = 0.0;
     
-    i=0;
-    E1 += -(2.0 + mu) * polymer.getKappa(i) * polymer.getKappa(i+1);
     
-    for(i=1; i<numSites-1; i++){
-	E1 += -(2.0 + mu) * (polymer.getKappa(i-1) * polymer.getKappa(i) + polymer.getKappa(i) * polymer.getKappa(i+1));
+    for(i=0; i<numSites-1; i++){
+	E1 += -(2.0 + mu) *  polymer.getKappa(i) * polymer.getKappa(i+1);
     }
-    
-    i=numSites-1;
-    E1 += -(2.0 + mu) * polymer.getKappa(i-1) * polymer.getKappa(i);
     
     for(i=0; i<numSites; i++){
 	E2 += 2.0 * polymer.getKappa(i)*polymer.getKappa(i) +\
@@ -529,15 +524,15 @@ double DoubleWell::energyAllSites(const Polymer& polymer) const
 
 double DoubleWell::generateTau (int site, const double* kappa, const double* tau, double temperature) const
 {
-    double A2, B, mu, sigma;
+    double A2, B, mu1, sigma;
     
     
     A2 = c[site] * (d[site] * kappa[site]*kappa[site] + 1.0);
     B = a[site] * (b[site] * kappa[site]*kappa[site] + 1.0);
     
-    mu = B / A2;
+    mu1 = B / A2;
     sigma = sqrt(temperature / (alpha * A2));
-    GaussRand gaussRand(mu, sigma);
+    GaussRand gaussRand(mu1, sigma);
     return gaussRand();
 
 }
