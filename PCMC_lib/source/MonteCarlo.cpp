@@ -189,7 +189,9 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	conffp = fopen(fname1, "w");
 	delete [] fname1;
 	
+	polymer->writeKappaTauInFile(ktfp);
 	polymer->writeRadiusVectorsInFile(conffp);
+	
 	if(regime==Regime::twoChains){
 	    fname1 = new char[100];
 	    sprintf(fname1,"results/configurations/%iconf2.dat",fakeCoreNumber);
@@ -201,7 +203,57 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    conffp2 = fopen(fname1, "w");
 	    delete [] fname1;
 	
+	    polymer2->writeKappaTauInFile(ktfp2);
 	    polymer2->writeRadiusVectorsInFile(conffp2);
+	    
+	    {// print the full energy
+		    const Vector* r1=polymer->getRadiusVectors();
+		    double e1 = hamiltonian->energyAllSites(*polymer);
+		    fprintf(eFinalfp, "%.15le\t", e1);
+		    fflush(eFinalfp);
+		
+		    const Vector* r2=polymer2->getRadiusVectors();
+		    double e2 = hamiltonian->energyAllSites(*polymer2);
+		    
+		    fprintf(eFinalfp, "%.15le\t", e2);
+		    fflush(eFinalfp);
+		    
+/*		    for(int c=0;c<polymer->getNumMonomers()+1;c++){
+			for(int m=0;m<polymer2->getNumMonomers()+1;m++){
+			    r1[c].print();
+			    r2[m].print();
+			    printf("%i  %i  %.15le\n\n",c, m,(r1[c]-r2[m]).norm());
+			}
+		    }
+*/
+		    
+		    //for Interaction
+		    int site = 0;
+		    int N12 = polymer->getNumMonomers() + polymer2->getNumMonomers() + 2 - site; // sum number of r-vectors in both chains + trash element
+		    Vector* r12 = new Vector [N12];
+	
+		    //write the whole second chain:
+		    for(int c=0; c<polymer2->getNumMonomers() + 1; c++)
+			r12[c] = r2[c];
+
+		    r12[polymer2->getNumMonomers()+1] = Vector::zero; // any number, never used;
+
+		    //add this chain:
+		    for(int c=polymer2->getNumMonomers()+2; c<N12; c++){
+			r12[c] = r1[site+1+c-polymer2->getNumMonomers()-2];
+			//r12[c].print();
+		    }
+		    double lj = interaction->energyIfSiteChanged(polymer2->getNumMonomers()+1, N12, r12);
+		
+		    fprintf(eFinalfp, "%.15le\t", lj);
+		    fprintf(eFinalfp, "%.15le\t", e1+e2+lj);
+		    
+		    fflush(eFinalfp);
+		    fprintf(eFinalfp, "\n");
+		    
+		    delete [] r12;
+		
+	    }// end of print the full energy
 	}
 
 	for(double t=maxLogT; t>=minLogT; t-=logTstep){
