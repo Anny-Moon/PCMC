@@ -2,7 +2,7 @@
 *   @file Polymer.cpp
 *
 *   @autor Anna Sinelnikova
-*   @data 2016
+*   @data 2019
 */
 
 #include "PCMC/Polymer.h"
@@ -47,6 +47,32 @@ Polymer::Polymer(const FileCoordinates& reader)
     t = new Vector[numMonomers];
     setVectorsTfromRadiusVectors();
     
+}
+
+Polymer::Polymer(const FileAngles& reader)
+{
+    int size;
+    size = reader.getNumLines();
+
+    this->numMonomers = size+1;
+    monomerLength = NULL;
+    r = NULL;
+    t = NULL;    
+    n = NULL;
+    b = NULL;
+
+    kappa = new double [size+1];
+    tau = new double [size+1];
+
+    reader.fillAngles(kappa, tau);
+
+    monomerLength = new double [numMonomers];
+    setMonomerLengths(3.8);
+    t = new Vector[numMonomers];
+    n = new Vector[numMonomers];
+    b = new Vector[numMonomers];
+	    
+    r = new Vector[numMonomers+1];
 }
 
 

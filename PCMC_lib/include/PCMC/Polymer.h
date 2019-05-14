@@ -2,13 +2,14 @@
 *   @file Polymer.h
 *
 *   @autor Anna Sinelnikova
-*   @data 2016
+*   @data 2019
 */
 
 #ifndef PCA_POLYMER
 #define PCA_POLYMER
 
 #include "PCMC/FileHandler/FileCoordinates.h"
+#include "PCMC/FileHandler/FileAngles.h"
 #include "PCMC/Vector.h"
 #include "PCMC/Utilities.h"
 #include "PCMC/PCAmacros.h"
@@ -61,6 +62,11 @@ public:
     * blocks in file then pass the number of the block. You can pass number of sites in
     * the block, but it is not necessarily.*/
     Polymer(const FileCoordinates& reader);
+    
+    /** Constructor. Read kappa and tau angles of sites from file. If you have more than one
+    * blocks in file then pass the number of the block. You can pass number of sites in
+    * the block, but it is not necessarily.*/
+    Polymer(const FileAngles& reader);
     
     /** Constructor: read coordinates of sites from file. If you have more than one
     * blocks in file then pass the number of the block. You can pass number of sites in
