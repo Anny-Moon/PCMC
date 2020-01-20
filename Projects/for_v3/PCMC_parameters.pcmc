@@ -19,7 +19,7 @@ LENNARD_JONES_MIN	10.0
 LENNARD_JONES_R_MIN	4.5
 
 #---------------Monte Carlo------------------------
-REGIME 0
+REGIME 3
 LOOPS_PER_CORE	1
 
 MAX_LOG_T 2.0

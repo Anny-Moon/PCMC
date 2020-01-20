@@ -1,0 +1,14 @@
+PCMC
+Version: 3.0.0
+Date: Mon Jan 20 19:18:23 2020
+********
+* PCMC * 
+********
+CPU MULTY CORE
+
+Cores 2
+fakeCores 1
+Steps/fakeCore: 4
+
+Regime: with self avoiding, but without long range attraction
+fakeCore: 0;	logT: 2

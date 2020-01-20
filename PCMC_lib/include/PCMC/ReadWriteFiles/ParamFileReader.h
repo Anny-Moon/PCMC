@@ -14,12 +14,12 @@
 #define COMMENT_CHAR '#'
 #define _PARAM_FILE_READER_ERROR(fileName, line)\
     {\
-	printf("Error in format of file '%s':\n", fileName);\
-	printf("I don't understant the line:\n--->%s\n", line);\
-	printf("I expect this format:\n");\
-	printf("MY_PI\t3.14\t%c3.1415926 (comments are optional).\n", COMMENT_CHAR);\
-	printf("or\n");\
-	printf("%cline which will be ignored.\n", COMMENT_CHAR);\
+	fprintf(stderr, "Error in format of file '%s':\n", fileName);\
+	fprintf(stderr, "I don't understant the line:\n--->%s\n", line);\
+	fprintf(stderr, "I expect this format:\n");\
+	fprintf(stderr, "MY_PI\t3.14\t%c3.1415926 (comments are optional).\n", COMMENT_CHAR);\
+	fprintf(stderr, "or\n");\
+	fprintf(stderr, "%cline which will be ignored.\n", COMMENT_CHAR);\
 	exit(1);\
     }
 

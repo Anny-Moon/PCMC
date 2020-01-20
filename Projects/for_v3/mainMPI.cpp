@@ -100,6 +100,7 @@ printf("main3 %i\n", myCoreNumber);
     
     fprintf(fp,"Everything is ok!\n");
     fclose(fp);
+    
 MPI_Finalize();
 
 return 0;

@@ -1,3 +1,2 @@
-#Ignore .o-files
-*.o
-*.a
+*
+!.gitignore

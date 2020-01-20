@@ -89,7 +89,7 @@ void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int bloc
     _PCA_CATCH_FILE_ERROR(fp, "open", fileName, "Polymer::readFileWithCoordinates");
     
     if(blockNumber == 0){
-	printf("Error in readFileWithCoordinates:\nIn files number of the first block is 1. You pussed me 0!\n");
+	fprintf(stderr,"Error in readFileWithCoordinates:\nIn files number of the first block is 1. You pussed me 0!\n");
 	exit(1);
     }
     
@@ -112,7 +112,7 @@ void Polymer::readFileWithCoordinates(char* fileName, int linesInBlock, int bloc
 	blockCounter++;
 
     if(blockNumber > blockCounter+1){
-	printf("Error in readFileWithCoordinates:\nYou have only %i blocks in your file. But you passed me number %i\nNote: in files number of the first block is 1.\n",blockCounter, blockNumber);
+	fprintf(stderr,"Error in readFileWithCoordinates:\nYou have only %i blocks in your file. But you passed me number %i\nNote: in files number of the first block is 1.\n",blockCounter, blockNumber);
 	exit(1);
     }
 
@@ -149,7 +149,7 @@ void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumb
     _PCA_CATCH_FILE_ERROR(fp, "open", fileName, "Polymer::readFileWithAngles");
 
     if(blockNumber == 0){
-	printf("Error in readFileWithAngles:\nIn files number of the first block is 1. You pussed me 0!\n");
+	fprintf(stderr,"Error in readFileWithAngles:\nIn files number of the first block is 1. You pussed me 0!\n");
 	exit(1);
     }
     
@@ -173,7 +173,7 @@ void Polymer::readFileWithAngles(char* fileName, int linesInBlock, int blockNumb
 	blockCounter++;
 
     if(blockNumber > blockCounter+1){
-	printf("Error in readFileWithAngles:\nYou have only %i blocks in your file. But you passed me number %i\nNote: in files number of the first block is 1.\n",blockCounter, blockNumber);
+	fprintf(stderr,"Error in readFileWithAngles:\nYou have only %i blocks in your file. But you passed me number %i\nNote: in files number of the first block is 1.\n",blockCounter, blockNumber);
 	exit(1);
     }
 
@@ -780,7 +780,7 @@ void Polymer::translate(const Vector& R)
     int i;
     
     if(r == nullptr){
-	printf("\t Error: I need to know radius vectors r to translate the chain");
+	fprintf(stderr,"\t Error: I need to know radius vectors r to translate the chain");
 	exit(1);
     }
     

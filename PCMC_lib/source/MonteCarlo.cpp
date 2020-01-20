@@ -27,8 +27,8 @@ MonteCarlo::MonteCarlo(const Dictionary& dictionary)
     else if (number==-1)
 	loopsPerCore = 1;
     else{
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once.\n", etalon.c_str());
 	exit(1);
     }
     
@@ -51,8 +51,8 @@ MonteCarlo::MonteCarlo(const Dictionary& dictionary)
     else if (number==-1)
 	cores = 0;
     else{
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	fprintf(stderr, "Error in format of parameter file .pcap:\n");
+	fprintf(stderr, "Parameter '%s' defines more than once.\n", etalon.c_str());
 	exit(1);
     }
     
@@ -480,7 +480,7 @@ void MonteCarlo::readFromParamFile(const char* fileName)
 	maxLogT = data.value(number);
 	
     else{
-	printf("Cannot find %s\n", etalon.c_str());
+	fprintf(stderr, "Cannot find %s\n", etalon.c_str());
 	exit(1);
     }
     
@@ -490,7 +490,7 @@ void MonteCarlo::readFromParamFile(const char* fileName)
 	minLogT = data.value(number);
 	
     else{
-	printf("Cannot find %s\n", etalon.c_str());
+	fprintf(stderr, "Cannot find %s\n", etalon.c_str());
 	exit(1);
     }
     
@@ -500,7 +500,7 @@ void MonteCarlo::readFromParamFile(const char* fileName)
 	minLogT = data.value(number);
 	
     else{
-	printf("Cannot find %s\n", etalon.c_str());
+	fprintf(stderr, "Cannot find %s\n", etalon.c_str());
 	exit(1);
     }
     
@@ -510,7 +510,7 @@ void MonteCarlo::readFromParamFile(const char* fileName)
 	logTstep = data.value(number);
 	
     else{
-	printf("Cannot find %s\n", etalon.c_str());
+	fprintf(stderr, "Cannot find %s\n", etalon.c_str());
 	exit(1);
     }
     
@@ -520,7 +520,7 @@ void MonteCarlo::readFromParamFile(const char* fileName)
 	sweepsPerStep = (int)data.value(number);
 	
     else{
-	printf("Cannot find %s\n", etalon.c_str());
+	fprintf(stderr, "Cannot find %s\n", etalon.c_str());
 	exit(1);
     }
     

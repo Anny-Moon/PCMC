@@ -33,8 +33,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     tmpTo = (int)solitonDic[etalon];
     
     if(tmpFrom>tmpTo){
-	printf("Error in parameter file:\n");
-	printf("\tsoliton 'FROM %i ... TO %i' ends before starts.\n", tmpFrom, tmpTo);
+	fprintf(stderr,"Error in parameter file:\n");
+	fprintf(stderr,"\tsoliton 'FROM %i ... TO %i' ends before starts.\n", tmpFrom, tmpTo);
 	exit(1);
     }
     
@@ -74,8 +74,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
 
@@ -87,8 +87,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
     
@@ -100,8 +100,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
 
@@ -113,8 +113,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
     
@@ -126,8 +126,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
     
@@ -139,8 +139,8 @@ void DoubleWell::setSoliton(const Dictionary& solitonDic)
     }
     
     if(number==-2){
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once in soliton %i - %i.\n", etalon.c_str(), tmpFrom, tmpTo);
 	exit(1);
     }
     
@@ -151,8 +151,8 @@ void DoubleWell::checkSolitonsOverlap() const
     for(int i=0;i<from.size();i++){
 	for(int j=i+1;j<from.size();j++){
 	    if(from[j]<=to[i] && from[j]>from[i]){
-		printf("Error in format of parameter file .pcap:\n");
-		printf("\tSoliton 'FROM %i ... TO %i' overlaps with soliton 'FROM %i ... TO %i.'\n", from[i], to[i], from[j], to[j]);
+		fprintf(stderr,"Error in format of parameter file .pcap:\n");
+		fprintf(stderr,"\tSoliton 'FROM %i ... TO %i' overlaps with soliton 'FROM %i ... TO %i.'\n", from[i], to[i], from[j], to[j]);
 		exit(1);
 	    }
 	}
@@ -167,8 +167,8 @@ DoubleWell::DoubleWell(const Dictionary& dictionary)
     etalon  = "NUMBER_OF_MONOMERS";
     numSites = (int)dictionary[etalon];
     if(numSites<1){
-	printf("Error in parameter file:\n");
-	printf("\t'NUMBER_OF_MONOMERS' cannot be less than 1.\n");
+	fprintf(stderr,"Error in parameter file:\n");
+	fprintf(stderr,"\t'NUMBER_OF_MONOMERS' cannot be less than 1.\n");
 	exit(1);
     }
     
@@ -212,8 +212,8 @@ DoubleWell::DoubleWell(const Dictionary& dictionary)
     else if (number==-1)
 	alpha = 1.0;
     else{
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once.\n", etalon.c_str());
 	exit(1);
     }
     
@@ -224,8 +224,8 @@ DoubleWell::DoubleWell(const Dictionary& dictionary)
     else if (number==-1)
 	mu = 0.0;
     else{
-	printf("Error in format of parameter file .pcap:\n");
-	printf("Parameter '%s' defines more than once.\n", etalon.c_str());
+	fprintf(stderr,"Error in format of parameter file .pcap:\n");
+	fprintf(stderr,"Parameter '%s' defines more than once.\n", etalon.c_str());
 	exit(1);
     }
     
@@ -692,7 +692,7 @@ void DoubleWell::writeInParamFile(FILE* fp) const
 }
 
 bool DoubleWell::checkAllParamAreSeted(){
-    printf("Error: in DoubleWell: the function is not supported.\n");
+    fprintf(stderr,"Error: in DoubleWell: the function is not supported.\n");
     exit(1);
 };
 
