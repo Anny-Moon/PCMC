@@ -6,7 +6,7 @@
 # Uppsala, Sweden 2016
 
 # Compilator name (for example could be mpicc instead)
-CC:= g++
+CC:= mpicxx
 
 # Compilator flags
 CFLAGS:= -Wall -std=c++11

@@ -3,7 +3,7 @@
 # Run: $ source init_session.se
 
 PROJECT_DIR=$PWD
-INC_DIR=$PWD/PCMC_lib/include/PCMC
+INC_DIR=$PWD/PCMC_lib/include
 BUILD_DIR=$PWD/PCMC_lib/build
 
 #################

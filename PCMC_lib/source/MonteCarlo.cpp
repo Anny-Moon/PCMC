@@ -109,7 +109,6 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 			int myCoreNumber, int totalCoreNumber,
 			double minDist_in)
 {	
-    
     if(polymer_in!=nullptr)
 	polymerEtalon = polymer_in;
 
@@ -178,17 +177,15 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    eCurrentfp = fopen("results/EnergyCurrent.dat","w");
 	    eFinalfp = fopen("results/EnergyFinal.dat","w");
 	}
-	
+
 	fname1 = new char[100];
 	sprintf(fname1,"results/configurations/%iconf.dat",fakeCoreNumber);
 	ktfp = fopen(fname1, "w");
 	delete [] fname1;
-	
 	fname1 = new char[100];
 	sprintf(fname1,"results/configurations/%iconf.pca",fakeCoreNumber);
 	conffp = fopen(fname1, "w");
 	delete [] fname1;
-	
 	polymer->writeKappaTauInFile(ktfp);
 	polymer->writeRadiusVectorsInFile(conffp);
 	
@@ -205,7 +202,6 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	
 	    polymer2->writeKappaTauInFile(ktfp2);
 	    polymer2->writeRadiusVectorsInFile(conffp2);
-	    
 	    {// print the full energy
 		    const Vector* r1=polymer->getRadiusVectors();
 		    double e1 = hamiltonian->energyAllSites(*polymer);
@@ -255,7 +251,6 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		
 	    }// end of print the full energy
 	}
-
 	for(double t=maxLogT; t>=minLogT; t-=logTstep){
 		
 	    if(_PCA_IS_EQUAL(t,0.0))
@@ -267,11 +262,11 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		fprintf(logfp,"fakeCore: %i;\tlogT: %g\n", k, t);
 		fflush(logfp);
 	    }
-	    
 	    switch(regime){
 	    /* Thermalization */
 		case Regime::normal:
 		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    fflush(rgyrCurrentfp);
 		    for(int i=0; i<sweepsPerStep;i++){
 			if(i%5==0){
 //			    fprintf(logfp,"%g\t%i\n",t, i);fflush(logfp);
@@ -283,15 +278,17 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		break;
 		case Regime::withoutH:
 		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    fflush(rgyrCurrentfp);
 		    for(int i=0; i<sweepsPerStep;i++){
 			if(i%5==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
-			
+			    fflush(rgyrCurrentfp);
 			polymer->updateAllSitesWithoutH(temperature, *interaction);
 		    }
 		break;
 		case Regime::withSA:
 		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    fflush(rgyrCurrentfp);
 		    for(int i=0; i<sweepsPerStep;i++){
 			if(i%5==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
@@ -300,6 +297,7 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		break;
 		case Regime::twoChains:
 		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    fflush(rgyrCurrentfp);
 		    for(int i=0; i<sweepsPerStep;i++){
 			if(i%5==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
@@ -336,7 +334,9 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 //polymer2->printAcceptNumberR();
 
 	    polymer->writeKappaTauInFile(ktfp);
+	    fflush(ktfp);
 	    polymer->writeRadiusVectorsInFile(conffp);
+	    fflush(conffp);
 	    
 	    if(regime==Regime::twoChains){
 		polymer2->writeKappaTauInFile(ktfp2);
