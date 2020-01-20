@@ -265,41 +265,48 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 	    switch(regime){
 	    /* Thermalization */
 		case Regime::normal:
-		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
-		    fflush(rgyrCurrentfp);
+		    if(fakeCoreNumber==0){
+			fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+			fflush(rgyrCurrentfp);
+		    }
 		    for(int i=0; i<sweepsPerStep;i++){
 			if(i%5==0){
-//			    fprintf(logfp,"%g\t%i\n",t, i);fflush(logfp);
 //			    polymer->writeRadiusVectorsInFile(conffp);
-			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
+			    if(fakeCoreNumber==0)
+				fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			}
 			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 		    }
 		break;
 		case Regime::withoutH:
-		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
-		    fflush(rgyrCurrentfp);
+		    if(fakeCoreNumber==0){
+			fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+			fflush(rgyrCurrentfp);
+		    }
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%5==0)
-			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
-			    fflush(rgyrCurrentfp);
+			if(i%5==0 && fakeCoreNumber==0)
+				fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSitesWithoutH(temperature, *interaction);
 		    }
 		break;
 		case Regime::withSA:
-		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
-		    fflush(rgyrCurrentfp);
+		    if(fakeCoreNumber==0){
+			fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+			fflush(rgyrCurrentfp);
+		    }
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%5==0)
+			if(fakeCoreNumber ==0 && i%5==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
 		    }
 		break;
 		case Regime::twoChains:
-		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
-		    fflush(rgyrCurrentfp);
+		    if(fakeCoreNumber==0){
+			fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+			fflush(rgyrCurrentfp);
+		    }
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%5==0)
+			if(i%5==0 && fakeCoreNumber==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSitesWithOnlySA(temperature, *hamiltonian);
 			polymer->updateR02chains(temperature, *interaction, *polymer2);
@@ -318,9 +325,10 @@ void MonteCarlo::run(PolymerMC* polymer_in,
 		break;
 		
 		case Regime::backwards:
-		    fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
+		    if(fakeCoreNumber==0)
+			fprintf(rgyrCurrentfp,"\t\tlogT: %g\n",t);
 		    for(int i=0; i<sweepsPerStep;i++){
-			if(i%5==0)
+			if(i%5==0 && fakeCoreNumber==0)
 			    fprintf(rgyrCurrentfp,"%.6le\n",PolymerObservable::radiusOfGyration(*polymer));
 			polymer->updateAllSites(temperature, *hamiltonian, *interaction);
 			polymer->updateAllSitesBW(temperature, *hamiltonian, *interaction);

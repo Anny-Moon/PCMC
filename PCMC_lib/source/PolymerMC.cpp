@@ -224,7 +224,6 @@ void PolymerMC::acceptNumberRupdateBW(int site)
 void PolymerMC::setNewRadiusVectorsViaRotation(int site)
 {
     Vector tmpVector;
-printf("setNewVectorsTNviaRot\n");fflush(stdout);
     /* we changed kappa/tau at site-th site  => r[site+1], r[site+2],... will change */
     tNew = frenetVectorT(kappaNew, tauNew, t[site-1], n[site-1], b[site-1]);
     bNew = frenetVectorB(kappaNew, tauNew, t[site-1], n[site-1], b[site-1]);
@@ -237,7 +236,6 @@ printf("setNewVectorsTNviaRot\n");fflush(stdout);
 	    Vector::dotProduct(tmpVector,n[site])*nNew +\
 	    Vector::dotProduct(tmpVector,b[site])*bNew + r[site];
     }
-printf("setNewVectorsTNviaRot END\n");fflush(stdout);
 }
 
 void PolymerMC::setNewRadiusVectorsViaRotationBW(int site)
@@ -281,7 +279,6 @@ void PolymerMC::setVectorsTNBfromKappaTauBW(const Vector& tLast, const Vector& n
 /* This function is called when ACCEPT */
 void PolymerMC::setNewVectorsTNBfromKappaTau(int site)
 {
-printf("setNewVectorsTNBfromKappaTau END\n");fflush(stdout);
     t[site] = tNew;
     n[site] = nNew;
     b[site] = bNew;
@@ -291,7 +288,6 @@ printf("setNewVectorsTNBfromKappaTau END\n");fflush(stdout);
 	b[i+1] = frenetVectorB(kappa[i+1], tau[i+1], t[i], n[i], b[i]);
 	n[i+1] = b[i+1] * t[i+1];
 	}
-printf("setNewVectorsTNBfromKappaTau\n");fflush(stdout);
 }
 
 void PolymerMC::setNewVectorsTNBfromKappaTauBW(int site)
@@ -476,16 +472,11 @@ void PolymerMC::updateAllSitesWithoutH(double temperature, const Interaction& in
 ///////////With Only Self Avoiding Condition/////////////////
 void PolymerMC::updateKappaWithOnlySA(int site, double temperature, const Hamiltonian& hamiltonian, double minDist)
 {
-printf("1\n");fflush(stdout);
     /* See original Monte Carlo for comments */
     kappaNew = generateKappa(site, temperature, hamiltonian);
-printf("2\n");fflush(stdout);
     tauNew = tau[site];
-printf("3\n");fflush(stdout);    
     saveOldRadiusVectors(site);
-printf("4\n");fflush(stdout);
     setNewRadiusVectorsViaRotation(site);
-printf("5\n");fflush(stdout);    
     if(selfAvoidingCondition(site,minDist)){ //ACCEPT
 	kappa[site] = kappaNew;
 	setNewVectorsTNBfromKappaTau(site);
@@ -498,7 +489,6 @@ printf("5\n");fflush(stdout);
     else{ //REJECT
 	loadOldRadiusVectors(site);
 //	printf("REJECT\n");
-printf("6\n");fflush(stdout);
     }
 
 }
